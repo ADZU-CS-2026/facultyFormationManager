@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 
+// TEMPORARY ACCOUNT
 const ADMIN = {
     id: "230999",
     passwordHash: bcrypt.hashSync("drake", 10),
@@ -8,6 +9,7 @@ const ADMIN = {
     role: "admin"
 }
 
+// ID PASSWORD AUTHENTICATION
 export async function verifyAdmin(id, password){
     if(id !== ADMIN.id){
         return false;
@@ -22,6 +24,7 @@ export async function verifyAdmin(id, password){
     return true;
 }
 
+// RETURN ADMIN DATA
 export async function getAdmin(){
     return ADMIN;
 }
