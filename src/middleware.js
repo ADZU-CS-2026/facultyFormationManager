@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 
+// VERIFYING JWT
+
 async function verifyJwt(token){
   const secret = new TextEncoder().encode(process.env.JWT_ACCESS_SECRET);
   try{
@@ -12,7 +14,11 @@ async function verifyJwt(token){
   }
 }
 
+// MIDDLEWARE
+
 export async function middleware(req){
+
+  // CHECK ACCESS TOKEN
   const accessToken = req.cookies.get('accessToken')?.value;
   if(accessToken){
     const payload = await verifyJwt(accessToken);
@@ -21,6 +27,7 @@ export async function middleware(req){
     }
   }
 
+  // CHECK REFRESH TOKEN 
   const resUrl = new URL("/api/auth/refresh", req.url);
   const resFetch = await fetch(resUrl, {
     method: "POST",
@@ -38,11 +45,12 @@ export async function middleware(req){
     }
   }
 
+  // STRAIGHT TO LOGIN
   const loginUrl = new URL("/login", req.url);
   return NextResponse.next();
 }
 
+// PROTECTED ROUTES
 export const config = {
   matcher: ["/", "/records/:path*", "/account-information"]
 }
-
