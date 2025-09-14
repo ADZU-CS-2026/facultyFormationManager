@@ -16,6 +16,7 @@ export default function Home() {
   const [error, setError] = useState(false);
   const route = useRouter();
 
+  // 60 SECOND COUNTER IF LOGIN ATTEMPT REACH LIMIT
   useEffect(() => {
     if (seconds <= 0) return setError(false);
 
@@ -34,6 +35,7 @@ export default function Home() {
     return setMessage("Empty credentials!");
   }
 
+  // LOGIN API FETCH 
   try {
     const res = await fetch("/api/auth/login", {
       method: "POST",
@@ -97,7 +99,7 @@ export default function Home() {
                 className="fst-italic mb-4 text-center"
                 style={{ fontSize: "12.8px", color: "#cccccc" }}
               >
-                "Faculty Formation Program Monitoring and Management System"
+                {"\"Faculty Formation Program Monitoring and Management System\""}
               </div>
 
               {/* USERNAME OR ID INPUT */}
