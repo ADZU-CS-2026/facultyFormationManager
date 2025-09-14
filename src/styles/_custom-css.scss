@@ -1,0 +1,137 @@
+@import "variables";
+
+.login-global-font{
+  font-family: $font-login;
+}
+
+.login-input::placeholder {
+  color: #cccccc;  
+  opacity: 1;     
+}
+
+
+.recordlist-hover:hover{
+  color: $light !important;
+}
+
+.bar-hover{
+  background-color: $blue !important;
+}
+
+.bar-hover:hover{
+  background-color: $darkblue !important;
+}
+
+.notification-hover:hover{
+  background-color: $semidarkblue;
+}
+
+.user-hover:hover{
+  background-color: $semidarkblue;
+}
+
+.sidebar-animation {
+  transition: all 0.3s ease-out;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.navigation-hover:hover {
+  box-shadow: inset 3px 0 0 0 $blue !important;
+  filter: brightness(90%) !important;
+}
+
+.navigation-hover:hover {
+  box-shadow: inset 3px 0 0 0 $blue !important;
+  filter: brightness(90%) !important;
+  z-index: 99999;
+  .tooltip-show{
+    display: block !important;
+  }
+}
+
+.zero-padding {
+  padding: 0 !important;
+}
+
+.fb-page{
+  width: 100% !important;
+}
+
+@media (max-width: 992px) {
+  .navbar-mobile {
+    width: 100% !important;
+  }
+
+
+@media (max-width: 992px) {
+  .mainpage-mobile {
+    width: 100% !important;
+  }
+}}
+
+.search-input::placeholder {
+  color: $yellowgray;
+  opacity: 1;
+  font-size: 0.9rem;
+}
+
+.search-input:focus {
+  background-color: $white1 !important;
+  color: $gray2 !important;
+  outline: none; 
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.input-wrapper input {
+  height: 50px;
+  padding: 0px 30px 0px 53px; 
+  color: black;             
+  transition: padding-left 0.2s;
+}
+
+.input-wrapper input::placeholder {
+  color: $yellowgray;  
+  opacity: 1;
+}
+
+.input-wrapper input:focus::placeholder {  
+  opacity: 0;
+}
+
+.input-wrapper .icon {
+  position: absolute;
+  left: 28px;                  
+  top: 50%;
+  transform: translateY(-50%);
+  color: $yellowgray;               
+  transition: all 0.3s ease;
+}
+
+.input-wrapper:focus-within .icon {
+  left: 20px;                 
+  color: $cyan;           
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 50px #00bfef66;
+  }
+  100% {
+    box-shadow: 0 0 0px none;
+  }
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  animation: glow 1s ease-in;
+}
+
+

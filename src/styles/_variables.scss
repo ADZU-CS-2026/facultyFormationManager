@@ -1,0 +1,96 @@
+// Imports
+@import "fonts";
+
+// Font Variables
+$font-login: "Montserrat";
+$font-family-base: "HelveticaNeue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$headings-font-family: "Montserrat";
+$font-family-monospace: "Source Sans Pro", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+// ADZU Formation Color Theme
+$blue: #02327A;
+$semidarkblue: #022d6e;
+$darkblue: #011C47;
+$white1: #ffffff;
+$white2: #EBEFF4; 
+$gray1: #2C3B41;
+$gray2: #1E282C;
+$gray3: #1A2226;
+$green: #0A8043;
+$cyan: #00C0EF;
+$yellow: #DAA520;
+$yellowgray: #999999;
+$lightgray: #88A2AD;
+$tableheadergray: #BABABA;
+$red: #dd4a39;
+$dark: #212529;
+$light: #f8f9fa;
+$primary-navy: #001c47;
+$primary-blue: #005bea;
+$gold: #FFBB1B;
+$text-gray: #999;
+$text-darkgray: #333;
+$secondary: #6c757d;
+
+// Add Theme Colors to Bootstrap
+$theme-colors: (
+    "blue": $blue,
+    "semidarkblue": $semidarkblue,
+    "darkblue": $darkblue,
+    "white1": $white1,
+    "white2": $white2,
+    "gray1": $gray1,
+    "gray2": $gray2,
+    "gray3": $gray3,
+    "green": $green,
+    "cyan": $cyan,
+    "yellow": $yellow,
+    "yellowgray": $yellowgray,
+    "lightgray": $lightgray,
+    "tableheadergray": $tableheadergray,
+    "red": $red,
+    "dark": $dark,
+    "light": $light,
+    "primarynavy": $primary-navy,
+    "primaryblue": $primary-blue,
+    "gold": $gold,
+    "textgray": $text-gray,
+    "textdarkgray": $text-darkgray,
+    "secondary": $secondary
+);
+
+// Accordion Variables
+$accordion-button-focus-border-color:     none;
+$accordion-button-focus-box-shadow:       none;
+$accordion-icon-width:                    0.8rem;
+$accordion-icon-color:                    $light;
+$accordion-icon-active-color:             $light;
+$accordion-icon-transition:               transform .2s ease-in-out;
+$accordion-icon-transform:                rotate(90deg);
+$accordion-button-icon:         url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$light}' stroke-linecap='round' stroke-linejoin='round'><path d='m2 5 6 6 6-6'/></svg>");
+$accordion-button-active-icon:  url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='#{$light}' stroke-linecap='round' stroke-linejoin='round'><path d='m2 5 6 6 6-6'/></svg>");
+$btn-close-width:            0.7em;
+$btn-close-height:           0.7em;
+$btn-close-padding-x:        .25em;
+$btn-close-padding-y:        $btn-close-padding-x;
+$btn-close-color:            $light;
+$btn-close-bg:               url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='#{$light}'><path d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414'/></svg>");
+$btn-close-focus-shadow:     none;
+$btn-close-opacity:          1;
+$btn-close-hover-opacity:    .75;
+$btn-close-focus-opacity:    1;
+$btn-close-disabled-opacity: .25;
+$btn-close-filter:           null;
+$btn-close-white-filter:     $light;
+
+// Popover Variables
+$popover-body-padding-y: 0px;
+$popover-body-padding-x: 0px;
+$popover-border-radius: 0px;
+
+// Table Varibales
+$table-hover-bg: #f6ff93;
+
+// Form-control variables
+$input-placeholder-color: $yellowgray;
+$form-invalid-border-color: none;
