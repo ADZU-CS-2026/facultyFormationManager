@@ -12,7 +12,7 @@ export default function Dashboard({ children, sidebar }) {
         {/* SIDEBAR */}
         <div
           className={`sidebar-animation bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-block d-none align-items-center`}
-          style={{ flex: `${sidebar ? "0 0 50px" : "0 0 230px"}`}}
+          style={{ width: `${sidebar ? "50px" : "230px"}`, flex: `${sidebar ? "0 0 50px" : "0 0 230px"}`}}
         >
           {!sidebar && (
             <>
