@@ -47,7 +47,7 @@ export async function middleware(req){
 
   // STRAIGHT TO LOGIN
   const loginUrl = new URL("/login", req.url);
-  return NextResponse.next();
+  return NextResponse.redirect(loginUrl);
 }
 
 // PROTECTED ROUTES
