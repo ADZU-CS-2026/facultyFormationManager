@@ -44,7 +44,7 @@ export async function POST(req) {
     name: "accessToken",
     value: accessToken,
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "strict",
     path: "/",
     secure: process.env.NODE_ENV === "production",
     maxAge: "15m"

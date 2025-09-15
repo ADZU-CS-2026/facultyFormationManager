@@ -28,7 +28,7 @@ export async function setAuthCookies(admin){
     name: "accessToken",
     value: accessToken,
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
     path: "/",
     maxAge: "15m"
@@ -38,7 +38,7 @@ export async function setAuthCookies(admin){
     name: "refreshToken",
     value: refreshToken,
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
     path: "/",
     maxAge: "7d"
