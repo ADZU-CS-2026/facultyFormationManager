@@ -4,11 +4,14 @@ import { verifyAdmin, getAdmin } from "@/lib/auth";
 import { setAuthCookies } from "@/lib/jwt";
 import { ratelimit } from "@/lib/redis";
 
+// LOGIN API
+
 export async function POST(req) {
     const ip = req.headers.get("x-forwarded-from") || "local";
     const { success } = await ratelimit.limit(ip);
 
     if(!success){
+      // IF LOGIN ATTEMPT REACH LIMIT
       return NextResponse.json({message: "Too many attempts! Try again later"}, {status: 429});
     }
 
@@ -16,10 +19,12 @@ export async function POST(req) {
     const valid = await verifyAdmin(id, password);
 
     if(!valid){
+      // IF INVALID CREDENTIALS
       return NextResponse.json({message: "Credentials incorrect!"}, {status: 401});
     }
 
     const adminData = getAdmin();
+    // LOGGED IN
     return await setAuthCookies(adminData);
 
 }
