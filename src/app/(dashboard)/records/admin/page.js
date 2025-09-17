@@ -11,10 +11,9 @@ export default function admin(){
                 Administrators
             </div>
             <div className="py-4 px-3 small g-0">
-                <div className="fs-5 text-center mb-4">Days with God Administrators Profile</div>
-                
+                <div className="fs-6 text-center mb-5">Days with God Administrators Profile</div>
                 <div className="border fs-6 text-center py-2">Percentage of Attendance</div>
-                <table className="table table-bordered table-striped table-hover">
+                <table className="table table-bordered table-striped table-hover small">
               <thead className="border">
                   <tr className="text-start">
                     <th scope="col" className="bg-tableheadergray">
@@ -38,7 +37,8 @@ export default function admin(){
                 ))}
               </tbody>
              </table>
-             <div className="dropdown py-2 text-gray1">
+             <div className="d-flex gap-2 align-items-center">
+                <div className="dropdown py-2 text-gray1">
               <button
                 className="btn btn-sm border dropdown-toggle rounded-0 gradient-button"
                 type="button"
@@ -47,7 +47,7 @@ export default function admin(){
               >
                 Filter
               </button>
-              <ul className="dropdown-menu rounded-0 fs-6">
+              <ul className="dropdown-menu rounded-0 fs-6 p-0">
                 <li className="small">
                   <a className="dropdown-item" href="#">
                     Default
@@ -85,9 +85,44 @@ export default function admin(){
                 </li>
               </ul>
             </div>
+            <div className="dropdown py-2 text-gray1">
+              <button
+                className="btn btn-sm border dropdown-toggle rounded-0 gradient-button"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                School Year
+              </button>
+              <ul className="dropdown-menu rounded-0 fs-6 p-0">
+                <li className="small">
+                  <a className="dropdown-item" href="#">
+                    Default
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="dropdown py-2 text-gray1">
+              <button
+                className="btn btn-sm border dropdown-toggle rounded-0 gradient-button"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Retreat Type
+              </button>
+              <ul className="dropdown-menu rounded-0 fs-6 p-0">
+                <li className="small">
+                  <a className="dropdown-item" href="#">
+                    Default
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <input type="text" className="form-control form-control-sm rounded-0" placeholder="Search here..." style={{width: "300px"}}/> 
+             </div>
              <div className="border fs-6 text-center py-2">Administrators</div>
-             
-                <table className="table table-bordered table-striped table-hover">
+              <table className="table table-bordered table-striped table-hover small">
               <thead className="border">
                   <tr className="text-start">
                     <th scope="col" className="bg-tableheadergray">
