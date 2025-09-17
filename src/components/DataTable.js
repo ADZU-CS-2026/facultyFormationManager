@@ -5,10 +5,23 @@ import { motion } from "framer-motion";
 export default function DataCard() {
   const [hideHome, setHideHome] = useState(false);
 
+  const dataTable = [
+    {name: "ADMIN", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
+    {name: "FFP", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
+    {name: "CON", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
+    {name: "CSITE", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
+    {name: "SED", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
+    {name: "SLA", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
+    {name: "SMA", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
+    {name: "Total", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
+  ]
+
+  const yearRecord = ["2023-2024", "2024-2025", "2025-2026"];
+
   return (
     <>
       {/* CARD */}
-      <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm mt-4">
+      <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm">
         {/* CARD HEADER */}
         <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
           <div>
@@ -41,16 +54,17 @@ export default function DataCard() {
           className="overflow-auto"
         >
           <div className="p-3">
-            <div className="text-center py-2 fs-5 text-black mb-2">
+            <div className="text-center py-2 fw-bold fs-6 text-black mb-2">
               Days with God Profile
             </div>
-
-            <div className="text-center fw-bold fs-6 text-black">
+            <div className="text-center fw-bold fs-6 text-black mb-4">
               School Year: 2025-2026
             </div>
-            <div className="dropdown py-2 text-gray1">
+            {/* BUTTONS */}
+            <div className="d-flex gap-2">
+              <div className="dropdown py-2 text-gray1">
               <button
-                className="btn btn-white1 btn-sm border rounded-0 dropdown-toggle"
+                className="btn btn-sm border dropdown-toggle rounded-0 gradient-button"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -58,94 +72,92 @@ export default function DataCard() {
                 School Year
               </button>
               <ul className="dropdown-menu rounded-0 fs-6">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    2025-2026
-                    <span className="badge text-bg-green ms-4">present</span>
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    2024-2025
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    2023-2024
-                  </a>
-                </li>
+                {yearRecord && yearRecord.reverse().map((data,index) => {
+                  if(index === 0){
+                    return (<li key={index} className="small">
+                              <a className="dropdown-item" href="#">
+                                {data}
+                                <span className="badge text-bg-green ms-4">Current S.Y.</span>
+                              </a>
+                            </li>);
+                  }
+                  return(
+                    <li key={index} className="small">
+                      <a className="dropdown-item" href="#">
+                        {data}
+                      </a>
+                    </li>
+                  )
+                })}
               </ul>
+            </div>
+            <div className="dropdown py-2 text-gray1">
+              <button
+                className="btn btn-sm border dropdown-toggle rounded-0 gradient-button"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Department
+              </button>
+              <ul className="dropdown-menu rounded-0 fs-6">
+                <li className="small">
+                  <a className="dropdown-item" href="#">
+                    All
+                  </a>
+                </li>
+                {dataTable && dataTable.filter((data,index) => index !== dataTable.length - 1).map((data, index) => (
+                  <li key={index} className="small">
+                    <a className="dropdown-item" href="#">
+                      {data.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
             </div>
 
             {/* TABLE */}
-            <table className="table table-bordered table-striped table-hover small">
+            <table className="table table-bordered table-striped table-hover">
               <thead className="border">
-                <tr className="">
+                  <tr className="text-start">
                   <th scope="col" className="bg-tableheadergray">
-                    Department
+                      Department
                   </th>
                   <th scope="col" className="bg-tableheadergray">
-                    Total Population
+                      Total Population
                   </th>
                   <th scope="col" className="bg-tableheadergray">
-                    Actual Attendance
+                      Actual Attendance
                   </th>
                   <th scope="col" className="bg-tableheadergray">
-                    Attendance Rate
+                      Attendance Rate
                   </th>
-                </tr>
+                  </tr>
               </thead>
               <tbody className="">
-                <tr>
-                  <td>ADMIN</td>
-                  <td>99</td>
-                  <td>99</td>
-                  <td>99</td>
-                </tr>
-                <tr>
-                  <td>FFP</td>
-                  <td>99</td>
-                  <td>99</td>
-                  <td>99</td>
-                </tr>
-                <tr>
-                  <td>CON</td>
-                  <td>99</td>
-                  <td>99</td>
-                  <td>99</td>
-                </tr>
-                <tr>
-                  <td>CSITE</td>
-                  <td>99</td>
-                  <td>99</td>
-                  <td>99</td>
-                </tr>
-                <tr>
-                  <td>SED</td>
-                  <td>99</td>
-                  <td>99</td>
-                  <td>99</td>
-                </tr>
-                <tr>
-                  <td>SLA</td>
-                  <td>99</td>
-                  <td>99</td>
-                  <td>99</td>
-                </tr>
-                <tr>
-                  <td>SMA</td>
-                  <td>99</td>
-                  <td>99</td>
-                  <td>99</td>
-                </tr>
-                <tr>
-                  <th>Total</th>
-                  <th>99</th>
-                  <th>99</th>
-                  <th>99</th>
-                </tr>
+                {dataTable && dataTable.map((data, index) => {
+                  if (index !== 7){
+                    return(
+                      <tr key={index}>
+                        <td className="text-start" style={{color: "#3c8dbc"}}>{data.name}</td>
+                        <td className="text-center">{data.totalPopulation}</td>
+                        <td className="text-center">{data.actualAttendance}</td>
+                        <td className="text-center">{data.attandanceRate}</td>
+                      </tr>
+                    )
+                  }
+                  return(
+                    <tr key={index}>
+                      <th className="text-start" style={{color: "#3c8dbc"}}>{data.name}</th>
+                      <th className="text-center">{data.totalPopulation}</th>
+                      <th className="text-center">{data.actualAttendance}</th>
+                      <th className="text-center">{data.attandanceRate}</th>
+                    </tr>
+                  )
+                })}
               </tbody>
-            </table>
+             </table>
           </div>
         </motion.div>
       </div>
