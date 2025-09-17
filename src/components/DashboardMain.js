@@ -8,7 +8,7 @@ import SideBarOffRecordAccordion from "./SideBarOffRecordAccordion";
 export default function Dashboard({ children, sidebar }) {
   return (
     <>
-      <div className="flex-grow-1 overflow-x-hidden d-flex g-0">
+      <div className="flex-grow-1 overflow-x-hidden d-flex g-0 text-nowrap">
         {/* SIDEBAR */}
         <div
           className={`sidebar-animation bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-block d-none align-items-center`}

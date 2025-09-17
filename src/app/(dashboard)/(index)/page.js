@@ -11,8 +11,8 @@ export default function Home() {
     <div className="w-100">
       <div className="row g-0">
         <div className="col-lg-8 col-12 py-4 px-3">
-          <WeatherCard />
           <DataTable />
+          <WeatherCard />
         </div>
         <div className="col-lg-4 col-12 py-4 pt-lg-4 pt-0 px-3">
           <CalendarCard />

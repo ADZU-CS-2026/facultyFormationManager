@@ -19,6 +19,8 @@ $gray3: #1A2226;
 $green: #0A8043;
 $cyan: #00C0EF;
 $yellow: #DAA520;
+$graybtn: #f4f4f4;
+$topgray: #d2d6de;
 $yellowgray: #999999;
 $lightgray: #88A2AD;
 $tableheadergray: #BABABA;
@@ -31,6 +33,7 @@ $gold: #FFBB1B;
 $text-gray: #999;
 $text-darkgray: #333;
 $secondary: #6c757d;
+$lightyellow: #f6ff93;
 
 // Add Theme Colors to Bootstrap
 $theme-colors: (
@@ -45,6 +48,8 @@ $theme-colors: (
     "green": $green,
     "cyan": $cyan,
     "yellow": $yellow,
+    "graybtn": $graybtn,
+    "topgray": $topgray,
     "yellowgray": $yellowgray,
     "lightgray": $lightgray,
     "tableheadergray": $tableheadergray,
@@ -56,7 +61,8 @@ $theme-colors: (
     "gold": $gold,
     "textgray": $text-gray,
     "textdarkgray": $text-darkgray,
-    "secondary": $secondary
+    "secondary": $secondary,
+    "lightyellow": $lightyellow
 );
 
 // Accordion Variables
@@ -89,7 +95,7 @@ $popover-body-padding-x: 0px;
 $popover-border-radius: 0px;
 
 // Table Varibales
-$table-hover-bg: #f6ff93;
+$table-hover-bg: $lightyellow;
 
 // Form-control variables
 $input-placeholder-color: $yellowgray;
