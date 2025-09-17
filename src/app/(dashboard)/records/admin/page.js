@@ -10,9 +10,10 @@ export default function admin(){
             <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
                 Administrators
             </div>
-            <div className="py-4 px-3 small g-0">
-                <div className="fs-6 text-center mb-5">Days with God Administrators Profile</div>
-                <div className="border fs-6 text-center py-2">Percentage of Attendance</div>
+
+            <div className="pt-3 pb-1 px-3 small g-0">
+                <div className="fs-6 text-center mb-2"><small>Days with God Administrators Profile</small></div>
+
                 <table className="table table-bordered table-striped table-hover small">
               <thead className="border">
                   <tr className="text-start">
@@ -37,7 +38,9 @@ export default function admin(){
                 ))}
               </tbody>
              </table>
-             <div className="d-flex gap-2 align-items-center">
+
+             <div className="d-flex justify-content-between align-items-center">
+              <div className="d-flex gap-2 align-items-center">
                 <div className="dropdown py-2 text-gray1">
               <button
                 className="btn btn-sm border dropdown-toggle rounded-0 gradient-button"
@@ -51,36 +54,6 @@ export default function admin(){
                 <li className="small">
                   <a className="dropdown-item" href="#">
                     Default
-                  </a>
-                </li>
-                <li className="small">
-                  <a className="dropdown-item" href="#">
-                    A - Z
-                  </a>
-                </li>
-                <li className="small">
-                  <a className="dropdown-item" href="#">
-                    Z - A
-                  </a>
-                </li>
-                <li className="small">
-                  <a className="dropdown-item" href="#">
-                    Newest - Oldest
-                  </a>
-                </li>
-                <li className="small">
-                  <a className="dropdown-item" href="#">
-                    Oldest - Newest
-                  </a>
-                </li>
-                <li className="small">
-                  <a className="dropdown-item" href="#">
-                    Attendance
-                  </a>
-                </li>
-                <li className="small">
-                  <a className="dropdown-item" href="#">
-                    No Attendance
                   </a>
                 </li>
               </ul>
@@ -119,9 +92,31 @@ export default function admin(){
                 </li>
               </ul>
             </div>
+            <div className="dropdown py-2 text-gray1">
+              <button
+                className="btn btn-sm border dropdown-toggle rounded-0 gradient-button"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Edit
+              </button>
+              <ul className="dropdown-menu rounded-0 fs-6 p-0">
+                <li className="small">
+                  <a className="dropdown-item" href="#">
+                    Add
+                  </a>
+                </li>
+                <li className="small">
+                  <a className="dropdown-item" href="#">
+                    Delete
+                  </a>
+                </li>
+              </ul>
+            </div>
+            </div>
             <input type="text" className="form-control form-control-sm rounded-0" placeholder="Search here..." style={{width: "300px"}}/> 
              </div>
-             <div className="border fs-6 text-center py-2">Administrators</div>
               <table className="table table-bordered table-striped table-hover small">
               <thead className="border">
                   <tr className="text-start">
