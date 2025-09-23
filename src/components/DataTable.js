@@ -6,14 +6,16 @@ export default function DataCard() {
   const [hideHome, setHideHome] = useState(false);
 
   const dataTable = [
-    {name: "ADMIN", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
-    {name: "FFP", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
-    {name: "CON", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
-    {name: "CSITE", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
-    {name: "SED", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
-    {name: "SLA", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
-    {name: "SMA", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
-    {name: "Total", totalPopulation: "--", actualAttendance: "--", attandanceRate: "--"},
+    {name: "ADMIN", totalPopulation: 41, actualAttendance: 0, attandanceRate: 0 + "%"},
+    {name: "FFP", totalPopulation: 6, actualAttendance: 6, attandanceRate: 100 + "%"},
+    {name: "CON", totalPopulation: 96, actualAttendance: 32, attandanceRate: 33 + "%"},
+    {name: "CSITE", totalPopulation: 67, actualAttendance: 18, attandanceRate: 27 + "%"},
+    {name: "SED", totalPopulation: 17, actualAttendance: 11, attandanceRate: 65 + "%"},
+    {name: "SLA", totalPopulation: 67, actualAttendance: 9, attandanceRate: 13 + "%"},
+    {name: "SMA", totalPopulation: 40, actualAttendance: 10, attandanceRate: 25 + "%"},
+    {name: "CS", totalPopulation: 0, actualAttendance: 0, attandanceRate: "None"},
+    {name: "PPO", totalPopulation: 0, actualAttendance: 0, attandanceRate: "None"},
+    {name: "Total", totalPopulation: 334, actualAttendance: 86, attandanceRate: 26 + "%"},
   ]
 
   const yearRecord = ["2023-2024", "2024-2025", "2025-2026"];
@@ -26,10 +28,10 @@ export default function DataCard() {
         <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
           <div>
             <FontAwesomeIcon
-              icon="fa-solid fa-database"
+              icon="fa-solid fa-table"
               className="fs-6 me-1"
             />
-            Data
+            All Records
           </div>
           <span
             className="cursor-pointer"
@@ -54,24 +56,21 @@ export default function DataCard() {
           className="overflow-auto"
         >
           <div className="p-3">
-            <div className="text-center py-2 fw-bold fs-6 text-black mb-2">
-              Days with God Profile
-            </div>
-            <div className="text-center fw-bold fs-6 text-black mb-4">
-              School Year: 2025-2026
-            </div>
+            <div className="fw-bold text-center">Days with God Profile</div>
+            <div className="fw-bold text-center mt-2 mb-2">School Year: 2025 - 2026</div>
             {/* BUTTONS */}
             <div className="d-flex gap-2">
               <div className="dropdown py-2 text-gray1">
               <button
-                className="btn btn-sm border dropdown-toggle rounded-0 gradient-button"
+                className="btn btn-sm dropdown-toggle rounded-0 gradient-button"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                style={{border: "1px solid #999"}}
               >
                 School Year
               </button>
-              <ul className="dropdown-menu rounded-0 fs-6">
+              <ul className="dropdown-menu rounded-0 fs-6 p-0">
                 {yearRecord && yearRecord.reverse().map((data,index) => {
                   if(index === 0){
                     return (<li key={index} className="small">
@@ -93,14 +92,15 @@ export default function DataCard() {
             </div>
             <div className="dropdown py-2 text-gray1">
               <button
-                className="btn btn-sm border dropdown-toggle rounded-0 gradient-button"
+                className="btn btn-sm dropdown-toggle rounded-0 gradient-button"
                 type="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
+                style={{border: "1px solid #999"}}
               >
                 Department
               </button>
-              <ul className="dropdown-menu rounded-0 fs-6">
+              <ul className="dropdown-menu rounded-0 fs-6 p-0">
                 <li className="small">
                   <a className="dropdown-item" href="#">
                     All
@@ -137,7 +137,7 @@ export default function DataCard() {
               </thead>
               <tbody className="">
                 {dataTable && dataTable.map((data, index) => {
-                  if (index !== 7){
+                  if (index !== dataTable.length - 1){
                     return(
                       <tr key={index}>
                         <td className="text-start" style={{color: "#3c8dbc"}}>{data.name}</td>
