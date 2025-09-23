@@ -70,7 +70,7 @@ export default function FacebookPage() {
             data-href="https://www.facebook.com/ateneodezamboangauniversity"
             data-tabs="timeline"
             data-width="500"
-            data-height="600"
+            data-height="564"
             data-small-header="false"
             data-adapt-container-width="true"
             data-hide-cover="false"
