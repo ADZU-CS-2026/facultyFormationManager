@@ -1,3 +1,5 @@
+"use client"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -22,6 +24,9 @@ export default function DataCard() {
 
   return (
     <>
+    <div className="w-100">
+      <div className="row g-0">
+        <div className="col-12 py-4 px-3">
       {/* CARD */}
       <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm">
         {/* CARD HEADER */}
@@ -133,6 +138,9 @@ export default function DataCard() {
                   <th scope="col" className="bg-tableheadergray">
                       Attendance Rate
                   </th>
+                  <th scope="col" className="bg-tableheadergray">
+                      School Year
+                  </th>
                   </tr>
               </thead>
               <tbody className="">
@@ -144,6 +152,7 @@ export default function DataCard() {
                         <td className="text-center">{data.totalPopulation}</td>
                         <td className="text-center">{data.actualAttendance}</td>
                         <td className="text-center">{data.attandanceRate}</td>
+                        <td className="text-center">{yearRecord[0]}</td>
                       </tr>
                     )
                   }
@@ -153,6 +162,7 @@ export default function DataCard() {
                       <th className="text-center">{data.totalPopulation}</th>
                       <th className="text-center">{data.actualAttendance}</th>
                       <th className="text-center">{data.attandanceRate}</th>
+                      <th className="text-center"></th>
                     </tr>
                   )
                 })}
@@ -161,6 +171,10 @@ export default function DataCard() {
           </div>
         </motion.div>
       </div>
+      </div>
+      </div>
+      </div>
+
     </>
   );
 }

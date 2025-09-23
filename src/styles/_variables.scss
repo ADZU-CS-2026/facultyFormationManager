@@ -9,6 +9,7 @@ $font-family-monospace: "SourceSansPro";
 
 // ADZU Formation Color Theme
 $blue: #02327A;
+$lightblue: #3c8dbc;
 $semidarkblue: #022d6e;
 $darkblue: #011C47;
 $white1: #ffffff;
@@ -38,6 +39,7 @@ $lightyellow: #f6ff93;
 // Add Theme Colors to Bootstrap
 $theme-colors: (
     "blue": $blue,
+    "lightblue": $lightblue,
     "semidarkblue": $semidarkblue,
     "darkblue": $darkblue,
     "white1": $white1,
