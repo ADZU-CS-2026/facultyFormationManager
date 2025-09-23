@@ -36,7 +36,7 @@ export default function CalendarCard() {
             src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=Asia%2FManila"
             style={{ border: 0 }}
             width="100%"
-            height="300"
+            height="350"
           ></iframe>
         </div>
       </motion.div>

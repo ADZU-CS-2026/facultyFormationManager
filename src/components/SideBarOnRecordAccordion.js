@@ -35,6 +35,20 @@ export default function SideBarOnRecordAccordion() {
           <div className="d-flex flex-column justify-content-start text-lightgray">
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
+              href="/records/all"
+            >
+              <small>
+                <FontAwesomeIcon
+                  icon="fa-solid fa-circle-arrow-right"
+                  className="small ms-4"
+                />
+              </small>
+              <span className="small ms-2">
+                All
+              </span>
+            </Link>
+            <Link
+              className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
               href="/records/admin"
             >
               <small>
