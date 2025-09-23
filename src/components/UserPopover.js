@@ -40,7 +40,7 @@ export default function UserPopover({ userPopup, userPop }) {
           <span className="fs-6">
             <small>
               <small>
-                <small>JOSHUA EDUARD L. GUIRITAN</small>
+                JOSHUA EDUARD L. GUIRITAN
               </small>
             </small>
           </span>
@@ -97,7 +97,7 @@ export default function UserPopover({ userPopup, userPop }) {
                     />
                     <span className="fs-6">
                       <small>
-                        <small>Yes</small>
+                        Yes
                       </small>
                     </span>
                   </button>
@@ -110,7 +110,7 @@ export default function UserPopover({ userPopup, userPop }) {
                   <FontAwesomeIcon icon="fa-solid fa-xmark" className="fs-6" />
                   <span className="fs-6">
                     <small>
-                      <small>No</small>
+                      No
                     </small>
                   </span>
                 </button>

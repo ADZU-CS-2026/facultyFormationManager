@@ -42,12 +42,12 @@ export default function Dashboard({ sidebar, hoverSideBar }) {
       {/* NAVBAR */}
       <div className="d-flex flex-lg-row flex-column p-0">
         <div
-          className={`sidebar-animation bg-darkblue text-white fs-4 fw-bold d-flex justify-content-center align-items-center navbar-mobile`}
+          className={`logo-font sidebar-animation bg-darkblue text-white fs-4 fw-bold d-flex justify-content-center align-items-center navbar-mobile`}
           style={{ width: `${sidebar ? "50px" : "230px"}`, height: "50px" }}
         >
           {sidebar ? (
             <FontAwesomeIcon
-              icon="fa-solid fa-book-bible"
+              icon="fa-solid fa-graduation-cap"
               className="fs-4 d-lg-block d-none py-3"
               style={{ fontSize: "20px" }}
             />
