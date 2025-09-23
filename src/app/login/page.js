@@ -52,6 +52,10 @@ export default function Home() {
         setError(true);
         throw new Error("Too many attempts! Please try again later");
       }
+      else if(res.status === 500){
+        setError(true);
+        throw new Error("No internet connection!");
+      }
       setError(true);
       throw new Error("Credentials Incorrect!");
     }
@@ -110,7 +114,7 @@ export default function Home() {
                 />
                 <input
                   type="text"
-                  className={`form-control ${error && !seconds && "is-invalid"} ${error && !id && !seconds && "is-invalid"} fw-bold`}
+                  className={`form-control ${error && !seconds && "is-invalid"} ${error && !id & "is-invalid"} fw-bold`}
                   placeholder="Admin ID"
                   name="id"
                   value={id}
@@ -127,7 +131,7 @@ export default function Home() {
                 />
                 <input
                   type="password"
-                  className={`form-control ${error && !seconds && "is-invalid"} ${error && !password && !seconds && "is-invalid"} fw-bold`}
+                  className={`form-control ${error && !seconds && "is-invalid"} ${error && !password && "is-invalid"} fw-bold`}
                   placeholder="Password"
                   name="password"
                   value={password}

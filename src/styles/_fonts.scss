@@ -1,7 +1,7 @@
-// SourceCodePro Regular
+// HelveticaNeue Regular
 @font-face {
   font-family: 'HelveticaNeue';
-  src: url('/Fonts/HelveticaNeue/HelveticaNeueLight.ttf') format('opentype');
+  src: url('/Fonts/HelveticaNeue/HelveticaNeueLight.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: 'HelveticaNeue';
-  src: url('/Fonts/HelveticaNeue/HelveticaNeueRoman.ttf') format('opentype');
+  src: url('/Fonts/HelveticaNeue/HelveticaNeueRoman.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'HelveticaNeue';
-  src: url('/Fonts/HelveticaNeue/HelveticaNeueMedium.ttf') format('opentype');
+  src: url('/Fonts/HelveticaNeue/HelveticaNeueMedium.otf') format('opentype');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -25,16 +25,16 @@
 
 @font-face {
   font-family: 'HelveticaNeue';
-  src: url('/Fonts/HelveticaNeue/HelveticaNeueBold.ttf') format('opentype');
+  src: url('/Fonts/HelveticaNeue/HelveticaNeueBold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
-// SourceCodePro Italic
+// HelveticaNeue Italic
 @font-face {
   font-family: 'HelveticaNeue';
-  src: url('/Fonts/HelveticaNeue/HelveticaNeueLightItalic.ttf') format('opentype');
+  src: url('/Fonts/HelveticaNeue/HelveticaNeueLightItalic.otf') format('opentype');
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -50,7 +50,7 @@
 
 @font-face {
   font-family: 'HelveticaNeue';
-  src: url('/Fonts/HelveticaNeue/HelveticaNeueMediumItalic.ttf') format('opentype');
+  src: url('/Fonts/HelveticaNeue/HelveticaNeueMediumItalic.otf') format('opentype');
   font-weight: 600;
   font-style: italic;
   font-display: swap;
@@ -58,7 +58,7 @@
 
 @font-face {
   font-family: 'HelveticaNeue';
-  src: url('/Fonts/HelveticaNeue/HelveticaNeueBoldItalic.ttf') format('opentype');
+  src: url('/Fonts/HelveticaNeue/HelveticaNeueBoldItalic.otf') format('opentype');
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -135,5 +135,72 @@
   src: url('/Fonts/Montserrat/Montserrat-ExtraBold.otf') format('opentype');
   font-weight: 800;
   font-style: normal;
+  font-display: swap;
+}
+
+// SourceSansPro
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/Fonts/SourceSansPro/source-sans-pro.light.ttf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/Fonts/SourceSansPro/source-sans-pro.regular.ttf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/Fonts/SourceSansPro/source-sans-pro.semibold.ttf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/Fonts/SourceSansPro/source-sans-pro.bold.ttf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+// HelveticaNeue Italic
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/Fonts/SourceSansPro/source-sans-pro.light-italic.ttf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/Fonts/SourceSansPro/source-sans-pro.italic.ttf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/Fonts/SourceSansPro/source-sans-pro.semibold-italic.ttf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourceSansPro';
+  src: url('/Fonts/SourceSansPro/source-sans-pro.bold-italic.ttf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
   font-display: swap;
 }
