@@ -7,6 +7,7 @@ import { ratelimit } from "@/lib/redis";
 // LOGIN API
 
 export async function POST(req) {
+  try{
     const ip = req.headers.get("x-forwarded-from") || "local";
     const { success } = await ratelimit.limit(ip);
 
@@ -26,5 +27,9 @@ export async function POST(req) {
     const adminData = getAdmin();
     // LOGGED IN
     return await setAuthCookies(adminData);
+  }
+  catch(err) {
+    return NextResponse.json({message: `Server Error: ${err.message}`}, {status: 500});
+  }
 
 }

@@ -25,7 +25,7 @@ export default function SideBarOffRecordAccordion() {
                 aria-controls="flush-collapseTwo"
               >
                 <span className="fs-6 text-light">
-                  <small>Records</small>
+                  Records
                 </span>
               </button>
             </div>
@@ -47,7 +47,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    <small>ADMIN</small>
+                    ADMIN
                   </span>
                 </Link>
                 <Link
@@ -61,7 +61,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    <small>FFP</small>
+                    FFP
                   </span>
                 </Link>
                 <Link
@@ -75,7 +75,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    <small>CON</small>
+                    CON
                   </span>
                 </Link>
                 <Link
@@ -89,7 +89,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    <small>CSITE</small>
+                    CSITE
                   </span>
                 </Link>
                 <Link
@@ -103,7 +103,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    <small>SED</small>
+                    SED
                   </span>
                 </Link>
                 <Link
@@ -117,7 +117,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    <small>SLA</small>
+                    SLA
                   </span>
                 </Link>
                 <Link
@@ -131,7 +131,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    <small>SMA</small>
+                    SMA
                   </span>
                 </Link>
                 <Link
@@ -145,7 +145,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    <small>CS</small>
+                    CS
                   </span>
                 </Link>
                 <Link
@@ -159,7 +159,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    <small>PPO</small>
+                    PPO
                   </span>
                 </Link>
               </div>

@@ -36,7 +36,7 @@ export default function Dashboard({ children, sidebar }) {
               <div className="bg-gray3 p-2">
                 <span className="text-lightgray small fw-light">
                   <small>
-                    <small>MAIN NAVIGATION</small>
+                    MAIN NAVIGATION
                   </small>
                 </span>
               </div>
@@ -50,7 +50,7 @@ export default function Dashboard({ children, sidebar }) {
                     className="text-yellow fs-6 ms-3"
                   />
                   <span className="small text-light">
-                    <small>Home</small>
+                    Home
                   </span>
                 </button>
               </Link>
@@ -60,7 +60,7 @@ export default function Dashboard({ children, sidebar }) {
               <div className="bg-gray3 p-2">
                 <span className="text-lightgray small fw-light">
                   <small>
-                    <small>SETTINGS</small>
+                    SETTINGS
                   </small>
                 </span>
               </div>
@@ -74,7 +74,7 @@ export default function Dashboard({ children, sidebar }) {
                     className="text-yellow fs-6 ms-3"
                   />
                   <span className="small text-light">
-                    <small>Account Information</small>
+                    Account Information
                   </span>
                 </button>
               </Link>
@@ -93,10 +93,10 @@ export default function Dashboard({ children, sidebar }) {
                   />
                   <div className="position-absolute start-100 top-50 translate-middle-y">
                     <div
-                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end"
+                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end text-start"
                       style={{ width: "170px", paddingLeft: "20px" }}
                     >
-                      <small className="text-start">Home</small>
+                      Home
                     </div>
                   </div>
                 </div>
@@ -112,10 +112,10 @@ export default function Dashboard({ children, sidebar }) {
                   />
                   <div className="position-absolute start-100 top-50 translate-middle-y">
                     <div
-                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end"
+                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end text-start"
                       style={{ width: "170px", paddingLeft: "20px" }}
                     >
-                      <small>Account Information</small>
+                      Account Information
                     </div>
                   </div>
                 </div>
@@ -152,7 +152,7 @@ export default function Dashboard({ children, sidebar }) {
           <div className="bg-gray3 p-2">
             <span className="text-lightgray small fw-light">
               <small>
-                <small>MAIN NAVIGATION</small>
+                MAIN NAVIGATION
               </small>
             </span>
           </div>
@@ -166,7 +166,7 @@ export default function Dashboard({ children, sidebar }) {
                 className="text-yellow fs-6 ms-3"
               />
               <span className="small text-light">
-                <small>Home</small>
+                Home
               </span>
             </button>
           </Link>
@@ -176,7 +176,7 @@ export default function Dashboard({ children, sidebar }) {
           <div className="bg-gray3 p-2">
             <span className="text-lightgray small fw-light">
               <small>
-                <small>SETTINGS</small>
+                SETTINGS
               </small>
             </span>
           </div>
@@ -190,7 +190,7 @@ export default function Dashboard({ children, sidebar }) {
                 className="text-yellow fs-6 ms-3"
               />
               <span className="small text-light">
-                <small>Account Information</small>
+                Account Information
               </span>
             </button>
           </Link>
