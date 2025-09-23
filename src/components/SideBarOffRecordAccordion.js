@@ -47,7 +47,7 @@ export default function SideBarOffRecordAccordion() {
                     />
                   </small>
                   <span className="small ms-2">
-                    ADMIN
+                    All
                   </span>
                 </Link>
                 <Link
