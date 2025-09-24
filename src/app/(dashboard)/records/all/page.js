@@ -1,11 +1,8 @@
 "use client"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
-import { motion } from "framer-motion";
 
 export default function DataCard() {
-  const [hideHome, setHideHome] = useState(false);
 
   const dataTable = [
     {name: "ADMIN", totalPopulation: 41, actualAttendance: 0, attandanceRate: 0 + "%"},
@@ -28,41 +25,23 @@ export default function DataCard() {
       <div className="row g-0">
         <div className="col-12 py-4 px-3">
       {/* CARD */}
-      <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm">
+      <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
         {/* CARD HEADER */}
         <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
           <div>
-            <FontAwesomeIcon
-              icon="fa-solid fa-table"
-              className="fs-6 me-1"
-            />
             All Records
           </div>
-          <span
-            className="cursor-pointer"
-            onClick={() => setHideHome((prev) => (prev ? false : true))}
-          >
-            <small className="text-lightgray">
-              {!hideHome ? (
-                <FontAwesomeIcon icon="fa-solid fa-minus" />
-              ) : (
-                <FontAwesomeIcon icon="fa-solid fa-plus" />
-              )}
-            </small>
-          </span>
         </div>
 
         {/* CARD BODY */}
-        <motion.div
-          initial={{ height: "auto", opacity: 1 }}
-          animate={hideHome ? { height: 0 } : { height: "auto" }}
-          transition={{ duration: 0.5 }}
-          style={{ overflow: "hidden" }}
+        <div
           className="overflow-auto"
         >
           <div className="p-3">
-            <div className="fw-bold text-center">Days with God Profile</div>
-            <div className="fw-bold text-center mt-2 mb-2">School Year: 2025 - 2026</div>
+            <div className="matura-script fs-6 text-center">Ateneo de Zamboanga University</div>
+            <div className="text-center mt-2 small">Office of the Unit Director for Formation</div>
+            <div className="text-center mt-2 small">Days with God Profile</div>
+            <div className="text-center mt-2 mb-5 small">School Year: 2025 - 2026</div>
             {/* BUTTONS */}
             <div className="d-flex gap-2">
               <div className="dropdown py-2 text-gray1">
@@ -169,7 +148,7 @@ export default function DataCard() {
               </tbody>
              </table>
           </div>
-        </motion.div>
+        </div>
       </div>
       </div>
       </div>
