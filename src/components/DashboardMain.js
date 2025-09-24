@@ -41,7 +41,7 @@ export default function Dashboard({ children, sidebar }) {
                 </span>
               </div>
               {/* HOME BUTTON */}
-              <Link href="/">
+              <Link href="/" className="text-decoration-none">
                 <button
                   className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
                 >
@@ -65,7 +65,7 @@ export default function Dashboard({ children, sidebar }) {
                 </span>
               </div>
               {/* ACCOUNG INFORMATION BUTTON */}
-              <Link href="/account-information">
+              <Link href="/account-information" className="text-decoration-none">
                 <button
                   className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
                 >
@@ -85,7 +85,7 @@ export default function Dashboard({ children, sidebar }) {
           {sidebar && (
             <div className="d-flex flex-column align-items-center">
               {/* HOME BUTTON */}
-              <Link className="w-100" href="/">
+              <Link className="w-100 text-decoration-none" href="/">
                 <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
                   <FontAwesomeIcon
                     icon="fa-solid fa-house"
@@ -104,7 +104,7 @@ export default function Dashboard({ children, sidebar }) {
               {/* RECORDS BUTTON */}
               <SideBarOffRecordAccordion />
               {/* ACCOUNT INFORMATION BUTTON */}
-              <Link className="w-100" href="/account-information">
+              <Link className="w-100 text-decoration-none" href="/account-information">
                 <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative  d-flex justify-content-center">
                   <FontAwesomeIcon
                     icon="fa-solid fa-sliders"
@@ -157,7 +157,7 @@ export default function Dashboard({ children, sidebar }) {
             </span>
           </div>
           {/* HOME BUTTON */}
-          <Link href="/">
+          <Link href="/" className="text-decoration-none">
             <button
               className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
             >
@@ -181,7 +181,7 @@ export default function Dashboard({ children, sidebar }) {
             </span>
           </div>
           {/* ACCOUNG INFORMATION BUTTON */}
-          <Link href="/account-information">
+          <Link href="/account-information" className="text-decoration-none">
             <button
               className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
             >
