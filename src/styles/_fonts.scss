@@ -1,4 +1,12 @@
 // HelveticaNeue Regular
+@font-face{
+  font-family: "MaturaScript";
+  src: url("/Fonts/Matura/MATURASC_1.TTF");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'HelveticaNeue';
   src: url('/Fonts/HelveticaNeue/HelveticaNeueLight.otf') format('opentype');
