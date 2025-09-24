@@ -6,6 +6,7 @@ import Snowfall from "../../components/SnowFall";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import NProgress from "nprogress";
 
 export default function Home() {
 
@@ -28,44 +29,51 @@ export default function Home() {
   }, [seconds]);
 
   async function login(e) {
-  e.preventDefault();
-
-  if (!id || !password){
-    setError(true);
-    return setMessage("Empty credentials!");
-  }
-
-  // LOGIN API FETCH 
-  try {
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, password }),
-      credentials: "include"
-    });
-
-    if (!res.ok) {
-      if(res.status === 429){
-        setID("");
-        setPassword("");
-        setSeconds(60);
-        setError(true);
-        throw new Error("Too many attempts! Please try again later");
-      }
-      else if(res.status === 500){
-        setError(true);
-        throw new Error("No internet connection!");
-      }
+    e.preventDefault();
+    if (!id || !password){
       setError(true);
-      throw new Error("Credentials Incorrect!");
+      return setMessage("Empty credentials!");
     }
-    setError(false);
-    route.push("/");
-  } catch (err) {
-    setMessage(err.message);
-  }
-}
 
+    NProgress.start();
+  setTimeout(() => {
+    async function login() {
+
+    // LOGIN API FETCH 
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, password }),
+        credentials: "include"
+      });
+
+      if (!res.ok) {
+        if(res.status === 429){
+          setID("");
+          setPassword("");
+          setSeconds(60);
+          setError(true);
+          throw new Error("Too many attempts! Please try again later");
+        }
+        else if(res.status === 500){
+          setError(true);
+          throw new Error("No internet connection!");
+        }
+        setError(true);
+        throw new Error("Credentials Incorrect!");
+      }
+      NProgress.done();
+      setError(false);
+      route.push("/");
+    } catch (err) {
+      NProgress.done();
+      setMessage(err.message);
+    } 
+}
+login();
+}, 2000)
+  }
 
   return (
     <form onSubmit={login}>
