@@ -39,7 +39,7 @@ export default function WeatherCard() {
           <div className="windy-widget">
             <iframe
               width="100%"
-              height="500"
+              height="184"
               src="https://embed.windy.com/embed2.html?lat=14.5995&lon=120.9842&detailLat=14.5995&detailLon=120.9842&width=650&height=450&zoom=6&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=true&metricWind=default&metricTemp=default&radarRange=-1"
             ></iframe>
           </div>

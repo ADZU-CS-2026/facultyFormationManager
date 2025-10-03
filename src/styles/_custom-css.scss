@@ -4,16 +4,15 @@
   pointer-events: none;
 }
 
-#nprogress .bar {
-  background: $cyan;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
+#nprogress .bar{
+  background-color: $cyan;
   width: 100%;
   height: 3px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: 99999;
 }
-
 
 .login-global-font{
   font-family: $font-login;
