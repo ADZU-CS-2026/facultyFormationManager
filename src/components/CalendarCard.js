@@ -6,7 +6,7 @@ export default function CalendarCard() {
   const [hideCalendar, setHideCalendar] = useState(false);
 
   return (
-    <div className="card border-0 border-top border-blue border-3 rounded-1 shadow-sm">
+    <div className="card border-0 border-top border-lightblue border-3 rounded-1 shadow-sm">
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
         <div>
           <FontAwesomeIcon icon="fa-solid fa-calendar" className="fs-6 me-1" />
@@ -26,14 +26,13 @@ export default function CalendarCard() {
         </span>
       </div>
       <motion.div
-        initial={{ height: "auto", opacity: 1 }}
         animate={hideCalendar ? { height: 0 } : { height: "auto" }}
         transition={{ duration: 0.5 }}
         style={{ overflow: "hidden" }}
       >
         <div>
           <iframe
-            src="https://calendar.google.com/calendar/embed?src=your_calendar_id&ctz=Asia%2FManila"
+            src="https://calendar.google.com/calendar/embed?src=joshuaguiritan05%40gmail.com&ctz=Asia%2FManila"
             style={{ border: 0 }}
             width="100%"
             height="350"

@@ -6,7 +6,7 @@ export default function SideBarOffRecordAccordion() {
   return (
     <div className="border-0 w-100 py-2 bg-gray2 navigation-hover d-flex justify-content-center">
       {/* ACCORDION */}
-      <FontAwesomeIcon icon="fa-solid fa-table" className="text-yellow fs-5 " />
+      <FontAwesomeIcon icon="fa-solid fa-table" className="text-yellow fs-6" />
       <div className="position-absolute start-100 top-0">
         <div
           className="accordion accordion-flush tooltip-show d-none"
@@ -16,7 +16,7 @@ export default function SideBarOffRecordAccordion() {
             <div className="accordion-header">
               {/* ACCORDION BUTTON */}
               <button
-                className="accordion-button collapsed py-2 rounded-top rounded-start-0 d-flex justify-content-between bg-gray2"
+                className="accordion-button collapsed py-2 ps-3 rounded-top rounded-start-0 d-flex justify-content-between bg-gray2"
                 style={{ width: "170px" }}
                 type="button"
                 data-bs-toggle="collapse"
