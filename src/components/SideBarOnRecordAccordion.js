@@ -10,7 +10,7 @@ export default function SideBarOnRecordAccordion() {
         <div className="accordion-header">
           {/* ACCORDION BUTTON */}
           <button
-            className={`accordion-button collapsed py-2 bg-gray2 gap-2 navigation-hover`}
+            className={`accordion-button collapsed py-2 ps-3 bg-gray2 gap-2 navigation-hover`}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#flush-collapseOne"
@@ -19,7 +19,7 @@ export default function SideBarOnRecordAccordion() {
           >
             <FontAwesomeIcon
               icon="fa-solid fa-table"
-              className="text-yellow fs-6"
+              className="text-yellow small"
             />
             <span className="small text-light">
               Records

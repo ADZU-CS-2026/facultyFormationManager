@@ -52,10 +52,6 @@
   background-color: $semidarkblue;
 }
 
-.sidebar-animation {
-  transition: all 0.3s ease-out;
-}
-
 .cursor-pointer{
   cursor: pointer;
 }
@@ -158,6 +154,11 @@
 
 .gradient-button{
   background: linear-gradient(to bottom, #fff 0%, #e9e9e9 100%);
+}
+
+.recordshortcut-hover:hover{
+  background-color: darken($white1, 3%) !important;
+  color: darken($lightblue, 3%) !important;
 }
 
 

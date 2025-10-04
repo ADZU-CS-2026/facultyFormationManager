@@ -22,7 +22,7 @@ export default function UserPopover({ userPopup, userPop }) {
       >
         <FontAwesomeIcon icon="fa-solid fa-user" />
         <span className="d-lg-block d-none ms-1 small">
-          Welcome, JOSHUA EDUARD!
+          Welcome, ADMINISTRATOR!
         </span>
       </div>
       {/* USER'S POPOVER */}
@@ -36,11 +36,11 @@ export default function UserPopover({ userPopup, userPop }) {
             className="text-light"
             style={{ fontSize: "90px" }}
           />
-          <span className="fs-6 mt-2">230691</span>
+          <span className="fs-6 mt-2">230692</span>
           <span className="fs-6">
             <small>
               <small>
-                JOSHUA EDUARD L. GUIRITAN
+                ADMINISTRATOR
               </small>
             </small>
           </span>

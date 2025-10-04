@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 
 export default function Dashboard({ children, sidebar }) {
   return (
@@ -9,17 +10,16 @@ export default function Dashboard({ children, sidebar }) {
       </div>
       {/* FOOTER */}
       <div className="d-flex" style={{ height: "51px" }}>
-        <div
-          className="d-lg-none d-block bg-gray2 sidebar-animation"
-          style={{
-            width: sidebar ? "230px" : "0px",
-            flex: sidebar ? "0 0 230px" : "0 0 0",
-          }}
-        ></div>
-        <div
-          className="d-lg-block d-none bg-gray2 sidebar-animation"
-          style={{ flex: `${sidebar ? "0 0 50px" : "0 0 230px"}`}}
-        ></div>
+        <motion.div
+          animate={{width: sidebar ? "230px" : "0px", flex: sidebar ? "0 0 230px" : "0 0 0px"}}
+          transition={{ duration: 0.3 }}
+          className="d-lg-none d-block bg-gray2"
+        ></motion.div>
+        <motion.div
+          animate={{ width: sidebar ? "50px" : "230px", flex: sidebar ? "0 0 50px" : "0 0 230px"}}
+          transition={{ duration: 0.3 }}
+          className="d-lg-block d-none bg-gray2"
+        ></motion.div>
         <div
           className={`flex-grow-1 text-gray1 overflow-x-hidden mainpage-mobile bg-white1 border-0 border-top d-flex justify-content-between align-items-center px-3`}
         >

@@ -30,7 +30,6 @@ export default function WeatherCard() {
       </div>
       {/* CARD BODY */}
       <motion.div
-        initial={{ height: "auto", opacity: 1 }}
         animate={hideWeather ? { height: 0 } : { height: "auto" }}
         transition={{ duration: 0.5 }}
         style={{ overflow: "hidden" }}
