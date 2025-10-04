@@ -2,10 +2,9 @@ import bcrypt from "bcryptjs";
 
 // TEMPORARY ACCOUNT
 const ADMIN = {
-    id: "230999",
-    passwordHash: bcrypt.hashSync("drake", 10),
-    firstname:  "JOSHUA EDUARD",
-    lastname: "GUIRITAN",
+    id: "230692",
+    passwordHash: bcrypt.hashSync("adzuformation", 10),
+    name: "ADMINISTRATOR",
     role: "admin"
 }
 
