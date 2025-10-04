@@ -4,10 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import UserPopover from "./UserPopover";
 import NotifPopover from "./NotificationPopover";
+import { motion } from "framer-motion"
 
-export default function Dashboard({ sidebar, hoverSideBar }) {
-  const [userPopup, setUserPopup] = useState(false);
-  const [notifPopup, setNotifPopup] = useState(false);
+export default function Dashboard({ sidebar, hoverSideBar, userPopup, setUserPopup, notifPopup, setNotifPopup }) {
 
   {
     /* ON-OFF USER POP-UP */
@@ -41,9 +40,11 @@ export default function Dashboard({ sidebar, hoverSideBar }) {
     <>
       {/* NAVBAR */}
       <div className="d-flex flex-lg-row flex-column p-0">
-        <div
-          className={`logo-font sidebar-animation bg-darkblue text-white fs-4 fw-bold d-flex justify-content-center align-items-center navbar-mobile`}
-          style={{ width: `${sidebar ? "50px" : "230px"}`, height: "50px" }}
+        <motion.div
+          animate={{ width: `${sidebar ? "50px" : "230px"}` }}
+          transition={{ duration: 0.3 }}
+          className={`logo-font bg-darkblue text-white fs-4 fw-bold d-flex justify-content-center align-items-center navbar-mobile navbar-animation`}
+          style={{height: "50px"}}
         >
           {sidebar ? (
             <FontAwesomeIcon
@@ -65,9 +66,9 @@ export default function Dashboard({ sidebar, hoverSideBar }) {
           >
             ADZU FORMATION SYSTEM
           </span>
-        </div>
+        </motion.div>
         <div
-          className={`flex-grow-1 sidebar-animation bg-blue d-flex justify-content-between align-items-center`}
+          className={`flex-grow-1 navbar-animation bg-blue d-flex justify-content-between align-items-center`}
           style={{ height: "50px" }}
         >
           {/* HIDE SIDEBAR BUTTON */}

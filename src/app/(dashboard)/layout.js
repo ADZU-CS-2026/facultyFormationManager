@@ -8,14 +8,18 @@ import DashboardRoot from "../../components/DashboardRoot";
 export default function Dashboard({children}){
 
     const [sidebar, setSideBar] = useState(false);
+    const [userPopup, setUserPopup] = useState(false);
+    const [notifPopup, setNotifPopup] = useState(false);
     
       const hoverSideBar = () => {
         setSideBar(sidebar => sidebar ? false : true);
+        setUserPopup(false);
+        setNotifPopup(false);
       }
 
     return(
       <DashboardRoot sidebar={sidebar}>
-        <DashboardNavbar sidebar={sidebar} hoverSideBar={hoverSideBar}/>
+        <DashboardNavbar sidebar={sidebar} hoverSideBar={hoverSideBar} userPopup={userPopup} setUserPopup={setUserPopup} notifPopup={notifPopup} setNotifPopup={setNotifPopup} />
         <DashboardMain sidebar={sidebar}>
           {children}
         </DashboardMain>

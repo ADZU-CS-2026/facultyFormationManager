@@ -23,6 +23,7 @@ export default function Home() {
   const [token, setToken] = useState(null);
   const [cloudflare, setCloudflare] = useState(false);
   const [disable, setDisable] = useState(true);
+  const [valid, setValid] = useState(true);
   const route = useRouter();
 
   // 60 SECOND COUNTER IF LOGIN ATTEMPT REACH LIMIT
@@ -68,9 +69,11 @@ export default function Home() {
               throw new Error("No internet connection!");
             }
             setError(true);
+            setValid(false);
             throw new Error("Credentials Incorrect!");
           }
           NProgress.done();
+          setValid(true);
           setError(false);
           route.push("/");
         } catch (err) {
@@ -162,7 +165,7 @@ export default function Home() {
                 <FontAwesomeIcon icon={faUser} className="icon" />
                 <input
                   type="text"
-                  className={`form-control ${error && !seconds && "is-invalid"} ${error && !id & "is-invalid"} fw-bold`}
+                  className={`form-control ${error && id && password && "is-invalid"} ${error && !id && !seconds && "is-invalid"} fw-bold`}
                   placeholder="Admin ID"
                   name="id"
                   value={id}
@@ -176,7 +179,7 @@ export default function Home() {
                 <FontAwesomeIcon icon={faLock} className="icon" />
                 <input
                   type={`${showpassword ? "text" : "password"}`}
-                  className={`form-control ${error && !seconds && "is-invalid"} ${error && !password && "is-invalid"} fw-bold`}
+                  className={`form-control ${error && id && password && "is-invalid"} ${error && !password && !seconds && "is-invalid"} fw-bold`}
                   style={{ paddingRight: "60px" }}
                   placeholder="Password"
                   name="password"
@@ -185,7 +188,7 @@ export default function Home() {
                   disabled={disable ? true : false}
                 />
                 <FontAwesomeIcon
-                  icon={`fa-solid ${showpassword ? "fa-eye-slash" : "fa-eye"}`}
+                  icon={`fa-solid ${showpassword ? "fa-eye" : "fa-eye-slash"}`}
                   className="position-absolute translate-middle-y top-50 text-yellowgray cursor-pointer"
                   style={{ right: "35px" }}
                   onClick={() => {

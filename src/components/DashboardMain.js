@@ -4,15 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import SideBarOnRecordAccordion from "./SideBarOnRecordAccordion";
 import SideBarOffRecordAccordion from "./SideBarOffRecordAccordion";
+import { motion } from "framer-motion";
 
 export default function Dashboard({ children, sidebar }) {
   return (
     <>
       <div className="flex-grow-1 overflow-x-hidden d-flex g-0 text-nowrap">
         {/* SIDEBAR */}
-        <div
-          className={`sidebar-animation bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-block d-none align-items-center`}
-          style={{ width: `${sidebar ? "50px" : "230px"}`, flex: `${sidebar ? "0 0 50px" : "0 0 230px"}`}}
+        <motion.div
+          animate={{width: `${sidebar ? "50px" : "230px"}`, flex: `${sidebar ? "0 0 50px" : "0 0 230px"}`}}
+          transition={{duration: 0.3}}
+          className={`bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-block d-none align-items-center`}
         >
           {!sidebar && (
             <>
@@ -43,11 +45,11 @@ export default function Dashboard({ children, sidebar }) {
               {/* HOME BUTTON */}
               <Link href="/" className="text-decoration-none">
                 <button
-                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
                 >
                   <FontAwesomeIcon
                     icon="fa-solid fa-house"
-                    className="text-yellow fs-6 ms-3"
+                    className="text-yellow small"
                   />
                   <span className="small text-light">
                     Home
@@ -67,11 +69,11 @@ export default function Dashboard({ children, sidebar }) {
               {/* ACCOUNG INFORMATION BUTTON */}
               <Link href="/account-information" className="text-decoration-none">
                 <button
-                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button ps-3 py-2 bg-gray2 gap-2`}
                 >
                   <FontAwesomeIcon
                     icon="fa-solid fa-sliders"
-                    className="text-yellow fs-6 ms-3"
+                    className="text-yellow small"
                   />
                   <span className="small text-light">
                     Account Information
@@ -89,7 +91,7 @@ export default function Dashboard({ children, sidebar }) {
                 <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
                   <FontAwesomeIcon
                     icon="fa-solid fa-house"
-                    className="text-yellow fs-5"
+                    className="text-yellow fs-6"
                   />
                   <div className="position-absolute start-100 top-50 translate-middle-y">
                     <div
@@ -108,7 +110,7 @@ export default function Dashboard({ children, sidebar }) {
                 <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative  d-flex justify-content-center">
                   <FontAwesomeIcon
                     icon="fa-solid fa-sliders"
-                    className="text-yellow fs-5"
+                    className="text-yellow fs-6"
                   />
                   <div className="position-absolute start-100 top-50 translate-middle-y">
                     <div
@@ -122,15 +124,13 @@ export default function Dashboard({ children, sidebar }) {
               </Link>
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* MOBILE VIEW SIDEBAR */}
-        <div
-          className={`sidebar-animation bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-none d-block overflow-x-hidden`}
-          style={{
-            width: sidebar ? "230px" : "0px",
-            flex: sidebar ? "0 0 230px" : "0 0 0",
-          }}
+        <motion.div
+          animate={{flex: `${sidebar ? "0 0 230px" : "0 0 0px"}`}}
+          transition={{ duration: 0.3 }}
+          className={`bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-none d-block overflow-x-hidden`}
         >
           {/* SEARCH BAR */}
           <div className="bg-gray2 p-3 position-relative">
@@ -159,11 +159,11 @@ export default function Dashboard({ children, sidebar }) {
           {/* HOME BUTTON */}
           <Link href="/" className="text-decoration-none">
             <button
-              className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
+              className={`text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
             >
               <FontAwesomeIcon
                 icon="fa-solid fa-house"
-                className="text-yellow fs-6 ms-3"
+                className="text-yellow small"
               />
               <span className="small text-light">
                 Home
@@ -183,18 +183,18 @@ export default function Dashboard({ children, sidebar }) {
           {/* ACCOUNG INFORMATION BUTTON */}
           <Link href="/account-information" className="text-decoration-none">
             <button
-              className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
+              className={`ps-3 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
             >
               <FontAwesomeIcon
                 icon="fa-solid fa-sliders"
-                className="text-yellow fs-6 ms-3"
+                className="text-yellow small"
               />
               <span className="small text-light">
                 Account Information
               </span>
             </button>
           </Link>
-        </div>
+        </motion.div>
         {/* MAIN PAGE */}
         <div
           className={`flex-grow-1 mainpage-mobile sidebar-animation bg-white2 pb-5`}
