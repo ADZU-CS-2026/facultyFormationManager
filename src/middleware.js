@@ -52,5 +52,5 @@ export async function middleware(req){
 
 // PROTECTED ROUTES
 export const config = {
-  matcher: ["/", "/records/:path*", "/account-information"]
+  matcher: ["/", "/records/:path*", "/account-information", "/api"]
 }
