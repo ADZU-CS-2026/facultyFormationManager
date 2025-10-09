@@ -1,30 +1,32 @@
 import bcrypt from "bcryptjs";
-
-// TEMPORARY ACCOUNT
-const ADMIN = {
-    id: "230692",
-    passwordHash: bcrypt.hashSync("adzuformation", 10),
-    name: "ADMINISTRATOR",
-    role: "admin"
-}
+import { pool } from "./db";
 
 // ID PASSWORD AUTHENTICATION
 export async function verifyAdmin(id, password){
-    if(id !== ADMIN.id){
+
+    const parsedID = parseInt(id);
+
+    const [row] = await pool.execute("SELECT * FROM adminaccount WHERE id = ?", [parsedID]);
+    const ADMIN = row.find(r => r.id === parsedID);
+
+    if(!ADMIN) {
         return false;
     }
-
-    const match = await bcrypt.compare(password, ADMIN.passwordHash);
-
+    if(parsedID !== ADMIN.id){
+        return false;
+    }
+    const match = await bcrypt.compare(password, ADMIN.password);
     if(!match){
         return false;
     }
-
     return true;
 }
 
 // RETURN ADMIN DATA
-export async function getAdmin(){
+export async function getAdmin(id){
+    const parsedID = parseInt(id);
+    const [row] = await pool.execute("SELECT * FROM adminaccount WHERE id = ?", [parsedID]);
+    const ADMIN = row.find(r => r.id === parsedID);
     return ADMIN;
 }
 

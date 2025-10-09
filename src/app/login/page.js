@@ -226,7 +226,7 @@ export default function Home() {
                 Forgot your Password <FontAwesomeIcon icon={faCircleQuestion} />
               </div>
               <Turnstile
-                sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY} //"1x00000000000000000000AA" for production
+                sitekey="1x00000000000000000000AA" //"1x00000000000000000000AA" for production
                 onVerify={(token) => setToken(token)}
               />
             </div>
