@@ -1,10 +1,29 @@
 "use client"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function AccountInformation() {
 
   const [eye, setEye] = useState(false);
+  const [message, setMessage] = useState("");
+  const [adminData, setAdminData] = useState("");
+
+  useEffect(() => {
+    async function getInfo(){
+      try{
+        const res = await fetch("/api");
+        if(res.ok){
+          const data = await res.json();
+          return setAdminData(data);
+        }
+        throw new Error("No Fetch!");
+      }
+      catch(err){
+        setMessage(err.message);
+      }
+    }
+    getInfo();
+  }, []);
 
   return (
     <>
@@ -37,15 +56,13 @@ export default function AccountInformation() {
                     <div className="p-3 gap-2 d-inline-block fw-bold d-flex flex-column justify-content-evenly">
                         <div className="text-center mb-3">Role</div>
                         <div className="text-center mb-3">ID Number</div>
-                        <div className="text-center mb-3">Contact Number</div>
                         <div className="text-center">Password</div>
                     </div>
                     <div className="ms-3 fw-bold d-flex flex-column justify-content-evenly" style={{width: "375px"}}>
-                        <input type="text" className="form-control form-control-sm rounded-0 w-full bg-white1" defaultValue="ADMINISTRATOR" disabled/>
-                        <input type="text" className="form-control form-control-sm rounded-0 w-full bg-white1" defaultValue="230692" disabled/>
-                        <input type="text" className="form-control form-control-sm rounded-0 w-full bg-white1" defaultValue="09xx - xxx - xxxx" disabled/>
+                        <input type="text" className="form-control form-control-sm rounded-0 w-full bg-white1" defaultValue={adminData ? adminData[0].role : message} disabled/>
+                        <input type="text" className="form-control form-control-sm rounded-0 w-full bg-white1" defaultValue={adminData ? adminData[0].id : message} disabled/>
                         <div className="position-relative">
-                        <input type={!eye ? "password" : "text"} className="form-control form-control-sm rounded-0 w-full bg-white1" defaultValue="adzuformation" disabled/>
+                        <input type={!eye ? "password" : "text"} className="form-control form-control-sm rounded-0 w-full bg-white1" defaultValue={adminData ? "adzuformation" : message} disabled/>
                         {!eye ? (<FontAwesomeIcon icon="fa-regular fa-eye-slash" className="position-absolute translate-middle-y top-50 text-yellowgray small cursor-pointer" style={{right: "10px"}} onClick={() => {setEye(eye => eye ? false : true)}}/>) : 
                                 (<FontAwesomeIcon icon="fa-regular fa-eye" className="position-absolute translate-middle-y top-50 text-yellowgray small cursor-pointer" style={{right: "10px"}} onClick={() => {setEye(eye => eye ? false : true)}}/>)}
                       </div>
@@ -53,26 +70,27 @@ export default function AccountInformation() {
                 </div>
             </div>
             {/* CHANGE PASSWORD SECTION */}
-            <div className="tab-pane fade d-block" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabIndex="0">
-                <div className="p-3 pb-1 d-flex" style={{maxWidth: "607.5px"}}>
-                  <div className="p-3 gap-4 d-inline-block fw-bold d-flex flex-column justify-content-evenly">
-                      <div className="text-center">Previous Password</div>
-                      <div className="text-center">New Password</div>
-                      <div className="text-center">Re-enter New Password</div>
+              <div className="tab-pane fade d-block" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabIndex="0">
+                  <div className="p-3 pb-1 d-flex" style={{maxWidth: "607.5px"}}>
+                    <div className="p-3 gap-4 d-inline-block fw-bold d-flex flex-column justify-content-evenly">
+                        <div className="text-center">Previous Password</div>
+                        <div className="text-center">New Password</div>
+                        <div className="text-center">Re-enter New Password</div>
+                    </div>
+                    
+                    <div className="ms-3 fw-bold d-flex flex-column justify-content-evenly" style={{width: "375px"}}>
+                        <input className="form-control form-control-sm rounded-0 w-full" defaultValue="" />
+                        <input className="form-control form-control-sm rounded-0 w-full" defaultValue="" />
+                        <input className="form-control form-control-sm rounded-0" defaultValue="" />
+                    </div>
                   </div>
-                  <div className="ms-3 fw-bold d-flex flex-column justify-content-evenly" style={{width: "375px"}}>
-                      <input className="form-control form-control-sm rounded-0 w-full" defaultValue="" />
-                      <input className="form-control form-control-sm rounded-0 w-full" defaultValue="" />
-                      <input className="form-control form-control-sm rounded-0" defaultValue="" />
+                  <div className="ps-3 d-flex" style={{maxWidth: "607.5px"}}>
+                    <div className="px-3 gap-4 d-inline-block fw-bold d-flex flex-column justify-content-evenly">
+                        <div className="text-center opacity-0">Re-enter New Password</div>
+                    </div>
+                    <button className="ms-3 mb-3 btn btn-sm btn-lightblue text-light">Update</button>
                   </div>
-                </div>
-                <div className="ps-3 d-flex" style={{maxWidth: "607.5px"}}>
-                  <div className="px-3 gap-4 d-inline-block fw-bold d-flex flex-column justify-content-evenly">
-                      <div className="text-center opacity-0">Re-enter New Password</div>
-                  </div>
-                  <button className="ms-3 mb-3 btn btn-sm btn-lightblue text-light">Update</button>
-                </div>
-            </div>
+              </div>
         </div>
         </div>
       </div>

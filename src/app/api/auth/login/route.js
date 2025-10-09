@@ -24,7 +24,7 @@ export async function POST(req) {
       return NextResponse.json({message: "Credentials incorrect!"}, {status: 401});
     }
 
-    const adminData = getAdmin();
+    const adminData = getAdmin(id);
     // LOGGED IN
     return await setAuthCookies(adminData);
   }
