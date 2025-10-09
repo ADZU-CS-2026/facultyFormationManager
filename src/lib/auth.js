@@ -1,22 +1,17 @@
-import bcrypt from "bcryptjs";
 import { pool } from "./db";
 
 // ID PASSWORD AUTHENTICATION
 export async function verifyAdmin(id, password){
-
-    const parsedID = parseInt(id);
-
-    const [row] = await pool.execute("SELECT * FROM adminaccount WHERE id = ?", [parsedID]);
-    const ADMIN = row.find(r => r.id === parsedID);
+    const [row] = await pool.execute("SELECT * FROM adminaccount WHERE id = ?", [id]);
+    const ADMIN = row.find(r => r.id === id);
 
     if(!ADMIN) {
         return false;
     }
-    if(parsedID !== ADMIN.id){
+    if(id !== ADMIN.id){
         return false;
     }
-    const match = await bcrypt.compare(password, ADMIN.password);
-    if(!match){
+    if(password !== ADMIN.password){
         return false;
     }
     return true;
@@ -24,9 +19,8 @@ export async function verifyAdmin(id, password){
 
 // RETURN ADMIN DATA
 export async function getAdmin(id){
-    const parsedID = parseInt(id);
-    const [row] = await pool.execute("SELECT * FROM adminaccount WHERE id = ?", [parsedID]);
-    const ADMIN = row.find(r => r.id === parsedID);
+    const [row] = await pool.execute("SELECT * FROM adminaccount WHERE id = ?", [id]);
+    const ADMIN = row.find(r => r.id === id);
     return ADMIN;
 }
 
