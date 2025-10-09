@@ -2,10 +2,30 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function UserPopover({ userPopup, userPop }) {
 
+  const [adminData, setAdminData] = useState("");
+  const [message, setMessage] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    async function getData(){
+      try{
+        const res = await fetch("/api");
+        if(res.ok){
+          const data = await res.json();
+          return setAdminData(data);
+        }
+        throw new Error("No Fetch!");
+      }
+      catch(err){
+        setMessage(err.message);
+      }
+    }
+    getData();
+  },[])
 
   async function Logout(){
       const res = fetch("/api/auth/logout", {method: "POST"});
@@ -22,7 +42,7 @@ export default function UserPopover({ userPopup, userPop }) {
       >
         <FontAwesomeIcon icon="fa-solid fa-user" />
         <span className="d-lg-block d-none ms-1 small">
-          Welcome, ADMINISTRATOR!
+          Welcome, {adminData ? adminData[0].role : message}!
         </span>
       </div>
       {/* USER'S POPOVER */}
@@ -36,11 +56,11 @@ export default function UserPopover({ userPopup, userPop }) {
             className="text-light"
             style={{ fontSize: "90px" }}
           />
-          <span className="fs-6 mt-2">230692</span>
+          <span className="fs-6 mt-2">{adminData ? adminData[0].id : message}</span>
           <span className="fs-6">
             <small>
               <small>
-                ADMINISTRATOR
+                {adminData ? adminData[0].role : message}
               </small>
             </small>
           </span>
