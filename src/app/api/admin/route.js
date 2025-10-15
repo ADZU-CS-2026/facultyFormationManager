@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 
+// FETCH ADMIN DATA FOR AUTHENTICATION AND DISPLAY
 export async function GET(){
     try{
         const [rows] = await pool.execute("SELECT * FROM adminaccount");
@@ -14,6 +15,7 @@ export async function GET(){
     }
 }
 
+// ONLY FOR UPDATING CREDENTIALS
 export async function PATCH(req){
     try{
         const {id, newPass} = await req.json();
