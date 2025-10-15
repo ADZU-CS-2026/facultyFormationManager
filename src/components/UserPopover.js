@@ -10,10 +10,11 @@ export default function UserPopover({ userPopup, userPop }) {
   const [message, setMessage] = useState("");
   const router = useRouter();
 
+  // FETCH ADMIN DATA FROM ADMIN API ON FIRST LOAD
   useEffect(() => {
     async function getData(){
       try{
-        const res = await fetch("/api");
+        const res = await fetch("/api/admin");
         if(res.ok){
           const data = await res.json();
           return setAdminData(data);
