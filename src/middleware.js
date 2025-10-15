@@ -15,7 +15,6 @@ async function verifyJwt(token){
 }
 
 // MIDDLEWARE
-
 export async function middleware(req){
 
   // CHECK ACCESS TOKEN
@@ -45,12 +44,20 @@ export async function middleware(req){
     }
   }
 
+  const path = req.nextUrl.pathname;
+
+  // IF CHECKING ADMIN API
+  if(path.startsWith("/api/admin")){
+    return NextResponse.json({message: "Unauthorized!"}, {status: 401});
+  }
+
   // STRAIGHT TO LOGIN
   const loginUrl = new URL("/login", req.url);
   return NextResponse.redirect(loginUrl);
+  
 }
 
 // PROTECTED ROUTES
 export const config = {
-  matcher: ["/", "/records/:path*", "/account-information", "/api"]
+  matcher: ["/", "/records/:path*", "/account-information", "/api/admin"]
 }

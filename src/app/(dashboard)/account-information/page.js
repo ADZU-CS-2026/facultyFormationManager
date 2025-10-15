@@ -12,9 +12,9 @@ export default function AccountInformation() {
   const [reNewPass, setReNewPass] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // CHANGE PASSWORD LOGIC
   async function changePassword(e){
     e.preventDefault();
-
     if(!prevPass || !newPass || !reNewPass){
       return setErrorMessage("Please fill the blank!");
     }
@@ -45,7 +45,7 @@ export default function AccountInformation() {
         setPrevPass("");
         setNewPass("");
         setReNewPass("");
-        const res = await fetch("/api");
+        const res = await fetch("/api/admin");
         if(res.ok){
           const data = await res.json();
           return setAdminData(data);
@@ -58,10 +58,11 @@ export default function AccountInformation() {
     }
   }
 
+  // FETCH PASSWORD ON FIRST LOAD
   useEffect(() => {
     async function getInfo(){
       try{
-        const res = await fetch("/api");
+        const res = await fetch("/api/admin");
         if(res.ok){
           const data = await res.json();
           return setAdminData(data);
@@ -108,6 +109,7 @@ export default function AccountInformation() {
                         <div className="text-center mb-3">ID Number</div>
                         <div className="text-center">Password</div>
                     </div>
+                    {/* SECTION SHOWS ADMIN CREDENTIALS INFORMATION */}
                     <div className="ms-3 fw-bold d-flex flex-column justify-content-evenly" style={{width: "375px"}}>
                         <input type="text" className="form-control form-control-sm rounded-0 w-full bg-white1" defaultValue={adminData ? adminData[0].role : message} disabled/>
                         <input type="text" className="form-control form-control-sm rounded-0 w-full bg-white1" defaultValue={adminData ? adminData[0].id : message} disabled/>
@@ -128,7 +130,6 @@ export default function AccountInformation() {
                         <div className="text-center">New Password</div>
                         <div className="text-center">Re-enter New Password</div>
                     </div>
-                    
                     <div className="ms-3 fw-bold d-flex flex-column justify-content-evenly" style={{width: "375px"}}>
                         <input type="password" className="form-control form-control-sm rounded-0 w-full" value={prevPass} onChange={e => setPrevPass(e.target.value)}/>
                         <input type="password" className="form-control form-control-sm rounded-0 w-full" value={newPass} onChange={e => setNewPass(e.target.value)}/>
