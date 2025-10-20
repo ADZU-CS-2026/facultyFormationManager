@@ -102,7 +102,7 @@ export default function DataCard() {
             </div>
 
             {/* TABLE */}
-            <table className="table table-bordered table-striped table-hover">
+            <table className="table table-bordered table-striped table-hover small">
               <thead className="border">
                   <tr className="text-start">
                   <th scope="col" className="bg-tableheadergray">
@@ -127,7 +127,7 @@ export default function DataCard() {
                   if (index !== dataTable.length - 1){
                     return(
                       <tr key={index}>
-                        <td className="text-start" style={{color: "#3c8dbc"}}>{data.name}</td>
+                        <td className="text-start">{data.name}</td>
                         <td className="text-center">{data.totalPopulation}</td>
                         <td className="text-center">{data.actualAttendance}</td>
                         <td className="text-center">{data.attandanceRate}</td>
@@ -137,7 +137,7 @@ export default function DataCard() {
                   }
                   return(
                     <tr key={index}>
-                      <th className="text-start" style={{color: "#3c8dbc"}}>{data.name}</th>
+                      <th className="text-start">{data.name}</th>
                       <th className="text-center">{data.totalPopulation}</th>
                       <th className="text-center">{data.actualAttendance}</th>
                       <th className="text-center">{data.attandanceRate}</th>
