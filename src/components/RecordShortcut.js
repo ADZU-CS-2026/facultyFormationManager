@@ -7,7 +7,7 @@ export default function RecordShortcut() {
   const [hideShortcut, setHideShortcut] = useState(false);
 
   return (
-    <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm">
+    <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm mt-4">
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
         <div>
           <FontAwesomeIcon icon="fa-solid fa-arrow-up-right-from-square" className="fs-6 me-1" />
