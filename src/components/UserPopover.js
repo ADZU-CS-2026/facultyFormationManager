@@ -67,12 +67,6 @@ export default function UserPopover({ userPopup, userPop }) {
           </span>
         </div>
         <div className="d-flex flex-column justify-content-center align-items-center p-2 gap-1">
-          <button className="w-100 btn btn-yellow text-black rounded-1 btn-sm d-flex justify-content-center align-items-center">
-            <FontAwesomeIcon icon="fa-solid fa-key" className="fs-6" />
-            <span className="fs-6 ps-1">
-              <small>Change Password</small>
-            </span>
-          </button>
           <button
             className="w-100 btn btn-red text-white btn-sm rounded-1 d-flex justify-content-center align-items-center"
             data-bs-toggle="modal"
