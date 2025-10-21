@@ -14,7 +14,7 @@ export default function WeatherCard() {
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
         <div>
           <FontAwesomeIcon icon="fa-solid fa-circle-info" className="fs-6 me-1" />
-          About System
+          System Info
         </div>
         <span
           className="cursor-pointer"
@@ -41,8 +41,8 @@ export default function WeatherCard() {
                 <div className="carousel-item active" style={{height: "350px"}}>
                   <Image src="/Images/adzu-chapel.jpg" fill style={{objectFit: "cover", objectPosition: "center", filter: "brightness(30%)"}} alt="chapel1" />
                   <div className="carousel-caption">
-                    <div className="text-start logo-font text-gold fs-1 fw-bold d-none d-xl-block d-lg-none d-sm-block" >Ateneo Formation System</div>
-                    <div className="text-start logo-font text-gold fs-1 fw-bold d-block d-xl-none d-lg-block d-sm-none" >Ateneo Formation Sys..</div>
+                    <div className="text-start logo-font text-gold fs-1 fw-bold d-none d-xl-block d-lg-none d-sm-block" >AdZU Formation System</div>
+                    <div className="text-start logo-font text-gold fs-1 fw-bold d-block d-xl-none d-lg-block d-sm-none" >AdZU Formation Sys..</div>
                     <div className="text-start logo-font fs-6 text-white2 d-none d-xl-block d-lg-none d-sm-block">Faculty Formation Program Monitoring and Management System</div>
                     <div className="text-start logo-font fs-6 text-white2 d-block d-xl-none d-lg-block d-sm-none">Faculty Formation Program Monitoring and Mana..</div>
                     <div className="d-flex"> 
@@ -53,8 +53,8 @@ export default function WeatherCard() {
                 <div className="carousel-item" style={{height: "350px"}}>
                   <Image src="/Images/adzu-lantaka.jpeg" fill style={{objectFit: "cover", objectPosition: "center", filter: "brightness(30%)"}} alt="chapel2" />
                   <div className="carousel-caption">
-                    <div className="text-start logo-font text-gold fs-1 fw-bold d-none d-xl-block d-lg-none d-sm-block" >Ateneo Formation System</div>
-                    <div className="text-start logo-font text-gold fs-1 fw-bold d-block d-xl-none d-lg-block d-sm-none" >Ateneo Formation Sys..</div>
+                    <div className="text-start logo-font text-gold fs-1 fw-bold d-none d-xl-block d-lg-none d-sm-block" >AdZU Formation System</div>
+                    <div className="text-start logo-font text-gold fs-1 fw-bold d-block d-xl-none d-lg-block d-sm-none" >AdZU Formation Sys..</div>
                     <div className="text-start logo-font fs-6 text-white2 d-none d-xl-block d-lg-none d-sm-block">Faculty Formation Program Monitoring and Management System</div>
                     <div className="text-start logo-font fs-6 text-white2 d-block d-xl-none d-lg-block d-sm-none">Faculty Formation Program Monitoring and Mana..</div>
                     <div className="d-flex"> 
@@ -65,8 +65,8 @@ export default function WeatherCard() {
                 <div className="carousel-item" style={{height: "350px"}}>
                   <Image src="/Images/adzu-lantakagallery.jpeg" fill style={{objectFit: "cover", objectPosition: "center", filter: "brightness(30%)"}} alt="chapel3" />
                   <div className="carousel-caption">
-                    <div className="text-start logo-font text-gold fs-1 fw-bold d-none d-xl-block d-lg-none d-sm-block" >Ateneo Formation System</div>
-                    <div className="text-start logo-font text-gold fs-1 fw-bold d-block d-xl-none d-lg-block d-sm-none" >Ateneo Formation Sys..</div>
+                    <div className="text-start logo-font text-gold fs-1 fw-bold d-none d-xl-block d-lg-none d-sm-block" >AdZU Formation System</div>
+                    <div className="text-start logo-font text-gold fs-1 fw-bold d-block d-xl-none d-lg-block d-sm-none" >AdZU Formation Sys..</div>
                     <div className="text-start logo-font fs-6 text-white2 d-none d-xl-block d-lg-none d-sm-block">Faculty Formation Program Monitoring and Management System</div>
                     <div className="text-start logo-font fs-6 text-white2 d-block d-xl-none d-lg-block d-sm-none">Faculty Formation Program Monitoring and Mana..</div>
                     <div className="d-flex"> 
