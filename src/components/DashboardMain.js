@@ -2,7 +2,6 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import SideBarOnRecordAccordion from "./SideBarOnRecordAccordion";
 import SideBarOffRecordAccordion from "./SideBarOffRecordAccordion";
 import { motion } from "framer-motion";
 import { useState } from "react";

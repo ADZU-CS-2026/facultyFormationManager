@@ -1,6 +1,7 @@
 "use client"
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NotifCard from "../../../components/NotifCard";
 
 export default function AccountInformation() {
 
@@ -11,6 +12,7 @@ export default function AccountInformation() {
   const [newPass, setNewPass] = useState("");
   const [reNewPass, setReNewPass] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [notif, setNotif] = useState({title: "", content: "", show: false});
 
   // CHANGE PASSWORD LOGIC
   async function changePassword(e){
@@ -33,7 +35,7 @@ export default function AccountInformation() {
     const id = adminData[0].id;
     
     try{
-      const res = await fetch("/api", {
+      const res = await fetch("/api/admin", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"
@@ -42,6 +44,7 @@ export default function AccountInformation() {
       })
       if(res.ok){
         setErrorMessage("Password Updated!");
+        setNotif({title: "Notification", content: "Password Updated Successfully!", show: true});
         setPrevPass("");
         setNewPass("");
         setReNewPass("");
@@ -136,11 +139,11 @@ export default function AccountInformation() {
                         <input type="password" className="form-control form-control-sm rounded-0" value={reNewPass} onChange={e => setReNewPass(e.target.value)}/>
                     </div>
                   </div>
-                  <div className="ps-3 d-flex" style={{maxWidth: "607.5px"}}>
+                  <div className="ps-3 pb-3 d-flex align-items-center" style={{maxWidth: "607.5px"}}>
                     <div className="px-3 gap-4 d-inline-block fw-bold d-flex flex-column justify-content-evenly">
                         <div className="text-center opacity-0">Re-enter New Password</div>
                     </div>
-                    <button type="submit" className="ms-3 mb-3 btn btn-sm btn-lightblue text-light">Update</button>
+                    <button type="submit" className="ms-3 btn btn-sm btn-lightblue text-light">Update</button>
                     <div className={`${errorMessage === "Password Updated!" ? "text-green" : "text-red"} fs-6 ps-3`}>{errorMessage}</div>
                   </div>
               </div>
@@ -151,7 +154,7 @@ export default function AccountInformation() {
       </div>
       </div>
       </div>
-
+      <NotifCard notif={notif} setNotif={setNotif}/>
     </>
   );
 }

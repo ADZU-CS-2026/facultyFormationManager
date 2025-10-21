@@ -25,19 +25,15 @@ export default function Dashboard({ children, sidebar }) {
         >
           <div className="fs-6 text-nowrap">
             <small>
-              <small>
-                <span className="fw-bold">
-                  Copyright © 2025 Ateneo de Zamboanga University.
-                </span>{" "}
-                All rights reserved.
-              </small>
+              <span className="fw-bold">
+                Copyright © 2025 Ateneo de Zamboanga University.
+              </span>{" "}
+              All rights reserved.
             </small>
           </div>
           <div className="fs-6 d-lg-block d-none text-nowrap">
             <small>
-              <small>
-                <span className="fw-bold">Version</span> 1.5.0 LTS.
-              </small>
+              <span className="fw-bold">Version</span> 1.0.0 BETA.
             </small>
           </div>
         </div>
