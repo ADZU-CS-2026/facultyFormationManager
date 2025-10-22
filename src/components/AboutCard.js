@@ -13,8 +13,8 @@ export default function WeatherCard() {
       {/* CARD HEADER */}
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
         <div>
-          <FontAwesomeIcon icon="fa-solid fa-circle-info" className="fs-6 me-1" />
-          System Info
+          <FontAwesomeIcon icon="fa-solid fa-image" className="fs-6 me-1" />
+          Slideshow
         </div>
         <span
           className="cursor-pointer"
@@ -37,6 +37,11 @@ export default function WeatherCard() {
       >
         <div className="p-3 px-2">
             <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
+              <div className="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
               <div className="carousel-inner">
                 <div className="carousel-item active" style={{height: "350px"}}>
                   <Image src="/Images/adzu-chapel.jpg" fill style={{objectFit: "cover", objectPosition: "center", filter: "brightness(30%)"}} alt="chapel1" />
