@@ -12,7 +12,16 @@ export default function AccountInformation() {
   const [newPass, setNewPass] = useState("");
   const [reNewPass, setReNewPass] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [notif, setNotif] = useState({title: "", content: "", show: false});
+  const [notif, setNotif] = useState([]);
+
+  const now = new Date(Date.now());
+  const formattedDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+  const timeOnly = now.toLocaleTimeString(); 
+  const currentDate = `${timeOnly} ${formattedDate}`  
+
+  function deleteNotif(id){
+    setNotif(prev => prev.filter(data => data.id !== id));
+  } 
 
   // CHANGE PASSWORD LOGIC
   async function changePassword(e){
@@ -44,7 +53,10 @@ export default function AccountInformation() {
       })
       if(res.ok){
         setErrorMessage("Password Updated!");
-        setNotif({title: "Notification", content: "Password Updated Successfully!", show: true});
+        if(notif.length >= 4){
+          setNotif(prev => prev.filter(data => data.id !== prev[0].id));
+        }
+        setNotif(prev => [...prev, {id: Date.now(), title: "Notification", content: "Password Updated Successfully!", time: currentDate}]);
         setPrevPass("");
         setNewPass("");
         setReNewPass("");
@@ -154,7 +166,11 @@ export default function AccountInformation() {
       </div>
       </div>
       </div>
-      <NotifCard notif={notif} setNotif={setNotif}/>
+      <div className="position-fixed d-flex flex-column-reverse gap-2" style={{right: "10px", bottom: "10px"}}>
+        {notif.length > 0 && notif.map((data) => (
+          <NotifCard notif={data} deleteNotif={deleteNotif}/>
+        ))}
+      </div>
     </>
   );
 }
