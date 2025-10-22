@@ -3,6 +3,7 @@ import WeatherCard from "../../../components/WeatherCard";
 import RecordShortcut from "../../../components/RecordShortcut";
 import CalendarCard from "../../../components/CalendarCard";
 import AboutCard from "../../../components/AboutCard";
+import AllProgress from "../../../components/AllProgress";
 
 
 export default function Home() {
@@ -12,11 +13,12 @@ export default function Home() {
       <div className="row g-0">
         <div className="col-lg-8 col-12 py-4 px-3">
           <AboutCard />
-          <RecordShortcut />
+          <AllProgress />
         </div>
         <div className="col-lg-4 col-12 py-4 pt-lg-4 pt-0 px-3">
-          <WeatherCard />
+          <RecordShortcut />
           <CalendarCard />
+          {/* <WeatherCard /> */}
         </div>
       </div>
     </div>
