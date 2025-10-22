@@ -6,18 +6,18 @@ import rawData from "@/data/dayswithgod.json";
 export default function PPOPage() {
   const ppoData = rawData["PPO"];
 
-  // HEADER INFO
+  // Header information
   const office = ppoData?.[0]?.["Ateneo de Zamboanga University"];
   const profileTitle = ppoData?.[1]?.["Ateneo de Zamboanga University"];
   const schoolYear = ppoData?.[2]?.["Ateneo de Zamboanga University"];
 
-  // TABLE HEADERS + ROWS
+  // Identify the header and data rows
   const tableHeaderRow = ppoData?.find((row) => row?.["Column2"] === "Last Name ");
   const tableRows = ppoData?.filter(
     (row) => row?.["Column2"] && row?.["Column2"] !== "Last Name "
   );
 
-  // DROPDOWN OPTIONS (School Year Columns)
+  // Dropdown options (matches the columns from the JSON file)
   const retreatYears = [
     { label: "School Year 2024–2025", key: "Column5" },
     { label: "School Year 2025–2026", key: "Column6" },
@@ -27,6 +27,22 @@ export default function PPOPage() {
   ];
 
   const [selectedYear, setSelectedYear] = useState(retreatYears[1]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filtered data based on search
+  const filteredRows = tableRows?.filter((row) => {
+    const lastName = row["Column2"]?.toLowerCase() || "";
+    const firstName = row["Column3"]?.toLowerCase() || "";
+    const status = row["Column4"]?.toLowerCase() || "";
+    const yearValue = row[selectedYear.key]?.toLowerCase() || "";
+    const search = searchTerm.toLowerCase();
+    return (
+      lastName.includes(search) ||
+      firstName.includes(search) ||
+      status.includes(search) ||
+      yearValue.includes(search)
+    );
+  });
 
   return (
     <div className="w-100">
@@ -51,8 +67,19 @@ export default function PPOPage() {
                 <div className="mt-2 mb-5 small">{schoolYear}</div>
               </div>
 
-              {/* DROPDOWN */}
-              <div className="d-flex justify-content-end mb-3">
+              {/* SEARCH & DROPDOWN CONTROLS */}
+              <div className="d-flex justify-content-end align-items-center gap-2 mb-3 flex-wrap">
+                {/* Search box */}
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="form-control form-control-sm rounded-0"
+                  style={{ width: "200px" }}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+
+                {/* Dropdown */}
                 <div className="dropdown">
                   <button
                     className="btn btn-sm dropdown-toggle rounded-0 gradient-button"
@@ -93,15 +120,24 @@ export default function PPOPage() {
                       <th className="bg-tableheadergray">{selectedYear.label}</th>
                     </tr>
                   </thead>
+
                   <tbody>
-                    {tableRows?.map((row, index) => (
-                      <tr key={index}>
-                        <td>{row["Column2"]}</td>
-                        <td>{row["Column3"]}</td>
-                        <td>{row["Column4"] || ""}</td>
-                        <td>{row[selectedYear.key] || ""}</td>
+                    {filteredRows?.length > 0 ? (
+                      filteredRows.map((row, index) => (
+                        <tr key={index}>
+                          <td>{row["Column2"]}</td>
+                          <td>{row["Column3"]}</td>
+                          <td>{row["Column4"] || ""}</td>
+                          <td>{row[selectedYear.key] || ""}</td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="4" className="text-center text-muted small">
+                          No matching records found.
+                        </td>
                       </tr>
-                    ))}
+                    )}
                   </tbody>
                 </table>
               </div>

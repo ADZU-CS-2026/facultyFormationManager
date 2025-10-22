@@ -5,13 +5,18 @@ import rawData from "@/data/dayswithgod.json";
 
 export default function AdminPage() {
   const adminData = rawData["ADMIN"];
+
+  // Header information
   const office = adminData?.[0]?.["Ateneo de Zamboanga University"];
   const profileTitle = adminData?.[1]?.["Ateneo de Zamboanga University"];
   const schoolYear = adminData?.[2]?.["Ateneo de Zamboanga University"];
+
+  // Identify the header and data rows
   const tableRows = adminData?.filter(
     (row) => row?.["Column2"] && row?.["Column2"] !== "Last Name "
   );
 
+  // Dropdown options (matches the columns from the JSON file)
   const retreatYears = [
     { label: "3D Retreat School Year 2023–2024", key: "Column9" },
     { label: "3D Retreat School Year 2024–2025", key: "Column10" },
@@ -34,12 +39,16 @@ export default function AdminPage() {
     <div className="w-100">
       <div className="row g-0">
         <div className="col-12 py-4 px-3">
-          <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
-            <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
-              <div>Admin Records</div>
-            </div>
+            {/* CARD */}
+            <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
+                {/* HEADER */}
+                <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
+                    <div>Admin Records</div>
+                </div>
 
+            {/* BODY */}
             <div className="p-4">
+              {/* UNIVERSITY INFO */}
               <div className="text-center overflow-auto">
                 <div className="matura-script fs-6 text-center">
                   Ateneo de Zamboanga University
@@ -49,12 +58,12 @@ export default function AdminPage() {
                 <div className="mt-2 mb-5 small">{schoolYear}</div>
               </div>
 
-              {/* SEARCH + DROPDOWN CONTROLS */}
+              {/* SEARCH & DROPDOWN CONTROLS */}
               <div className="d-flex justify-content-end align-items-center gap-2 mb-3 flex-wrap">
                 {/* Search box */}
                 <input
                     type="text"
-                    placeholder="Search by name..."
+                    placeholder="Search..."
                     className="form-control form-control-sm rounded-0"
                     style={{ width: "200px" }}
                     value={searchTerm}
@@ -106,28 +115,44 @@ export default function AdminPage() {
                       <th className="bg-tableheadergray">{selectedRetreat.label}</th>
                     </tr>
                   </thead>
-
+                  
                   <tbody>
                     {filteredRows?.map((row, index) => (
-                      <tr key={index}>
-                        <td>{row["Column2"]}</td>
-                        <td>{row["Column3"]}</td>
-                        <td>{row["Column4"]}</td>
-                        <td>{row["Column5"]}</td>
-                        <td>{row["Column6"]}</td>
-                        <td>{row["Column7"] || ""}</td>
-                        <td>{row["Column8"] || ""}</td>
-                        <td>{row[selectedRetreat.key] || ""}</td>
-                      </tr>
+                        <tr key={index}>
+                            <td style={{ whiteSpace: "normal", wordBreak: "break-word", maxWidth: "200px" }}>
+                                {row["Column2"]}
+                            </td>
+                            <td style={{ whiteSpace: "normal", wordBreak: "break-word", maxWidth: "200px" }}>
+                                {row["Column3"]}
+                            </td>
+                            <td style={{ whiteSpace: "normal", wordBreak: "break-word", maxWidth: "100px" }}>
+                                {row["Column4"]}
+                            </td>
+                            <td style={{ whiteSpace: "normal", wordBreak: "break-word", maxWidth: "180px" }}>
+                                {row["Column5"]}
+                            </td>
+                            <td style={{ whiteSpace: "normal", wordBreak: "break-word", maxWidth: "200px" }}>
+                                {row["Column6"]}
+                            </td>
+                            <td style={{ whiteSpace: "normal", wordBreak: "break-word", maxWidth: "100px" }}>
+                                {row["Column7"] || ""}
+                            </td>
+                            <td style={{ whiteSpace: "normal", wordBreak: "break-word", maxWidth: "100px" }}>
+                                {row["Column8"] || ""}
+                            </td>
+                            <td style={{ whiteSpace: "normal", wordBreak: "break-word", maxWidth: "200px" }}>
+                                {row[selectedRetreat.key] || ""}
+                            </td>
+                        </tr>
                     ))}
                     {filteredRows?.length === 0 && (
-                      <tr>
-                        <td colSpan="8" className="text-center text-muted">
-                          No matching records found.
-                        </td>
-                      </tr>
+                        <tr>
+                            <td colSpan="8" className="text-center text-muted">
+                                No matching records found.
+                            </td>
+                        </tr>
                     )}
-                  </tbody>
+                </tbody>
                 </table>
               </div>
             </div>

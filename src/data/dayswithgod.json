@@ -1207,12 +1207,6 @@
   "Column4": "S"
  },
  {
-  "Ateneo de Zamboanga University": 83,
-  "Column2": "San Luis",
-  "Column3": "Flor",
-  "Column4": "P"
- },
- {
   "Ateneo de Zamboanga University": 84,
   "Column2": "San Luis",
   "Column3": "Floribel",
@@ -1396,6 +1390,8 @@
   "Column2": "Cañedo",
   "Column3": "Fe Grace",
   "Column4": "T",
+  "Column5": "10\/27-29\/23",
+  "Column6": "10\/24-26\/24",
   "Column7": "07\/16-18\/25"
  },
  {
@@ -1467,6 +1463,7 @@
   "Ateneo de Zamboanga University": 19,
   "Column2": "Garcia",
   "Column3": "Rosen Gabriel ",
+  "Column4": "S",
   "Column6": "10\/24-26\/24"
  },
  {
@@ -1482,12 +1479,6 @@
   "Column5": "10\/27-29\/23"
  },
  {
-  "Ateneo de Zamboanga University": 22,
-  "Column2": "Garcia",
-  "Column3": "Rosen Gabriel",
-  "Column4": "S"
- },
- {
   "Ateneo de Zamboanga University": 23,
   "Column2": "Guarino",
   "Column3": "Kneil ",
@@ -1497,25 +1488,15 @@
   "Ateneo de Zamboanga University": 24,
   "Column2": "Guerrero",
   "Column3": "Ruth ",
+  "Column4": "R",
   "Column6": "10\/24-26\/24"
- },
- {
-  "Ateneo de Zamboanga University": 25,
-  "Column2": "Guerrero",
-  "Column3": "Ruth",
-  "Column4": "R"
  },
  {
   "Ateneo de Zamboanga University": 26,
   "Column2": "Hernandez",
-  "Column3": "Daniel",
-  "Column6": "10\/24-26\/24"
- },
- {
-  "Ateneo de Zamboanga University": 27,
-  "Column2": "Hernandez",
   "Column3": "Daniel Angelito",
-  "Column4": "G"
+  "Column4": "G",
+  "Column6": "10\/24-26\/24"
  },
  {
   "Ateneo de Zamboanga University": 28,
@@ -1579,16 +1560,11 @@
   "Column7": "07\/16-18\/25"
  },
  {
-  "Ateneo de Zamboanga University": 37,
-  "Column2": "Nograles",
-  "Column3": "Hadi",
-  "Column5": "10\/27-29\/23"
- },
- {
   "Ateneo de Zamboanga University": 38,
   "Column2": "Nograles",
   "Column3": "Abdul Hadi",
   "Column4": "H",
+  "Column5": "10\/27-29\/23",
   "Column6": "10\/24-26\/24"
  },
  {
@@ -1604,19 +1580,13 @@
   "Column4": "S"
  },
  {
-  "Ateneo de Zamboanga University": 41,
-  "Column2": "Opinion",
-  "Column3": "Precious",
-  "Column5": "10\/27-29\/23",
-  "Column6": "10\/24-26\/24",
-  "Column7": "07\/16-18\/25"
- },
- {
   "Ateneo de Zamboanga University": 42,
   "Column2": "Opinion",
   "Column3": "Precious",
   "Column4": "T",
-  "Column6": "10\/24-26\/24"
+  "Column5": "10\/27-29\/23",
+  "Column6": "10\/24-26\/24",
+  "Column7": "07\/16-18\/25"
  },
  {
   "Ateneo de Zamboanga University": 43,
@@ -1625,24 +1595,10 @@
   "Column4": "B"
  },
  {
-  "Ateneo de Zamboanga University": 44,
-  "Column2": "Papa",
-  "Column3": "Joseff ",
-  "Column6": "10\/24-26\/24"
- },
- {
   "Ateneo de Zamboanga University": 45,
   "Column2": "Papa",
   "Column3": "Jozeff Allyn",
   "Column4": "S",
-  "Column6": "10\/24-26\/24"
- },
- {
-  "Ateneo de Zamboanga University": 46,
-  "Column2": "Partosa",
-  "Column3": "Jocelyn",
-  "Column4": "D",
-  "Column5": "10\/27-29\/23",
   "Column6": "10\/24-26\/24"
  },
  {
@@ -1657,6 +1613,8 @@
   "Column2": "Partosa",
   "Column3": "Jocelyn",
   "Column4": "D",
+  "Column5": "10\/27-29\/23",
+  "Column6": "10\/24-26\/24",
   "Column7": "07\/16-18\/25"
  },
  {
@@ -1716,13 +1674,8 @@
   "Ateneo de Zamboanga University": 57,
   "Column2": "Saile",
   "Column3": "Noever",
+  "Column4": "Q",
   "Column6": "10\/24-26\/24"
- },
- {
-  "Ateneo de Zamboanga University": 58,
-  "Column2": "Saile",
-  "Column3": "Noever",
-  "Column4": "Q"
  },
  {
   "Ateneo de Zamboanga University": 59,
@@ -1769,13 +1722,6 @@
   "Ateneo de Zamboanga University": 65,
   "Column2": "Tiam Watt",
   "Column3": "Jaber"
- },
- {
-  "Ateneo de Zamboanga University": 66,
-  "Column2": "Tubog-Canedo",
-  "Column3": "Fe Grace ",
-  "Column5": "10\/27-29\/23",
-  "Column6": "10\/24-26\/24"
  },
  {
   "Ateneo de Zamboanga University": 67,
@@ -1975,7 +1921,7 @@
  },
  null,
  {
-  "Ateneo de Zamboanga University": "School of Liberal Arts Retreat"
+  "Ateneo de Zamboanga University": "School of Liberal Arts"
  },
  {
   "Column2": "Last Name ",
@@ -2313,36 +2259,43 @@
  },
  {
   "Ateneo de Zamboanga University": 52,
+  "Column2": "Quaile",
+  "Column3": "Cindy Ann",
+  "Column4": "J",
+  "Column6": "05\/28-30\/24"
+ },
+ {
+  "Ateneo de Zamboanga University": 53,
   "Column2": "Remotin",
   "Column3": "Rey",
   "Column4": "E"
  },
  {
-  "Ateneo de Zamboanga University": 53,
+  "Ateneo de Zamboanga University": 54,
   "Column2": "Reyes",
   "Column3": "Michelle",
   "Column4": "C"
  },
  {
-  "Ateneo de Zamboanga University": 54,
+  "Ateneo de Zamboanga University": 55,
   "Column2": "Saavedra",
   "Column3": "Charlyn",
   "Column4": "E"
  },
  {
-  "Ateneo de Zamboanga University": 55,
+  "Ateneo de Zamboanga University": 56,
   "Column2": "Sabdilon",
   "Column3": "Jayson",
   "Column4": "V"
  },
  {
-  "Ateneo de Zamboanga University": 56,
+  "Ateneo de Zamboanga University": 57,
   "Column2": "Salgados",
   "Column3": "Rodel",
   "Column4": "M"
  },
  {
-  "Ateneo de Zamboanga University": 57,
+  "Ateneo de Zamboanga University": 58,
   "Column2": "Santos",
   "Column3": "Minda ",
   "Column4": "B",
@@ -2350,47 +2303,7 @@
   "Column7": "06\/12-14\/25"
  },
  {
-  "Ateneo de Zamboanga University": 58,
-  "Column2": "Solamo",
-  "Column3": "Rosana ",
-  "Column4": "P",
-  "Column5": "08\/18-20\/23",
-  "Column7": "06\/12-14\/25"
- },
- {
   "Ateneo de Zamboanga University": 59,
-  "Column2": "Tiblani",
-  "Column3": "Rene",
-  "Column4": "S"
- },
- {
-  "Ateneo de Zamboanga University": 60,
-  "Column2": "Vergara",
-  "Column3": "Bryan",
-  "Column7": "06\/12-14\/25"
- },
- {
-  "Ateneo de Zamboanga University": 61,
-  "Column2": "Viloria",
-  "Column3": "Shirven John",
-  "Column4": "B"
- },
- {
-  "Ateneo de Zamboanga University": 62,
-  "Column2": "Segayo",
-  "Column3": "Kristine Mae Isabelle",
-  "Column4": "D",
-  "Column5": "08\/18-20\/23"
- },
- {
-  "Ateneo de Zamboanga University": 63,
-  "Column2": "Viloria",
-  "Column3": " Shirven John ",
-  "Column4": "B",
-  "Column6": "7\/14-16\/24"
- },
- {
-  "Ateneo de Zamboanga University": 64,
   "Column2": "Santos",
   "Column3": "Pauleen Mae",
   "Column4": "M",
@@ -2399,11 +2312,38 @@
   "Column7": "06\/12-14\/25"
  },
  {
-  "Ateneo de Zamboanga University": 65,
-  "Column2": "Quaile",
-  "Column3": "Cindy Ann",
-  "Column4": "J",
-  "Column6": "05\/28-30\/24"
+  "Ateneo de Zamboanga University": 60,
+  "Column2": "Segayo",
+  "Column3": "Kristine Mae Isabelle",
+  "Column4": "D",
+  "Column5": "08\/18-20\/23"
+ },
+ {
+  "Ateneo de Zamboanga University": 61,
+  "Column2": "Solamo",
+  "Column3": "Rosana ",
+  "Column4": "P",
+  "Column5": "08\/18-20\/23",
+  "Column7": "06\/12-14\/25"
+ },
+ {
+  "Ateneo de Zamboanga University": 62,
+  "Column2": "Tiblani",
+  "Column3": "Rene",
+  "Column4": "S"
+ },
+ {
+  "Ateneo de Zamboanga University": 63,
+  "Column2": "Vergara",
+  "Column3": "Bryan",
+  "Column7": "06\/12-14\/25"
+ },
+ {
+  "Ateneo de Zamboanga University": 64,
+  "Column2": "Viloria",
+  "Column3": "Shirven John",
+  "Column4": "B",
+  "Column6": "7\/14-16\/24"
  }
 ],
 "SMA":[
@@ -2701,7 +2641,7 @@
  },
  {
   "Ateneo de Zamboanga University": 39,
-  "Column2": " Velez",
+  "Column2": "Velez",
   "Column3": "Dexter",
   "Column4": "S",
   "Column6": "09\/17-19\/24",
@@ -2717,7 +2657,7 @@
 ],
 "CS":[
  {
-  "Ateneo de Zamboanga University": "Office of the Unit Director for Formartion"
+  "Ateneo de Zamboanga University": "Office of the Unit Director for Formation"
  },
  {
   "Ateneo de Zamboanga University": "Days with God Central Services Profile"
@@ -4890,16 +4830,16 @@
  },
  {
   "Ateneo de Zamboanga University": 1,
-  "Column2": "Alaan ",
-  "Column3": "Nilo ",
+  "Column2": "Alaan",
+  "Column3": "Nilo",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 2,
-  "Column2": "Alberto ",
-  "Column3": "Rolly ",
+  "Column2": "Alberto",
+  "Column3": "Rolly",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
@@ -4915,123 +4855,123 @@
  {
   "Ateneo de Zamboanga University": 4,
   "Column2": "Almonte",
-  "Column3": " Mark Kenneth ",
+  "Column3": "Mark Kenneth",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024"
  },
  {
   "Ateneo de Zamboanga University": 5,
-  "Column2": "Anastacio ",
-  "Column3": "Richard ",
+  "Column2": "Anastacio",
+  "Column3": "Richard",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024"
  },
  {
   "Ateneo de Zamboanga University": 6,
-  "Column2": "Angeles ",
-  "Column3": "Rommel ",
+  "Column2": "Angeles",
+  "Column3": "Rommel",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 7,
-  "Column2": "Araneta ",
-  "Column3": "Joselita ",
+  "Column2": "Araneta",
+  "Column3": "Joselita",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 8,
-  "Column2": "Arcillas  ",
-  "Column3": "Gerson ",
+  "Column2": "Arcillas",
+  "Column3": "Gerson",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 9,
-  "Column2": "Aspacio ",
-  "Column3": "Marlon ",
+  "Column2": "Aspacio",
+  "Column3": "Marlon",
   "Column4": "REGULAR"
  },
  {
   "Ateneo de Zamboanga University": 10,
   "Column2": "Baldesamos",
-  "Column3": "Enjanet ",
+  "Column3": "Enjanet",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 11,
-  "Column2": "Baligasa ",
-  "Column3": "Sherwin ",
+  "Column2": "Baligasa",
+  "Column3": "Sherwin",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 12,
-  "Column2": "Ballena ",
-  "Column3": "Julio ",
+  "Column2": "Ballena",
+  "Column3": "Julio",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 13,
-  "Column2": "Banua ",
-  "Column3": "Alvin ",
+  "Column2": "Banua",
+  "Column3": "Alvin",
   "Column4": "REGULAR"
  },
  {
   "Ateneo de Zamboanga University": 14,
-  "Column2": "Bayot ",
-  "Column3": "Ralph ",
+  "Column2": "Bayot",
+  "Column3": "Ralph",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 15,
-  "Column2": "Bello ",
-  "Column3": "Reymark ",
+  "Column2": "Bello",
+  "Column3": "Reymark",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024"
  },
  {
   "Ateneo de Zamboanga University": 16,
-  "Column2": "Bonifacio ",
-  "Column3": "Josel ",
+  "Column2": "Bonifacio",
+  "Column3": "Josel",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 17,
-  "Column2": "Cabanero ",
-  "Column3": "Caires ",
+  "Column2": "Cabanero",
+  "Column3": "Caires",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 18,
-  "Column2": "Cabato ",
-  "Column3": "Rommel ",
+  "Column2": "Cabato",
+  "Column3": "Rommel",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 19,
-  "Column2": "Caloted ",
-  "Column3": "Janiano ",
+  "Column2": "Caloted",
+  "Column3": "Janiano",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 20,
-  "Column2": "Clemente ",
-  "Column3": "Jomer ",
+  "Column2": "Clemente",
+  "Column3": "Jomer",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
@@ -5039,35 +4979,35 @@
  {
   "Ateneo de Zamboanga University": 21,
   "Column2": "Columno",
-  "Column3": "Ernesto ",
+  "Column3": "Ernesto",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 22,
-  "Column2": "Cudia ",
-  "Column3": "Edison  ",
+  "Column2": "Cudia",
+  "Column3": "Edison",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 23,
-  "Column2": "Cupta ",
-  "Column3": "Publita ",
+  "Column2": "Cupta",
+  "Column3": "Publita",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 24,
-  "Column2": "Damian ",
-  "Column3": "Arnold ",
+  "Column2": "Damian",
+  "Column3": "Arnold",
   "Column4": "REGULAR",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 25,
-  "Column2": "Danag ",
+  "Column2": "Danag",
   "Column3": "Janet",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
@@ -5075,8 +5015,8 @@
  },
  {
   "Ateneo de Zamboanga University": 26,
-  "Column2": "Daud ",
-  "Column3": "AL Hasbi ",
+  "Column2": "Daud",
+  "Column3": "AL Hasbi",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
@@ -5098,14 +5038,14 @@
  {
   "Ateneo de Zamboanga University": 29,
   "Column2": "Dela Cerna",
-  "Column3": "Romulo ",
+  "Column3": "Romulo",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 30,
-  "Column2": "Dela Cerna  ",
+  "Column2": "Dela Cerna",
   "Column3": "Alex",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
@@ -5113,21 +5053,21 @@
  },
  {
   "Ateneo de Zamboanga University": 31,
-  "Column2": "Dela Cruz ",
-  "Column3": "Albert ",
+  "Column2": "Dela Cruz",
+  "Column3": "Albert",
   "Column4": "ALOHA"
  },
  {
   "Ateneo de Zamboanga University": 32,
-  "Column2": "Dela Cruz ",
-  "Column3": "Jonathan ",
+  "Column2": "Dela Cruz",
+  "Column3": "Jonathan",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 33,
-  "Column2": "Delgado ",
-  "Column3": "Kevin ",
+  "Column2": "Delgado",
+  "Column3": "Kevin",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
@@ -5135,7 +5075,7 @@
  {
   "Ateneo de Zamboanga University": 34,
   "Column2": "Delos Reyes",
-  "Column3": "Joebert ",
+  "Column3": "Joebert",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
@@ -5143,30 +5083,30 @@
  {
   "Ateneo de Zamboanga University": 35,
   "Column2": "Delos Reyes",
-  "Column3": " Edwin",
+  "Column3": "Edwin",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 36,
-  "Column2": "Delos Santos ",
-  "Column3": "Rolando ",
+  "Column2": "Delos Santos",
+  "Column3": "Rolando",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 37,
-  "Column2": "Enojo ",
-  "Column3": "Rogelio ",
+  "Column2": "Enojo",
+  "Column3": "Rogelio",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 38,
-  "Column2": "Enojo ",
+  "Column2": "Enojo",
   "Column3": "Roland",
   "Column4": "REGULAR",
   "Column5": "02\/16-17\/2024",
@@ -5174,27 +5114,27 @@
  },
  {
   "Ateneo de Zamboanga University": 39,
-  "Column2": "Fabia ",
-  "Column3": "Rizjo ",
+  "Column2": "Fabia",
+  "Column3": "Rizjo",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024"
  },
  {
   "Ateneo de Zamboanga University": 40,
   "Column2": "Fernandez",
-  "Column3": " Liezel Geames ",
+  "Column3": "Liezel Geames",
   "Column4": "REGULAR",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 41,
-  "Column2": "Fernandez ",
-  "Column3": "Christopher ",
+  "Column2": "Fernandez",
+  "Column3": "Christopher",
   "Column4": "ALOHA"
  },
  {
   "Ateneo de Zamboanga University": 42,
-  "Column2": "Fernandez ",
+  "Column2": "Fernandez",
   "Column3": "Henry",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
@@ -5203,43 +5143,43 @@
  {
   "Ateneo de Zamboanga University": 43,
   "Column2": "Fernando",
-  "Column3": "Ginalyn ",
+  "Column3": "Ginalyn",
   "Column4": "REGULAR",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 44,
   "Column2": "Fernando",
-  "Column3": "Randy ",
+  "Column3": "Randy",
   "Column4": "REGULAR",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 45,
   "Column2": "Fernando",
-  "Column3": "Chris john ",
+  "Column3": "Chris john",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 46,
-  "Column2": "Fernando ",
-  "Column3": "Jeremy ",
+  "Column2": "Fernando",
+  "Column3": "Jeremy",
   "Column4": "REGULAR",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 47,
-  "Column2": "Francisco ",
-  "Column3": "Noviel Vin ",
+  "Column2": "Francisco",
+  "Column3": "Noviel Vin",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 48,
-  "Column2": "Francsico ",
-  "Column3": "Erwin ",
+  "Column2": "Francsico",
+  "Column3": "Erwin",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
@@ -5247,13 +5187,13 @@
  {
   "Ateneo de Zamboanga University": 49,
   "Column2": "Fuastino",
-  "Column3": " Freddie",
+  "Column3": "Freddie",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 50,
-  "Column2": "Gaganting  ",
+  "Column2": "Gaganting",
   "Column3": "Felicito",
   "Column4": "REGULAR"
  },
@@ -5283,14 +5223,14 @@
  },
  {
   "Ateneo de Zamboanga University": 54,
-  "Column2": " Garcing ",
+  "Column2": "Garcing",
   "Column3": "Kate Krizzel",
   "Column4": "REGULAR",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 55,
-  "Column2": "Garcia ",
+  "Column2": "Garcia",
   "Column3": "Michael",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
@@ -5298,15 +5238,15 @@
  },
  {
   "Ateneo de Zamboanga University": 56,
-  "Column2": "Garcia ",
+  "Column2": "Garcia",
   "Column3": "Eric Lyod",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 57,
-  "Column2": "Gaygay ",
-  "Column3": "Waldinilo ",
+  "Column2": "Gaygay",
+  "Column3": "Waldinilo",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
@@ -5320,8 +5260,8 @@
  },
  {
   "Ateneo de Zamboanga University": 59,
-  "Column2": "Gonzales ",
-  "Column3": "Oscar ",
+  "Column2": "Gonzales",
+  "Column3": "Oscar",
   "Column4": "REGULAR",
   "Column6": "03\/07\/2025"
  },
@@ -5335,47 +5275,47 @@
  },
  {
   "Ateneo de Zamboanga University": 61,
-  "Column2": "Gregorio ",
-  "Column3": "Kevin ",
+  "Column2": "Gregorio",
+  "Column3": "Kevin",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 62,
-  "Column2": "Guevara ",
-  "Column3": "Lowel ",
+  "Column2": "Guevara",
+  "Column3": "Lowel",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 63,
-  "Column2": "Hisalan ",
-  "Column3": "Vincent ",
+  "Column2": "Hisalan",
+  "Column3": "Vincent",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 64,
-  "Column2": "Jimenez ",
-  "Column3": "Allen ",
+  "Column2": "Jimenez",
+  "Column3": "Allen",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 65,
-  "Column2": "Julian ",
-  "Column3": "Roal ",
+  "Column2": "Julian",
+  "Column3": "Roal",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 66,
-  "Column2": "Jumanog ",
-  "Column3": "Jayson ",
+  "Column2": "Jumanog",
+  "Column3": "Jayson",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
@@ -5383,29 +5323,29 @@
  {
   "Ateneo de Zamboanga University": 67,
   "Column2": "Lacastesantos",
-  "Column3": " Paulino ",
+  "Column3": "Paulino",
   "Column4": "REGULAR",
   "Column5": "02\/16-17\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 68,
-  "Column2": "Lim ",
+  "Column2": "Lim",
   "Column3": "Arnel",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024"
  },
  {
   "Ateneo de Zamboanga University": 69,
-  "Column2": "Lomocso ",
-  "Column3": "Reynaldo ",
+  "Column2": "Lomocso",
+  "Column3": "Reynaldo",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 70,
-  "Column2": "Longakit ",
+  "Column2": "Longakit",
   "Column3": "Wendy",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
@@ -5421,21 +5361,21 @@
  {
   "Ateneo de Zamboanga University": 72,
   "Column2": "Luna",
-  "Column3": "Rica Joy ",
+  "Column3": "Rica Joy",
   "Column4": "REGULAR",
   "Column5": "02\/16-17\/2024"
  },
  {
   "Ateneo de Zamboanga University": 73,
-  "Column2": "Macaroy ",
-  "Column3": "Nancy ",
+  "Column2": "Macaroy",
+  "Column3": "Nancy",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 74,
-  "Column2": "Macasa ",
+  "Column2": "Macasa",
   "Column3": "Mico Jhem",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
@@ -5443,23 +5383,23 @@
  },
  {
   "Ateneo de Zamboanga University": 75,
-  "Column2": "Macoycruz ",
-  "Column3": "James ",
+  "Column2": "Macoycruz",
+  "Column3": "James",
   "Column4": "REGULAR",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 76,
-  "Column2": "Maglangit ",
-  "Column3": "Francis ",
+  "Column2": "Maglangit",
+  "Column3": "Francis",
   "Column4": "REGULAR",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 77,
-  "Column2": "Maglangit ",
-  "Column3": "Jerry ",
+  "Column2": "Maglangit",
+  "Column3": "Jerry",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
@@ -5482,57 +5422,57 @@
  {
   "Ateneo de Zamboanga University": 80,
   "Column2": "Mariano",
-  "Column3": " Leo ",
+  "Column3": "Leo",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 81,
   "Column2": "Mariano",
-  "Column3": "Joseph ",
+  "Column3": "Joseph",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 82,
-  "Column2": "Mendoza ",
-  "Column3": "Marvin ",
+  "Column2": "Mendoza",
+  "Column3": "Marvin",
   "Column4": "REGULAR",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 83,
-  "Column2": "Miro ",
-  "Column3": "Nelson ",
+  "Column2": "Miro",
+  "Column3": "Nelson",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 84,
-  "Column2": "Montigo ",
-  "Column3": "Jonathan ",
+  "Column2": "Montigo",
+  "Column3": "Jonathan",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 85,
-  "Column2": "Napao ",
-  "Column3": "Rufino ",
+  "Column2": "Napao",
+  "Column3": "Rufino",
   "Column4": "REGULAR",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 86,
   "Column2": "Natividad",
-  "Column3": "Marvin ",
+  "Column3": "Marvin",
   "Column4": "ALOHA"
  },
  {
   "Ateneo de Zamboanga University": 87,
-  "Column2": "Pacure ",
-  "Column3": "Frederick ",
+  "Column2": "Pacure",
+  "Column3": "Frederick",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
@@ -5540,7 +5480,7 @@
  {
   "Ateneo de Zamboanga University": 88,
   "Column2": "Pagotaisidro",
-  "Column3": "Ronilo ",
+  "Column3": "Ronilo",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
@@ -5548,22 +5488,22 @@
  {
   "Ateneo de Zamboanga University": 89,
   "Column2": "Pagotaisidro",
-  "Column3": " Richard ",
+  "Column3": "Richard",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 90,
-  "Column2": "Partosa ",
-  "Column3": "Sheila ",
+  "Column2": "Partosa",
+  "Column3": "Sheila",
   "Column4": "REGULAR",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 91,
   "Column2": "Pataroque",
-  "Column3": "Vincent ",
+  "Column3": "Vincent",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024"
  },
@@ -5577,8 +5517,8 @@
  },
  {
   "Ateneo de Zamboanga University": 93,
-  "Column2": "Peralta ",
-  "Column3": "Ma Socorro ",
+  "Column2": "Peralta",
+  "Column3": "Ma Socorro",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
@@ -5591,8 +5531,8 @@
  },
  {
   "Ateneo de Zamboanga University": 95,
-  "Column2": "Quisay ",
-  "Column3": "Edward ",
+  "Column2": "Quisay",
+  "Column3": "Edward",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
@@ -5600,7 +5540,7 @@
  {
   "Ateneo de Zamboanga University": 96,
   "Column2": "Rabasto",
-  "Column3": "Rayson ",
+  "Column3": "Rayson",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
@@ -5608,22 +5548,22 @@
  {
   "Ateneo de Zamboanga University": 97,
   "Column2": "Ramillano",
-  "Column3": "Freddie ",
+  "Column3": "Freddie",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 98,
-  "Column2": "Ramirez ",
-  "Column3": "Danny ",
+  "Column2": "Ramirez",
+  "Column3": "Danny",
   "Column4": "REGULAR",
   "Column5": "02\/16-17\/2024"
  },
  {
   "Ateneo de Zamboanga University": 99,
-  "Column2": "Ramirez ",
-  "Column3": "Randy boy ",
+  "Column2": "Ramirez",
+  "Column3": "Randy boy",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
@@ -5636,50 +5576,50 @@
  },
  {
   "Ateneo de Zamboanga University": 101,
-  "Column2": "Reponte ",
-  "Column3": "Jocelyn ",
+  "Column2": "Reponte",
+  "Column3": "Jocelyn",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 102,
   "Column2": "Ressureccion",
-  "Column3": " Victoria ",
+  "Column3": "Victoria",
   "Column4": "REGULAR",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 103,
-  "Column2": "Roa ",
+  "Column2": "Roa",
   "Column3": "Pedro",
   "Column4": "REGULAR"
  },
  {
   "Ateneo de Zamboanga University": 104,
-  "Column2": "Rojas ",
+  "Column2": "Rojas",
   "Column3": "Jonel",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024"
  },
  {
   "Ateneo de Zamboanga University": 105,
-  "Column2": "Rojas ",
-  "Column3": "Joenel ",
+  "Column2": "Rojas",
+  "Column3": "Joenel",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 106,
-  "Column2": "Rojas ",
-  "Column3": "Bernard ",
+  "Column2": "Rojas",
+  "Column3": "Bernard",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 107,
-  "Column2": "Rojas ",
+  "Column2": "Rojas",
   "Column3": "Philip",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
@@ -5687,16 +5627,16 @@
  },
  {
   "Ateneo de Zamboanga University": 108,
-  "Column2": "Saavedra ",
-  "Column3": "Jayron ",
+  "Column2": "Saavedra",
+  "Column3": "Jayron",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 109,
-  "Column2": "Sabay sabay ",
-  "Column3": "Maricel ",
+  "Column2": "Sabay sabay",
+  "Column3": "Maricel",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
@@ -5709,59 +5649,59 @@
  },
  {
   "Ateneo de Zamboanga University": 111,
-  "Column2": "Sandalan ",
-  "Column3": "Crisanto ",
+  "Column2": "Sandalan",
+  "Column3": "Crisanto",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 112,
-  "Column2": "Sanoria ",
-  "Column3": "Edel ",
+  "Column2": "Sanoria",
+  "Column3": "Edel",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 113,
-  "Column2": "Santillan ",
-  "Column3": "Christopher ",
+  "Column2": "Santillan",
+  "Column3": "Christopher",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 114,
-  "Column2": "Sarino ",
-  "Column3": "Ethel ",
+  "Column2": "Sarino",
+  "Column3": "Ethel",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 115,
-  "Column2": "Sorino ",
-  "Column3": "Alexander ",
+  "Column2": "Sorino",
+  "Column3": "Alexander",
   "Column4": "ALOHA"
  },
  {
   "Ateneo de Zamboanga University": 116,
-  "Column2": "Suarez ",
-  "Column3": "Joebert ",
+  "Column2": "Suarez",
+  "Column3": "Joebert",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 117,
-  "Column2": "Taping ",
+  "Column2": "Taping",
   "Column3": "Leny",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 118,
-  "Column2": "Tino ",
-  "Column3": "Mariel ",
+  "Column2": "Tino",
+  "Column3": "Mariel",
   "Column4": "ALOHA",
   "Column6": "03\/07\/2025"
  },
@@ -5775,69 +5715,69 @@
  },
  {
   "Ateneo de Zamboanga University": 120,
-  "Column2": "Trojillo ",
+  "Column2": "Trojillo",
   "Column3": "Danniell",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 121,
-  "Column2": "Tubil ",
-  "Column3": "Edison ",
+  "Column2": "Tubil",
+  "Column3": "Edison",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 122,
-  "Column2": "Tubio ",
-  "Column3": "Venel ",
+  "Column2": "Tubio",
+  "Column3": "Venel",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
  },
  {
   "Ateneo de Zamboanga University": 123,
-  "Column2": "Tugahan ",
-  "Column3": "Roel ",
+  "Column2": "Tugahan",
+  "Column3": "Roel",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 124,
-  "Column2": "Tumimpad ",
-  "Column3": "Rustom ",
+  "Column2": "Tumimpad",
+  "Column3": "Rustom",
   "Column4": "REGULAR",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 125,
-  "Column2": "Urdoha ",
-  "Column3": "Baginda ",
+  "Column2": "Urdoha",
+  "Column3": "Baginda",
   "Column4": "ALOHA",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 126,
-  "Column2": "Ventura ",
-  "Column3": "Nickie ",
+  "Column2": "Ventura",
+  "Column3": "Nickie",
   "Column4": "REGULAR",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 127,
-  "Column2": "Vicente ",
-  "Column3": "Dante ",
+  "Column2": "Vicente",
+  "Column3": "Dante",
   "Column4": "ALOHA",
   "Column5": "02\/02-03\/2024",
   "Column6": "02\/28\/2025"
  },
  {
   "Ateneo de Zamboanga University": 128,
-  "Column2": "Wong ",
-  "Column3": "Marlon ",
+  "Column2": "Wong",
+  "Column3": "Marlon",
   "Column4": "ALOHA",
   "Column5": "02\/16-17\/2024",
   "Column6": "03\/07\/2025"
