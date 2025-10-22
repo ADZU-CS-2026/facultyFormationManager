@@ -38,7 +38,7 @@ export default function DataCard() {
           className="p-3"
         >
           <div className="overflow-auto">
-            <div className="matura-script fs-6 text-center">Ateneo de Zamboanga University</div>
+            <div className="matura-script fs-6 text-center mt-2">Ateneo de Zamboanga University</div>
             <div className="text-center mt-2 small">Office of the Unit Director for Formation</div>
             <div className="text-center mt-2 small">Days with God Profile</div>
             <div className="text-center mt-2 mb-5 small">School Year: 2025 - 2026</div>

@@ -7,7 +7,7 @@ export default function WeatherCard() {
   const [hideWeather, setHideWeather] = useState(false);
 
   return (
-    <div className="card border-0 border-top border-lightblue border-3 rounded-1 shadow-sm">
+    <div className="card border-0 border-top border-lightblue border-3 rounded-1 shadow-sm mt-4">
       {/* CARD */}
       {/* CARD HEADER */}
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">

@@ -35,7 +35,7 @@ export default function CalendarCard() {
             src="https://calendar.google.com/calendar/embed?src=joshuaguiritan05%40gmail.com&ctz=Asia%2FManila"
             style={{ border: 0 }}
             width="100%"
-            height="350"
+            height="370"
           ></iframe>
         </div>
       </motion.div>

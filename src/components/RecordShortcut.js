@@ -7,7 +7,7 @@ export default function RecordShortcut() {
   const [hideShortcut, setHideShortcut] = useState(false);
 
   return (
-    <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm mt-4">
+    <div className="card border-0 border-top border-lightblue border-3 rounded-1 shadow-sm">
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
         <div>
           <FontAwesomeIcon icon="fa-solid fa-arrow-up-right-from-square" className="fs-6 me-1" />
@@ -36,7 +36,7 @@ export default function RecordShortcut() {
           <Link href="/records/admin" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-user-tie" className="fs-6 me-1" />Administrators</Link>
           <Link href="/records/ffp" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-person" className="fs-6 me-1"/>Freshmen Formation Program</Link>
           <Link href="/records/conn" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-user-nurse" className="fs-6 me-1"/>College of Nursing</Link>
-          <Link href="/records/csite" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start overflow-x-hidden recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-microchip" className="fs-6 me-1"/><span className="d-xl-inline d-lg-none d-md-inline d-none">College of Science and Information Technology and Engineering</span><span className="d-inline d-md-none d-lg-inline d-xl-none">College of Science and Information Tech...</span></Link>
+          <Link href="/records/csite" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start overflow-x-hidden recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-microchip" className="fs-6 me-1"/><span className="d-xxl-inline d-none">College of Science and Information...</span><span className="d-lg-none d-md-inline d-none">College of Science and Information Technology and Engineering</span><span className="d-inline d-md-none d-lg-none">College of Science and Information Tech...</span></Link>
           <Link href="/records/sed" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-user-graduate" className="fs-6 me-1"/>School of Education</Link>
           <Link href="/records/sla" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-palette" className="fs-6 me-1"/>School of Liberal Arts Retreat</Link>
           <Link href="/records/sma" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-receipt" className="fs-6 me-1"/>School of Management and Accountancy</Link>
