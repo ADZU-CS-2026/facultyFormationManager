@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function RecordShortcut() {
   const [hideShortcut, setHideShortcut] = useState(false);
@@ -32,16 +33,16 @@ export default function RecordShortcut() {
         style={{ overflow: "hidden" }}
       >
         <div className="p-2 fs-5 d-flex flex-column gap-2">
-          <Link href="/records/all" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-table-list" className="fs-6 me-1" />All Records</Link>
-          <Link href="/records/admin" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-user-tie" className="fs-6 me-1" />Administrators</Link>
-          <Link href="/records/ffp" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-person" className="fs-6 me-1"/>Freshmen Formation Program</Link>
-          <Link href="/records/conn" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-user-nurse" className="fs-6 me-1"/>College of Nursing</Link>
-          <Link href="/records/csite" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start overflow-x-hidden recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-microchip" className="fs-6 me-1"/><span className="d-xxl-inline d-none">College of Science and Information...</span><span className="d-lg-none d-md-inline d-none">College of Science and Information Technology and Engineering</span><span className="d-inline d-md-none d-lg-none">College of Science and Information Tech...</span></Link>
-          <Link href="/records/sed" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-user-graduate" className="fs-6 me-1"/>School of Education</Link>
-          <Link href="/records/sla" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-palette" className="fs-6 me-1"/>School of Liberal Arts Retreat</Link>
-          <Link href="/records/sma" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-receipt" className="fs-6 me-1"/>School of Management and Accountancy</Link>
-          <Link href="/records/cs" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-handshake-angle" className="fs-6 me-1"/>Central Services</Link>
-          <Link href="/records/ppo" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold fs-6 text-start recordshortcut-hover"><FontAwesomeIcon icon="fa-solid fa-person-military-pointing" className="fs-6 me-1"/>Physical Plant Personnel Profile</Link>
+          <Link href="/records/all" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/adzu-logo.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>All Records</Link>
+          <Link href="/records/admin" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/adzu-logo.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>Administrators</Link>
+          <Link href="/records/ffp" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/adzu-logo.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>Freshmen Formation Program</Link>
+          <Link href="/records/conn" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/nursing.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>College of Nursing</Link>
+          <Link href="/records/csite" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"><Image alt="logo" src="/Images/csite.jpg" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/><span className="d-xxl-inline d-none">College of Science and Information...</span><span className="d-lg-none d-md-inline d-none">College of Science and Information Technology and Engineering</span><span className="d-inline d-md-none d-lg-none">College of Science and Information Tech...</span></Link>
+          <Link href="/records/sed" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/education.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>School of Education</Link>
+          <Link href="/records/sla" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/liberalarts.jpg" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>School of Liberal Arts Retreat</Link>
+          <Link href="/records/sma" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/adzu-logo.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>School of Management and Accountancy</Link>
+          <Link href="/records/cs" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/adzu-logo.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>Central Services</Link>
+          <Link href="/records/ppo" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/adzu-logo.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>Physical Plant Personnel Profile</Link>
         </div>
       </motion.div>
     </div>
