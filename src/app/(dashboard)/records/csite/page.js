@@ -6,7 +6,7 @@ import rawData from "@/data/dayswithgod.json";
 export default function CSITEPage() {
   const csiteData = rawData["CSITE"];
 
-  // HEADER INFORMATION
+  // Header information
   const office = csiteData?.[0]?.["Ateneo de Zamboanga University"];
   const profileTitle = csiteData?.[1]?.["Ateneo de Zamboanga University"];
   const schoolYear = csiteData?.[2]?.["Ateneo de Zamboanga University"];
@@ -17,15 +17,13 @@ export default function CSITEPage() {
         "College of Science and Information Technology and Engineering"
     )?.["Ateneo de Zamboanga University"];
 
-  // FIND THE TABLE HEADER AND ROWS
-  const tableHeaderRow = csiteData?.find(
-    (row) => row?.["Column2"] === "Last Name "
-  );
+  // Identify the header and data rows
+  const tableHeaderRow = csiteData?.find((row) => row?.["Column2"] === "Last Name ");
   const tableRows = csiteData?.filter(
     (row) => row?.["Column2"] && row?.["Column2"] !== "Last Name "
   );
 
-  // DROPDOWN OPTIONS FOR RETREAT SCHOOL YEARS
+  // Dropdown options (matches the columns from the JSON file)
   const retreatYears = [
     { label: "3D Retreat School Year 2023–2024", key: "Column5" },
     { label: "3D Retreat School Year 2024–2025", key: "Column6" },
@@ -36,6 +34,13 @@ export default function CSITEPage() {
   ];
 
   const [selectedRetreat, setSelectedRetreat] = useState(retreatYears[2]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filtered data based on search
+  const filteredRows = tableRows?.filter((row) => {
+    const fullName = `${row["Column2"]} ${row["Column3"]} ${row["Column4"]}`.toLowerCase();
+    return fullName.includes(searchTerm.toLowerCase());
+  });
 
   return (
     <div className="w-100">
@@ -61,8 +66,19 @@ export default function CSITEPage() {
                 <div className="mt-2 mb-5 small">{schoolYear}</div>
               </div>
 
-              {/* DROPDOWN */}
-              <div className="d-flex justify-content-end mb-3">
+              {/* SEARCH & DROPDOWN CONTROLS */}
+              <div className="d-flex justify-content-end align-items-center gap-2 mb-3 flex-wrap">
+                {/* Search box */}
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="form-control form-control-sm rounded-0"
+                  style={{ width: "200px" }}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+
+                {/* Dropdown */}
                 <div className="dropdown">
                   <button
                     className="btn btn-sm dropdown-toggle rounded-0 gradient-button"
@@ -103,8 +119,9 @@ export default function CSITEPage() {
                       <th className="bg-tableheadergray">{selectedRetreat.label}</th>
                     </tr>
                   </thead>
+
                   <tbody>
-                    {tableRows?.map((row, index) => (
+                    {filteredRows?.map((row, index) => (
                       <tr key={index}>
                         <td>{row["Column2"]}</td>
                         <td>{row["Column3"]}</td>
@@ -112,6 +129,14 @@ export default function CSITEPage() {
                         <td>{row[selectedRetreat.key] || ""}</td>
                       </tr>
                     ))}
+
+                    {filteredRows?.length === 0 && (
+                      <tr>
+                        <td colSpan="4" className="text-center text-muted">
+                          No matching records found.
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
