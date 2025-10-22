@@ -3,9 +3,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import SideBarOffRecordAccordion from "./SideBarOffRecordAccordion";
+import SideBarOnRecordAccordion from "./SideBarOnRecordAccordion";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import SideQuery from "./SidebarQuery";
 
 export default function Dashboard({ children, sidebar }) {
 
@@ -22,7 +22,7 @@ export default function Dashboard({ children, sidebar }) {
         >
           {!sidebar && (
             <>
-              {/* SEARCH BAR */}
+            {/* SEARCH BAR */}
               <div className="bg-gray2 p-3 position-relative">
                 <input
                   type="text"
@@ -40,7 +40,53 @@ export default function Dashboard({ children, sidebar }) {
                 />
                 </small>
               </div>
-              <SideQuery query={query}/>
+            {query === "" || "Main Navigation".toLowerCase().includes(query.toLowerCase()) || "Home".toLowerCase().includes(query.toLowerCase()) ? (
+              <>
+              {/* MAIN NAVIGATION BAR */}
+              <div className="bg-gray3 p-2">
+                <span className="text-lightgray small fw-light">
+                  <small>MAIN NAVIGATION</small>
+                </span>
+              </div>
+              {/* HOME BUTTON */}
+              <Link href="/" className="text-decoration-none">
+                <button
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
+                >
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-house"
+                    className="text-yellow small"
+                  />
+                  <span className="small text-light">Home</span>
+                </button>
+              </Link>
+              </>
+            ) : ""}
+            {query === "" || "Records".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* RECORDS ACCORDION */}
+              <SideBarOnRecordAccordion />
+            </>) : ""}
+            {query === "" || "Settings Bar".toLowerCase().includes(query.toLowerCase()) || "Account Information".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* SETTINGS BAR */}
+              <div className="bg-gray3 p-2">
+                <span className="text-lightgray small fw-light">
+                  <small>SETTINGS</small>
+                </span>
+              </div>
+              {/* ACCOUNG INFORMATION BUTTON */}
+              <Link href="/account-information" className="text-decoration-none">
+                <button
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button ps-3 py-2 bg-gray2 gap-2`}
+                >
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-sliders"
+                    className="text-yellow small"
+                  />
+                  <span className="small text-light">Account Information</span>
+                </button>
+              </Link>
+                </>
+            ) : ""}
             </>
           )}
           
@@ -111,7 +157,53 @@ export default function Dashboard({ children, sidebar }) {
                 />
                 </small>
               </div>
-              <SideQuery query={query}/>
+              {query === "" || "Main Navigation".toLowerCase().includes(query.toLowerCase()) || "Home".toLowerCase().includes(query.toLowerCase()) ? (
+              <>
+              {/* MAIN NAVIGATION BAR */}
+              <div className="bg-gray3 p-2">
+                <span className="text-lightgray small fw-light">
+                  <small>MAIN NAVIGATION</small>
+                </span>
+              </div>
+              {/* HOME BUTTON */}
+              <Link href="/" className="text-decoration-none">
+                <button
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
+                >
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-house"
+                    className="text-yellow small"
+                  />
+                  <span className="small text-light">Home</span>
+                </button>
+              </Link>
+              </>
+            ) : ""}
+            {query === "" || "Records".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* RECORDS ACCORDION */}
+              <SideBarOnRecordAccordion />
+            </>) : ""}
+            {query === "" || "Settings Bar".toLowerCase().includes(query.toLowerCase()) || "Account Information".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* SETTINGS BAR */}
+              <div className="bg-gray3 p-2">
+                <span className="text-lightgray small fw-light">
+                  <small>SETTINGS</small>
+                </span>
+              </div>
+              {/* ACCOUNG INFORMATION BUTTON */}
+              <Link href="/account-information" className="text-decoration-none">
+                <button
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button ps-3 py-2 bg-gray2 gap-2`}
+                >
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-sliders"
+                    className="text-yellow small"
+                  />
+                  <span className="small text-light">Account Information</span>
+                </button>
+              </Link>
+                </>
+            ) : ""}
         </motion.div>
         {/* MAIN PAGE */}
         <div
