@@ -3,7 +3,10 @@ import mysql from "mysql2/promise";
 // MYSQL DATABASE CONNECTION VIA .env
 export const pool = mysql.createPool({
     host: process.env.SQL_HOST,
+<<<<<<< HEAD
     port: process.env.SQL_PORT,
+=======
+>>>>>>> main
     user: process.env.SQL_USER,
     password: process.env.SQL_PASSWORD,
     database: process.env.SQL_DATABASE,
