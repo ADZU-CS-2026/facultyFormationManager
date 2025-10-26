@@ -3,12 +3,14 @@
 
 // Font Variables
 $font-login: "Montserrat";
-$font-family-base: "HelveticaNeue", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-$headings-font-family: "Montserrat";
-$font-family-monospace: "Source Sans Pro", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-adzu: "HelveticaNeue";
+$font-family-base: "SourceSansPro";
+$font-family-monospace: "SourceSansPro";
+$matura-script: "MaturaScript";
 
 // ADZU Formation Color Theme
 $blue: #02327A;
+$lightblue: #3c8dbc;
 $semidarkblue: #022d6e;
 $darkblue: #011C47;
 $white1: #ffffff;
@@ -19,6 +21,8 @@ $gray3: #1A2226;
 $green: #0A8043;
 $cyan: #00C0EF;
 $yellow: #DAA520;
+$graybtn: #f4f4f4;
+$topgray: #d2d6de;
 $yellowgray: #999999;
 $lightgray: #88A2AD;
 $tableheadergray: #BABABA;
@@ -31,10 +35,13 @@ $gold: #FFBB1B;
 $text-gray: #999;
 $text-darkgray: #333;
 $secondary: #6c757d;
+$lightyellow: #f6ff93;
+$orangee: #FFA500;
 
 // Add Theme Colors to Bootstrap
 $theme-colors: (
     "blue": $blue,
+    "lightblue": $lightblue,
     "semidarkblue": $semidarkblue,
     "darkblue": $darkblue,
     "white1": $white1,
@@ -45,6 +52,8 @@ $theme-colors: (
     "green": $green,
     "cyan": $cyan,
     "yellow": $yellow,
+    "graybtn": $graybtn,
+    "topgray": $topgray,
     "yellowgray": $yellowgray,
     "lightgray": $lightgray,
     "tableheadergray": $tableheadergray,
@@ -56,7 +65,9 @@ $theme-colors: (
     "gold": $gold,
     "textgray": $text-gray,
     "textdarkgray": $text-darkgray,
-    "secondary": $secondary
+    "secondary": $secondary,
+    "lightyellow": $lightyellow,
+    "orangee": $orangee
 );
 
 // Accordion Variables
@@ -89,8 +100,11 @@ $popover-body-padding-x: 0px;
 $popover-border-radius: 0px;
 
 // Table Varibales
-$table-hover-bg: #f6ff93;
+$table-hover-bg: $lightyellow;
 
 // Form-control variables
 $input-placeholder-color: $yellowgray;
 $form-invalid-border-color: none;
+
+// Carousel Caption
+$carousel-caption-width: 90%;

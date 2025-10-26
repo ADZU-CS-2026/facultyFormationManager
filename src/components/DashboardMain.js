@@ -2,27 +2,35 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import SideBarOnRecordAccordion from "./SideBarOnRecordAccordion";
 import SideBarOffRecordAccordion from "./SideBarOffRecordAccordion";
+import SideBarOnRecordAccordion from "./SideBarOnRecordAccordion";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Dashboard({ children, sidebar }) {
+
+  const [query, setQuery] = useState("");
+
   return (
     <>
-      <div className="flex-grow-1 overflow-x-hidden d-flex g-0">
+      <div className="flex-grow-1 overflow-x-hidden d-flex g-0 text-nowrap">
         {/* SIDEBAR */}
-        <div
-          className={`sidebar-animation bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-block d-none align-items-center`}
-          style={{ flex: `${sidebar ? "0 0 50px" : "0 0 230px"}`}}
+        <motion.div
+          animate={{width: `${sidebar ? "50px" : "230px"}`, flex: `${sidebar ? "0 0 50px" : "0 0 230px"}`}}
+          transition={{duration: 0.3}}
+          className={`bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-block d-none align-items-center`}
         >
           {!sidebar && (
             <>
-              {/* SEARCH BAR */}
+            {/* SEARCH BAR */}
               <div className="bg-gray2 p-3 position-relative">
                 <input
                   type="text"
                   placeholder="Search menu..."
                   className="w-100 bg-gray1 border-0 text-white pe-5 rounded-1 py-2 px-3 search-input"
                   style={{height: "35px"}}
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
                 />
                 <small>
                 <FontAwesomeIcon
@@ -32,71 +40,72 @@ export default function Dashboard({ children, sidebar }) {
                 />
                 </small>
               </div>
+            {query === "" || "Main Navigation".toLowerCase().includes(query.toLowerCase()) || "Home".toLowerCase().includes(query.toLowerCase()) ? (
+              <>
               {/* MAIN NAVIGATION BAR */}
               <div className="bg-gray3 p-2">
                 <span className="text-lightgray small fw-light">
-                  <small>
-                    <small>MAIN NAVIGATION</small>
-                  </small>
+                  <small>MAIN NAVIGATION</small>
                 </span>
               </div>
               {/* HOME BUTTON */}
-              <Link href="/">
+              <Link href="/" className="text-decoration-none">
                 <button
-                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
                 >
                   <FontAwesomeIcon
                     icon="fa-solid fa-house"
-                    className="text-yellow fs-6 ms-3"
+                    className="text-yellow small"
                   />
-                  <span className="small text-light">
-                    <small>Home</small>
-                  </span>
+                  <span className="small text-light">Home</span>
                 </button>
               </Link>
+              </>
+            ) : ""}
+            {query === "" || "Records".toLowerCase().includes(query.toLowerCase()) ? (<>
               {/* RECORDS ACCORDION */}
               <SideBarOnRecordAccordion />
+            </>) : ""}
+            {query === "" || "Settings Bar".toLowerCase().includes(query.toLowerCase()) || "Account Information".toLowerCase().includes(query.toLowerCase()) ? (<>
               {/* SETTINGS BAR */}
               <div className="bg-gray3 p-2">
                 <span className="text-lightgray small fw-light">
-                  <small>
-                    <small>SETTINGS</small>
-                  </small>
+                  <small>SETTINGS</small>
                 </span>
               </div>
               {/* ACCOUNG INFORMATION BUTTON */}
-              <Link href="/account-information">
+              <Link href="/account-information" className="text-decoration-none">
                 <button
-                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button ps-3 py-2 bg-gray2 gap-2`}
                 >
                   <FontAwesomeIcon
                     icon="fa-solid fa-sliders"
-                    className="text-yellow fs-6 ms-3"
+                    className="text-yellow small"
                   />
-                  <span className="small text-light">
-                    <small>Account Information</small>
-                  </span>
+                  <span className="small text-light">Account Information</span>
                 </button>
               </Link>
+                </>
+            ) : ""}
             </>
           )}
-
+          
           {/* SHOW ICONS IF HIDE SIDEBAR*/}
           {sidebar && (
             <div className="d-flex flex-column align-items-center">
               {/* HOME BUTTON */}
-              <Link className="w-100" href="/">
+              <Link className="w-100 text-decoration-none" href="/">
                 <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
                   <FontAwesomeIcon
                     icon="fa-solid fa-house"
-                    className="text-yellow fs-5"
+                    className="text-yellow fs-6"
                   />
                   <div className="position-absolute start-100 top-50 translate-middle-y">
                     <div
-                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end"
+                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end text-start"
                       style={{ width: "170px", paddingLeft: "20px" }}
                     >
-                      <small className="text-start">Home</small>
+                      Home
                     </div>
                   </div>
                 </div>
@@ -104,97 +113,98 @@ export default function Dashboard({ children, sidebar }) {
               {/* RECORDS BUTTON */}
               <SideBarOffRecordAccordion />
               {/* ACCOUNT INFORMATION BUTTON */}
-              <Link className="w-100" href="/account-information">
+              <Link className="w-100 text-decoration-none" href="/account-information">
                 <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative  d-flex justify-content-center">
                   <FontAwesomeIcon
                     icon="fa-solid fa-sliders"
-                    className="text-yellow fs-5"
+                    className="text-yellow fs-6"
                   />
                   <div className="position-absolute start-100 top-50 translate-middle-y">
                     <div
-                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end"
+                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end text-start"
                       style={{ width: "170px", paddingLeft: "20px" }}
                     >
-                      <small>Account Information</small>
+                      Account Information
                     </div>
                   </div>
                 </div>
               </Link>
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* MOBILE VIEW SIDEBAR */}
-        <div
-          className={`sidebar-animation bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-none d-block overflow-x-hidden`}
-          style={{
-            width: sidebar ? "230px" : "0px",
-            flex: sidebar ? "0 0 230px" : "0 0 0",
-          }}
+        <motion.div
+          animate={{flex: `${sidebar ? "0 0 230px" : "0 0 0px"}`}}
+          transition={{ duration: 0.3 }}
+          className={`bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-none d-block overflow-x-hidden`}
         >
           {/* SEARCH BAR */}
-          <div className="bg-gray2 p-3 position-relative">
-            <input
-              type="text"
-              placeholder="Search menu..."
-              className="w-100 bg-gray1 border-0 text-white pe-5 rounded-1 py-2 px-3 search-input"
-              style={{height: "35px"}}
-            />
-            <small>
-            <FontAwesomeIcon
-              icon="fa-solid fa-search"
-              className="position-absolute text-yellowgray fs-6"
-              style={{ right: "30px", top: "50%", transform: "translateY(-50%)" }}
-            />
-            </small>
-          </div>
-          {/* MAIN NAVIGATION BAR */}
-          <div className="bg-gray3 p-2">
-            <span className="text-lightgray small fw-light">
-              <small>
-                <small>MAIN NAVIGATION</small>
-              </small>
-            </span>
-          </div>
-          {/* HOME BUTTON */}
-          <Link href="/">
-            <button
-              className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
-            >
-              <FontAwesomeIcon
-                icon="fa-solid fa-house"
-                className="text-yellow fs-6 ms-3"
-              />
-              <span className="small text-light">
-                <small>Home</small>
-              </span>
-            </button>
-          </Link>
-          {/* RECORDS ACCORDION */}
-          <SideBarOnRecordAccordion />
-          {/* SETTINGS BAR */}
-          <div className="bg-gray3 p-2">
-            <span className="text-lightgray small fw-light">
-              <small>
-                <small>SETTINGS</small>
-              </small>
-            </span>
-          </div>
-          {/* ACCOUNG INFORMATION BUTTON */}
-          <Link href="/account-information">
-            <button
-              className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 bg-gray2 gap-2`}
-            >
-              <FontAwesomeIcon
-                icon="fa-solid fa-sliders"
-                className="text-yellow fs-6 ms-3"
-              />
-              <span className="small text-light">
-                <small>Account Information</small>
-              </span>
-            </button>
-          </Link>
-        </div>
+              <div className="bg-gray2 p-3 position-relative">
+                <input
+                  type="text"
+                  placeholder="Search menu..."
+                  className="w-100 bg-gray1 border-0 text-white pe-5 rounded-1 py-2 px-3 search-input"
+                  style={{height: "35px"}}
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                />
+                <small>
+                <FontAwesomeIcon
+                  icon="fa-solid fa-search"
+                  className="position-absolute text-yellowgray fs-6"
+                  style={{ right: "30px", top: "50%", transform: "translateY(-50%)" }}
+                />
+                </small>
+              </div>
+              {query === "" || "Main Navigation".toLowerCase().includes(query.toLowerCase()) || "Home".toLowerCase().includes(query.toLowerCase()) ? (
+              <>
+              {/* MAIN NAVIGATION BAR */}
+              <div className="bg-gray3 p-2">
+                <span className="text-lightgray small fw-light">
+                  <small>MAIN NAVIGATION</small>
+                </span>
+              </div>
+              {/* HOME BUTTON */}
+              <Link href="/" className="text-decoration-none">
+                <button
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
+                >
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-house"
+                    className="text-yellow small"
+                  />
+                  <span className="small text-light">Home</span>
+                </button>
+              </Link>
+              </>
+            ) : ""}
+            {query === "" || "Records".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* RECORDS ACCORDION */}
+              <SideBarOnRecordAccordion />
+            </>) : ""}
+            {query === "" || "Settings Bar".toLowerCase().includes(query.toLowerCase()) || "Account Information".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* SETTINGS BAR */}
+              <div className="bg-gray3 p-2">
+                <span className="text-lightgray small fw-light">
+                  <small>SETTINGS</small>
+                </span>
+              </div>
+              {/* ACCOUNG INFORMATION BUTTON */}
+              <Link href="/account-information" className="text-decoration-none">
+                <button
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button ps-3 py-2 bg-gray2 gap-2`}
+                >
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-sliders"
+                    className="text-yellow small"
+                  />
+                  <span className="small text-light">Account Information</span>
+                </button>
+              </Link>
+                </>
+            ) : ""}
+        </motion.div>
         {/* MAIN PAGE */}
         <div
           className={`flex-grow-1 mainpage-mobile sidebar-animation bg-white2 pb-5`}

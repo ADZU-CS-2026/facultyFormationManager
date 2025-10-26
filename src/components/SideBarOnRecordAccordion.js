@@ -10,7 +10,7 @@ export default function SideBarOnRecordAccordion() {
         <div className="accordion-header">
           {/* ACCORDION BUTTON */}
           <button
-            className={`accordion-button collapsed py-2 bg-gray2 gap-2 navigation-hover`}
+            className={`accordion-button collapsed py-2 ps-3 bg-gray2 gap-2 navigation-hover`}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#flush-collapseOne"
@@ -19,10 +19,10 @@ export default function SideBarOnRecordAccordion() {
           >
             <FontAwesomeIcon
               icon="fa-solid fa-table"
-              className="text-yellow fs-6"
+              className="text-yellow small"
             />
             <span className="small text-light">
-              <small>Records</small>
+              Records
             </span>
           </button>
         </div>
@@ -35,6 +35,20 @@ export default function SideBarOnRecordAccordion() {
           <div className="d-flex flex-column justify-content-start text-lightgray">
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
+              href="/records/all"
+            >
+              <small>
+                <FontAwesomeIcon
+                  icon="fa-solid fa-circle-arrow-right"
+                  className="small ms-4"
+                />
+              </small>
+              <span className="small ms-2">
+                All
+              </span>
+            </Link>
+            <Link
+              className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
               href="/records/admin"
             >
               <small>
@@ -44,7 +58,7 @@ export default function SideBarOnRecordAccordion() {
                 />
               </small>
               <span className="small ms-2">
-                <small>ADMIN</small>
+                ADMIN
               </span>
             </Link>
             <Link
@@ -58,7 +72,7 @@ export default function SideBarOnRecordAccordion() {
                 />
               </small>
               <span className="small ms-2">
-                <small>FFP</small>
+                FFP
               </span>
             </Link>
             <Link
@@ -72,7 +86,7 @@ export default function SideBarOnRecordAccordion() {
                 />
               </small>
               <span className="small ms-2">
-                <small>CON</small>
+                CON
               </span>
             </Link>
             <Link
@@ -86,7 +100,7 @@ export default function SideBarOnRecordAccordion() {
                 />
               </small>
               <span className="small ms-2">
-                <small>CSITE</small>
+                CSITE
               </span>
             </Link>
             <Link
@@ -100,7 +114,7 @@ export default function SideBarOnRecordAccordion() {
                 />
               </small>
               <span className="small ms-2">
-                <small>SED</small>
+                SED
               </span>
             </Link>
             <Link
@@ -114,7 +128,7 @@ export default function SideBarOnRecordAccordion() {
                 />
               </small>
               <span className="small ms-2">
-                <small>SLA</small>
+                SLA
               </span>
             </Link>
             <Link
@@ -128,7 +142,7 @@ export default function SideBarOnRecordAccordion() {
                 />
               </small>
               <span className="small ms-2">
-                <small>SMA</small>
+                SMA
               </span>
             </Link>
             <Link
@@ -142,7 +156,7 @@ export default function SideBarOnRecordAccordion() {
                 />
               </small>
               <span className="small ms-2">
-                <small>CS</small>
+                CS
               </span>
             </Link>
             <Link
@@ -156,7 +170,7 @@ export default function SideBarOnRecordAccordion() {
                 />
               </small>
               <span className="small ms-2">
-                <small>PPO</small>
+                PPO
               </span>
             </Link>
           </div>
