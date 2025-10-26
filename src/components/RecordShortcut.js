@@ -32,7 +32,6 @@ export default function RecordShortcut() {
         transition={{ duration: 0.5 }}
         style={{ overflow: "hidden" }}
       >
-        <div className="p-2 fs-5 d-flex flex-column gap-2 bg-light rounded-bottom">
         <div className="p-2 fs-5 d-flex flex-column gap-2">
           <Link href="/records/all" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/adzu-logo.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>All Records</Link>
           <Link href="/records/admin" className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2"><Image src="/Images/adzu-logo.png" alt="logo" height={30} width={30} className="rounded-pill" style={{objectFit:"cover"}}/>Administrators</Link>
