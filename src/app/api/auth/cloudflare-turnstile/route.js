@@ -14,8 +14,8 @@ export async function POST(req){
             body: `secret=${secret}&response=${token}`
         });
         const data = await res.json();
-        return NextResponse.json({success: true}, {status: 200});
-        
+
+        return NextResponse.json({success: data});
     }   
     catch(err){
         return NextResponse.json({message: `Server Error: ${err.message}`}, {status: 500});
