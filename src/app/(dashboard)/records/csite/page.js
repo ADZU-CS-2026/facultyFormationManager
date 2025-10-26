@@ -50,6 +50,17 @@ export default function CSITEPage() {
           <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
             {/* HEADER */}
             <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
+<<<<<<< HEAD
+              <div style={{fontSize: "18px"}}>College of Science and Information Technology Records</div>
+            </div>
+
+            {/* BODY */}
+            <div className="p-3 py-2">
+              
+              {/* SEARCH & DROPDOWN CONTROLS */}
+              <div className="d-flex justify-content-between align-items-center gap-2 my-2 mt-1 flex-wrap">
+                <div className="d-flex gap-2 align-items-center">
+=======
               <div>College of Science and Information Technology Records</div>
             </div>
 
@@ -78,6 +89,7 @@ export default function CSITEPage() {
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
 
+>>>>>>> main
                 {/* Dropdown */}
                 <div className="dropdown">
                   <button
@@ -85,7 +97,11 @@ export default function CSITEPage() {
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
+<<<<<<< HEAD
+                    style={{ border: "1px solid #999", borderRadius: "2px" }}
+=======
                     style={{ border: "1px solid #999" }}
+>>>>>>> main
                   >
                     School Year
                   </button>
@@ -106,6 +122,23 @@ export default function CSITEPage() {
                     ))}
                   </ul>
                 </div>
+<<<<<<< HEAD
+                </div>
+                <div className="d-flex gap-2 align-items-center">
+                  <small>Search:</small>
+                  {/* Search box */}
+                  <input
+                    type="text"
+                    className="form-control form-control-sm rounded-0"
+                    style={{ width: "142.5px" }}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+                
+                
+=======
+>>>>>>> main
               </div>
 
               {/* TABLE */}

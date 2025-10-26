@@ -1,10 +1,16 @@
 "use client";
+<<<<<<< HEAD
+=======
 import WeatherCard from "../../../components/WeatherCard";
+>>>>>>> main
 import RecordShortcut from "../../../components/RecordShortcut";
 import CalendarCard from "../../../components/CalendarCard";
 import AboutCard from "../../../components/AboutCard";
 import AllProgress from "../../../components/AllProgress";
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
 
 export default function Home() {
 
@@ -18,7 +24,10 @@ export default function Home() {
         <div className="col-lg-4 col-12 py-4 pt-lg-4 pt-0 px-3">
           <RecordShortcut />
           <CalendarCard />
+<<<<<<< HEAD
+=======
           {/* <WeatherCard /> */}
+>>>>>>> main
         </div>
       </div>
     </div>
