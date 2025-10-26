@@ -5,11 +5,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function WeatherCard() {
-  const [hideAbout, setHideAbout] = useState(false);
 
   return (
     <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm">
-
       {/* CARD BODY */}
       <div>
         <div className="p-3 px-2">
@@ -28,7 +26,6 @@ export default function WeatherCard() {
                     <div className="text-start logo-font fs-6 text-white2 d-none d-xl-block d-lg-none d-sm-block">Faculty Formation Program Monitoring and Management System</div>
                     <div className="text-start logo-font fs-6 text-white2 d-block d-xl-none d-lg-block d-sm-none">Faculty Formation Program Monitoring and Mana..</div>
                     <div className="d-flex"> 
-
                       <button className="btn btn-blue text-white1 mt-3 rounded-pill px-4 border border-white fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal2">User Guide</button>
                     </div>
                   </div>
@@ -41,7 +38,6 @@ export default function WeatherCard() {
                     <div className="text-start logo-font fs-6 text-white2 d-none d-xl-block d-lg-none d-sm-block">Faculty Formation Program Monitoring and Management System</div>
                     <div className="text-start logo-font fs-6 text-white2 d-block d-xl-none d-lg-block d-sm-none">Faculty Formation Program Monitoring and Mana..</div>
                     <div className="d-flex"> 
-
                       <button className="btn btn-blue text-white1 mt-3 rounded-pill px-4 border border-white fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal2">User Guide</button>
                     </div>
                   </div>
@@ -54,7 +50,6 @@ export default function WeatherCard() {
                     <div className="text-start logo-font fs-6 text-white2 d-none d-xl-block d-lg-none d-sm-block">Faculty Formation Program Monitoring and Management System</div>
                     <div className="text-start logo-font fs-6 text-white2 d-block d-xl-none d-lg-block d-sm-none">Faculty Formation Program Monitoring and Mana..</div>
                     <div className="d-flex"> 
-
                       <button className="btn btn-blue text-white1 mt-3 rounded-pill px-4 border border-white fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal2">User Guide</button>
                     </div>
                   </div>
@@ -163,7 +158,6 @@ export default function WeatherCard() {
               </div>
             </div>
         </div>
-
       </div>
     </div>
   );
