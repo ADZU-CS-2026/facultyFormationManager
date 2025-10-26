@@ -4,7 +4,6 @@ export async function POST(req){
 
     try{
         
-<<<<<<< HEAD
         const { token } = await req.json();
         const secret = process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY;
         const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
