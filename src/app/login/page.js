@@ -132,7 +132,7 @@ export default function Home() {
           className="position-relative w-100 h-100"
           style={{ backgroundColor: "rgba(1, 28, 71, 0.9)" }}
         >
-          {/* <Snowfall /> */}
+          <Snowfall />
           <div
             className="container-fluid position-absolute d-flex justify-content-center top-50 start-50"
             style={{ transform: "translate(-50%, -50%)" }}

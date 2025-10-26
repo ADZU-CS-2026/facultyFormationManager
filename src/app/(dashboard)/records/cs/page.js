@@ -69,7 +69,18 @@ export default function CSPage() {
               {/* SEARCH & DROPDOWN CONTROLS */}
               <div className="d-flex justify-content-between align-items-center gap-2 my-2 mt-1 flex-wrap">
                 
-                
+                <div className="d-flex align-items-center gap-2">
+                  <small>Search:</small>
+                  {/* Search box */}
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="form-control form-control-sm rounded-0"
+                  style={{ width: "142.5px" }}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                </div>
                 <div className="d-flex align-items-center gap-2">
                 {/* Dropdown */}
                 <div className="dropdown">
@@ -100,18 +111,7 @@ export default function CSPage() {
                   </ul>
                 </div>
                 </div>
-                <div className="d-flex align-items-center gap-2">
-                  <small>Search:</small>
-                  {/* Search box */}
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="form-control form-control-sm rounded-0"
-                  style={{ width: "142.5px" }}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                </div>
+                
               </div>
 
               {/* TABLE */}
