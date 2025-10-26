@@ -97,11 +97,9 @@ export default function Home() {
       const data = await res.json();
 
       if (data.success) {
-        console.log(data);
         setCloudflare(true);
         return;
       }
-      console.log(data);
       setCloudflare(false);
       return;
     }

@@ -15,7 +15,7 @@ export async function POST(req){
         });
         const data = await res.json();
 
-        return NextResponse.json({success: data});
+        return NextResponse.json(data);
     }   
     catch(err){
         return NextResponse.json({message: `Server Error: ${err.message}`}, {status: 500});
