@@ -31,7 +31,7 @@ export default function FacebookPage() {
   }, []);
 
   return (
-    <div className="card border-0 border-top border-blue border-3 rounded-1 shadow-sm mt-4">
+    <div className="card border-0 border-top border-lightblue border-3 rounded-1 shadow-sm mt-4">
       {/* CARD */}
       {/* CARD HEADER */}
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
@@ -58,7 +58,6 @@ export default function FacebookPage() {
 
       {/* CARD BODY */}
       <motion.div
-        initial={{ height: "auto", opacity: 1 }}
         animate={hideFacebook ? { height: 0 } : { height: "auto" }}
         transition={{ duration: 0.5 }}
         style={{ overflow: "hidden" }}
@@ -70,7 +69,7 @@ export default function FacebookPage() {
             data-href="https://www.facebook.com/ateneodezamboangauniversity"
             data-tabs="timeline"
             data-width="500"
-            data-height="600"
+            data-height="564"
             data-small-header="false"
             data-adapt-container-width="true"
             data-hide-cover="false"
