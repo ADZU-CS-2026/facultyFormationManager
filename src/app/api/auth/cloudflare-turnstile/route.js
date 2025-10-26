@@ -14,11 +14,8 @@ export async function POST(req){
             body: `secret=${secret}&response=${token}`
         });
         const data = await res.json();
-
-        if(process.env.NODE_ENV !== "production"){
-            return NextResponse.json({success: true}, {status: 200});
-        }
-        return NextResponse.json(data, {status: 200});
+        
+        return NextResponse.json({success: true}, {status: 200});
         
     }   
     catch(err){
