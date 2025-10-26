@@ -1,10 +1,8 @@
 "use client";
-import WeatherCard from "../../../components/WeatherCard";
 import RecordShortcut from "../../../components/RecordShortcut";
 import CalendarCard from "../../../components/CalendarCard";
 import AboutCard from "../../../components/AboutCard";
 import AllProgress from "../../../components/AllProgress";
-
 
 export default function Home() {
 
@@ -18,7 +16,6 @@ export default function Home() {
         <div className="col-lg-4 col-12 py-4 pt-lg-4 pt-0 px-3">
           <RecordShortcut />
           <CalendarCard />
-          {/* <WeatherCard /> */}
         </div>
       </div>
     </div>

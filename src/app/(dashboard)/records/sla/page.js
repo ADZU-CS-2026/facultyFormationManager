@@ -50,34 +50,15 @@ export default function SLAPage() {
           <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
             {/* HEADER */}
             <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
-              <div>School of Liberal Arts Records</div>
+              <div style={{fontSize: "18px"}}>School of Liberal Arts Records</div>
             </div>
 
             {/* BODY */}
-            <div className="p-4">
-              {/* UNIVERSITY INFO */}
-              <div className="text-center overflow-auto">
-                <div className="matura-script fs-6 text-center">
-                  Ateneo de Zamboanga University
-                </div>
-                <div className="mt-2 small">{office}</div>
-                <div className="mt-2 small">{profileTitle}</div>
-                <div className="mt-2 small">{department}</div>
-                <div className="mt-2 mb-5 small">{schoolYear}</div>
-              </div>
+            <div className="p-3 py-2">
 
               {/* SEARCH & DROPDOWN CONTROLS */}
-              <div className="d-flex justify-content-end align-items-center gap-2 mb-3 flex-wrap">
-                {/* Search box */}
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="form-control form-control-sm rounded-0"
-                  style={{ width: "200px" }}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-
+              <div className="d-flex justify-content-between align-items-center gap-2 my-2 mt-1 flex-wrap">
+                <div className="d-flex gap-2 align-items-center">
                 {/* Dropdown */}
                 <div className="dropdown">
                   <button
@@ -85,7 +66,7 @@ export default function SLAPage() {
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    style={{ border: "1px solid #999" }}
+                    style={{ border: "1px solid #999", borderRadius: "2px" }}
                   >
                     School Year
                   </button>
@@ -106,6 +87,20 @@ export default function SLAPage() {
                     ))}
                   </ul>
                 </div>
+                </div>
+                <div className="d-flex gap-2 align-items-center">
+                  <small>Search:</small>
+                  {/* Search box */}
+                  <input
+                    type="text"
+                    className="form-control form-control-sm rounded-0"
+                    style={{ width: "142.5px" }}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+                
+                
               </div>
 
               {/* TABLE */}

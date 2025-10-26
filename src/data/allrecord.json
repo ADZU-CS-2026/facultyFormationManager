@@ -1,0 +1,155 @@
+[
+  {
+    "status": "active",
+    "schoolYear": "2025-2026",
+    "data": [
+      {
+        "name": "ADMIN",
+        "totalPopulation": 41,
+        "actualAttendance": 0
+      },
+      {
+        "name": "FFP",
+        "totalPopulation": 6,
+        "actualAttendance": 6
+      },
+      {
+        "name": "CON",
+        "totalPopulation": 96,
+        "actualAttendance": 32
+      },
+      {
+        "name": "CSITE",
+        "totalPopulation": 67,
+        "actualAttendance": 18
+      },
+      {
+        "name": "SED",
+        "totalPopulation": 17,
+        "actualAttendance": 11
+      },
+      {
+        "name": "SLA",
+        "totalPopulation": 67,
+        "actualAttendance": 9
+      },
+      {
+        "name": "SMA",
+        "totalPopulation": 40,
+        "actualAttendance": 10
+      },
+      {
+        "name": "CS",
+        "totalPopulation": 0,
+        "actualAttendance": 0
+      },
+      {
+        "name": "PPO",
+        "totalPopulation": 0,
+        "actualAttendance": 0
+      }
+    ]
+  },
+  {
+    "status": "inactive",
+    "schoolYear": "2024-2025",
+    "data": [
+      {
+        "name": "ADMIN",
+        "totalPopulation": 40,
+        "actualAttendance": 17
+      },
+      {
+        "name": "FFP",
+        "totalPopulation": 5,
+        "actualAttendance": 5
+      },
+      {
+        "name": "CON",
+        "totalPopulation": 96,
+        "actualAttendance": 23
+      },
+      {
+        "name": "CSITE",
+        "totalPopulation": 67,
+        "actualAttendance": 22
+      },
+      {
+        "name": "SED",
+        "totalPopulation": 17,
+        "actualAttendance": 11
+      },
+      {
+        "name": "SLA",
+        "totalPopulation": 67,
+        "actualAttendance": 9
+      },
+      {
+        "name": "SMA",
+        "totalPopulation": 40,
+        "actualAttendance": 11
+      },
+      {
+        "name": "CS",
+        "totalPopulation": 0,
+        "actualAttendance": 0
+      },
+      {
+        "name": "PPO",
+        "totalPopulation": 0,
+        "actualAttendance": 0
+      }
+    ]
+  },
+  {
+    "status": "inactive",
+    "schoolYear": "2023-2024",
+    "data": [
+      {
+        "name": "ADMIN",
+        "totalPopulation": 40,
+        "actualAttendance": 15
+      },
+      {
+        "name": "FFP",
+        "totalPopulation": 3,
+        "actualAttendance": 0
+      },
+      {
+        "name": "CON",
+        "totalPopulation": 96,
+        "actualAttendance": 0
+      },
+      {
+        "name": "CSITE",
+        "totalPopulation": 67,
+        "actualAttendance": 16
+      },
+      {
+        "name": "SED",
+        "totalPopulation": 17,
+        "actualAttendance": 1
+      },
+      {
+        "name": "SLA",
+        "totalPopulation": 67,
+        "actualAttendance": 12
+      },
+      {
+        "name": "SMA",
+        "totalPopulation": 40,
+        "actualAttendance": 9
+      },
+      {
+        "name": "CS",
+        "totalPopulation": 0,
+        "actualAttendance": 0
+      },
+      {
+        "name": "PPO",
+        "totalPopulation": 0,
+        "actualAttendance": 0
+      }
+    ]
+  }
+]
