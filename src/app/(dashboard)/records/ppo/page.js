@@ -52,6 +52,7 @@ export default function PPOPage() {
           <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
             {/* HEADER */}
             <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
+<<<<<<< HEAD
               <div style={{fontSize: "18px"}}>PPO Records</div>
             </div>
 
@@ -61,6 +62,35 @@ export default function PPOPage() {
               {/* SEARCH & DROPDOWN CONTROLS */}
               <div className="d-flex justify-content-between align-items-center gap-2 my-2 mt-1 flex-wrap">
                 <div className="d-flex gap-2 align-items-center">
+=======
+              <div>PPO Records</div>
+            </div>
+
+            {/* BODY */}
+            <div className="p-4">
+              {/* UNIVERSITY INFO */}
+              <div className="text-center overflow-auto">
+                <div className="matura-script fs-6 text-center">
+                  Ateneo de Zamboanga University
+                </div>
+                <div className="mt-2 small">{office}</div>
+                <div className="mt-2 small">{profileTitle}</div>
+                <div className="mt-2 mb-5 small">{schoolYear}</div>
+              </div>
+
+              {/* SEARCH & DROPDOWN CONTROLS */}
+              <div className="d-flex justify-content-end align-items-center gap-2 mb-3 flex-wrap">
+                {/* Search box */}
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  className="form-control form-control-sm rounded-0"
+                  style={{ width: "200px" }}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+
+>>>>>>> main
                 {/* Dropdown */}
                 <div className="dropdown">
                   <button
@@ -68,7 +98,11 @@ export default function PPOPage() {
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
+<<<<<<< HEAD
                     style={{ border: "1px solid #999", borderRadius: "2px" }}
+=======
+                    style={{ border: "1px solid #999" }}
+>>>>>>> main
                   >
                     School Year
                   </button>
@@ -80,7 +114,11 @@ export default function PPOPage() {
                           href="#"
                           onClick={(e) => {
                             e.preventDefault();
+<<<<<<< HEAD
                             setSelectedRetreat(year);
+=======
+                            setSelectedYear(year);
+>>>>>>> main
                           }}
                         >
                           {year.label}
@@ -89,6 +127,7 @@ export default function PPOPage() {
                     ))}
                   </ul>
                 </div>
+<<<<<<< HEAD
                 </div>
                 <div className="d-flex gap-2 align-items-center">
                   <small>Search:</small>
@@ -103,6 +142,8 @@ export default function PPOPage() {
                 </div>
                 
                 
+=======
+>>>>>>> main
               </div>
 
               {/* TABLE */}
