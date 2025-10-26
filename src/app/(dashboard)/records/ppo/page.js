@@ -80,7 +80,6 @@ export default function PPOPage() {
                           href="#"
                           onClick={(e) => {
                             e.preventDefault();
-                            setSelectedRetreat(year);
                             setSelectedYear(year);
                           }}
                         >
@@ -102,6 +101,8 @@ export default function PPOPage() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
+                
+                
               </div>
 
               {/* TABLE */}
