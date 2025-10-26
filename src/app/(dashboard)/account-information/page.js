@@ -167,8 +167,8 @@ export default function AccountInformation() {
       </div>
       </div>
       <div className="position-fixed d-flex flex-column-reverse gap-2" style={{right: "10px", bottom: "10px"}}>
-        {notif.length > 0 && notif.map((data) => (
-          <NotifCard notif={data} deleteNotif={deleteNotif}/>
+        {notif.length > 0 && notif.map((data, index) => (
+          <NotifCard key={index} notif={data} deleteNotif={deleteNotif}/>
         ))}
       </div>
     </>
