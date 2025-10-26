@@ -81,9 +81,7 @@ export default function PPOPage() {
                           onClick={(e) => {
                             e.preventDefault();
                             setSelectedRetreat(year);
-=======
                             setSelectedYear(year);
->>>>>>> main
                           }}
                         >
                           {year.label}
@@ -92,7 +90,6 @@ export default function PPOPage() {
                     ))}
                   </ul>
                 </div>
-<<<<<<< HEAD
                 </div>
                 <div className="d-flex gap-2 align-items-center">
                   <small>Search:</small>
@@ -105,10 +102,6 @@ export default function PPOPage() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                
-                
-=======
->>>>>>> main
               </div>
 
               {/* TABLE */}
