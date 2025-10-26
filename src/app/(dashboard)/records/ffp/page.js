@@ -43,7 +43,6 @@ export default function FFPPage() {
           <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
             {/* HEADER */}
             <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
-<<<<<<< HEAD
               <div  style={{fontSize: "18px"}}>FFP Records</div>
             </div>
 
@@ -61,43 +60,6 @@ export default function FFPPage() {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                     style={{ border: "1px solid #999", borderRadius: "2px" }}
-=======
-              <div>FFP Records</div>
-            </div>
-
-            {/* BODY */}
-            <div className="p-4">
-              {/* UNIVERSITY INFO */}
-              <div className="text-center overflow-auto">
-                <div className="matura-script fs-6 text-center">
-                  Ateneo de Zamboanga University
-                </div>
-                <div className="mt-2 small">{office}</div>
-                <div className="mt-2 small">{profileTitle}</div>
-                <div className="mt-2 mb-5 small">{schoolYear}</div>
-              </div>
-
-              {/* SEARCH & DROPDOWN CONTROLS */}
-              <div className="d-flex justify-content-end align-items-center gap-2 mb-3 flex-wrap">
-                {/* Search box */}
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="form-control form-control-sm rounded-0"
-                  style={{ width: "200px" }}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-
-                {/* Dropdown */}
-                <div className="dropdown">
-                  <button
-                    className="btn btn-sm dropdown-toggle rounded-0 gradient-button"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    style={{ border: "1px solid #999" }}
->>>>>>> main
                   >
                     School Year
                   </button>
@@ -118,7 +80,6 @@ export default function FFPPage() {
                     ))}
                   </ul>
                 </div>
-<<<<<<< HEAD
                 </div>
                 <div className="d-flex align-items-center gap-2">
                   <small>Search:</small>
@@ -132,8 +93,6 @@ export default function FFPPage() {
                   />
                 </div>
                 
-=======
->>>>>>> main
               </div>
 
               {/* TABLE */}
