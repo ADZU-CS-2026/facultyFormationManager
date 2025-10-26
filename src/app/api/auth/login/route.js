@@ -8,13 +8,13 @@ import { ratelimit } from "@/lib/redis";
 
 export async function POST(req) {
   try{
-    // const ip = req.headers.get("x-forwarded-from") || "local";
-    // const { success } = await ratelimit.limit(ip);
+    const ip = req.headers.get("x-forwarded-from") || "local";
+    const { success } = await ratelimit.limit(ip);
 
-    // if(!success){
-    //   // IF LOGIN ATTEMPT REACH LIMIT
-    //   return NextResponse.json({message: "Too many attempts! Try again later"}, {status: 429});
-    // }
+    if(!success){
+      // IF LOGIN ATTEMPT REACH LIMIT
+      return NextResponse.json({message: "Too many attempts! Try again later"}, {status: 429});
+    }
 
     const {id, password} = await req.json();
     const parsedId = parseInt(id);
