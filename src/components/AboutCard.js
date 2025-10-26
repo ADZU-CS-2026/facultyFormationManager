@@ -9,6 +9,10 @@ export default function WeatherCard() {
 
   return (
     <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm">
+<<<<<<< HEAD
+      {/* CARD BODY */}
+      <div>
+=======
       {/* CARD */}
       {/* CARD HEADER */}
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
@@ -35,6 +39,7 @@ export default function WeatherCard() {
         transition={{ duration: 0.5 }}
         style={{ overflow: "hidden" }}
       >
+>>>>>>> main
         <div className="p-3 px-2">
             <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
               <div className="carousel-indicators">
@@ -51,7 +56,11 @@ export default function WeatherCard() {
                     <div className="text-start logo-font fs-6 text-white2 d-none d-xl-block d-lg-none d-sm-block">Faculty Formation Program Monitoring and Management System</div>
                     <div className="text-start logo-font fs-6 text-white2 d-block d-xl-none d-lg-block d-sm-none">Faculty Formation Program Monitoring and Mana..</div>
                     <div className="d-flex"> 
+<<<<<<< HEAD
+                      <button className="btn btn-blue text-white1 mt-3 rounded-pill px-4 border border-white fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal2">User Guide</button>
+=======
                       <button className="btn btn-blue text-white1 mt-3 rounded-pill px-4 border border-white fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal2">Learn more</button>
+>>>>>>> main
                     </div>
                   </div>
                 </div>
@@ -63,7 +72,11 @@ export default function WeatherCard() {
                     <div className="text-start logo-font fs-6 text-white2 d-none d-xl-block d-lg-none d-sm-block">Faculty Formation Program Monitoring and Management System</div>
                     <div className="text-start logo-font fs-6 text-white2 d-block d-xl-none d-lg-block d-sm-none">Faculty Formation Program Monitoring and Mana..</div>
                     <div className="d-flex"> 
+<<<<<<< HEAD
+                      <button className="btn btn-blue text-white1 mt-3 rounded-pill px-4 border border-white fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal2">User Guide</button>
+=======
                       <button className="btn btn-blue text-white1 mt-3 rounded-pill px-4 border border-white fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal2">Learn more</button>
+>>>>>>> main
                     </div>
                   </div>
                 </div>
@@ -75,7 +88,11 @@ export default function WeatherCard() {
                     <div className="text-start logo-font fs-6 text-white2 d-none d-xl-block d-lg-none d-sm-block">Faculty Formation Program Monitoring and Management System</div>
                     <div className="text-start logo-font fs-6 text-white2 d-block d-xl-none d-lg-block d-sm-none">Faculty Formation Program Monitoring and Mana..</div>
                     <div className="d-flex"> 
+<<<<<<< HEAD
+                      <button className="btn btn-blue text-white1 mt-3 rounded-pill px-4 border border-white fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal2">User Guide</button>
+=======
                       <button className="btn btn-blue text-white1 mt-3 rounded-pill px-4 border border-white fw-semibold" data-bs-toggle="modal" data-bs-target="#exampleModal2">Learn more</button>
+>>>>>>> main
                     </div>
                   </div>
                 </div>
@@ -183,7 +200,11 @@ export default function WeatherCard() {
               </div>
             </div>
         </div>
+<<<<<<< HEAD
+      </div>
+=======
       </motion.div>
+>>>>>>> main
     </div>
   );
 }
