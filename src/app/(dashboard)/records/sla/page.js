@@ -87,7 +87,6 @@ export default function SLAPage() {
                     ))}
                   </ul>
                 </div>
-
                 </div>
                 <div className="d-flex gap-2 align-items-center">
                   <small>Search:</small>
@@ -100,6 +99,8 @@ export default function SLAPage() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
+                
+                
               </div>
 
               {/* TABLE */}
