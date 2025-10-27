@@ -50,7 +50,6 @@ export default function SEDPage() {
           <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
             {/* HEADER */}
             <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
-
               <div style={{fontSize: "18px"}}>School of Education Records</div>
             </div>
 
@@ -88,7 +87,6 @@ export default function SEDPage() {
                     ))}
                   </ul>
                 </div>
-
                 </div>
                 <div className="d-flex gap-2 align-items-center">
                   <small>Search:</small>
@@ -101,7 +99,8 @@ export default function SEDPage() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-    
+                
+                
               </div>
 
               {/* TABLE */}
