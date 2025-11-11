@@ -66,6 +66,50 @@ export default function Dashboard({ children, sidebar }) {
               {/* RECORDS ACCORDION */}
               <SideBarOnRecordAccordion />
             </>) : ""}
+            {query === "" || "Mission and Vision".toLowerCase().includes(query.toLowerCase()) ? (
+              <>
+                {/* MISSION AND VISION */}
+                  <Link href="/mission&vision" className="text-decoration-none">
+                      <button
+                        className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
+                      >
+                        <FontAwesomeIcon
+                          icon="fa-solid fa-book-bible"
+                          className="text-yellow small"
+                        />
+                        <span className="small text-light">Mission and Vision</span>
+                      </button>
+                  </Link>
+              </>
+            ) : ""}
+            {query === "" || "Events".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* EVENTS */}
+              <Link href="/events" className="text-decoration-none">
+                  <button
+                    className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
+                  >
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-calendar-week"
+                      className="text-yellow small"
+                    />
+                    <span className="small text-light">Events</span>
+                  </button>
+              </Link>
+            </>) : ""}
+            {query === "" || "About".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* ABOUT */}
+              <Link href="/about" className="text-decoration-none">
+                  <button
+                    className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
+                  >
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-info"
+                      className="text-yellow small"
+                    />
+                    <span className="small text-light">About</span>
+                  </button>
+              </Link>
+            </>) : ""}
             {query === "" || "Settings Bar".toLowerCase().includes(query.toLowerCase()) || "Account Information".toLowerCase().includes(query.toLowerCase()) ? (<>
               {/* SETTINGS BAR */}
               <div className="bg-gray3 p-2">
@@ -182,6 +226,50 @@ export default function Dashboard({ children, sidebar }) {
             {query === "" || "Records".toLowerCase().includes(query.toLowerCase()) ? (<>
               {/* RECORDS ACCORDION */}
               <SideBarOnRecordAccordion />
+            </>) : ""}
+            {query === "" || "Mission and Vision".toLowerCase().includes(query.toLowerCase()) ? (
+              <>
+                {/* MISSION AND VISION */}
+                  <Link href="/mission&vision" className="text-decoration-none">
+                      <button
+                        className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
+                      >
+                        <FontAwesomeIcon
+                          icon="fa-solid fa-book-bible"
+                          className="text-yellow small"
+                        />
+                        <span className="small text-light">Mission and Vision</span>
+                      </button>
+                  </Link>
+              </>
+            ) : ""}
+            {query === "" || "Events".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* EVENTS */}
+              <Link href="/events" className="text-decoration-none">
+                  <button
+                    className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
+                  >
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-calendar-week"
+                      className="text-yellow small"
+                    />
+                    <span className="small text-light">Events</span>
+                  </button>
+              </Link>
+            </>) : ""}
+            {query === "" || "About".toLowerCase().includes(query.toLowerCase()) ? (<>
+              {/* ABOUT */}
+              <Link href="/about" className="text-decoration-none">
+                  <button
+                    className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2 gap-2`}
+                  >
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-info"
+                      className="text-yellow small"
+                    />
+                    <span className="small text-light">About</span>
+                  </button>
+              </Link>
             </>) : ""}
             {query === "" || "Settings Bar".toLowerCase().includes(query.toLowerCase()) || "Account Information".toLowerCase().includes(query.toLowerCase()) ? (<>
               {/* SETTINGS BAR */}

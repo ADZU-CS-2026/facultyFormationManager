@@ -1,0 +1,331 @@
+{
+  "ADMIN": [
+    {
+      "lastname": "Alfaro",
+      "firstname": "Honey Rod",
+      "middleInitial": "T",
+      "position": "Unit Director",
+      "office": "Formation Office"
+    },
+    {
+      "lastname": "Balatbat",
+      "firstname": "Conrado",
+      "middleInitial": "Z",
+      "position": "Director",
+      "office": "Alumni and Career Excellence Office",
+      "dgy2": "03/14-15/24"
+    },
+    {
+      "lastname": "Bascar",
+      "firstname": "Jane",
+      "middleInitial": "C",
+      "position": "Director",
+      "office": "Human Resource Administration and Development Office",
+      "dgy2": "02/06-07/25",
+      "retreat2023_2024": "05/28-30/24",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Bazan",
+      "firstname": "Jaybee",
+      "middleInitial": "D",
+      "position": "Dean",
+      "office": "School of Medicine"
+    },
+    {
+      "lastname": "Calingacion",
+      "firstname": "Lynnie",
+      "middleInitial": "M",
+      "position": "Director",
+      "office": "Fr Jose T Bacatan SJ Library",
+      "retreat2023_2024": "05/28-30/24",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Calunod",
+      "firstname": "Christine",
+      "middleInitial": "V",
+      "position": "Director",
+      "office": "Purchasing and Custodial Office",
+      "retreat2023_2024": "07/05-07/23",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Chavez",
+      "firstname": "Evelyn",
+      "middleInitial": "G",
+      "position": "Director",
+      "office": "Quality Assurance and Strategic Management Office",
+      "retreat2023_2024": "05/28-30/24",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Chua",
+      "firstname": "Ralph Jorline",
+      "middleInitial": "M",
+      "position": "Director for Analytics",
+      "office": "Advancement Office"
+    },
+    {
+      "lastname": "Cresmundo",
+      "firstname": "Armee Jay",
+      "middleInitial": "L",
+      "position": "Executive Assistant",
+      "office": "President's Office",
+      "dgy2": "02/06-07/25",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Deirio",
+      "firstname": "Herbert",
+      "middleInitial": "V",
+      "position": "Quality Assurance Officer",
+      "office": "Quality Assurance and Strategic Management Office",
+      "dgy2": "02/06-07/25",
+      "retreat2023_2024": "05/28-30/24",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Dela Cruz",
+      "firstname": "Gianne Kathleen",
+      "middleInitial": "S",
+      "position": "Coordinator",
+      "office": "University Athletics Office",
+      "dgy2": "04/11-12/25",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Delgado",
+      "firstname": "Ariel",
+      "middleInitial": "D",
+      "position": "Assistant to the Vice President",
+      "office": "Vice President for Administration Office",
+      "dgy2": "02/20-21/25",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Emmanuel",
+      "firstname": "Marjorie",
+      "middleInitial": "S",
+      "position": "Assistant to the Vice President",
+      "office": "Vice President for Higher Education Office",
+      "dgy2": "02/06-07/25",
+      "retreat2023_2024": "05/28-30/24",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Epino",
+      "firstname": "Emir",
+      "middleInitial": "V",
+      "position": "Director",
+      "office": "Ateneo Center for Environment and Sustainability"
+    },
+    {
+      "lastname": "Eribal",
+      "firstname": "Rogin Christ",
+      "middleInitial": "J",
+      "position": "Director",
+      "office": "Ateneo Learning and Teaching Excellence Center",
+      "retreat2023_2024": "05/28-30/24"
+    },
+    {
+      "lastname": "Gallego",
+      "firstname": "Marven",
+      "middleInitial": "R",
+      "position": "University Security Chief",
+      "office": "University Security Office",
+      "retreat2023_2024": "08/18-20/23"
+    },
+    {
+      "lastname": "Gonzales",
+      "firstname": "Aurora",
+      "middleInitial": "C",
+      "position": "Unit Director",
+      "office": "Social Development Office"
+    },
+    {
+      "lastname": "Ibañez",
+      "firstname": "Charissa Mae",
+      "middleInitial": "R",
+      "position": "Director",
+      "office": "Social Awareness and Community Service Involvement",
+      "dgy2": "02/06-07/25",
+      "retreat2023_2024": "07/05-07/23"
+    },
+    {
+      "lastname": "Idris",
+      "firstname": "Rommel",
+      "middleInitial": "A",
+      "position": "Director",
+      "office": "Physical Plant Office"
+    },
+    {
+      "lastname": "Jalani",
+      "firstname": "Jeffrey",
+      "middleInitial": "O",
+      "position": "Director",
+      "office": "Vice-President for Basic Education"
+    },
+    {
+      "lastname": "Jimera",
+      "firstname": "Kevin Roy",
+      "middleInitial": "P",
+      "position": "Director",
+      "office": "Campus Ministry Office",
+      "dgy2": "02/20-21/25",
+      "retreat2023_2024": "01/11-13/24",
+      "retreat2024_2025": "05/27-31/25"
+    },
+    {
+      "lastname": "Kanindot",
+      "firstname": "Renee Vieve",
+      "middleInitial": "V",
+      "position": "Director",
+      "office": "Office of Mission Integration Leadership Development",
+      "retreat2023_2024": "05/28-30/24"
+    },
+    {
+      "lastname": "Ledesma",
+      "firstname": "Arlene",
+      "position": "Director",
+      "office": "University Research Office"
+    },
+    {
+      "lastname": "Lladones",
+      "firstname": "Michael",
+      "middleInitial": "L",
+      "position": "Coordinator",
+      "office": "University Infirmary"
+    },
+    {
+      "lastname": "Manuel",
+      "firstname": "Melanie",
+      "middleInitial": "M",
+      "position": "Treasurer",
+      "office": "Finance Office"
+    },
+    {
+      "lastname": "Manulong",
+      "firstname": "Tricia Mae",
+      "middleInitial": "D",
+      "position": "Manager",
+      "office": "Lantaka Campus",
+      "retreat2023_2024": "07/05-07/23"
+    },
+    {
+      "lastname": "Maravilles",
+      "firstname": "May Lilian",
+      "middleInitial": "T",
+      "position": "Manager",
+      "office": "Innovation and Technology Support Office",
+      "dgy2": "08/18-20/23"
+    },
+    {
+      "lastname": "Montemor",
+      "firstname": "Ma. Corazon",
+      "middleInitial": "J",
+      "position": "Dean",
+      "office": "Rosendo U Castillo Jr College of Law"
+    },
+    {
+      "lastname": "Omboy",
+      "firstname": "Welma",
+      "middleInitial": "L",
+      "position": "Director",
+      "office": "Center for Community Extension Services",
+      "dgy2": "02/03-04/23",
+      "dgy3": "02/13-14/25"
+    },
+    {
+      "lastname": "Panaguiton",
+      "firstname": "Randy",
+      "middleInitial": "V",
+      "position": "Director",
+      "office": "College Information and Technology Services",
+      "dgy2": "03/14-15/25",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Panaguiton",
+      "firstname": "Leah",
+      "middleInitial": "M",
+      "position": "Director",
+      "office": "University Communications Office",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Pantaleta",
+      "firstname": "Floraime",
+      "middleInitial": "O",
+      "position": "Executive Director",
+      "office": "Ateneo Zamboanga - Mindanao Institute",
+      "dgy2": "02/06-07/25",
+      "retreat2023_2024": "05/28-30/24",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Partosa",
+      "firstname": "Jessica",
+      "middleInitial": "D",
+      "position": "Registrar",
+      "office": "College Registrar's Office",
+      "dgy2": "02/06-07/25",
+      "retreat2023_2024": "10/26-28/23",
+      "retreat2024_2025": "07/16-18/25"
+    },
+    {
+      "lastname": "Rabanjante",
+      "firstname": "Romeo",
+      "middleInitial": "A",
+      "position": "Director",
+      "office": "Center for Blended and Digital Learning"
+    },
+    {
+      "lastname": "Ramos",
+      "firstname": "Jordache",
+      "position": "Associate Dean",
+      "office": "Rosendo U Castillo Jr College of Law"
+    },
+    {
+      "lastname": "Reyes",
+      "firstname": "Jennifer",
+      "middleInitial": "G",
+      "position": "Director",
+      "office": "College Admissions and Aid Office"
+    },
+    {
+      "lastname": "Rodriguez",
+      "firstname": "Mario",
+      "middleInitial": "S",
+      "position": "Director",
+      "office": "Ateneo Center for Entrepreneurship, Innovation, and Development"
+    },
+    {
+      "lastname": "Tiong",
+      "firstname": "Sheila",
+      "middleInitial": "L",
+      "position": "Director",
+      "office": "College Guidance and Counseling Office",
+      "dgy2": "02/13-14/25",
+      "retreat2024_2025": "05/26-30/25"
+    },
+    {
+      "lastname": "Tugade",
+      "firstname": "Judith Joy",
+      "middleInitial": "V",
+      "position": "Director",
+      "office": "Office of Student Affairs",
+      "retreat2023_2024": "08/18-20/23",
+      "retreat2024_2025": "06/12-14/25"
+    },
+    {
+      "lastname": "Wee",
+      "firstname": "Chaldeanne",
+      "middleInitial": "D",
+      "position": "Psychologist",
+      "office": "Center for Testing & Measurement",
+      "dgy2": "02/06-07/25",
+      "retreat2024_2025": "05/26-30/25"
+    }
+  ]
+}
