@@ -1,0 +1,142 @@
+User (Person) Entity
+├── id (primary key)
+├── last_name
+├── first_name
+├── middle_initial
+├── department_type (Admin, FFP, CON, CSITE, SED, SLA, SMA, CS, PPO)
+├── position (nullable - only for Admin/CS)
+├── office (nullable - only for Admin/CS)
+├── status (nullable - only for PPO)
+├── work_status (Active, Retired, Resigned, On Leave, Transferred)
+├── work_status_date
+├── work_status_notes
+└── created_at, updated_at
+
+Retreat_Record Entity
+├── id (primary key)
+├── user_id (foreign key)
+├── retreat_type (DGY1, DGY2, DGY3, DGY4.1_IMC, DGY4.2_3D_Retreat, DGY5.1_IPC, DGY5.2_3D_Retreat, SD, 3D_Retreat)
+├── school_year (e.g., "2023-2024")
+├── completion_date
+├── notes
+└── created_at, updated_at
+
+Certificate Entity
+├── id (primary key)
+├── retreat_record_id (foreign key)
+├── certificate_number (unique - format: DGY2-2024-001)
+├── issued_date
+├── issued_by (foreign key to user who issued it)
+├── status (Active, Reprinted, Voided)
+├── print_count
+├── void_reason
+├── template_version
+└── created_at
+
+
+Admin
+    Last Name	: string
+    First Name	: string
+    Middle Initial	: string
+    Position	: string
+    Office	: string
+    DGY2	: date
+    DGY3	: date
+    3D Retreat School Year 2023–2024 : date
+    3D Retreat School Year 2024–2025 : date
+    3D Retreat School Year 2025–2026 : date
+    3D Retreat School Year 2026–2027 : date
+    3D Retreat School Year 2027–2028 : date
+    3D Retreat School Year 2028–2029 : date
+
+
+FFP
+    Last Name	: string
+    First Name	: string
+    Middle Initial	: string
+    3D Retreat School Year 2023–2024 : date
+    3D Retreat School Year 2024–2025 : date
+    3D Retreat School Year 2025–2026 : date
+    3D Retreat School Year 2026–2027 : date
+    3D Retreat School Year 2027–2028 : date
+    3D Retreat School Year 2028–2029 : date
+
+CON
+    Last Name	: string
+    First Name	: string
+    Middle Initial	: string
+    3D Retreat School Year 2023–2024 : date
+    3D Retreat School Year 2024–2025 : date
+    3D Retreat School Year 2025–2026 : date
+    3D Retreat School Year 2026–2027 : date
+    3D Retreat School Year 2027–2028 : date
+    3D Retreat School Year 2028–2029 : date
+
+CSITE
+    Last Name	: string
+    First Name	: string
+    Middle Initial	: string
+    3D Retreat School Year 2023–2024 : date
+    3D Retreat School Year 2024–2025 : date
+    3D Retreat School Year 2025–2026 : date
+    3D Retreat School Year 2026–2027 : date
+    3D Retreat School Year 2027–2028 : date
+    3D Retreat School Year 2028–2029 : date
+
+SED
+    Last Name	: string
+    First Name	: string
+    Middle Initial	: string
+    3D Retreat School Year 2023–2024 : date
+    3D Retreat School Year 2024–2025 : date
+    3D Retreat School Year 2025–2026 : date
+    3D Retreat School Year 2026–2027 : date
+    3D Retreat School Year 2027–2028 : date
+    3D Retreat School Year 2028–2029 : date
+
+SLA
+    Last Name	: string
+    First Name	: string
+    Middle Initial	: string
+    3D Retreat School Year 2023–2024 : date
+    3D Retreat School Year 2024–2025 : date
+    3D Retreat School Year 2025–2026 : date
+    3D Retreat School Year 2026–2027 : date
+    3D Retreat School Year 2027–2028 : date
+    3D Retreat School Year 2028–2029 : date
+
+SMA
+    Last Name	: string
+    First Name	: string
+    Middle Initial	: string
+    3D Retreat School Year 2023–2024 : date
+    3D Retreat School Year 2024–2025 : date
+    3D Retreat School Year 2025–2026 : date
+    3D Retreat School Year 2026–2027 : date
+    3D Retreat School Year 2027–2028 : date
+    3D Retreat School Year 2028–2029 : date
+
+CS - Central Service
+    Last Name	: string
+    First Name	: string
+    Middle Initial	: string
+    Position	: string
+    Office	: string (finance office, etc...)
+    DGY1 : date
+    DGY2 : date
+    DGY3 : date
+    DGY4.1 IMC : date
+    DGY4.2 3D Retreat : date
+    DGY5.1 IPC : date
+    DGY5.2 3D Retreat : date
+    SD : date
+
+PPO 
+    Last Name	: string
+    First Name	: string
+    Status	- (Aloha, regular, etc)
+    School Year 2024 - 2025
+    School Year 2025 - 2026
+    School Year 2026 - 2027
+    School Year 2027 - 2028
+    School Year 2028 - 2029

@@ -1,12 +1,68 @@
-CREATE DATABASE adzuformationsystem;
+CREATE DATABASE IF NOT EXISTS adzuformationsystem;
 
 USE adzuformationsystem;
 
+-- Users Table (Faculty/Staff)
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    last_name VARCHAR(100) NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    middle_initial VARCHAR(10),
+    department ENUM('Admin', 'FFP', 'CON', 'CSITE', 'SED', 'SLA', 'SMA', 'CS', 'PPO') NOT NULL,
+    position VARCHAR(100),  -- For Admin/CS
+    office VARCHAR(100),    -- For Admin/CS
+    status VARCHAR(50),     -- For PPO (Aloha, regular, etc)
+    work_status ENUM('Active', 'Retired', 'Resigned', 'On Leave', 'Transferred') DEFAULT 'Active',
+    work_status_date DATE,
+    work_status_notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_department (department),
+    INDEX idx_work_status (work_status),
+    INDEX idx_name (last_name, first_name)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Retreat Records Table
+CREATE TABLE retreat_records (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    retreat_type VARCHAR(50) NOT NULL,  -- 'DGY1', 'DGY2', 'DGY3', 'DGY4.1_IMC', 'DGY4.2_3D_Retreat', 'DGY5.1_IPC', 'DGY5.2_3D_Retreat', 'SD', '3D_Retreat'
+    school_year VARCHAR(20) NOT NULL,   -- '2023-2024', '2024-2025', etc.
+    completion_date DATE,
+    notes TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_user_year (user_id, school_year),
+    INDEX idx_retreat_type (retreat_type),
+    INDEX idx_completion_date (completion_date)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Certificates Table
+CREATE TABLE certificates (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    retreat_record_id INT NOT NULL,
+    certificate_number VARCHAR(50) UNIQUE NOT NULL,  -- Format: DGY2-2024-001
+    issued_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    issued_by INT,  -- Admin user who issued it
+    status ENUM('Active', 'Reprinted', 'Voided') DEFAULT 'Active',
+    print_count INT DEFAULT 1,
+    void_reason TEXT,
+    template_version VARCHAR(20) DEFAULT 'v1.0',  -- Track certificate design version
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (retreat_record_id) REFERENCES retreat_records(id) ON DELETE CASCADE,
+    FOREIGN KEY (issued_by) REFERENCES users(id) ON DELETE SET NULL,
+    INDEX idx_retreat_record (retreat_record_id),
+    INDEX idx_certificate_number (certificate_number),
+    INDEX idx_status (status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Admin Account Table (for system login)
 CREATE TABLE adminaccount(
     id INT NOT NULL PRIMARY KEY,
     role VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL UNIQUE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO adminaccount (id, role, password)
 VALUES (230692, 'ADMINISTRATOR', 'adzuformation');
