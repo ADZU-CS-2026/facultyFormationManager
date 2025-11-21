@@ -3,61 +3,69 @@ import { jwtVerify } from "jose";
 
 // VERIFYING JWT
 
-async function verifyJwt(token){
+async function verifyJwt(token) {
   const secret = new TextEncoder().encode(process.env.JWT_ACCESS_SECRET);
-  try{
+  try {
     const { payload } = await jwtVerify(token, secret);
     return payload;
-  }
-  catch{
+  } catch {
     return null;
   }
 }
 
 // MIDDLEWARE
-export async function middleware(req){
+export async function middleware(req) {
+  const path = req.nextUrl.pathname;
 
   // CHECK ACCESS TOKEN
-  const accessToken = req.cookies.get('accessToken')?.value;
-  if(accessToken){
+  const accessToken = req.cookies.get("accessToken")?.value;
+  if (accessToken) {
     const payload = await verifyJwt(accessToken);
-    if(payload){
+    if (payload) {
+      // IF OPEN ADMIN SETTINGS FOR VERIFICATION
+      if (path.startsWith("/admin-settings")) {
+        if (payload.role === "ADMINISTRATOR") {
+          return NextResponse.next();
+        }
+        const url = new URL("/", req.url);
+        return NextResponse.redirect(url);
+      }
       return NextResponse.next();
     }
   }
 
-  // CHECK REFRESH TOKEN 
+  // CHECK REFRESH TOKEN
   const resUrl = new URL("/api/auth/refresh", req.url);
   const resFetch = await fetch(resUrl, {
     method: "POST",
     headers: {
-      cookie: req.headers.get("cookie") ?? ""
-    }
-  })
+      cookie: req.headers.get("cookie") ?? "",
+    },
+  });
 
-  if(resFetch.ok){
+  if (resFetch.ok) {
     const res = NextResponse.next();
     const setCookie = resFetch.headers.get("set-cookie");
-    if(setCookie){
+    if (setCookie) {
       res.headers.set("set-cookie", setCookie);
       return res;
     }
   }
 
-  const path = req.nextUrl.pathname;
-
-  // IF CHECKING ADMIN API
-  if(path.startsWith("/api/admin")){
-    return NextResponse.json({message: "Unauthorized!"}, {status: 401});
-  }
-
   // STRAIGHT TO LOGIN
   const loginUrl = new URL("/login", req.url);
   return NextResponse.redirect(loginUrl);
-  
 }
 
 // PROTECTED ROUTES
 export const config = {
-  matcher: ["/", "/records/:path*", "/account-information", "/api/admin"]
-}
+  matcher: [
+    "/",
+    "/records/:path*",
+    "/account-information",
+    "/about",
+    "/events",
+    "/admin-settings",
+    "/mission&vision",
+  ],
+};

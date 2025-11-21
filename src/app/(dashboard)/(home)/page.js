@@ -1,11 +1,10 @@
 "use client";
-import RecordShortcut from "../../../components/RecordShortcut";
-import CalendarCard from "../../../components/CalendarCard";
-import AboutCard from "../../../components/AboutCard";
-import AllProgress from "../../../components/AllProgress";
+import RecordShortcut from "../../components/RecordShortcut";
+import CalendarCard from "../../components/CalendarCard";
+import AboutCard from "../../components/AboutCard";
+import AllProgress from "../../components/AllProgress";
 
 export default function Home() {
-
   return (
     <div className="w-100">
       <div className="row g-0">

@@ -17,13 +17,13 @@ export default function SideBarOnRecordAccordion() {
             aria-expanded="false"
             aria-controls="flush-collapseOne"
           >
-            <FontAwesomeIcon
-              icon="fa-solid fa-table"
-              className="text-yellow small"
-            />
-            <span className="small text-light">
-              Records
-            </span>
+            <div className="d-flex gap-2 align-items-center">
+              <FontAwesomeIcon
+                icon="fa-solid fa-table"
+                className="text-yellow small"
+              />
+              <span className="small text-light">Records</span>
+            </div>
           </button>
         </div>
         <div
@@ -43,9 +43,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                All
-              </span>
+              <span className="small ms-2">All</span>
             </Link>
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
@@ -57,9 +55,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                ADMIN
-              </span>
+              <span className="small ms-2">ADMIN</span>
             </Link>
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
@@ -71,9 +67,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                FFP
-              </span>
+              <span className="small ms-2">FFP</span>
             </Link>
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
@@ -85,9 +79,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                CON
-              </span>
+              <span className="small ms-2">CON</span>
             </Link>
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
@@ -99,9 +91,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                CSITE
-              </span>
+              <span className="small ms-2">CSITE</span>
             </Link>
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
@@ -113,9 +103,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                SED
-              </span>
+              <span className="small ms-2">SED</span>
             </Link>
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
@@ -127,9 +115,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                SLA
-              </span>
+              <span className="small ms-2">SLA</span>
             </Link>
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
@@ -141,9 +127,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                SMA
-              </span>
+              <span className="small ms-2">SMA</span>
             </Link>
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
@@ -155,9 +139,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                CS
-              </span>
+              <span className="small ms-2">CS</span>
             </Link>
             <Link
               className="py-1 text-decoration-none recordlist-hover text-lightgray d-flex align-items-center"
@@ -169,9 +151,7 @@ export default function SideBarOnRecordAccordion() {
                   className="small ms-4"
                 />
               </small>
-              <span className="small ms-2">
-                PPO
-              </span>
+              <span className="small ms-2">PPO</span>
             </Link>
           </div>
         </div>

@@ -11,13 +11,19 @@ export default function Dashboard({ children, sidebar }) {
       {/* FOOTER */}
       <div className="d-flex" style={{ height: "51px" }}>
         <motion.div
-          animate={{width: sidebar ? "230px" : "0px", flex: sidebar ? "0 0 230px" : "0 0 0px"}}
-          transition={{ duration: 0.3 }}
+          animate={{
+            width: sidebar ? "230px" : "0px",
+            flex: sidebar ? "0 0 230px" : "0 0 0px",
+          }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="d-lg-none d-block bg-gray2"
         ></motion.div>
         <motion.div
-          animate={{ width: sidebar ? "50px" : "230px", flex: sidebar ? "0 0 50px" : "0 0 230px"}}
-          transition={{ duration: 0.3 }}
+          animate={{
+            width: sidebar ? "50px" : "230px",
+            flex: sidebar ? "0 0 50px" : "0 0 230px",
+          }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="d-lg-block d-none bg-gray2"
         ></motion.div>
         <div
