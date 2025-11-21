@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import rawData from "@/data/dayswithgod.json";
 
 export default function AdminPage() {
+  const router = useRouter();
   const adminData = rawData["ADMIN"];
 
   // Header information
@@ -66,16 +69,16 @@ export default function AdminPage() {
                     <ul className="dropdown-menu rounded-0 fs-6 p-0">
                         {retreatYears.map((year, index) => (
                             <li key={index}>
-                                <a
+                                <Link
                                     className="dropdown-item small"
-                                    href="#"
+                                    href="/admin/id"
                                     onClick={(e) => {
                                         e.preventDefault();
                                         setSelectedRetreat(year);
                                     }}
                                 >
                                     {year.label}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -112,7 +115,7 @@ export default function AdminPage() {
                   
                   <tbody>
                     {filteredRows?.map((row, index) => (
-                        <tr key={index}>
+                        <tr className="cursor-pointer" key={index} onClick={() => router.push("/records/admin/id")}>
                             <td style={{ whiteSpace: "normal", wordBreak: "break-word", maxWidth: "200px" }}>
                                 {row["Column2"]}
                             </td>

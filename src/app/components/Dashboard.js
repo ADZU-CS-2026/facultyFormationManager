@@ -25,6 +25,7 @@ export default function Dashboard({ children, data }) {
         setUserPopup={setUserPopup}
         notifPopup={notifPopup}
         setNotifPopup={setNotifPopup}
+        data={data}
       />
       <DashboardMain sidebar={sidebar}>{children}</DashboardMain>
     </DashboardRoot>

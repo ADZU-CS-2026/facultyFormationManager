@@ -4,10 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import UserPopover from "./UserPopover";
 import NotifPopover from "./NotificationPopover";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
-export default function Dashboard({ sidebar, hoverSideBar, userPopup, setUserPopup, notifPopup, setNotifPopup }) {
-
+export default function Dashboard({
+  sidebar,
+  hoverSideBar,
+  userPopup,
+  setUserPopup,
+  notifPopup,
+  setNotifPopup,
+  data,
+}) {
   {
     /* ON-OFF USER POP-UP */
   }
@@ -42,9 +49,9 @@ export default function Dashboard({ sidebar, hoverSideBar, userPopup, setUserPop
       <div className="d-flex flex-lg-row flex-column p-0">
         <motion.div
           animate={{ width: `${sidebar ? "50px" : "230px"}` }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className={`logo-font bg-darkblue text-white fs-4 fw-bold d-flex justify-content-center align-items-center navbar-mobile navbar-animation`}
-          style={{height: "50px"}}
+          style={{ height: "50px" }}
         >
           {sidebar ? (
             <FontAwesomeIcon
@@ -86,7 +93,7 @@ export default function Dashboard({ sidebar, hoverSideBar, userPopup, setUserPop
             {/* NOTIFICAITON BUTTON */}
             <NotifPopover notifPopup={notifPopup} notifPop={notifPop} />
             {/* USER BUTTON */}
-            <UserPopover userPopup={userPopup} userPop={userPop} />
+            <UserPopover userPopup={userPopup} userPop={userPop} data={data} />
           </div>
         </div>
       </div>

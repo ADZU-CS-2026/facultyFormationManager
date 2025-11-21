@@ -7,11 +7,14 @@ import {
   faLock,
   faCircleQuestion,
 } from "@fortawesome/free-solid-svg-icons";
-import Snowfall from "../../components/SnowFall";
+import Snowfall from "../components/SnowFall";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { queryClient } from "@/app/react-query";
+import fetchCloudflareTurnstile from "@/app/fetch/fetchCloudflareTurnstile";
 import NProgress from "nprogress";
+import fetchLogin from "@/app/fetch/fetchLogin";
 
 export default function Home() {
   const [id, setID] = useState("");
@@ -28,7 +31,7 @@ export default function Home() {
 
   // 60 SECOND COUNTER IF LOGIN ATTEMPT REACH LIMIT
   useEffect(() => {
-    if (seconds <= 0){
+    if (seconds <= 0) {
       return setError(false);
     }
     const interval = setInterval(() => {
@@ -50,14 +53,8 @@ export default function Home() {
       async function login() {
         // LOGIN API FETCH
         try {
-          const res = await fetch("/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ id, password }),
-            credentials: "include",
-          });
-
-          if (!res.ok) {
+          const res = await fetchLogin(id, password);
+          if (res.statusText !== "OK") {
             if (res.status === 429) {
               setID("");
               setPassword("");
@@ -75,6 +72,7 @@ export default function Home() {
           NProgress.done();
           setValid(true);
           setError(false);
+          queryClient.invalidateQueries({ queryKey: ["admin"] });
           route.push("/");
         } catch (err) {
           NProgress.done();
@@ -87,21 +85,17 @@ export default function Home() {
 
   useEffect(() => {
     async function cloudflare() {
-      const res = await fetch("/api/auth/cloudflare-turnstile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
-      const data = await res.json();
-
-      if (data.success) {
-        setCloudflare(true);
+      try {
+        const data = await fetchCloudflareTurnstile(token);
+        if (data.success) {
+          setCloudflare(true);
+          return;
+        }
+        setCloudflare(false);
         return;
+      } catch (err) {
+        console.error(err.message);
       }
-      setCloudflare(false);
-      return;
     }
     cloudflare();
   }, [token]);
@@ -163,7 +157,9 @@ export default function Home() {
                 <FontAwesomeIcon icon={faUser} className="icon" />
                 <input
                   type="text"
-                  className={`form-control ${error && id && password && "is-invalid"} ${error && !id && !seconds && "is-invalid"} fw-bold`}
+                  className={`form-control ${
+                    error && id && password && "is-invalid"
+                  } ${error && !id && !seconds && "is-invalid"} fw-bold`}
                   placeholder="Admin ID"
                   name="id"
                   value={id}
@@ -177,7 +173,9 @@ export default function Home() {
                 <FontAwesomeIcon icon={faLock} className="icon" />
                 <input
                   type={`${showpassword ? "text" : "password"}`}
-                  className={`form-control ${error && id && password && "is-invalid"} ${error && !password && !seconds && "is-invalid"} fw-bold`}
+                  className={`form-control ${
+                    error && id && password && "is-invalid"
+                  } ${error && !password && !seconds && "is-invalid"} fw-bold`}
                   style={{ paddingRight: "60px" }}
                   placeholder="Password"
                   name="password"
@@ -186,7 +184,9 @@ export default function Home() {
                   disabled={disable ? true : false}
                 />
                 <FontAwesomeIcon
-                  icon={`fa-solid ${showpassword ? "fa-eye" : "fa-eye-slash"}`}
+                  icon={`fa-regular ${
+                    showpassword ? "fa-eye" : "fa-eye-slash"
+                  }`}
                   className="position-absolute translate-middle-y top-50 text-yellowgray cursor-pointer"
                   style={{ right: "35px" }}
                   onClick={() => {
@@ -224,7 +224,9 @@ export default function Home() {
                 Forgot your Password <FontAwesomeIcon icon={faCircleQuestion} />
               </div>
               <Turnstile
-                sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_TEST_SITE_KEY}
+                sitekey={
+                  process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_TEST_SITE_KEY
+                }
                 onVerify={(token) => setToken(token)}
               />
             </div>

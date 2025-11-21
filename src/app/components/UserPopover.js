@@ -1,54 +1,56 @@
 "use client";
 
+import fetchAdminData from "@/app/fetch/fetchAdminData";
+import fetchLogout from "@/app/fetch/fetchLogout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { queryClient } from "@/app/react-query";
 
 export default function UserPopover({ userPopup, userPop }) {
-
-  const [adminData, setAdminData] = useState("");
-  const [message, setMessage] = useState("");
   const router = useRouter();
 
-  // FETCH ADMIN DATA FROM ADMIN API ON FIRST LOAD
-  useEffect(() => {
-    async function getData(){
-      try{
-        const res = await fetch("/api/admin");
-        if(res.ok){
-          const data = await res.json();
-          return setAdminData(data);
-        }
-        throw new Error("No Fetch!");
-      }
-      catch(err){
-        setMessage(err.message);
-      }
-    }
-    getData();
-  },[])
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["admin"],
+    queryFn: fetchAdminData,
+  });
 
-  async function Logout(){
-      const res = fetch("/api/auth/logout", {method: "POST"});
+  async function Logout() {
+    try {
+      await fetchLogout();
+      queryClient.clear();
+      localStorage.removeItem("REACT_QUERY_OFFLINE_CACHE");
       router.replace("/login");
+    } catch (err) {
+      console.error(err.message);
+    }
   }
 
   return (
     <>
       {/* USER BUTTON */}
       <div
-        className={`d-flex align-items-center justify h-100 px-3 user-hover cursor-pointer ${userPopup && "bg-semidarkblue"}`}
+        className={`d-flex align-items-center justify h-100 px-3 user-hover cursor-pointer ${
+          userPopup && "bg-semidarkblue"
+        }`}
         role="button"
         onClick={() => userPop()}
       >
         <FontAwesomeIcon icon="fa-solid fa-user" />
         <span className="d-lg-block d-none ms-1 small">
-          Welcome, {adminData ? adminData[0].role : message}!
+          {!isLoading
+            ? !isError
+              ? `Welcome, ${data[0].role}`
+              : "Error"
+            : "Loading..."}
         </span>
       </div>
-      {/* USER'S POPOVER */}
+
+      {/* USER POPOVER */}
       <div
-        className={`position-absolute border bg-white2 text-light card rounded-0 end-0 top-100 d-flex flex-column ${userPopup ? "d-block" : "d-none"}`}
+        className={`position-absolute border bg-white2 text-light card rounded-0 end-0 top-100 d-flex flex-column ${
+          userPopup ? "d-block" : "d-none"
+        }`}
         style={{ width: "278px", zIndex: "99" }}
       >
         <div className="w-100 bg-blue d-flex flex-column align-items-center justify-content-center py-2">
@@ -57,12 +59,12 @@ export default function UserPopover({ userPopup, userPop }) {
             className="text-light"
             style={{ fontSize: "90px" }}
           />
-          <span className="fs-6 mt-2">{adminData ? adminData[0].id : message}</span>
+          <span className="fs-6 mt-2">
+            {!isLoading ? (!isError ? data[0].id : "Error") : "Loading..."}
+          </span>
           <span className="fs-6">
             <small>
-              <small>
-                {adminData ? adminData[0].role : message}
-              </small>
+              {!isLoading ? (!isError ? data[0].role : "Error") : "Loading..."}
             </small>
           </span>
         </div>
@@ -82,7 +84,8 @@ export default function UserPopover({ userPopup, userPop }) {
           </button>
         </div>
       </div>
-      {/* USER'S MODAL */}
+
+      {/* LOGOUT CONFIRM MODAL */}
       <div
         className="modal fade"
         id="exampleModal"
@@ -99,24 +102,17 @@ export default function UserPopover({ userPopup, userPop }) {
             </div>
             <div className="modal-body">
               <div className="w-100 d-flex flex-lg-row flex-column gap-lg-0 gap-2 justify-content-between align-items-center">
-                <div className="w-100">
-                  <button
-                    type="button"
-                    className="btn btn-sm btn-green text-white w-lg-50 w-100 me-lg-2"
-                    data-bs-dismiss="modal"
-                    onClick={Logout}
-                  >
-                    <FontAwesomeIcon
-                      icon="fa-solid fa-check"
-                      className="fs-6"
-                    />
-                    <span className="fs-6">
-                      <small>
-                        Yes
-                      </small>
-                    </span>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-green text-white w-lg-50 w-100 me-lg-2"
+                  data-bs-dismiss="modal"
+                  onClick={Logout}
+                >
+                  <FontAwesomeIcon icon="fa-solid fa-check" className="fs-6" />
+                  <span className="fs-6">
+                    <small>Yes</small>
+                  </span>
+                </button>
                 <button
                   type="button"
                   className="btn btn-sm btn-white2 text-black w-lg-50 w-100 ms-lg-2"
@@ -124,9 +120,7 @@ export default function UserPopover({ userPopup, userPop }) {
                 >
                   <FontAwesomeIcon icon="fa-solid fa-xmark" className="fs-6" />
                   <span className="fs-6">
-                    <small>
-                      No
-                    </small>
+                    <small>No</small>
                   </span>
                 </button>
               </div>
