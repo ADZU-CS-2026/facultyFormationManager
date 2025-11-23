@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export default async function fetchAdminData() {
+export default async function fetchAccountData() {
   try {
     const res = await axios.post(
-      "/api/admin",
+      "/api/admin/getaccount",
       {},
       {
         withCredentials: true,
@@ -11,6 +11,6 @@ export default async function fetchAdminData() {
     );
     return res.data;
   } catch (err) {
-    throw new Error(err);
+    throw err;
   }
 }

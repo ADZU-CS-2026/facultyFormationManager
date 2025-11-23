@@ -29,6 +29,7 @@ CREATE TABLE retreat_records (
     retreat_type VARCHAR(50) NOT NULL,  -- 'DGY1', 'DGY2', 'DGY3', 'DGY4.1_IMC', 'DGY4.2_3D_Retreat', 'DGY5.1_IPC', 'DGY5.2_3D_Retreat', 'SD', '3D_Retreat'
     school_year VARCHAR(20) NOT NULL,   -- '2023-2024', '2024-2025', etc.
     completion_date DATE,
+    attendance_status ENUM('Present', 'Absent'),
     notes TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

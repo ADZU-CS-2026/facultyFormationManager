@@ -1,6 +1,6 @@
 "use client";
 
-import fetchAdminData from "@/app/fetch/fetchAdminData";
+import fetchAccountData from "@/app/fetch/fetchAccountData";
 import fetchLogout from "@/app/fetch/fetchLogout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
@@ -11,8 +11,8 @@ export default function UserPopover({ userPopup, userPop }) {
   const router = useRouter();
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["admin"],
-    queryFn: fetchAdminData,
+    queryKey: ["account"],
+    queryFn: fetchAccountData,
   });
 
   async function Logout() {

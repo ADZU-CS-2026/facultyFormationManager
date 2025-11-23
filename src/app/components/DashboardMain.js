@@ -2,20 +2,18 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import SideBarOffRecordAccordion from "./SideBarOffRecordAccordion";
-import SideBarOnRecordAccordion from "./SideBarOnRecordAccordion";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import fetchAdminData from "@/app/fetch/fetchAdminData";
+import fetchAccountData from "@/app/fetch/fetchAccountData";
 
 export default function Dashboard({ children, sidebar }) {
   const [query, setQuery] = useState("");
 
   const { data } = useQuery({
-    queryKey: ["admin"],
+    queryKey: ["account"],
     queryFn: async () => {
-      return await fetchAdminData();
+      return await fetchAccountData();
     },
   });
 
@@ -33,28 +31,6 @@ export default function Dashboard({ children, sidebar }) {
         >
           {!sidebar && (
             <>
-              {/* SEARCH BAR */}
-              <div className="bg-gray2 p-3 position-relative">
-                <input
-                  type="text"
-                  placeholder="Search menu..."
-                  className="w-100 bg-gray1 border-0 text-white pe-5 rounded-1 py-2 px-3 search-input"
-                  style={{ height: "35px" }}
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                />
-                <small>
-                  <FontAwesomeIcon
-                    icon="fa-solid fa-search"
-                    className="position-absolute text-yellowgray fs-6"
-                    style={{
-                      right: "30px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                    }}
-                  />
-                </small>
-              </div>
               {query === "" ||
               "Main Navigation".toLowerCase().includes(query.toLowerCase()) ||
               "Home".toLowerCase().includes(query.toLowerCase()) ? (
@@ -86,19 +62,34 @@ export default function Dashboard({ children, sidebar }) {
               {query === "" ||
               "Records".toLowerCase().includes(query.toLowerCase()) ? (
                 <>
-                  {/* RECORDS ACCORDION */}
-                  <SideBarOnRecordAccordion />
+                  {/* RECORDS */}
+                  <Link href="/records" className="text-decoration-none">
+                    <button
+                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
+                    >
+                      <div className="d-flex gap-2 align-items-center">
+                        <FontAwesomeIcon
+                          icon="fa-solid fa-table"
+                          className="text-yellow small"
+                        />
+                        <span className="small text-light">Records</span>
+                      </div>
+                    </button>
+                  </Link>
                 </>
               ) : (
                 ""
               )}
               {query === "" ||
-              "Mission and Vision"
+              "Operations Manual"
                 .toLowerCase()
                 .includes(query.toLowerCase()) ? (
                 <>
-                  {/* MISSION AND VISION */}
-                  <Link href="/mission&vision" className="text-decoration-none">
+                  {/* OPERATIONS MANUAL */}
+                  <Link
+                    href="/operationsmanual"
+                    className="text-decoration-none"
+                  >
                     <button
                       className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
                     >
@@ -108,7 +99,7 @@ export default function Dashboard({ children, sidebar }) {
                           className="text-yellow small"
                         />
                         <span className="small text-light">
-                          Mission and Vision
+                          Operations Manual
                         </span>
                       </div>
                     </button>
@@ -254,11 +245,26 @@ export default function Dashboard({ children, sidebar }) {
                 </div>
               </Link>
               {/* RECORDS BUTTON */}
-              <SideBarOffRecordAccordion />
-              {/* MISSION AND VISION BUTTON */}
+              <Link className="w-100 text-decoration-none" href="/records">
+                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-table"
+                    className="text-yellow fs-6"
+                  />
+                  <div className="position-absolute start-100 top-50 translate-middle-y">
+                    <div
+                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end text-start"
+                      style={{ width: "170px", paddingLeft: "20px" }}
+                    >
+                      Records
+                    </div>
+                  </div>
+                </div>
+              </Link>
+              {/* OPERATIONS MANUAL */}
               <Link
                 className="w-100 text-decoration-none"
-                href="/mission&vision"
+                href="/operationsmanual"
               >
                 <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
                   <FontAwesomeIcon
@@ -270,7 +276,7 @@ export default function Dashboard({ children, sidebar }) {
                       className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end text-start"
                       style={{ width: "170px", paddingLeft: "20px" }}
                     >
-                      Mission and Vision
+                      Operations Manual
                     </div>
                   </div>
                 </div>
@@ -420,17 +426,29 @@ export default function Dashboard({ children, sidebar }) {
           {query === "" ||
           "Records".toLowerCase().includes(query.toLowerCase()) ? (
             <>
-              {/* RECORDS ACCORDION */}
-              <SideBarOnRecordAccordion />
+              {/* RECORDS */}
+              <Link href="/records" className="text-decoration-none">
+                <button
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
+                >
+                  <div className="d-flex gap-2 align-items-center">
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-table"
+                      className="text-yellow small"
+                    />
+                    <span className="small text-light">Records</span>
+                  </div>
+                </button>
+              </Link>
             </>
           ) : (
             ""
           )}
           {query === "" ||
-          "Mission and Vision".toLowerCase().includes(query.toLowerCase()) ? (
+          "Operations Manual".toLowerCase().includes(query.toLowerCase()) ? (
             <>
               {/* MISSION AND VISION */}
-              <Link href="/mission&vision" className="text-decoration-none">
+              <Link href="/operationsmanual" className="text-decoration-none">
                 <button
                   className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
                 >
@@ -439,7 +457,7 @@ export default function Dashboard({ children, sidebar }) {
                       icon="fa-solid fa-book-bible"
                       className="text-yellow small"
                     />
-                    <span className="small text-light">Mission and Vision</span>
+                    <span className="small text-light">Operations Manual</span>
                   </div>
                 </button>
               </Link>

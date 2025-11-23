@@ -9,6 +9,6 @@ export default async function fetchLogin(id, password) {
     );
     return res;
   } catch (err) {
-    throw new Error("Fetch Error");
+    throw new Error(err.message);
   }
 }

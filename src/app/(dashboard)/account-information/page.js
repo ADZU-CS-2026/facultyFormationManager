@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import NotifCard from "../../components/NotifCard";
-import fetchAdminData from "@/app/fetch/fetchAdminData";
+import fetchAccountData from "@/app/fetch/fetchAccountData";
 import fetchUpdateUserAccount from "@/app/fetch/fetchUpdateUserAccount";
 import { useQuery } from "@tanstack/react-query";
 import { queryClient } from "@/app/react-query";
@@ -28,9 +28,9 @@ export default function AccountInformation() {
     setNotif((prev) => prev.filter((data) => data.id !== id));
   }
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["admin"],
-    queryFn: fetchAdminData,
+  const { data, isLoading } = useQuery({
+    queryKey: ["account"],
+    queryFn: fetchAccountData,
   });
 
   // CHANGE PASSWORD LOGIC

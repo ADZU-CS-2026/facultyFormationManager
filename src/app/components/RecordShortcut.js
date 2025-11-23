@@ -8,14 +8,14 @@ export default function RecordShortcut() {
   const [hideShortcut, setHideShortcut] = useState(false);
 
   return (
-    <div className="card border-0 border-top border-lightblue border-3 rounded-1 shadow-sm">
+    <div className="card border-0 border-top border-lightblue border-3 rounded-1 shadow-sm mt-4">
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
         <div>
           <FontAwesomeIcon
             icon="fa-solid fa-arrow-up-right-from-square"
             className="fs-6 me-1"
           />
-          Record Shortcuts
+          Shortcuts
         </div>
         <span
           className="cursor-pointer"
@@ -37,152 +37,30 @@ export default function RecordShortcut() {
       >
         <div className="p-2 fs-5 d-flex flex-column gap-2 bg-light">
           <Link
-            href="/records/all"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
+            href="https://www.facebook.com/ateneodezamboangauniversity"
+            className="btn btn-white1 rounded-1 border w-100 text-lightblue fs-5 fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
+            target="_blank"
           >
-            <Image
-              src="/Images/adzu-logo.png"
-              alt="logo"
-              height={30}
-              width={30}
-              className="rounded-pill"
-              style={{ objectFit: "cover" }}
+            <FontAwesomeIcon
+              icon="fa-brands fa-facebook"
+              style={{ width: "27px", height: "27px", color: "#1877F2" }}
             />
-            All Records
+            Facebook Page
           </Link>
           <Link
-            href="/records/admin"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
+            href="https://sites.google.com/adzu.edu.ph/unit-director-for-formation/events?authuser=1&fbclid=IwY2xjawOPt_9leHRuA2FlbQIxMQBzcnRjBmFwcF9pZA80Mzc2MjYzMTY5NzM3ODgAAR4aU97Qs9nIAZmWjz0uXYmzVyermDSGXwtmA86-93l6DL83ikFnAxr9fZ8yyw_aem_nyFFNTUOL75qVZdXSEfe0A&pli=1"
+            className="btn btn-white1 rounded-1 border w-100 text-lightblue fs-5 fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
+            target="_blank"
           >
             <Image
-              src="/Images/adzu-logo.png"
+              src="/Images/google-sites-logo.png"
               alt="logo"
-              height={30}
-              width={30}
+              height={27}
+              width={27}
               className="rounded-pill"
               style={{ objectFit: "cover" }}
             />
-            Administrators
-          </Link>
-          <Link
-            href="/records/ffp"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
-          >
-            <Image
-              src="/Images/adzu-logo.png"
-              alt="logo"
-              height={30}
-              width={30}
-              className="rounded-pill"
-              style={{ objectFit: "cover" }}
-            />
-            Freshmen Formation Program
-          </Link>
-          <Link
-            href="/records/conn"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
-          >
-            <Image
-              src="/Images/nursing.png"
-              alt="logo"
-              height={30}
-              width={30}
-              className="rounded-pill"
-              style={{ objectFit: "cover" }}
-            />
-            College of Nursing
-          </Link>
-          <Link
-            href="/records/csite"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
-          >
-            <Image
-              alt="logo"
-              src="/Images/csite.jpg"
-              height={30}
-              width={30}
-              className="rounded-pill"
-              style={{ objectFit: "cover" }}
-            />
-            <span className="d-xl-inline d-none">
-              College of Science and Information...
-            </span>
-            <span className="d-lg-none d-md-inline d-none">
-              College of Science and Information Technology and Engineering
-            </span>
-            <span className="d-inline d-md-none d-lg-inline d-xl-none">
-              College of Science and Information Tech...
-            </span>
-          </Link>
-          <Link
-            href="/records/sed"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
-          >
-            <Image
-              src="/Images/education.png"
-              alt="logo"
-              height={30}
-              width={30}
-              className="rounded-pill"
-              style={{ objectFit: "cover" }}
-            />
-            School of Education
-          </Link>
-          <Link
-            href="/records/sla"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
-          >
-            <Image
-              src="/Images/liberalarts.jpg"
-              alt="logo"
-              height={30}
-              width={30}
-              className="rounded-pill"
-              style={{ objectFit: "cover" }}
-            />
-            School of Liberal Arts Retreat
-          </Link>
-          <Link
-            href="/records/sma"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
-          >
-            <Image
-              src="/Images/managementacc.jpg"
-              alt="logo"
-              height={30}
-              width={30}
-              className="rounded-pill"
-              style={{ objectFit: "cover" }}
-            />
-            School of Management and Accountancy
-          </Link>
-          <Link
-            href="/records/cs"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
-          >
-            <Image
-              src="/Images/adzu-logo.png"
-              alt="logo"
-              height={30}
-              width={30}
-              className="rounded-pill"
-              style={{ objectFit: "cover" }}
-            />
-            Central Services
-          </Link>
-          <Link
-            href="/records/ppo"
-            className="btn btn-white1 rounded-1 border w-100 text-lightblue fw-bold text-start recordshortcut-hover d-flex align-items-center gap-2 overflow-x-hidden"
-          >
-            <Image
-              src="/Images/adzu-logo.png"
-              alt="logo"
-              height={30}
-              width={30}
-              className="rounded-pill"
-              style={{ objectFit: "cover" }}
-            />
-            Physical Plant Personnel Profile
+            Google Sites
           </Link>
         </div>
       </motion.div>

@@ -1,19 +1,80 @@
 "use client";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fetchAdminData from "@/app/fetch/fetchAdminData";
-import { useQuery } from "@tanstack/react-query";
+import fetchAccountData from "@/app/fetch/fetchAccountData";
+import fetchStaffList from "@/app/fetch/fetchStaffList";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import fetchCreateStaffAccount from "@/app/fetch/fetchCreateStaffAccount";
+import { queryClient } from "@/app/react-query";
+import { useRouter } from "next/navigation";
 
 export default function About() {
   const [eye, setEye] = useState(false);
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [isErr, setIsErr] = useState(true);
+  const [staffEye, setStaffEye] = useState(false);
 
-  const { data } = useQuery({
-    queryKey: ["admin"],
-    queryFn: fetchAdminData,
+  const mutation = useMutation({
+    mutationFn: fetchCreateStaffAccount,
+    onSuccess: () => {
+      setMessage("Staff Account Created Successfully!");
+      queryClient.invalidateQueries({ queryKey: ["staff"] });
+      queryClient.invalidateQueries({ queryKey: ["staffid"] });
+      queryClient.invalidateQueries({ queryKey: ["account"] });
+      setIsErr(false);
+    },
+    onError: () => {
+      if (staff.some((data) => data.id === parseInt(id))) {
+        setMessage("Staff Account already exists!");
+      } else {
+        setMessage("Staff Account not Successfully Created!");
+      }
+      setIsErr(true);
+    },
   });
 
-  if (data[0].role === "STAFF") {
-    return;
+  const router = useRouter();
+
+  function createStaff(e) {
+    e.preventDefault();
+    if (!id || !password) {
+      setIsErr(true);
+      return setMessage("Please fill the blank!");
+    }
+    if (isNaN(id)) {
+      setIsErr(true);
+      return setMessage("Id must be number only!");
+    }
+    if (id.length !== 6) {
+      setIsErr(true);
+      return setMessage("Id must be a 6 characters only!");
+    }
+    if (password.length > 13 && password.length < 8) {
+      setIsErr(true);
+      return setMessage("Password must be 8 - 13 characters only!");
+    }
+    mutation.mutate({ id, password });
+  }
+
+  const { data: check } = useQuery({
+    queryKey: ["account"],
+    queryFn: fetchAccountData,
+  });
+
+  const {
+    data: staff,
+    isLoading: staffLoading,
+    isError: staffError,
+    error: stafferr,
+  } = useQuery({
+    queryKey: ["staff"],
+    queryFn: fetchStaffList,
+  });
+
+  if (check?.[0]?.role === "STAFF") {
+    return null;
   }
 
   return (
@@ -72,8 +133,20 @@ export default function About() {
                     aria-labelledby="nav-home-tab"
                     tabIndex="0"
                   >
+                    <div className="d-flex justify-content-end pt-4 px-3">
+                      <button
+                        className="btn text-white btn-sm btn-lightblue"
+                        onClick={() => setStaffEye(staffEye ? false : true)}
+                      >
+                        <FontAwesomeIcon
+                          icon={`fa-regular ${
+                            !staffEye ? "fa-eye-slash" : "fa-eye"
+                          }`}
+                        />
+                      </button>
+                    </div>
                     <div
-                      className="pt-4 p-3 d-flex justify-content-center"
+                      className="pt-2 p-3 d-flex justify-content-center"
                       style={{ minWidth: "70vw" }}
                     >
                       <table className="table table-bordered table-striped table-hover align-middle">
@@ -84,17 +157,78 @@ export default function About() {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td colSpan="2" className="text-center text-muted">
-                              No staff accounts.
-                            </td>
-                          </tr>
+                          <>
+                            {staffLoading ? (
+                              <tr>
+                                <td
+                                  colSpan="2"
+                                  className="text-center text-muted"
+                                >
+                                  Loading...
+                                </td>
+                              </tr>
+                            ) : (
+                              <>
+                                {!staffError ? (
+                                  staff.map((data, index) => (
+                                    <tr
+                                      className="cursor-pointer"
+                                      key={index}
+                                      onClick={() =>
+                                        router.push(
+                                          `/admin-settings/${data.id}`
+                                        )
+                                      }
+                                    >
+                                      <td className="text-start text-muted">
+                                        {data.id}
+                                      </td>
+                                      <td className="text-start text-muted">
+                                        <input
+                                          type={`${
+                                            staffEye ? "text" : "password"
+                                          }`}
+                                          value={data.password}
+                                          readOnly
+                                          className="border-0 bg-transparent cursor-pointer"
+                                          size={`${data.password.length}`}
+                                        />
+                                      </td>
+                                    </tr>
+                                  ))
+                                ) : (
+                                  <>
+                                    {stafferr.response.status === 404 ? (
+                                      <tr>
+                                        <td
+                                          colSpan="2"
+                                          className="text-center text-muted"
+                                        >
+                                          Empty Staff List
+                                        </td>
+                                      </tr>
+                                    ) : (
+                                      <tr>
+                                        <td
+                                          colSpan="2"
+                                          className="text-center text-muted"
+                                        >
+                                          Error
+                                        </td>
+                                      </tr>
+                                    )}
+                                  </>
+                                )}
+                              </>
+                            )}
+                          </>
                         </tbody>
                       </table>
                     </div>
                   </div>
-                  {/* CHANGE PASSWORD SECTION */}
-                  <form>
+
+                  {/* CREATE ACCOUNT SECTION */}
+                  <form onSubmit={createStaff}>
                     <div
                       className="tab-pane fade d-block"
                       id="nav-profile"
@@ -118,11 +252,15 @@ export default function About() {
                           <input
                             type="text"
                             className="form-control form-control-sm rounded-0 w-full bg-white1"
+                            value={id}
+                            onChange={(e) => setId(e.target.value)}
                           />
                           <div className="position-relative">
                             <input
                               type={!eye ? "password" : "text"}
                               className="form-control form-control-sm rounded-0 w-full bg-white1"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
                             />
                             {!eye ? (
                               <FontAwesomeIcon
@@ -159,6 +297,13 @@ export default function About() {
                         >
                           Create Account
                         </button>
+                        <div
+                          className={`ms-3 ${
+                            !isErr ? "text-green" : "text-red"
+                          }`}
+                        >
+                          {message}
+                        </div>
                       </div>
                     </div>
                   </form>
