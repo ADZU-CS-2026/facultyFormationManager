@@ -11,7 +11,6 @@ import Snowfall from "../components/SnowFall";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { queryClient } from "@/app/react-query";
 import fetchCloudflareTurnstile from "@/app/fetch/fetchCloudflareTurnstile";
 import NProgress from "nprogress";
 import fetchLogin from "@/app/fetch/fetchLogin";
@@ -72,7 +71,6 @@ export default function Home() {
           NProgress.done();
           setValid(true);
           setError(false);
-          queryClient.invalidateQueries({ queryKey: ["admin"] });
           route.push("/");
         } catch (err) {
           NProgress.done();
@@ -224,9 +222,7 @@ export default function Home() {
                 Forgot your Password <FontAwesomeIcon icon={faCircleQuestion} />
               </div>
               <Turnstile
-                sitekey={
-                  process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_TEST_SITE_KEY
-                }
+                sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
                 onVerify={(token) => setToken(token)}
               />
             </div>
