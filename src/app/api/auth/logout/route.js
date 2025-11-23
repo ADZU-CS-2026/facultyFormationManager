@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { revalidateTag } from "next/cache";
 
 export function POST() {
   // DELETE ACCESS AND REFRESH TOKEN IF LOOGED OUT
@@ -17,8 +16,6 @@ export function POST() {
     path: "/",
     maxAge: 0,
   });
-
-  revalidateTag("admin");
 
   return res;
 }
