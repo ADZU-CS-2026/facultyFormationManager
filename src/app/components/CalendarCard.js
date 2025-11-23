@@ -6,7 +6,7 @@ export default function CalendarCard() {
   const [hideCalendar, setHideCalendar] = useState(false);
 
   return (
-    <div className="card border-0 border-top border-lightblue border-3 rounded-1 shadow-sm mt-4">
+    <div className="card border-0 border-top border-lightblue border-3 rounded-1 shadow-sm">
       <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
         <div>
           <FontAwesomeIcon icon="fa-solid fa-calendar" className="fs-6 me-1" />

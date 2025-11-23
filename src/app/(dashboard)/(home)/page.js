@@ -13,8 +13,8 @@ export default function Home() {
           <AllProgress />
         </div>
         <div className="col-lg-4 col-12 py-4 pt-lg-4 pt-0 px-3">
-          <RecordShortcut />
           <CalendarCard />
+          <RecordShortcut />
         </div>
       </div>
     </div>
