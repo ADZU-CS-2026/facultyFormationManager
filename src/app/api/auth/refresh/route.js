@@ -2,13 +2,12 @@ import { NextResponse } from "next/server";
 import { SignJWT, jwtVerify } from "jose";
 
 // VERIFY TOKEN
-async function verify(token, secretEnv){
+async function verify(token, secretEnv) {
   const secret = new TextEncoder().encode(secretEnv);
-  try{
+  try {
     const { payload } = await jwtVerify(token, secret);
-    return payload
-  }
-  catch{
+    return payload;
+  } catch {
     return null;
   }
 }
@@ -18,27 +17,30 @@ async function verify(token, secretEnv){
 export async function POST(req) {
   const refreshToken = req.cookies.get("refreshToken")?.value;
 
-  if(!refreshToken){
+  if (!refreshToken) {
     // REFRSH TOKEN EXPIRES
-    return NextResponse.json({ok: false}, {status: 401});
+    return NextResponse.json({ ok: false }, { status: 401 });
   }
 
   const payload = await verify(refreshToken, process.env.JWT_REFRESH_SECRET);
 
-  if(!payload){
+  if (!payload) {
     // NOT MATCH WITH SECRET ENV
-    return NextResponse.json({ok: false}, {status: 401});
+    return NextResponse.json({ ok: false }, { status: 401 });
   }
-  
+
   // CREATES ANOTHER ACCESS TOKEN
   const secret = new TextEncoder().encode(process.env.JWT_ACCESS_SECRET);
-  const accessToken = await new SignJWT({sub: payload.sub, role: payload.role})
-    .setProtectedHeader({alg: "HS256", typ: "JWT"})
+  const accessToken = await new SignJWT({
+    sub: payload.sub,
+    role: payload.role,
+  })
+    .setProtectedHeader({ alg: "HS256", typ: "JWT" })
     .setIssuedAt()
     .setExpirationTime("15m")
     .sign(secret);
 
-  const res = NextResponse.json({ok: true}, {status: 200});
+  const res = NextResponse.json({ ok: true }, { status: 200 });
 
   res.cookies.set({
     name: "accessToken",
@@ -47,9 +49,9 @@ export async function POST(req) {
     sameSite: "strict",
     path: "/",
     secure: process.env.NODE_ENV === "production",
-    maxAge: "15m"
-  })
+    // maxAge expects seconds (number). 15 minutes = 900 seconds
+    maxAge: 15 * 60,
+  });
 
   return res;
-
 }
