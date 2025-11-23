@@ -1,6 +1,5 @@
 "use client";
 
-import Turnstile from "react-turnstile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faUser,
@@ -15,7 +14,6 @@ import fetchCloudflareTurnstile from "@/app/fetch/fetchCloudflareTurnstile";
 import NProgress from "nprogress";
 import { queryClient } from "@/app/react-query";
 import fetchLogin from "@/app/fetch/fetchLogin";
-import axios from "axios";
 
 export default function Home() {
   const [id, setID] = useState("");
@@ -54,12 +52,8 @@ export default function Home() {
       async function login() {
         // LOGIN API FETCH
         try {
-          const res = await axios.post(
-            "/api/auth/login",
-            { id, password },
-            { withCredentials: true }
-          );
-          if (res.statusText !== "OK") {
+          const res = await fetchLogin(id, password);
+          if (res.status > 299 && res.status < 200) {
             if (res.status === 429) {
               setID("");
               setPassword("");
