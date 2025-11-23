@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import fetchCloudflareTurnstile from "@/app/fetch/fetchCloudflareTurnstile";
 import NProgress from "nprogress";
+import { queryClient } from "@/app/react-query";
 import fetchLogin from "@/app/fetch/fetchLogin";
 
 export default function Home() {
@@ -69,6 +70,7 @@ export default function Home() {
             throw new Error("Credentials Incorrect!");
           }
           NProgress.done();
+          queryClient.invalidateQueries();
           setValid(true);
           setError(false);
           route.push("/");
