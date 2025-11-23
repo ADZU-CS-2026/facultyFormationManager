@@ -15,6 +15,7 @@ import fetchCloudflareTurnstile from "@/app/fetch/fetchCloudflareTurnstile";
 import NProgress from "nprogress";
 import { queryClient } from "@/app/react-query";
 import fetchLogin from "@/app/fetch/fetchLogin";
+import axios from "axios";
 
 export default function Home() {
   const [id, setID] = useState("");
@@ -53,7 +54,11 @@ export default function Home() {
       async function login() {
         // LOGIN API FETCH
         try {
-          const res = await fetchLogin(id, password);
+          const res = await axios.post(
+            "/api/auth/login",
+            { id, password },
+            { withCredentials: true }
+          );
           if (res.statusText !== "OK") {
             if (res.status === 429) {
               setID("");
