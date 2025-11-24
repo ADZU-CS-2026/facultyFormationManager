@@ -54,22 +54,26 @@ export default function Home() {
         try {
           const res = await fetchLogin(id, password);
           if (res.status > 299 && res.status < 200) {
+            console.log("run 299");
             if (res.status === 429) {
               setID("");
               setPassword("");
               setSeconds(60);
               setError(true);
+              console.log("run 429");
               throw new Error("Too many attempts! Please try again later");
             } else if (res.status === 500) {
               setError(true);
+              console.log("run 500");
               throw new Error("No internet connection!");
             }
+            console.log("run this");
             setError(true);
             setValid(false);
             throw new Error("Credentials Incorrect!");
           }
           NProgress.done();
-          queryClient.invalidateQueries();
+          queryClient.clear();
           setValid(true);
           setError(false);
           route.push("/");

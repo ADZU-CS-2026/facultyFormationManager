@@ -67,9 +67,7 @@ export default function AccountInformation() {
       setPrevPass("");
       setNewPass("");
       setReNewPass("");
-      const data = await fetchAdminData();
-      queryClient.invalidateQueries({ queryKey: ["admin"] });
-      return setAdminData(data);
+      queryClient.invalidateQueries({ queryKey: ["account"] });
     } catch (err) {
       setErrorMessage(err.message);
     }
