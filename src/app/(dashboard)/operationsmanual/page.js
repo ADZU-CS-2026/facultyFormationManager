@@ -10,8 +10,9 @@ export default function MissionAndVision() {
           {/* MAIN CARD */}
           <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
             {/* HEADER */}
-            <div className="text-gray1 fs-6 border-bottom p-2 px-3 d-flex justify-content-between align-items-center">
-              <div style={{ fontSize: "18px" }}>Operations Manual</div>
+            <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: "#0c2461" }}> 
+              <i className="bi bi-file-earmark-text me-2" style={{ fontSize: "18px" }}></i>
+              <span style={{ fontSize: "18px" }}>Operations Manual</span>
             </div>
 
             {/* BODY */}
@@ -880,28 +881,28 @@ export default function MissionAndVision() {
                 </p>
 
                 {/* TABLE */}
-                <div className="mb-4">
-                  <table className="table-auto border border-gray-300 w-48 text-xs">
+                <div className="table-responsive mb-4">
+                  <table className="table table-bordered table-sm small">
                     <tbody>
-                      <tr className="border-b border-gray-300">
-                        <td className="border-r border-gray-300 px-1 py-0.5 font-bold">Schedule</td>
-                        <td className="px-1 py-0.5"></td>
-                      </tr>
-                      <tr className="border-b border-gray-300">
-                        <td className="border-r border-gray-300 px-1 py-0.5 font-semibold">Morning</td>
-                        <td className="px-1 py-0.5">8:00 AM to 12:00 NN</td>
-                      </tr>
-                      <tr className="border-b border-gray-300">
-                        <td className="border-r border-gray-300 px-1 py-0.5 font-semibold">Lunch Break</td>
-                        <td className="px-1 py-0.5">12:00 PM to 1:00 PM</td>
-                      </tr>
-                      <tr className="border-b border-gray-300">
-                        <td className="border-r border-gray-300 px-1 py-0.5 font-semibold">Afternoon</td>
-                        <td className="px-1 py-0.5">1:00 PM to 5:00 PM</td>
+                      <tr className="table-secondary">
+                        <th className="border-r border-gray-300 px-1 py-0.5 font-bold">Schedule</th>
+                        <th></th>
                       </tr>
                       <tr>
-                        <td className="border-r border-gray-300 px-1 py-0.5 font-semibold">Saturday</td>
-                        <td className="px-1 py-0.5">8:00 AM to 12:00 Noon</td>
+                        <td className="fw-semibold">Morning</td>
+                        <td>8:00 AM to 12:00 NN</td>
+                      </tr>
+                      <tr>
+                        <td className="fw-semibold">Lunch Break</td>
+                        <td>12:00 PM to 1:00 PM</td>
+                      </tr>
+                      <tr>
+                        <td className="fw-semibold">Afternoon</td>
+                        <td>1:00 PM to 5:00 PM</td>
+                      </tr>
+                      <tr>
+                        <td className="fw-semibold">Saturday</td>
+                        <td>8:00 AM to 12:00 Noon</td>
                       </tr>
                     </tbody>
                   </table>
@@ -1163,42 +1164,46 @@ export default function MissionAndVision() {
                 </h3>
 
                 {/* Table */}
-                <table className="table-auto w-full border-collapse border border-gray-300 mb-4 text-sm">
-                  <thead>
-                    <tr className="border-b border-gray-300">
-                      <th className="px-4 py-2 border-r border-gray-300 text-left">Prepared by:</th>
-                      <th className="px-4 py-2 border-r border-gray-300 text-left">Reviewed by:</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-gray-300">
-                      <td className="px-4 py-2 border-r border-gray-300">
-                        Honey Rod T. Alfaro <br />
-                        <em className="text-sm text-gray-600 mb-4">Unit Director for Formation</em>
-                      </td>
-                      <td className="px-4 py-2 border-r border-gray-300">
-                        Dr. Jane Bascar <br />
-                        <em className="text-sm text-gray-600 mb-4">Director, HRADO</em>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="px-4 py-2 border-r border-gray-300">
-                        Yya Micaela A. Macaroy <br />
-                        <em className="text-sm text-gray-600 mb-4">Support Staff</em>
-                      </td>
-                      <td className="px-4 py-2 border-r border-gray-300"></td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colSpan={2} className="px-4 py-4 text-left">
-                        <strong>Approved by:</strong> <br />
-                        Fr. Ernald Andal, SJ <br />
-                        <em className="text-sm text-gray-600 mb-4">President</em>
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
+                <div className="table-responsive">
+                  <table className="table table-bordered small">
+                    <thead>
+                      <tr>
+                        <th className="fw-bold" style={{ width: "50%" }}>Prepared by:</th>
+                        <th className="fw-bold" style={{ width: "50%" }}>Reviewed by:</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <strong>Honey Rod T. Alfaro</strong> <br />
+                          <em className="text-muted">Unit Director for Formation</em>
+                        </td>
+                        <td>
+                          <strong>Dr. Jane Bascar</strong> <br />
+                          <em className="text-muted">Director, HRADO</em>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <strong>Yya Micaela A. Macaroy</strong> <br />
+                          <em className="text-muted">Support Staff</em>
+                        </td>
+                        <td>
+                          {/* Blank cell */}
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colSpan={2} className="bg-light pt-3"> 
+                          <strong className="d-block mb-1">Approved by:</strong>
+                          Fr. Ernald Andal, SJ <br />
+                          <em className="text-muted">President</em>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
 
                 <em className="text-sm text-gray-600 mb-4">
                   Effective School Year 2024 – 2025 and to be reviewed at the end of SY.
