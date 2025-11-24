@@ -81,11 +81,10 @@ export default function AccountInformation() {
             {/* CARD */}
             <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
               {/* CARD HEADER */}
-              <div className="text-gray1 border-bottom p-2 px-3 fs-6 d-flex justify-content-between align-items-center">
-                <div>
-                  <div style={{ fontSize: "18px" }}>Account Information</div>
-                </div>
-              </div>
+            <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: "#0c2461" }}> 
+              <i className="bi bi-person-lines-fill me-2" style={{ fontSize: "18px" }}></i>
+              <span style={{ fontSize: "18px" }}>Account Information</span>
+            </div>
 
               {/* CARD BODY */}
               <div className="p-3">

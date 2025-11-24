@@ -48,7 +48,7 @@ export default function RecordSearch() {
               required
               name="department"
             >
-              <option value="" disabled hidden>
+              <option value="" hidden>
                 Choose
               </option>
               <option value="Admin">Administrator</option>
@@ -72,7 +72,7 @@ export default function RecordSearch() {
               required
               name="school_year"
             >
-              <option value="" disabled hidden>
+              <option value="" hidden>
                 Choose
               </option>
               <option value="2023-2024">School Year 2023-2024</option>
@@ -91,7 +91,7 @@ export default function RecordSearch() {
               required
               name="work_status"
             >
-              <option value="" disabled hidden>
+              <option value="" hidden>
                 Choose
               </option>
               <option value="All">All</option>
@@ -138,13 +138,13 @@ export default function RecordSearch() {
         <div className="d-flex gap-2">
           <button
             className="btn btn-sm gradient-button text-black"
-            style={{ borderRadius: "2.5px", border: "0.8px solid black" }}
+            style={{ borderRadius: "2px", border: "0.8px solid black" }}
           >
             Excel
           </button>
           <button
             className="btn btn-sm gradient-button text-black"
-            style={{ borderRadius: "2.5px", border: "0.8px solid black" }}
+            style={{ borderRadius: "2px", border: "0.8px solid black" }}
           >
             Print
           </button>
