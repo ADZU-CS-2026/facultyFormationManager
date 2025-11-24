@@ -774,7 +774,7 @@ export default function MissionAndVision() {
               <p className="small fw-bold mb-2">2. Spiritual Formation Program</p>
               <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
                 Spiritual programs and activities should serve as genuine opportunities for individuals to encounter God. 
-                These various spiritual formation initiatives must enable community members to experience God's boundless love and mercy. 
+                These various spiritual formation initiatives must enable community members to experience God&apos;s boundless love and mercy. 
                 The Unit Director for Formation, in collaboration with the Chaplaincy Office and various Campus Ministry offices, will 
                 oversee the implementation and administration of these spiritual formation programs and activities.
               </p>
@@ -851,7 +851,7 @@ export default function MissionAndVision() {
 
               <p className="small fw-bold mb-1">d. Start of the School Year Conference (SSYC)</p>
               <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
-                The start-of-year conference marks a gathering of all members of the university's formation management council. During this event, the unit 
+                The start-of-year conference marks a gathering of all members of the university&apos;s formation management council. During this event, the unit 
                 director will outline directives for the upcoming academic year.
               </p>
 
@@ -859,7 +859,7 @@ export default function MissionAndVision() {
               <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
                 The year-end conference serves as a platform for appreciation, gratitude, and the exchange of feedback. Each council member will present an 
                 evaluation report highlighting both the successes and challenges of the academic year. Accompanying these reports will be proposed actions 
-                for the upcoming school year, aligned with the recommendations derived from the evaluations and the office's developmental plan.
+                for the upcoming school year, aligned with the recommendations derived from the evaluations and the office&apos;s developmental plan.
               </p>
 
               <p className="small fw-bold mb-2">7. Collaboration Program</p>
@@ -1487,7 +1487,6 @@ export default function MissionAndVision() {
                   </div>
                 </div>
               </div>
-
             </div>
             {/* END BODY */}
           </div>

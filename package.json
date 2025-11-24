@@ -25,6 +25,7 @@
     "axios": "^1.13.2",
     "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "framer-motion": "^12.23.12",
     "jest-environment-jsdom": "^30.2.0",
     "jose": "^6.1.0",

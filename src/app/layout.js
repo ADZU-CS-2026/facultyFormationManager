@@ -3,6 +3,7 @@ import FontAwesomeSetup from "./components/FontAwesomeSetup";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "../styles/main.scss";
 import { ReactQueryProvider } from "@/app/react-query";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export const metadata = {
   title:
