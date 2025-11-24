@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export default async function fetchCloudflareTurnstile(token) {
+export default async function fetchCloudflareTurnstile({ token }) {
   try {
     const res = await axios.post("/api/auth/cloudflare-turnstile", { token });
-    return res.data;
+    return res;
   } catch (err) {
-    throw new Error(err.message);
+    throw err;
   }
 }
