@@ -8,12 +8,14 @@ import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persi
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnMount: false,
+      refetchOnMount: true,
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 5,
     },
   },
 });
+
+export let persister;
 
 export function ReactQueryProvider({ children }) {
   const [isClient, setIsClient] = useState(false);
@@ -21,7 +23,7 @@ export function ReactQueryProvider({ children }) {
   useEffect(() => {
     setIsClient(true);
 
-    const persister = createAsyncStoragePersister({
+    persister = createAsyncStoragePersister({
       storage: window.localStorage,
     });
 

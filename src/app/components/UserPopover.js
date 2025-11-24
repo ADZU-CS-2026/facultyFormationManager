@@ -5,7 +5,7 @@ import fetchLogout from "@/app/fetch/fetchLogout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
-import { queryClient } from "@/app/react-query";
+import { queryClient, persister } from "@/app/react-query";
 
 export default function UserPopover({ userPopup, userPop }) {
   const router = useRouter();
@@ -19,7 +19,8 @@ export default function UserPopover({ userPopup, userPop }) {
     try {
       await fetchLogout();
       queryClient.clear();
-      localStorage.removeItem("REACT_QUERY_OFFLINE_CACHE");
+      await persister.removeClient();
+      localStorage.clear();
       router.replace("/login");
     } catch (err) {
       console.error(err.message);

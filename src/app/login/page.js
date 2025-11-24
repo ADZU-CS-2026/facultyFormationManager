@@ -14,6 +14,8 @@ import fetchCloudflareTurnstile from "@/app/fetch/fetchCloudflareTurnstile";
 import NProgress from "nprogress";
 import { queryClient } from "@/app/react-query";
 import fetchLogin from "@/app/fetch/fetchLogin";
+import Turnstile from "react-turnstile";
+import { useMutation } from "@tanstack/react-query";
 
 export default function Home() {
   const [id, setID] = useState("");
@@ -25,8 +27,55 @@ export default function Home() {
   const [token, setToken] = useState(null);
   const [cloudflare, setCloudflare] = useState(false);
   const [disable, setDisable] = useState(true);
-  const [valid, setValid] = useState(true);
   const route = useRouter();
+
+  const mutationLogin = useMutation({
+    mutationFn: fetchLogin,
+    onSuccess: () => {
+      NProgress.done();
+      queryClient.clear();
+      setError(false);
+      route.push("/");
+    },
+    onError: (err) => {
+      NProgress.done();
+      const status = err.response.status;
+      // IF ERROR
+      if (status === 429) {
+        // IF STATUS 429
+        setID("");
+        setPassword("");
+        setSeconds(60);
+        setError(true);
+        console.log("run 429");
+        setMessage("Too many attempts! Please try again later");
+        return;
+      } else if (status === 500) {
+        // STATUS 429
+        setError(true);
+        setMessage("No internet connection!");
+        return;
+      }
+      setError(true); // IF CREDENTIAL INCORRECT
+      setValid(false);
+      setMessage("Credentials Incorrect!");
+    },
+  });
+
+  const mutationCloudflare = useMutation({
+    mutationFn: fetchCloudflareTurnstile,
+    onSuccess: (res) => {
+      if (res.data.success) {
+        setCloudflare(true);
+        return;
+      }
+      setCloudflare(false);
+      return;
+    },
+    onError(err) {
+      console.log(err.response.data.message);
+    },
+  });
 
   // 60 SECOND COUNTER IF LOGIN ATTEMPT REACH LIMIT
   useEffect(() => {
@@ -46,57 +95,14 @@ export default function Home() {
       setError(true);
       return setMessage("Empty credentials!");
     }
-
     NProgress.start();
     setTimeout(() => {
-      async function login() {
-        // LOGIN API FETCH
-        try {
-          const res = await fetchLogin(id, password);
-          if (res.status > 299 && res.status < 200) {
-            if (res.status === 429) {
-              setID("");
-              setPassword("");
-              setSeconds(60);
-              setError(true);
-              throw new Error("Too many attempts! Please try again later");
-            } else if (res.status === 500) {
-              setError(true);
-              throw new Error("No internet connection!");
-            }
-            setError(true);
-            setValid(false);
-            throw new Error("Credentials Incorrect!");
-          }
-          NProgress.done();
-          queryClient.invalidateQueries();
-          setValid(true);
-          setError(false);
-          route.push("/");
-        } catch (err) {
-          NProgress.done();
-          setMessage(err.message);
-        }
-      }
-      login();
+      mutationLogin.mutate({ id, password });
     }, 2000);
   }
 
   useEffect(() => {
-    async function cloudflare() {
-      try {
-        const data = await fetchCloudflareTurnstile(token);
-        if (data.success) {
-          setCloudflare(true);
-          return;
-        }
-        setCloudflare(false);
-        return;
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
-    cloudflare();
+    mutationCloudflare.mutate({ token });
   }, [token]);
 
   useEffect(() => {
@@ -123,7 +129,7 @@ export default function Home() {
           className="position-relative w-100 h-100"
           style={{ backgroundColor: "rgba(1, 28, 71, 0.9)" }}
         >
-          <Snowfall />
+          {/* <Snowfall /> */}
           <div
             className="container-fluid position-absolute d-flex justify-content-center top-50 start-50"
             style={{ transform: "translate(-50%, -50%)" }}
@@ -222,10 +228,12 @@ export default function Home() {
               >
                 Forgot your Password <FontAwesomeIcon icon={faCircleQuestion} />
               </div>
-              {/* <Turnstile
-                sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
+              <Turnstile
+                sitekey={
+                  process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_TEST_SITE_KEY
+                }
                 onVerify={(token) => setToken(token)}
-              /> */}
+              />
             </div>
           </div>
         </div>
