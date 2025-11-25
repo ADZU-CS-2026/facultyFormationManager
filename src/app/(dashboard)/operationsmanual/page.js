@@ -25,7 +25,7 @@ export default function MissionAndVision() {
         <div className="col-12 py-4 px-3">
 
           {/* MAIN CARD */}
-          <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
+          <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm" >
             
             {/* HEADER */}
             <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: "#0c2461" }}>
@@ -34,7 +34,7 @@ export default function MissionAndVision() {
             </div>
 
             {/* BODY */}
-            <div className="p-4">
+            <div className="p-4" style={{ maxHeight: "calc(80vh - 50px)", overflowY: "auto" }}>
               
               {/* OVERVIEW */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
