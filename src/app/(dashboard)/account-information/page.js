@@ -25,9 +25,7 @@ export default function AccountInformation() {
       setPrevPass("");
       setNewPass("");
       setReNewPass("");
-      queryClient.invalidateQueries({ queryKey: ["account"] });
-      queryClient.invalidateQueries({ queryKey: ["staff"] });
-      queryClient.invalidateQueries({ queryKey: ["staffid"] });
+      queryClient.refetchQueries({ queryKey: ["account"] });
     },
     onError: (err) => {
       setErrorMessage("Error");

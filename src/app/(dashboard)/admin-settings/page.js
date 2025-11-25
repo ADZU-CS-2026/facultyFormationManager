@@ -20,9 +20,8 @@ export default function About() {
     mutationFn: fetchCreateStaffAccount,
     onSuccess: () => {
       setMessage("Staff Account Created Successfully!");
-      queryClient.invalidateQueries({ queryKey: ["staff"] });
-      queryClient.invalidateQueries({ queryKey: ["staffid"] });
-      queryClient.invalidateQueries({ queryKey: ["account"] });
+      queryClient.refetchQueries({ queryKey: ["staff"] });
+      queryClient.refetchQueries({ queryKey: ["staffid"] });
       setIsErr(false);
     },
     onError: () => {
