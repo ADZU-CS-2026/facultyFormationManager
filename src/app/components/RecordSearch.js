@@ -13,6 +13,16 @@ export default function RecordSearch() {
   const [loading, setLoading] = useState(false);
   const [makeFilter, setMakeFilter] = useState("");
 
+  let startYear = 2023;
+  let currentYear = new Date().getFullYear();
+  const setSearchSchoolYears = [];
+
+  for (let y = currentYear; y >= startYear; y--) {
+    let year = y;
+    let nextYear = year + 1;
+    setSearchSchoolYears.push(`${year}-${nextYear}`);
+  }
+
   const mutationSearch = useMutation({
     mutationFn: fetchSearchRecords,
     onSuccess: () => {
@@ -92,12 +102,11 @@ export default function RecordSearch() {
               <option value="" hidden>
                 Choose
               </option>
-              <option value="2023-2024">School Year 2023-2024</option>
-              <option value="2024-2025">School Year 2024-2025</option>
-              <option value="2025-2026">School Year 2025-2026</option>
-              <option value="2026-2027">School Year 2026-2027</option>
-              <option value="2027-2028">School Year 2027-2028</option>
-              <option value="2028-2029">School Year 2028-2029</option>
+              {setSearchSchoolYears.map((data, index) => (
+                <option key={index} value={data}>
+                  SY {data}
+                </option>
+              ))}
             </select>
           </div>
 

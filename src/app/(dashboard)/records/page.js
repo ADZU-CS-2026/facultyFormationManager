@@ -1,6 +1,7 @@
 "use client";
 
 import RecordSearch from "@/app/components/RecordSearch";
+import AddRecord from "@/app/components/AddRecord";
 
 export default function Records() {
   return (
@@ -11,8 +12,14 @@ export default function Records() {
             {/* CARD */}
             <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
               {/* HEADER */}
-              <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: "#0c2461" }}> 
-                <i className="bi bi-journal-text me-2" style={{ fontSize: "18px" }}></i>
+              <div
+                className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25"
+                style={{ color: "#0c2461" }}
+              >
+                <i
+                  className="bi bi-journal-text me-2"
+                  style={{ fontSize: "18px" }}
+                ></i>
                 <span style={{ fontSize: "18px" }}>Records</span>
               </div>
 
@@ -47,7 +54,7 @@ export default function Records() {
                       aria-controls="nav-profile"
                       aria-selected="false"
                     >
-                      Add
+                      Add Record
                     </button>
                   </div>
                 </nav>
@@ -71,7 +78,9 @@ export default function Records() {
                       role="tabpanel"
                       aria-labelledby="nav-profile-tab"
                       tabIndex="0"
-                    ></div>
+                    >
+                      <AddRecord />
+                    </div>
                   </form>
                 </div>
               </div>
