@@ -30,8 +30,8 @@ export default function Dashboard({ children, sidebar }) {
           {!sidebar && (
             <>
               {query === "" ||
-              "Main Navigation".toLowerCase().includes(query.toLowerCase()) ||
-              "Home".toLowerCase().includes(query.toLowerCase()) ? (
+                "Main Navigation".toLowerCase().includes(query.toLowerCase()) ||
+                "Home".toLowerCase().includes(query.toLowerCase()) ? (
                 <>
                   {/* MAIN NAVIGATION BAR */}
                   <div className="bg-gray3 p-2">
@@ -58,7 +58,7 @@ export default function Dashboard({ children, sidebar }) {
                 ""
               )}
               {query === "" ||
-              "Records".toLowerCase().includes(query.toLowerCase()) ? (
+                "Records".toLowerCase().includes(query.toLowerCase()) ? (
                 <>
                   {/* RECORDS */}
                   <Link href="/records" className="text-decoration-none">
@@ -79,9 +79,9 @@ export default function Dashboard({ children, sidebar }) {
                 ""
               )}
               {query === "" ||
-              "Operations Manual"
-                .toLowerCase()
-                .includes(query.toLowerCase()) ? (
+                "Operations Manual"
+                  .toLowerCase()
+                  .includes(query.toLowerCase()) ? (
                 <>
                   {/* OPERATIONS MANUAL */}
                   <Link
@@ -107,7 +107,7 @@ export default function Dashboard({ children, sidebar }) {
                 ""
               )}
               {query === "" ||
-              "Events".toLowerCase().includes(query.toLowerCase()) ? (
+                "Events".toLowerCase().includes(query.toLowerCase()) ? (
                 <>
                   {/* EVENTS */}
                   <Link href="/events" className="text-decoration-none">
@@ -128,7 +128,7 @@ export default function Dashboard({ children, sidebar }) {
                 ""
               )}
               {query === "" ||
-              "About".toLowerCase().includes(query.toLowerCase()) ? (
+                "About".toLowerCase().includes(query.toLowerCase()) ? (
                 <>
                   {/* ABOUT */}
                   <Link href="/about" className="text-decoration-none">
@@ -149,10 +149,10 @@ export default function Dashboard({ children, sidebar }) {
                 ""
               )}
               {query === "" ||
-              "Settings Bar".toLowerCase().includes(query.toLowerCase()) ||
-              "Account Information"
-                .toLowerCase()
-                .includes(query.toLowerCase()) ? (
+                "Settings Bar".toLowerCase().includes(query.toLowerCase()) ||
+                "Account Information"
+                  .toLowerCase()
+                  .includes(query.toLowerCase()) ? (
                 <>
                   {/* SETTINGS BAR */}
                   <div className="bg-gray3 p-2">
@@ -188,9 +188,9 @@ export default function Dashboard({ children, sidebar }) {
                   {data[0].role === "ADMINISTRATOR" && (
                     <>
                       {query === "" ||
-                      "Admin Settings"
-                        .toLowerCase()
-                        .includes(query.toLowerCase()) ? (
+                        "Admin Settings"
+                          .toLowerCase()
+                          .includes(query.toLowerCase()) ? (
                         <>
                           {/* ADMIN SETTINGS */}
                           <Link
@@ -220,9 +220,9 @@ export default function Dashboard({ children, sidebar }) {
                 </>
               )}
               {query === "" ||
-              "Archive".toLowerCase().includes(query.toLowerCase()) ? (
+                "Archive".toLowerCase().includes(query.toLowerCase()) ? (
                 <>
-                  {/* ABOUT */}
+                  {/* ARCHIVE */}
                   <Link href="/archive" className="text-decoration-none">
                     <button
                       className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
@@ -239,6 +239,63 @@ export default function Dashboard({ children, sidebar }) {
                 </>
               ) : (
                 ""
+              )}
+              {query === "" ||
+                "My Changes".toLowerCase().includes(query.toLowerCase()) ? (
+                <>
+                  {/* MY CHANGES */}
+                  <Link href="/my-changes" className="text-decoration-none">
+                    <button
+                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
+                    >
+                      <div className="d-flex gap-2 align-items-center">
+                        <FontAwesomeIcon
+                          icon="fa-solid fa-clipboard-list"
+                          className="text-yellow small"
+                        />
+                        <span className="small text-light">My Changes</span>
+                      </div>
+                    </button>
+                  </Link>
+                </>
+              ) : (
+                ""
+              )}
+              {data && (
+                <>
+                  {data[0].role === "ADMINISTRATOR" && (
+                    <>
+                      {query === "" ||
+                        "Approval Queue"
+                          .toLowerCase()
+                          .includes(query.toLowerCase()) ? (
+                        <>
+                          {/* APPROVAL QUEUE */}
+                          <Link
+                            href="/approval-queue"
+                            className="text-decoration-none"
+                          >
+                            <button
+                              className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
+                            >
+                              <div className="d-flex gap-2 align-items-center">
+                                <FontAwesomeIcon
+                                  icon="fa-solid fa-clipboard-check"
+                                  className="text-yellow small"
+                                />
+                                <span className="small text-light">
+                                  Approval Queue
+                                </span>
+                              </div>
+                            </button>
+                          </Link>
+                        </>
+                      ) : (
+                        ""
+                      )}
+                    </>
+                  )}
+                </>
               )}
             </>
           )}
@@ -399,6 +456,51 @@ export default function Dashboard({ children, sidebar }) {
                   </div>
                 </div>
               </Link>
+              {/* MY CHANGES BUTTON */}
+              <Link className="w-100 text-decoration-none" href="/my-changes">
+                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-clipboard-list"
+                    className="text-yellow fs-6"
+                  />
+                  <div className="position-absolute start-100 top-50 translate-middle-y">
+                    <div
+                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end text-start"
+                      style={{ width: "170px", paddingLeft: "20px" }}
+                    >
+                      My Changes
+                    </div>
+                  </div>
+                </div>
+              </Link>
+              {/* APPROVAL QUEUE BUTTON (Admin only) */}
+              {data && (
+                <>
+                  {data[0].role === "ADMINISTRATOR" && (
+                    <>
+                      <Link
+                        className="w-100 text-decoration-none"
+                        href="/approval-queue"
+                      >
+                        <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                          <FontAwesomeIcon
+                            icon="fa-solid fa-clipboard-check"
+                            className="text-yellow fs-6"
+                          />
+                          <div className="position-absolute start-100 top-50 translate-middle-y">
+                            <div
+                              className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end text-start"
+                              style={{ width: "170px", paddingLeft: "20px" }}
+                            >
+                              Approval Queue
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </>
+                  )}
+                </>
+              )}
             </div>
           )}
         </motion.div>
@@ -410,8 +512,8 @@ export default function Dashboard({ children, sidebar }) {
           className={`bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-none d-block overflow-x-hidden`}
         >
           {query === "" ||
-          "Main Navigation".toLowerCase().includes(query.toLowerCase()) ||
-          "Home".toLowerCase().includes(query.toLowerCase()) ? (
+            "Main Navigation".toLowerCase().includes(query.toLowerCase()) ||
+            "Home".toLowerCase().includes(query.toLowerCase()) ? (
             <>
               {/* MAIN NAVIGATION BAR */}
               <div className="bg-gray3 p-2">
@@ -438,7 +540,7 @@ export default function Dashboard({ children, sidebar }) {
             ""
           )}
           {query === "" ||
-          "Records".toLowerCase().includes(query.toLowerCase()) ? (
+            "Records".toLowerCase().includes(query.toLowerCase()) ? (
             <>
               {/* RECORDS */}
               <Link href="/records" className="text-decoration-none">
@@ -459,7 +561,7 @@ export default function Dashboard({ children, sidebar }) {
             ""
           )}
           {query === "" ||
-          "Operations Manual".toLowerCase().includes(query.toLowerCase()) ? (
+            "Operations Manual".toLowerCase().includes(query.toLowerCase()) ? (
             <>
               {/* MISSION AND VISION */}
               <Link href="/operationsmanual" className="text-decoration-none">
@@ -480,7 +582,7 @@ export default function Dashboard({ children, sidebar }) {
             ""
           )}
           {query === "" ||
-          "Events".toLowerCase().includes(query.toLowerCase()) ? (
+            "Events".toLowerCase().includes(query.toLowerCase()) ? (
             <>
               {/* EVENTS */}
               <Link href="/events" className="text-decoration-none">
@@ -501,7 +603,7 @@ export default function Dashboard({ children, sidebar }) {
             ""
           )}
           {query === "" ||
-          "About".toLowerCase().includes(query.toLowerCase()) ? (
+            "About".toLowerCase().includes(query.toLowerCase()) ? (
             <>
               {/* ABOUT */}
               <Link href="/about" className="text-decoration-none">
@@ -522,8 +624,8 @@ export default function Dashboard({ children, sidebar }) {
             ""
           )}
           {query === "" ||
-          "Settings Bar".toLowerCase().includes(query.toLowerCase()) ||
-          "Account Information".toLowerCase().includes(query.toLowerCase()) ? (
+            "Settings Bar".toLowerCase().includes(query.toLowerCase()) ||
+            "Account Information".toLowerCase().includes(query.toLowerCase()) ? (
             <>
               {/* SETTINGS BAR */}
               <div className="bg-gray3 p-2">
@@ -559,9 +661,9 @@ export default function Dashboard({ children, sidebar }) {
               {data[0].role === "ADMINISTRATOR" && (
                 <>
                   {query === "" ||
-                  "Admin Settings"
-                    .toLowerCase()
-                    .includes(query.toLowerCase()) ? (
+                    "Admin Settings"
+                      .toLowerCase()
+                      .includes(query.toLowerCase()) ? (
                     <>
                       {/* ADMIN SETTINGS */}
                       <Link
@@ -591,9 +693,9 @@ export default function Dashboard({ children, sidebar }) {
             </>
           )}
           {query === "" ||
-          "Archive".toLowerCase().includes(query.toLowerCase()) ? (
+            "Archive".toLowerCase().includes(query.toLowerCase()) ? (
             <>
-              {/* ABOUT */}
+              {/* ARCHIVE */}
               <Link href="/archive" className="text-decoration-none">
                 <button
                   className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
@@ -610,6 +712,63 @@ export default function Dashboard({ children, sidebar }) {
             </>
           ) : (
             ""
+          )}
+          {query === "" ||
+            "My Changes".toLowerCase().includes(query.toLowerCase()) ? (
+            <>
+              {/* MY CHANGES */}
+              <Link href="/my-changes" className="text-decoration-none">
+                <button
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
+                >
+                  <div className="d-flex gap-2 align-items-center">
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-clipboard-list"
+                      className="text-yellow small"
+                    />
+                    <span className="small text-light">My Changes</span>
+                  </div>
+                </button>
+              </Link>
+            </>
+          ) : (
+            ""
+          )}
+          {data && (
+            <>
+              {data[0].role === "ADMINISTRATOR" && (
+                <>
+                  {query === "" ||
+                    "Approval Queue"
+                      .toLowerCase()
+                      .includes(query.toLowerCase()) ? (
+                    <>
+                      {/* APPROVAL QUEUE */}
+                      <Link
+                        href="/approval-queue"
+                        className="text-decoration-none"
+                      >
+                        <button
+                          className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
+                        >
+                          <div className="d-flex gap-2 align-items-center">
+                            <FontAwesomeIcon
+                              icon="fa-solid fa-clipboard-check"
+                              className="text-yellow small"
+                            />
+                            <span className="small text-light">
+                              Approval Queue
+                            </span>
+                          </div>
+                        </button>
+                      </Link>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                </>
+              )}
+            </>
           )}
         </motion.div>
         {/* MAIN PAGE */}

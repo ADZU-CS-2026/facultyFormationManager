@@ -1,8 +1,9 @@
 "use client";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@/app/react-query";
 import { useState } from "react";
-import fetchAddRecord from "@/app/fetch/fetchAddRecord";
+import fetchCreateRecord from "@/app/fetch/fetchCreateRecord";
+import fetchAccountData from "@/app/fetch/fetchAccountData";
 
 export default function AddRecord() {
   const [first_name, set_first_name] = useState("");
@@ -16,6 +17,15 @@ export default function AddRecord() {
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
   const [isDone, setIsDone] = useState(false);
+  const [isPending, setIsPending] = useState(false);
+
+  // Get user role
+  const { data: accountData } = useQuery({
+    queryKey: ["account"],
+    queryFn: fetchAccountData,
+  });
+
+  const isStaff = accountData?.[0]?.role === 'STAFF';
 
   let currentYear = new Date().getFullYear();
   const setAddRecordSchoolYears = [];
@@ -29,11 +39,22 @@ export default function AddRecord() {
   }
 
   const mutationAddRecord = useMutation({
-    mutationFn: fetchAddRecord,
+    mutationFn: fetchCreateRecord,
     onSuccess: (res) => {
       setIsDone(() => true);
       queryClient.refetchQueries();
-      setMessage("User created successfully!");
+
+      // Check if it was a direct save or pending approval
+      if (res.isDirectSave) {
+        setMessage("Record created successfully!");
+        setIsPending(false);
+      } else {
+        setMessage("Change saved to draft! Go to 'My Changes' to submit for approval.");
+        setIsPending(true);
+        // Invalidate my drafts query
+        queryClient.invalidateQueries(['myDrafts']);
+      }
+
       set_first_name("");
       set_last_name("");
       set_middle_initial("");
@@ -46,11 +67,9 @@ export default function AddRecord() {
     onError: (error) => {
       setIsError(() => true);
       setIsDone(() => true);
-      const status = error?.response?.status;
-      if (status === 500) {
-        setMessage("Error");
-      }
-      setMessage("User not created successfully!");
+      setIsPending(false);
+      const errorMessage = error?.response?.data?.message || error?.message || "Error creating record";
+      setMessage(errorMessage);
     },
   });
 
@@ -58,6 +77,7 @@ export default function AddRecord() {
     e.preventDefault();
     setIsError(() => false);
     setIsDone(() => false);
+    setIsPending(false);
     mutationAddRecord.mutate({
       first_name,
       last_name,
@@ -196,20 +216,46 @@ export default function AddRecord() {
                 ""
               )}
 
+              {/* Staff info banner */}
+              {isStaff && (
+                <div className="alert alert-info py-2 small">
+                  <i className="fa-solid fa-info-circle me-2"></i>
+                  As a Staff member, your changes will be saved as a draft and require admin approval.
+                </div>
+              )}
+
               {isDone && (
                 <div
-                  className={`py-2 ${
-                    isError ? "text-red" : "text-green"
-                  } text-center fw-bold fs-5`}
+                  className={`py-2 ${isError ? "text-red" : isPending ? "text-info" : "text-green"
+                    } text-center fw-bold fs-6`}
                 >
+                  {isPending && <i className="fa-solid fa-clock me-2"></i>}
+                  {!isError && !isPending && <i className="fa-solid fa-check-circle me-2"></i>}
+                  {isError && <i className="fa-solid fa-times-circle me-2"></i>}
                   {message}
+                  {isPending && (
+                    <div className="mt-2">
+                      <a href="/my-changes" className="btn btn-sm btn-info text-white">
+                        <i className="fa-solid fa-arrow-right me-1"></i>
+                        Go to My Changes
+                      </a>
+                    </div>
+                  )}
                 </div>
               )}
               <button
                 type="submit"
                 className="btn fw-semibold btn-sm btn-green text-white"
+                disabled={mutationAddRecord.isPending}
               >
-                Submit
+                {mutationAddRecord.isPending ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-1"></span>
+                    Saving...
+                  </>
+                ) : (
+                  "Submit"
+                )}
               </button>
             </div>
           </div>

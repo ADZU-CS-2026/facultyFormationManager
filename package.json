@@ -38,6 +38,7 @@
     "react-to-print": "^3.2.0",
     "react-turnstile": "^1.1.4",
     "sass": "^1.91.0",
+    "uuid": "^13.0.0",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

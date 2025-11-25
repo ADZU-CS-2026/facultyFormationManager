@@ -1,0 +1,20 @@
+Week 1: Database + Core APIs
+├── 1. Create pending_changes and change_batches tables
+├── 2. Build /api/changes/* endpoints
+└── 3. Create helper function for role-based saving
+
+Week 2: Integrate with Existing APIs  
+├── 4. Modify createuser APIs to use role check
+├── 5. Implement updateuser API with role check
+└── 6. Test staff vs admin save flows
+
+Week 3: Frontend - Staff Side
+├── 7. Build PendingChangesPanel component
+├── 8. Add "Submit for Approval" button
+└── 9. Show submission confirmation
+
+Week 4: Frontend - Admin Side
+├── 10. Modify NotificationPopover with real data
+├── 11. Create ApprovalQueue page
+├── 12. Build ChangesDiffViewer component
+└── 13. Implement approve/reject actions
