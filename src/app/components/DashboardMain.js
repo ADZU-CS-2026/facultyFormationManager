@@ -221,6 +221,27 @@ export default function Dashboard({ children, sidebar }) {
                   )}
                 </>
               )}
+              {query === "" ||
+              "Archive".toLowerCase().includes(query.toLowerCase()) ? (
+                <>
+                  {/* ABOUT */}
+                  <Link href="/archive" className="text-decoration-none">
+                    <button
+                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
+                    >
+                      <div className="d-flex gap-2 align-items-center">
+                        <FontAwesomeIcon
+                          icon="fa-solid fa-box-archive"
+                          className="text-yellow small"
+                        />
+                        <span className="small text-light">Archive</span>
+                      </div>
+                    </button>
+                  </Link>
+                </>
+              ) : (
+                ""
+              )}
             </>
           )}
 
@@ -363,6 +384,23 @@ export default function Dashboard({ children, sidebar }) {
                   )}
                 </>
               )}
+              {/* ARCHIVE BUTTON */}
+              <Link className="w-100 text-decoration-none" href="/archive">
+                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-box-archive"
+                    className="text-yellow fs-6"
+                  />
+                  <div className="position-absolute start-100 top-50 translate-middle-y">
+                    <div
+                      className="tooltip-show d-none bg-gray2 text-white fs-6 py-2 rounded-end text-start"
+                      style={{ width: "170px", paddingLeft: "20px" }}
+                    >
+                      Archive
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </div>
           )}
         </motion.div>
@@ -575,6 +613,27 @@ export default function Dashboard({ children, sidebar }) {
                 </>
               )}
             </>
+          )}
+          {query === "" ||
+          "Archive".toLowerCase().includes(query.toLowerCase()) ? (
+            <>
+              {/* ABOUT */}
+              <Link href="/archive" className="text-decoration-none">
+                <button
+                  className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
+                >
+                  <div className="d-flex gap-2 align-items-center">
+                    <FontAwesomeIcon
+                      icon="fa-solid fa-box-archive"
+                      className="text-yellow small"
+                    />
+                    <span className="small text-light">Archive</span>
+                  </div>
+                </button>
+              </Link>
+            </>
+          ) : (
+            ""
           )}
         </motion.div>
         {/* MAIN PAGE */}

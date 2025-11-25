@@ -11,12 +11,24 @@ export default function RecordSearch() {
   const [school_yearU, setSchoolYear] = useState("");
   const [work_statusU, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const [makeFilter, setMakeFilter] = useState("");
 
   const mutationSearch = useMutation({
     mutationFn: fetchSearchRecords,
   });
 
   const { mutate, data: result, isError, error } = mutationSearch;
+
+  const filteredRows = result?.filter((data) => {
+    if (
+      String(data.id).includes(makeFilter) ||
+      data.last_name.toLowerCase().includes(makeFilter.toLowerCase()) ||
+      data.first_name.toLowerCase().includes(makeFilter.toLowerCase()) ||
+      data.middle_initial.toLowerCase().includes(makeFilter.toLowerCase)
+    ) {
+      return true;
+    }
+  });
 
   async function setSearch(e) {
     e.preventDefault();
@@ -42,7 +54,7 @@ export default function RecordSearch() {
       <form onSubmit={setSearch}>
         <div className="row mt-2 d-flex gap-0 justify-content-center align-items-center">
           <div className="col-md-3 col-12 d-flex gap-2 align-items-center">
-            <div className="fw-bold fs-6">Departments</div>
+            <div className="fw-bold">Departments</div>
             <select
               className="form-select form-select-sm"
               required
@@ -66,7 +78,7 @@ export default function RecordSearch() {
           </div>
 
           <div className="mt-md-0 mt-3 col-md-3 col-12 d-flex gap-2 align-items-center">
-            <div className="fw-bold fs-6">School Year</div>
+            <div className="fw-bold">School Year</div>
             <select
               className="form-select form-select-sm"
               required
@@ -85,7 +97,7 @@ export default function RecordSearch() {
           </div>
 
           <div className="mt-md-0 mt-3 col-md-3 col-12 d-flex gap-2 align-items-center">
-            <div className="fw-bold fs-6">Status</div>
+            <div className="fw-bold">Status</div>
             <select
               className="form-select form-select-sm"
               required
@@ -135,19 +147,29 @@ export default function RecordSearch() {
           </div>
           <div className="col-md-4 col-0"></div>
         </div>
-        <div className="d-flex gap-2">
-          <button
-            className="btn btn-sm gradient-button text-black"
-            style={{ borderRadius: "2px", border: "0.8px solid black" }}
-          >
-            Excel
-          </button>
-          <button
-            className="btn btn-sm gradient-button text-black"
-            style={{ borderRadius: "2px", border: "0.8px solid black" }}
-          >
-            Print
-          </button>
+        <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex gap-2">
+            <button
+              className="btn btn-sm gradient-button text-black"
+              style={{ borderRadius: "2px", border: "0.8px solid black" }}
+            >
+              Excel
+            </button>
+            <button
+              className="btn btn-sm gradient-button text-black"
+              style={{ borderRadius: "2px", border: "0.8px solid black" }}
+            >
+              Print
+            </button>
+          </div>
+          <div className="d-flex gap-2 align-items-center">
+            <div className="">Search: </div>
+            <input
+              className="form-control form-control-sm rounded-0"
+              value={makeFilter}
+              onChange={(e) => setMakeFilter(e.target.value)}
+            />
+          </div>
         </div>
       </div>
       {/* TABLE */}
@@ -168,7 +190,7 @@ export default function RecordSearch() {
           <tbody>
             {!start ? (
               <tr>
-                <td colSpan="4" className="text-center text-muted fs-6">
+                <td colSpan="4" className="text-center text-muted">
                   Search now!
                 </td>
               </tr>
@@ -176,7 +198,7 @@ export default function RecordSearch() {
               <>
                 {loading ? (
                   <tr>
-                    <td colSpan="4" className="text-center text-muted fs-6">
+                    <td colSpan="4" className="text-center text-muted">
                       Loading...
                     </td>
                   </tr>
@@ -186,10 +208,7 @@ export default function RecordSearch() {
                       <>
                         {error.response.status === 404 ? (
                           <tr>
-                            <td
-                              colSpan="4"
-                              className="text-center text-muted fs-6"
-                            >
+                            <td colSpan="4" className="text-center text-muted">
                               Empty List!
                             </td>
                           </tr>
@@ -206,22 +225,37 @@ export default function RecordSearch() {
                       </>
                     ) : (
                       <>
-                        {result?.map((data, index) => (
-                          <tr key={index}>
-                            <td className="text-start text-muted fs-6">
-                              {data.id}
-                            </td>
-                            <td className="text-start text-muted fs-6">
-                              {data.last_name}
-                            </td>
-                            <td className="text-start text-muted fs-6">
-                              {data.first_name}
-                            </td>
-                            <td className="text-center text-muted fs-6">
-                              {data.middle_initial}
-                            </td>
-                          </tr>
-                        ))}
+                        {filteredRows?.length > 0 ? (
+                          <>
+                            {filteredRows?.map((data, index) => (
+                              <tr key={index}>
+                                <td className="text-start text-muted">
+                                  {data.id}
+                                </td>
+                                <td className="text-start text-muted">
+                                  {data.last_name}
+                                </td>
+                                <td className="text-start text-muted">
+                                  {data.first_name}
+                                </td>
+                                <td className="text-center text-muted">
+                                  {data.middle_initial}
+                                </td>
+                              </tr>
+                            ))}
+                          </>
+                        ) : (
+                          <>
+                            <tr>
+                              <td
+                                colSpan="4"
+                                className="text-center text-muted"
+                              >
+                                Search not found!
+                              </td>
+                            </tr>
+                          </>
+                        )}
                       </>
                     )}
                   </>

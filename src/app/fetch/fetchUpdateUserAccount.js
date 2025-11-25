@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function fetchUpdateUserAccount(id, newPass) {
+export default async function fetchUpdateUserAccount({ id, newPass }) {
   try {
     const res = await axios.patch("/api/admin/updateaccount", { id, newPass });
     return res;
