@@ -34,7 +34,7 @@ export default function MissionAndVision() {
             </div>
 
             {/* BODY */}
-            <div className="p-4" style={{ maxHeight: "calc(80vh - 50px)", overflowY: "auto" }}>
+            <div className="p-4" style={{ maxHeight: "calc(88vh - 50px)", overflowY: "auto" }}>
               
               {/* OVERVIEW */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
