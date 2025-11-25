@@ -48,10 +48,10 @@ export default function MissionAndVision() {
               {/* OVERVIEW */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
                 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("A")}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{color:primaryColor}}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     A. OVERVIEW
                   </h3>
                   <i className={`bi ${openSections.A ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
@@ -467,7 +467,7 @@ export default function MissionAndVision() {
               {/* STRUCTURE, ROLES, AND RESPONSIBILITIES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
                 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("B")}>
                   <h3 className="fw-bold border-start border-3 ps-3 m-0" style={{ color: primaryColor }}>
@@ -709,7 +709,7 @@ export default function MissionAndVision() {
               {/* PROGRAMS AND SERVICES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
                 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("C")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -768,65 +768,65 @@ export default function MissionAndVision() {
                     as a formator within the institution.
                   </p>
 
-                  <p className="small fw-bold mb-2">3. Psycho-Emotional Formation Program</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">3. Psycho-Emotional Formation Program</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     The Unit Director for Formation, in collaboration with various offices of guidance and counseling at the university, offers psycho-emotional 
                     formation programs and activities for all community members. The primary objective of these initiatives is to promote a healthy balance and 
                     overall well-being in relation to the individual, work, home, and community. Each program and activity are designed to facilitate an experience 
                     of support and accompaniment.
                   </p>
 
-                  <p className="small fw-bold mb-2">4. Social Awareness and Community Service Involvement Formation Program</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">4. Social Awareness and Community Service Involvement Formation Program</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     The unit director for formation collaborates with various offices within social action to organize immersions and outreach programs for university 
                     members. These initiatives are designed to instill Ignatian values, particularly cura personalis and a preferential option for the poor. Programs 
                     focused on social awareness and service involvement should serve as opportunities to encounter the face of Christ in the marginalized and 
                     impoverished, fostering a deeper connection with those who are often excluded from society.
                   </p>
 
-                  <p className="small fw-bold mb-2">5. Coaching Program</p>
-                  <p className="small fw-bold mb-1" >a. Professional Learning Circle (PLC)</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">5. Coaching Program</p>
+                  <p className="fw-bold mb-1" >a. Professional Learning Circle (PLC)</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     The unit director for formation collaborates with the members of the university formation management council to address the needs of both the 
                     formators and the individuals within their respective offices. The professional learning circle serves as a platform for council members and 
                     their colleagues to enhance their professional development as formators through seminars, workshops, and spiritual discussions. This learning 
                     circle embodies a continuous process of learning, unlearning, and relearning, fostering both individual and collective growth within the team.
                   </p>
 
-                  <p className="small fw-bold mb-1">b. Bridging Conference (BC)</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">b. Bridging Conference (BC)</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     Once each semester, the unit director for formation conducts individual consultations with the members of the council. These discussions offer 
                     each member the opportunity to personally share their experiences of consolation and desolation, both in their roles as formators and as individuals.
                   </p>
 
-                  <p className="small fw-bold mb-1">c. Quarter Colloquy (QC)</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">c. Quarter Colloquy (QC)</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     A quarterly meeting will be held with the various offices within the formation unit. This gathering will offer the unit director an opportunity 
                     to gain deeper insights into the personnel involved in the formation process. It will serve as a platform for mutual understanding and may 
                     facilitate support for any professional needs or guidance that the formators may require.
                   </p>
 
-                  <p className="small fw-bold mb-1">d. Start of the School Year Conference (SSYC)</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">d. Start of the School Year Conference (SSYC)</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     The start-of-year conference marks a gathering of all members of the university&apos;s formation management council. During this event, the unit 
                     director will outline directives for the upcoming academic year.
                   </p>
 
-                  <p className="small fw-bold mb-1">e. Year-End Conference (YEC)</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">e. Year-End Conference (YEC)</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     The year-end conference serves as a platform for appreciation, gratitude, and the exchange of feedback. Each council member will present an 
                     evaluation report highlighting both the successes and challenges of the academic year. Accompanying these reports will be proposed actions 
                     for the upcoming school year, aligned with the recommendations derived from the evaluations and the office&apos;s developmental plan.
                   </p>
 
-                  <p className="small fw-bold mb-2">7. Collaboration Program</p>
+                  <p className="fw-bold mb-2">7. Collaboration Program</p>
                 </div>
               </div>
               
               {/* OFFICE POLICIES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("D")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -838,10 +838,10 @@ export default function MissionAndVision() {
                 <div className={`collapse ${openSections.D ? "show" : ""}`}>
 
                   <h5 className="fw-bold mb-2">1. Office Hours and Staff Schedules</h5>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     <strong>Objective:</strong> To establish a clear guideline on office hours, dress code, schedules, and activities to promote professionalism.
                   </p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     <strong>Reporting Time:</strong> The Unit Director for Formation and the office support staff are required to be present during the scheduled hours to oversee the operations of the formation programs and related activities.
                   </p>
                   
@@ -874,7 +874,7 @@ export default function MissionAndVision() {
                   </div>
                   
                   <h5 className="fw-bold mb-2">2. Dress Code and Attire</h5>
-                  <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-0" style={{ textAlign: "justify"}}>
                     The Unit Director for Formation and Support Staff are required to wear the uniform prescribed by the Human Resource Administration and 
                     Development Office from Monday to Saturday as stated in the Administrative Manual.
                   </p>
@@ -884,7 +884,7 @@ export default function MissionAndVision() {
               {/* RECORDS AND DOCUMENT MANAGEMENT CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("E")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -895,11 +895,11 @@ export default function MissionAndVision() {
                 
                 <div className={`collapse ${openSections.E ? "show" : ""}`}>
                   
-                  <p className="small lh-base mb-3">
+                  <p className="lh-base mb-3">
                     At the end of the school year, the office staff will organize and file the different documents into their respective folders.
                   </p>
                   
-                  <ol className="list-decimal list-inside mb-3 small">
+                  <ol className="bold-number list-decimal list-inside mb-3">
                     <li><strong>Files</strong>: General administrative documents related to the daily operations of the office.</li>
                     <li><strong>Budget</strong>: Financial records detailing the budget allocations and expenditures.</li>
                     <li><strong>Calendar of Activities</strong>: A comprehensive schedule of all programs and activities.</li>
@@ -917,7 +917,7 @@ export default function MissionAndVision() {
               {/* SUPPLIES AND EQUIPMENT MANAGEMENT CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("F")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1022,7 +1022,7 @@ export default function MissionAndVision() {
               {/* BUDGET MANAGEMENT CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("G")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1047,7 +1047,7 @@ export default function MissionAndVision() {
               {/* COMMUNICATIONS PROTOCOLS CARD*/}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("H")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1058,12 +1058,12 @@ export default function MissionAndVision() {
                 
                 <div className={`collapse ${openSections.H ? "show" : ""}`}>
                   
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     Implementing these protocols can enhance communication, foster collaboration, and create a more efficient office environment. In the Unit 
                     Director for Formation office, we practice several communication protocols:
                   </p>
                   
-                  <ol className="list-decimal list-inside mb-3 small" style={{ textAlign: "justify"}}>
+                  <ol className="bold-number list-decimal list-inside mb-3" style={{ textAlign: "justify"}}>
                     <li><strong>Email Communication Protocols</strong>: Staff must check their emails every morning and update the director about any important 
                     messages. Any official concerns must be directed via email.</li>
                     <li><strong>Social Media Protocols</strong>: All content shared on social media via the official Facebook page must be approved by the 
@@ -1095,7 +1095,7 @@ export default function MissionAndVision() {
               {/* CONFIDENTIALITY AND DATA PROTECTION POLICIES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("I")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1106,7 +1106,7 @@ export default function MissionAndVision() {
                 
                 <div className={`collapse ${openSections.I ? "show" : ""}`}>
                   
-                  <ol className="list-decimal list-inside small mb-0" style={{ textAlign: "justify"}}>
+                  <ol className="bold-number list-decimal list-inside mb-0" style={{ textAlign: "justify"}}>
                     <li><strong>
                       Computer and Network Usage Policies</strong>: Formation staff members are permitted to use the office computers and network resources 
                       available in the office. Computer and network usage is strictly for work-related purposes only. Accessing inappropriate websites, 
@@ -1121,7 +1121,7 @@ export default function MissionAndVision() {
               {/* DATA PROTECTION AND PRIVACY POLICIES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("J")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1144,7 +1144,7 @@ export default function MissionAndVision() {
               {/* OFFICE RISK MANAGEMENT AND CONTROL CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("K")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1169,7 +1169,7 @@ export default function MissionAndVision() {
               {/* INCIDENT REPORT CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("L")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1180,7 +1180,7 @@ export default function MissionAndVision() {
                 
                 <div className={`collapse ${openSections.L ? "show" : ""}`}>
                   
-                  <p className="small mb-0">
+                  <p className="mb-0">
                     All incident is immediately reported to the Unit Director for Formation. Complete an incident report form within 24 hours of the incident. 
                     Include detailed information such as the name, date, time, location, and a description of what occurred. The office Staff, along with the 
                     relevant offices, will investigate all reported incidents to determine the cause. If medical treatment is needed, adhere to all prescribed 
@@ -1194,7 +1194,7 @@ export default function MissionAndVision() {
               {/* QUALITY ASSURANCE AND CONTINUOUS IMPROVEMENT CARD*/}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("M")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1204,14 +1204,16 @@ export default function MissionAndVision() {
                 </div>
                 
                 <div className={`collapse ${openSections.M ? "show" : ""}`}>
-                  
-                  <ol className="list-decimal list-inside small mb-0">
-                    <li><strong>Evaluation and Assessment Processes</strong></li>
+
+                  <ol className="bold-number list-decimal list-inside mb-2">
+                    <li>
+                      <strong>Evaluation and Assessment Processes</strong>
+                      <p style={{ fontSize: "0.95rem", lineHeight: "1.6", marginTop: "6px" }}>
+                        The office evaluates at the end of all its programs and activities. These evaluations 
+                        are crucial information for the mid-year and end-year planning.
+                      </p>
+                    </li>
                   </ol>
-                  <p className="small mb-0">
-                    The office evaluates at the end of all its programs and activities. These evaluations are crucial information for the mid-year and 
-                    end-year planning.
-                  </p>
 
               </div>
 
@@ -1220,7 +1222,7 @@ export default function MissionAndVision() {
               {/* APPROVALS AND EFFECTIVITY */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("AAE")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1567,6 +1569,28 @@ export default function MissionAndVision() {
           </div>
         </div>
       </div>
+      
+      <style jsx global>{`
+        .section-header:hover {
+          background-color: rgba(12,36,97,0.05);
+          transition: background-color 0.3s;
+        }
+        .collapse {
+          transition:
+            height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+            opacity 0.4s ease,
+            padding 0.4s ease !important;
+          opacity: 1;
+        }
+        .collapse:not(.show) {
+          opacity: 0;
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
+        .bold-number li::marker {
+          font-weight: 700;
+        }
+      `}</style>
     </div>
   );
 }
