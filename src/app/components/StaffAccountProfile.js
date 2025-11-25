@@ -44,7 +44,6 @@ export default function StaffAccountProfile({ id }) {
     mutationFn: fetchDeleteAccount,
     onSuccess: () => {
       setDeleteMessage("");
-      queryClient.invalidateQueries({ queryKey: ["account"] });
       queryClient.invalidateQueries({ queryKey: ["staff"] });
       queryClient.invalidateQueries({ queryKey: ["staffid"] });
       router.replace("/admin-settings");
