@@ -550,14 +550,14 @@ export default function MissionAndVision() {
                     </div>
                     
                     {/* DESCRIPTION */}
-                    <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                    <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                       The Unit Director for Formation exercises general supervision and promotion of the following
                       through a well-planned and articulated formation program in Advancing Ignatian Spirituality 
                       as a Jesuit university in collaboration with the different units, departments, or offices:
                     </p>
                     
                     {/* RESPONSIBILITY LIST */}
-                    <ol className="small lh-base mb-4 ps-3">
+                    <ol className="lh-base mb-4 ps-3">
                       <li>Spiritual and Character development of the university’s stakeholders</li>
                       <li>Moral and Psychological Well-being of the university’s stakeholders</li>
                       <li>Social and Community Involvement Programs of the university’s stakeholders</li>
@@ -569,7 +569,7 @@ export default function MissionAndVision() {
                       Duties and Functions
                     </h4>
                     
-                    <ol className="small lh-base mb-3 ps-3">
+                    <ol className="lh-base mb-3 ps-3">
                       <li>Oversees the implementation of programs and activities which strengthens the spiritual lives of the higher education faculty members and central services through the Days with God Programs.</li>
                       <li>Supervises and coordinates the implementation of the Campus Ministry Programs of all units.</li>
                       <li>Supervises and coordinates the implementation of the Guidance Programs of all units.</li>
@@ -625,7 +625,7 @@ export default function MissionAndVision() {
                     </div>
                     
                     {/* JOB OBJECTIVE */}
-                    <p className="small lh-base mb-4">
+                    <p className="lh-base mb-4">
                       Job Objective: To provide secretarial, clerical, and administrative support to the Unit
                       Director for Formation for efficient and effective delivery of services.
                     </p>
@@ -638,7 +638,7 @@ export default function MissionAndVision() {
                     {/* 1. RECORDS AND OFFICE MANAGEMENT */}
                     <p className="small fw-bold mb-2">1. Records and Office Management</p>
                     
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
+                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
                       <li>Performs secretarial functions such as answering telephone calls, entertaining guests and clients, calendaring appointments and meetings of the Unit Director for Formation, reminding him of his scheduled appointments</li>
                       <li>Files all communications, office documents, reports and minutes of meetings</li>
                       <li>Receives letters, invitations and other communications for the Unit Director for Formation</li>
@@ -652,9 +652,9 @@ export default function MissionAndVision() {
                     </ol>
 
                     {/* 2. LOGISTICS */}
-                    <p className="small fw-bold mb-2">2. Logistics</p>
+                    <p className="fw-bold mb-2">2. Logistics</p>
 
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
+                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
                       <li>Arranges for transportation and accommodation of invited guests, visitors and other activities related to the Formation Office</li>
                       <li>Prepares travel itinerary and plane reservations of the Unit Director for Formation and office guests</li>
                       <li>Provides logistical support to programs of formation and training of faculty and staff including but not limited to encoding, printing and photocopying of materials, reservation of venue and transportation, etc.</li>
@@ -663,9 +663,9 @@ export default function MissionAndVision() {
                     </ol>
 
                     {/* 3. FINANCIAL MANAGEMENT */}
-                    <p className="small fw-bold mb-2">3. Financial Management</p>
+                    <p className="fw-bold mb-2">3. Financial Management</p>
 
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
+                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
                       <li>Prepares requests for payment for expenditures such as functions/activities related to faculty and staff formation, training and development</li>
                       <li>Prepares liquidation reports for expenditures of office activities and submits the same to the Finance office</li>
                       <li>Makes requests for petty cash and submits liquidation report for the same</li>
@@ -674,9 +674,9 @@ export default function MissionAndVision() {
                     </ol>
 
                     {/* 4. PHYSICAL FACILITIES */}
-                    <p className="small fw-bold mb-2">4. Physical Facilities and Office Equipment</p>
+                    <p className="fw-bold mb-2">4. Physical Facilities and Office Equipment</p>
 
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
+                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
                       <li>Monitors the cleaning of the office (including aircon, windows, shelves and conference room)</li>
                       <li>Maintains cleanliness and order in the office and ensures proper waste segregation</li>
                       <li>Ensures that office equipment (computers and peripherals; projector, telephone, etc.) are in good working condition</li>
@@ -684,17 +684,17 @@ export default function MissionAndVision() {
                     </ol>
 
                     {/* 5. SPECIAL DUTIES */}
-                    <p className="small fw-bold mb-2">5. Special Duties</p>
+                    <p className="fw-bold mb-2">5. Special Duties</p>
 
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
+                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
                       <li>Assists in recollection and retreats (Days with God) as facilitator or anchor person</li>
                       <li>Performs other related jobs assigned from time to time by the Unit Director for Formation</li>
                     </ol>
 
                     {/* 6. MINIMUM QUALIFICATIONS */}
-                    <p className="small fw-bold mb-2">6. Minimum Qualifications</p>
+                    <p className="fw-bold mb-2">6. Minimum Qualifications</p>
 
-                    <ol className="small lh-base mb-3 ps-3" type="a" style={{ textAlign: "justify"}}>
+                    <ol className="lh-base mb-3 ps-3" type="a" style={{ textAlign: "justify"}}>
                       <li>College graduate</li>
                       <li>Good moral character</li>
                       <li>Proficient in oral and written communication</li>
