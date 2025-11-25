@@ -65,7 +65,7 @@ export default function About() {
 
   const {
     data: staff,
-    isLoading: staffLoading,
+    isFetching: staffLoading,
     isError: staffError,
     error: stafferr,
   } = useQuery({
