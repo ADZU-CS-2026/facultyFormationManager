@@ -120,7 +120,7 @@ export default function MissionAndVision() {
                     fire that burned down the 66-year-old Brebeuf Gym.
                   </p>
 
-                  <p className="small lh-base mb-0" style={{ textAlign: "justify" }}>
+                  <p className="lh-base mb-0" style={{ textAlign: "justify" }}>
                     In 2015 the grade school transferred to the Tumaga campus, joining the Junior High School, and in 2016 the Senior High School was established at the La Purisima main campus. The latest building on
                     campus is the five-story Faustino W Saavedra Building (the new Senior High School Building), constructed in 2018.
                   </p>
@@ -498,7 +498,7 @@ export default function MissionAndVision() {
                   </div>
                   
                   {/* ROLES AND RESPONSIBILITIES */}
-                  <div className="border-0 mb-4 p-4 text-wrap text-break">
+                  <div className="border-0 p-4 text-wrap text-break">
                     <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{ color: primaryColor }}>
                       Roles and Responsibilities
                     </h3>
@@ -550,14 +550,14 @@ export default function MissionAndVision() {
                     </div>
                     
                     {/* DESCRIPTION */}
-                    <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
+                    <p className="lh-base mb-4 ps-2" style={{ textAlign: "justify"}}>
                       The Unit Director for Formation exercises general supervision and promotion of the following
                       through a well-planned and articulated formation program in Advancing Ignatian Spirituality 
                       as a Jesuit university in collaboration with the different units, departments, or offices:
                     </p>
                     
                     {/* RESPONSIBILITY LIST */}
-                    <ol className="lh-base mb-4 ps-3">
+                    <ol className="bold-number lh-base mb-4 ps-4">
                       <li>Spiritual and Character development of the university’s stakeholders</li>
                       <li>Moral and Psychological Well-being of the university’s stakeholders</li>
                       <li>Social and Community Involvement Programs of the university’s stakeholders</li>
@@ -569,16 +569,16 @@ export default function MissionAndVision() {
                       Duties and Functions
                     </h4>
                     
-                    <ol className="lh-base mb-3 ps-3">
-                      <li>Oversees the implementation of programs and activities which strengthens the spiritual lives of the higher education faculty members and central services through the Days with God Programs.</li>
-                      <li>Supervises and coordinates the implementation of the Campus Ministry Programs of all units.</li>
-                      <li>Supervises and coordinates the implementation of the Guidance Programs of all units.</li>
-                      <li>Supervises and coordinates the implementation of the Social Awareness and Community Extension Programs of all units.</li>
-                      <li>Supervises and coordinates the implementation of the Athletics Programs through the Athletics Coordinators of the different units.</li>
-                      <li>Supervises and coordinates the implementation of the Inter-Religious Dialogue Programs of all units.</li>
-                      <li>Hold monthly meetings or as need arises with the University Formation Management Council.</li>
-                      <li>Prepares and monitors the budget accounts assigned to the Unit Director for Formation.</li>
-                      <li>Performs any other duties as may be required by the position in accordance with the instructions and guidelines of the University President.</li>
+                    <ol className="lh-base mb-4 ps-4">
+                      <li className="mb-2">Oversees the implementation of programs and activities which strengthens the spiritual lives of the higher education faculty members and central services through the Days with God Programs.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Campus Ministry Programs of all units.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Guidance Programs of all units.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Social Awareness and Community Extension Programs of all units.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Athletics Programs through the Athletics Coordinators of the different units.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Inter-Religious Dialogue Programs of all units.</li>
+                      <li className="mb-2">Hold monthly meetings or as need arises with the University Formation Management Council.</li>
+                      <li className="mb-2">Prepares and monitors the budget accounts assigned to the Unit Director for Formation.</li>
+                      <li className="mb-2">Performs any other duties as may be required by the position in accordance with the instructions and guidelines of the University President.</li>
                     </ol>
                     
                     {/* TABLE */}
@@ -625,8 +625,8 @@ export default function MissionAndVision() {
                     </div>
                     
                     {/* JOB OBJECTIVE */}
-                    <p className="lh-base mb-4">
-                      Job Objective: To provide secretarial, clerical, and administrative support to the Unit
+                    <p className="lh-base mb-4 mt-1 border-top pt-2">
+                      <strong>Job Objective</strong>: To provide secretarial, clerical, and administrative support to the Unit
                       Director for Formation for efficient and effective delivery of services.
                     </p>
                     
@@ -636,69 +636,69 @@ export default function MissionAndVision() {
                     </h5>
                     
                     {/* 1. RECORDS AND OFFICE MANAGEMENT */}
-                    <p className="small fw-bold mb-2">1. Records and Office Management</p>
+                    <p className="fw-bold mb-2">1. Records and Office Management</p>
                     
-                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Performs secretarial functions such as answering telephone calls, entertaining guests and clients, calendaring appointments and meetings of the Unit Director for Formation, reminding him of his scheduled appointments</li>
-                      <li>Files all communications, office documents, reports and minutes of meetings</li>
-                      <li>Receives letters, invitations and other communications for the Unit Director for Formation</li>
-                      <li>Drafts and prints letters, invitations, announcements, and memos for the Unit Director for Formation</li>
-                      <li>Checks office email daily and informs or forwards important emails to the Unit Director for Formation</li>
-                      <li>Prepares the general calendar of formation activities</li>
-                      <li>Distributes and/or sends letters, memos, announcements and other communications to the different offices/persons within and outside AdZU</li>
-                      <li>Maintains adequate office supplies and manages their efficient use</li>
-                      <li>Documents all formation and training activities</li>
-                      <li>Maintains and updates formation and training materials</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Performs secretarial functions such as answering telephone calls, entertaining guests and clients, calendaring appointments and meetings of the Unit Director for Formation, reminding him of his scheduled appointments</li>
+                      <li className="mb-2">Files all communications, office documents, reports and minutes of meetings</li>
+                      <li className="mb-2">Receives letters, invitations and other communications for the Unit Director for Formation</li>
+                      <li className="mb-2">Drafts and prints letters, invitations, announcements, and memos for the Unit Director for Formation</li>
+                      <li className="mb-2">Checks office email daily and informs or forwards important emails to the Unit Director for Formation</li>
+                      <li className="mb-2">Prepares the general calendar of formation activities</li>
+                      <li className="mb-2">Distributes and/or sends letters, memos, announcements and other communications to the different offices/persons within and outside AdZU</li>
+                      <li className="mb-2">Maintains adequate office supplies and manages their efficient use</li>
+                      <li className="mb-2">Documents all formation and training activities</li>
+                      <li className="mb-2">Maintains and updates formation and training materials</li>
                     </ol>
 
                     {/* 2. LOGISTICS */}
                     <p className="fw-bold mb-2">2. Logistics</p>
 
-                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Arranges for transportation and accommodation of invited guests, visitors and other activities related to the Formation Office</li>
-                      <li>Prepares travel itinerary and plane reservations of the Unit Director for Formation and office guests</li>
-                      <li>Provides logistical support to programs of formation and training of faculty and staff including but not limited to encoding, printing and photocopying of materials, reservation of venue and transportation, etc.</li>
-                      <li>Coordinates with the sponsoring groups for institutional activities such as but not limited to the St. Ignatius Day Celebration, Faculty and Staff Day, Christmas program and party, and the Year-end activity</li>
-                      <li>Arranges for transportation of the Unit Director for Formation for official business outside the campus</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Arranges for transportation and accommodation of invited guests, visitors and other activities related to the Formation Office</li>
+                      <li className="mb-2">Prepares travel itinerary and plane reservations of the Unit Director for Formation and office guests</li>
+                      <li className="mb-2">Provides logistical support to programs of formation and training of faculty and staff including but not limited to encoding, printing and photocopying of materials, reservation of venue and transportation, etc.</li>
+                      <li className="mb-2">Coordinates with the sponsoring groups for institutional activities such as but not limited to the St. Ignatius Day Celebration, Faculty and Staff Day, Christmas program and party, and the Year-end activity</li>
+                      <li className="mb-2">Arranges for transportation of the Unit Director for Formation for official business outside the campus</li>
                     </ol>
 
                     {/* 3. FINANCIAL MANAGEMENT */}
                     <p className="fw-bold mb-2">3. Financial Management</p>
 
-                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Prepares requests for payment for expenditures such as functions/activities related to faculty and staff formation, training and development</li>
-                      <li>Prepares liquidation reports for expenditures of office activities and submits the same to the Finance office</li>
-                      <li>Makes requests for petty cash and submits liquidation report for the same</li>
-                      <li>Drafts the formation budget in coordination with the Unit Director for Formation</li>
-                      <li>Monitors the use of office budget and informs the APF regarding budget performance</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Prepares requests for payment for expenditures such as functions/activities related to faculty and staff formation, training and development</li>
+                      <li className="mb-2">Prepares liquidation reports for expenditures of office activities and submits the same to the Finance office</li>
+                      <li className="mb-2">Makes requests for petty cash and submits liquidation report for the same</li>
+                      <li className="mb-2">Drafts the formation budget in coordination with the Unit Director for Formation</li>
+                      <li className="mb-2">Monitors the use of office budget and informs the APF regarding budget performance</li>
                     </ol>
 
                     {/* 4. PHYSICAL FACILITIES */}
                     <p className="fw-bold mb-2">4. Physical Facilities and Office Equipment</p>
 
-                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Monitors the cleaning of the office (including aircon, windows, shelves and conference room)</li>
-                      <li>Maintains cleanliness and order in the office and ensures proper waste segregation</li>
-                      <li>Ensures that office equipment (computers and peripherals; projector, telephone, etc.) are in good working condition</li>
-                      <li>Prepares job orders for repair and maintenance</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Monitors the cleaning of the office (including aircon, windows, shelves and conference room)</li>
+                      <li className="mb-2">Maintains cleanliness and order in the office and ensures proper waste segregation</li>
+                      <li className="mb-2">Ensures that office equipment (computers and peripherals; projector, telephone, etc.) are in good working condition</li>
+                      <li className="mb-2">Prepares job orders for repair and maintenance</li>
                     </ol>
 
                     {/* 5. SPECIAL DUTIES */}
                     <p className="fw-bold mb-2">5. Special Duties</p>
 
-                    <ol className="lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Assists in recollection and retreats (Days with God) as facilitator or anchor person</li>
-                      <li>Performs other related jobs assigned from time to time by the Unit Director for Formation</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Assists in recollection and retreats (Days with God) as facilitator or anchor person</li>
+                      <li className="mb-2">Performs other related jobs assigned from time to time by the Unit Director for Formation</li>
                     </ol>
 
                     {/* 6. MINIMUM QUALIFICATIONS */}
                     <p className="fw-bold mb-2">6. Minimum Qualifications</p>
 
-                    <ol className="lh-base mb-3 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>College graduate</li>
-                      <li>Good moral character</li>
-                      <li>Proficient in oral and written communication</li>
-                      <li>Computer literate</li>
+                    <ol className="lh-base ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">College graduate</li>
+                      <li className="mb-2">Good moral character</li>
+                      <li className="mb-2">Proficient in oral and written communication</li>
+                      <li className="mb-2">Computer literate</li>
                     </ol>
                   </div>
 
@@ -1206,9 +1206,8 @@ export default function MissionAndVision() {
                 <div className={`collapse ${openSections.M ? "show" : ""}`}>
 
                   <ol className="bold-number list-decimal list-inside mb-2">
-                    <li>
-                      <strong>Evaluation and Assessment Processes</strong>
-                      <p style={{ fontSize: "0.95rem", lineHeight: "1.6", marginTop: "6px" }}>
+                    <li><strong>Evaluation and Assessment Processes</strong>
+                      <p style={{ lineHeight: "1.6", marginTop: "6px" }}>
                         The office evaluates at the end of all its programs and activities. These evaluations 
                         are crucial information for the mid-year and end-year planning.
                       </p>
@@ -1280,10 +1279,10 @@ export default function MissionAndVision() {
                   </em>
                   
                   {/* Contact Information */}
-                  <h4 className="fw-bold mb-2" style={{ color: primaryColor }}>CONTACT INFORMATION</h4>
+                  <h4 className="fw-bold mt-2 mb-2" style={{ color: primaryColor }}>CONTACT INFORMATION</h4>
                   {/* Appendices */}
                   <h4 className="fw-bold mb-2" style={{ color: primaryColor }}>APPENDICES</h4>
-                  <ol className="list-decimal list-inside small mb-0">
+                  <ol className="list-decimal list-inside mb-2">
                     <li>Office Forms and Templates</li>
                     <li>Checklists and Flowcharts</li>
                     <li>Calendar of Activities</li>
