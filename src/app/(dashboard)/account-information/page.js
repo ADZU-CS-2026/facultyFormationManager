@@ -1,40 +1,40 @@
 "use client";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NotifCard from "../../components/NotifCard";
 import fetchAccountData from "@/app/fetch/fetchAccountData";
 import fetchUpdateUserAccount from "@/app/fetch/fetchUpdateUserAccount";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/app/react-query";
 
 export default function AccountInformation() {
   const [eye, setEye] = useState(false);
-  const [message, setMessage] = useState("");
-  const [adminData, setAdminData] = useState("");
   const [prevPass, setPrevPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [reNewPass, setReNewPass] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [notif, setNotif] = useState([]);
-
-  const now = new Date(Date.now());
-  const formattedDate = `${now.getFullYear()}-${
-    now.getMonth() + 1
-  }-${now.getDate()}`;
-  const timeOnly = now.toLocaleTimeString();
-  const currentDate = `${timeOnly} ${formattedDate}`;
-
-  function deleteNotif(id) {
-    setNotif((prev) => prev.filter((data) => data.id !== id));
-  }
 
   const { data, isLoading } = useQuery({
     queryKey: ["account"],
     queryFn: fetchAccountData,
   });
 
-  // CHANGE PASSWORD LOGIC
-  async function changePassword(e) {
+  const mutationChangePassword = useMutation({
+    mutationFn: fetchUpdateUserAccount,
+    onSuccess: () => {
+      setErrorMessage("Password Updated!");
+      setPrevPass("");
+      setNewPass("");
+      setReNewPass("");
+      queryClient.invalidateQueries({ queryKey: ["account"] });
+      queryClient.invalidateQueries({ queryKey: ["staff"] });
+      queryClient.invalidateQueries({ queryKey: ["staffid"] });
+    },
+    onError: (err) => {
+      setErrorMessage("Error");
+    },
+  });
+
+  function changePassword(e) {
     e.preventDefault();
     if (!prevPass || !newPass || !reNewPass) {
       return setErrorMessage("Please fill the blank!");
@@ -42,35 +42,14 @@ export default function AccountInformation() {
       return setErrorMessage("New password same as previous!");
     } else if (newPass.length < 8 || newPass.length > 13) {
       return setErrorMessage("Password length must be 8-13 characters only!");
-    } else if (data[0].password !== prevPass) {
+    } else if (data?.[0]?.password !== prevPass) {
       return setErrorMessage("Invalid previous password!");
     } else if (newPass !== reNewPass) {
       return setErrorMessage("Re-enter password not match!");
     }
-    const id = data[0].id;
+    const id = data?.[0]?.id;
 
-    try {
-      const res = await fetchUpdateUserAccount(id, newPass);
-      setErrorMessage("Password Updated!");
-      if (notif.length >= 4) {
-        setNotif((prev) => prev.filter((data) => data.id !== prev[0].id));
-      }
-      setNotif((prev) => [
-        ...prev,
-        {
-          id: Date.now(),
-          title: "Notification",
-          content: "Password Updated Successfully!",
-          time: currentDate,
-        },
-      ]);
-      setPrevPass("");
-      setNewPass("");
-      setReNewPass("");
-      queryClient.invalidateQueries({ queryKey: ["account"] });
-    } catch (err) {
-      setErrorMessage(err.message);
-    }
+    mutationChangePassword.mutate({ id, newPass });
   }
 
   return (
@@ -81,10 +60,16 @@ export default function AccountInformation() {
             {/* CARD */}
             <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
               {/* CARD HEADER */}
-            <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: "#0c2461" }}> 
-              <i className="bi bi-person-lines-fill me-2" style={{ fontSize: "18px" }}></i>
-              <span style={{ fontSize: "18px" }}>Account Information</span>
-            </div>
+              <div
+                className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25"
+                style={{ color: "#0c2461" }}
+              >
+                <i
+                  className="bi bi-person-lines-fill me-2"
+                  style={{ fontSize: "18px" }}
+                ></i>
+                <span style={{ fontSize: "18px" }}>Account Information</span>
+              </div>
 
               {/* CARD BODY */}
               <div className="p-3">
@@ -259,15 +244,6 @@ export default function AccountInformation() {
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className="position-fixed d-flex flex-column-reverse gap-2"
-        style={{ right: "10px", bottom: "10px" }}
-      >
-        {notif.length > 0 &&
-          notif.map((data, index) => (
-            <NotifCard key={index} notif={data} deleteNotif={deleteNotif} />
-          ))}
       </div>
     </>
   );

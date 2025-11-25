@@ -39,26 +39,30 @@ export default function Home() {
     },
     onError: (err) => {
       NProgress.done();
-      const status = err.response.status;
+      const status = err?.response?.status;
+      console.log(status);
       // IF ERROR
       if (status === 429) {
-        // IF STATUS 429
+        // IF STATUS 429 - TOO MANY ATTEMPTS
         setID("");
         setPassword("");
         setSeconds(60);
         setError(true);
         console.log("run 429");
         setMessage("Too many attempts! Please try again later");
-        return;
       } else if (status === 500) {
-        // STATUS 429
+        // STATUS 500 - SERVER ERROR
         setError(true);
         setMessage("No internet connection!");
-        return;
+      } else if (status === 401) {
+        // STATUS 401 - UNAUTHORIZED
+        setError(true);
+        setMessage("Credentials Incorrect!");
+      } else if (status === 404) {
+        // STATUS 404 - NOT FOUND
+        setError(true);
+        setMessage("Credentials not found!");
       }
-      setError(true); // IF CREDENTIAL INCORRECT
-      setValid(false);
-      setMessage("Credentials Incorrect!");
     },
   });
 
@@ -96,9 +100,8 @@ export default function Home() {
       return setMessage("Empty credentials!");
     }
     NProgress.start();
-    setTimeout(() => {
-      mutationLogin.mutate({ id, password });
-    }, 2000);
+    await new Promise((res) => setTimeout(res, 2000));
+    mutationLogin.mutate({ id, password });
   }
 
   useEffect(() => {

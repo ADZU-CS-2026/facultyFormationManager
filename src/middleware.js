@@ -66,6 +66,8 @@ export const config = {
     "/about",
     "/events",
     "/admin-settings",
-    "/mission&vision",
+    "/operationsmanual",
+    "/admin-settings/:path*",
+    "/archive",
   ],
 };
