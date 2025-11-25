@@ -48,10 +48,10 @@ export default function MissionAndVision() {
               {/* OVERVIEW */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
                 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("A")}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{color:primaryColor}}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     A. OVERVIEW
                   </h3>
                   <i className={`bi ${openSections.A ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
@@ -120,7 +120,7 @@ export default function MissionAndVision() {
                     fire that burned down the 66-year-old Brebeuf Gym.
                   </p>
 
-                  <p className="small lh-base mb-0" style={{ textAlign: "justify" }}>
+                  <p className="lh-base mb-0" style={{ textAlign: "justify" }}>
                     In 2015 the grade school transferred to the Tumaga campus, joining the Junior High School, and in 2016 the Senior High School was established at the La Purisima main campus. The latest building on
                     campus is the five-story Faustino W Saavedra Building (the new Senior High School Building), constructed in 2018.
                   </p>
@@ -467,7 +467,7 @@ export default function MissionAndVision() {
               {/* STRUCTURE, ROLES, AND RESPONSIBILITIES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
                 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("B")}>
                   <h3 className="fw-bold border-start border-3 ps-3 m-0" style={{ color: primaryColor }}>
@@ -498,7 +498,7 @@ export default function MissionAndVision() {
                   </div>
                   
                   {/* ROLES AND RESPONSIBILITIES */}
-                  <div className="border-0 mb-4 p-4 text-wrap text-break">
+                  <div className="border-0 p-4 text-wrap text-break">
                     <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{ color: primaryColor }}>
                       Roles and Responsibilities
                     </h3>
@@ -550,14 +550,14 @@ export default function MissionAndVision() {
                     </div>
                     
                     {/* DESCRIPTION */}
-                    <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                    <p className="lh-base mb-4 ps-2" style={{ textAlign: "justify"}}>
                       The Unit Director for Formation exercises general supervision and promotion of the following
                       through a well-planned and articulated formation program in Advancing Ignatian Spirituality 
                       as a Jesuit university in collaboration with the different units, departments, or offices:
                     </p>
                     
                     {/* RESPONSIBILITY LIST */}
-                    <ol className="small lh-base mb-4 ps-3">
+                    <ol className="bold-number lh-base mb-4 ps-4">
                       <li>Spiritual and Character development of the university’s stakeholders</li>
                       <li>Moral and Psychological Well-being of the university’s stakeholders</li>
                       <li>Social and Community Involvement Programs of the university’s stakeholders</li>
@@ -569,16 +569,16 @@ export default function MissionAndVision() {
                       Duties and Functions
                     </h4>
                     
-                    <ol className="small lh-base mb-3 ps-3">
-                      <li>Oversees the implementation of programs and activities which strengthens the spiritual lives of the higher education faculty members and central services through the Days with God Programs.</li>
-                      <li>Supervises and coordinates the implementation of the Campus Ministry Programs of all units.</li>
-                      <li>Supervises and coordinates the implementation of the Guidance Programs of all units.</li>
-                      <li>Supervises and coordinates the implementation of the Social Awareness and Community Extension Programs of all units.</li>
-                      <li>Supervises and coordinates the implementation of the Athletics Programs through the Athletics Coordinators of the different units.</li>
-                      <li>Supervises and coordinates the implementation of the Inter-Religious Dialogue Programs of all units.</li>
-                      <li>Hold monthly meetings or as need arises with the University Formation Management Council.</li>
-                      <li>Prepares and monitors the budget accounts assigned to the Unit Director for Formation.</li>
-                      <li>Performs any other duties as may be required by the position in accordance with the instructions and guidelines of the University President.</li>
+                    <ol className="lh-base mb-4 ps-4">
+                      <li className="mb-2">Oversees the implementation of programs and activities which strengthens the spiritual lives of the higher education faculty members and central services through the Days with God Programs.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Campus Ministry Programs of all units.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Guidance Programs of all units.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Social Awareness and Community Extension Programs of all units.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Athletics Programs through the Athletics Coordinators of the different units.</li>
+                      <li className="mb-2">Supervises and coordinates the implementation of the Inter-Religious Dialogue Programs of all units.</li>
+                      <li className="mb-2">Hold monthly meetings or as need arises with the University Formation Management Council.</li>
+                      <li className="mb-2">Prepares and monitors the budget accounts assigned to the Unit Director for Formation.</li>
+                      <li className="mb-2">Performs any other duties as may be required by the position in accordance with the instructions and guidelines of the University President.</li>
                     </ol>
                     
                     {/* TABLE */}
@@ -625,8 +625,8 @@ export default function MissionAndVision() {
                     </div>
                     
                     {/* JOB OBJECTIVE */}
-                    <p className="small lh-base mb-4">
-                      Job Objective: To provide secretarial, clerical, and administrative support to the Unit
+                    <p className="lh-base mb-4 mt-1 border-top pt-2">
+                      <strong>Job Objective</strong>: To provide secretarial, clerical, and administrative support to the Unit
                       Director for Formation for efficient and effective delivery of services.
                     </p>
                     
@@ -636,69 +636,69 @@ export default function MissionAndVision() {
                     </h5>
                     
                     {/* 1. RECORDS AND OFFICE MANAGEMENT */}
-                    <p className="small fw-bold mb-2">1. Records and Office Management</p>
+                    <p className="fw-bold mb-2">1. Records and Office Management</p>
                     
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Performs secretarial functions such as answering telephone calls, entertaining guests and clients, calendaring appointments and meetings of the Unit Director for Formation, reminding him of his scheduled appointments</li>
-                      <li>Files all communications, office documents, reports and minutes of meetings</li>
-                      <li>Receives letters, invitations and other communications for the Unit Director for Formation</li>
-                      <li>Drafts and prints letters, invitations, announcements, and memos for the Unit Director for Formation</li>
-                      <li>Checks office email daily and informs or forwards important emails to the Unit Director for Formation</li>
-                      <li>Prepares the general calendar of formation activities</li>
-                      <li>Distributes and/or sends letters, memos, announcements and other communications to the different offices/persons within and outside AdZU</li>
-                      <li>Maintains adequate office supplies and manages their efficient use</li>
-                      <li>Documents all formation and training activities</li>
-                      <li>Maintains and updates formation and training materials</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Performs secretarial functions such as answering telephone calls, entertaining guests and clients, calendaring appointments and meetings of the Unit Director for Formation, reminding him of his scheduled appointments</li>
+                      <li className="mb-2">Files all communications, office documents, reports and minutes of meetings</li>
+                      <li className="mb-2">Receives letters, invitations and other communications for the Unit Director for Formation</li>
+                      <li className="mb-2">Drafts and prints letters, invitations, announcements, and memos for the Unit Director for Formation</li>
+                      <li className="mb-2">Checks office email daily and informs or forwards important emails to the Unit Director for Formation</li>
+                      <li className="mb-2">Prepares the general calendar of formation activities</li>
+                      <li className="mb-2">Distributes and/or sends letters, memos, announcements and other communications to the different offices/persons within and outside AdZU</li>
+                      <li className="mb-2">Maintains adequate office supplies and manages their efficient use</li>
+                      <li className="mb-2">Documents all formation and training activities</li>
+                      <li className="mb-2">Maintains and updates formation and training materials</li>
                     </ol>
 
                     {/* 2. LOGISTICS */}
-                    <p className="small fw-bold mb-2">2. Logistics</p>
+                    <p className="fw-bold mb-2">2. Logistics</p>
 
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Arranges for transportation and accommodation of invited guests, visitors and other activities related to the Formation Office</li>
-                      <li>Prepares travel itinerary and plane reservations of the Unit Director for Formation and office guests</li>
-                      <li>Provides logistical support to programs of formation and training of faculty and staff including but not limited to encoding, printing and photocopying of materials, reservation of venue and transportation, etc.</li>
-                      <li>Coordinates with the sponsoring groups for institutional activities such as but not limited to the St. Ignatius Day Celebration, Faculty and Staff Day, Christmas program and party, and the Year-end activity</li>
-                      <li>Arranges for transportation of the Unit Director for Formation for official business outside the campus</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Arranges for transportation and accommodation of invited guests, visitors and other activities related to the Formation Office</li>
+                      <li className="mb-2">Prepares travel itinerary and plane reservations of the Unit Director for Formation and office guests</li>
+                      <li className="mb-2">Provides logistical support to programs of formation and training of faculty and staff including but not limited to encoding, printing and photocopying of materials, reservation of venue and transportation, etc.</li>
+                      <li className="mb-2">Coordinates with the sponsoring groups for institutional activities such as but not limited to the St. Ignatius Day Celebration, Faculty and Staff Day, Christmas program and party, and the Year-end activity</li>
+                      <li className="mb-2">Arranges for transportation of the Unit Director for Formation for official business outside the campus</li>
                     </ol>
 
                     {/* 3. FINANCIAL MANAGEMENT */}
-                    <p className="small fw-bold mb-2">3. Financial Management</p>
+                    <p className="fw-bold mb-2">3. Financial Management</p>
 
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Prepares requests for payment for expenditures such as functions/activities related to faculty and staff formation, training and development</li>
-                      <li>Prepares liquidation reports for expenditures of office activities and submits the same to the Finance office</li>
-                      <li>Makes requests for petty cash and submits liquidation report for the same</li>
-                      <li>Drafts the formation budget in coordination with the Unit Director for Formation</li>
-                      <li>Monitors the use of office budget and informs the APF regarding budget performance</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Prepares requests for payment for expenditures such as functions/activities related to faculty and staff formation, training and development</li>
+                      <li className="mb-2">Prepares liquidation reports for expenditures of office activities and submits the same to the Finance office</li>
+                      <li className="mb-2">Makes requests for petty cash and submits liquidation report for the same</li>
+                      <li className="mb-2">Drafts the formation budget in coordination with the Unit Director for Formation</li>
+                      <li className="mb-2">Monitors the use of office budget and informs the APF regarding budget performance</li>
                     </ol>
 
                     {/* 4. PHYSICAL FACILITIES */}
-                    <p className="small fw-bold mb-2">4. Physical Facilities and Office Equipment</p>
+                    <p className="fw-bold mb-2">4. Physical Facilities and Office Equipment</p>
 
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Monitors the cleaning of the office (including aircon, windows, shelves and conference room)</li>
-                      <li>Maintains cleanliness and order in the office and ensures proper waste segregation</li>
-                      <li>Ensures that office equipment (computers and peripherals; projector, telephone, etc.) are in good working condition</li>
-                      <li>Prepares job orders for repair and maintenance</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Monitors the cleaning of the office (including aircon, windows, shelves and conference room)</li>
+                      <li className="mb-2">Maintains cleanliness and order in the office and ensures proper waste segregation</li>
+                      <li className="mb-2">Ensures that office equipment (computers and peripherals; projector, telephone, etc.) are in good working condition</li>
+                      <li className="mb-2">Prepares job orders for repair and maintenance</li>
                     </ol>
 
                     {/* 5. SPECIAL DUTIES */}
-                    <p className="small fw-bold mb-2">5. Special Duties</p>
+                    <p className="fw-bold mb-2">5. Special Duties</p>
 
-                    <ol className="small lh-base mb-4 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>Assists in recollection and retreats (Days with God) as facilitator or anchor person</li>
-                      <li>Performs other related jobs assigned from time to time by the Unit Director for Formation</li>
+                    <ol className="lh-base mb-4 ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">Assists in recollection and retreats (Days with God) as facilitator or anchor person</li>
+                      <li className="mb-2">Performs other related jobs assigned from time to time by the Unit Director for Formation</li>
                     </ol>
 
                     {/* 6. MINIMUM QUALIFICATIONS */}
-                    <p className="small fw-bold mb-2">6. Minimum Qualifications</p>
+                    <p className="fw-bold mb-2">6. Minimum Qualifications</p>
 
-                    <ol className="small lh-base mb-3 ps-3" type="a" style={{ textAlign: "justify"}}>
-                      <li>College graduate</li>
-                      <li>Good moral character</li>
-                      <li>Proficient in oral and written communication</li>
-                      <li>Computer literate</li>
+                    <ol className="lh-base ps-4" type="a" style={{ textAlign: "justify"}}>
+                      <li className="mb-2">College graduate</li>
+                      <li className="mb-2">Good moral character</li>
+                      <li className="mb-2">Proficient in oral and written communication</li>
+                      <li className="mb-2">Computer literate</li>
                     </ol>
                   </div>
 
@@ -709,7 +709,7 @@ export default function MissionAndVision() {
               {/* PROGRAMS AND SERVICES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
                 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("C")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -720,25 +720,25 @@ export default function MissionAndVision() {
 
                 <div className={`collapse ${openSections.C ? "show" : ""}`}>
                   
-                  <p className="small fw-bold mb-2">1. Orientation of Spiritual Formation Programs</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">1. Orientation of Spiritual Formation Programs</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     Orientation of the different spiritual formation programs is given to all the newly hired faculty and staff 
                     in the university. The orientation includes the rationale, objectives, and schedules of the different formation 
                     programs and activities. The orientation of the spiritual formation programs is usually done during the in-service 
                     training in coordination with the office of the vice president for higher education and human resource administration and development office.
                   </p>
 
-                  <p className="small fw-bold mb-2">2. Spiritual Formation Program</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">2. Spiritual Formation Program</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     Spiritual programs and activities should serve as genuine opportunities for individuals to encounter God. 
                     These various spiritual formation initiatives must enable community members to experience God&apos;s boundless love and mercy. 
                     The Unit Director for Formation, in collaboration with the Chaplaincy Office and various Campus Ministry offices, will 
                     oversee the implementation and administration of these spiritual formation programs and activities.
                   </p>
 
-                  <p className="small fw-bold mb-1">a. Institutional Eucharistic Celebrations</p>
-                  <p className="small mb-1" style={{ textAlign: "justify"}}>As a Catholic and Jesuit university and in the advancement of Ignatian Spirituality, the university observes and celebrates different solemnities, feasts, and votive Masses. These are the following:</p>
-                  <ul className="small mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">a. Institutional Eucharistic Celebrations</p>
+                  <p className="mb-1" style={{ textAlign: "justify"}}>As a Catholic and Jesuit university and in the advancement of Ignatian Spirituality, the university observes and celebrates different solemnities, feasts, and votive Masses. These are the following:</p>
+                  <ul className="mb-3" style={{ textAlign: "justify"}}>
                     <li>Mass of the Holy Spirit. This is celebrated at the beginning of every school year as calendared by the different units.</li>
                     <li>Feast Day Mass of Saint Ignatius. In great honor to the founder of the Society of Jesus, the feast day Mass is celebrated within the novena of grace in honor of Saint Ignatius of Loyola by the respective units.</li>
                     <li>Solemnity of the Immaculate Conception. The Immaculate Conception is the principal patroness of the Ateneo de Zamboanga University.</li>
@@ -746,15 +746,15 @@ export default function MissionAndVision() {
                     <li>First Friday Mass (Devotion to the Most Sacred Heart of Jesus) and Weekday Masses (Devotion to the Eucharist) are likewise part of the identity in a Jesuit institution and a way of proceeding, especially for the Catholics. Other votive Masses are celebrated according to the needs of the unit.</li>
                   </ul>
 
-                  <p className="small fw-bold mb-1">b. Ignatian Conversation Growth Circle</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">b. Ignatian Conversation Growth Circle</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     Spiritual conversation serves as a fundamental component of Ignatian Spirituality. This practice allows community members to discern 
                     individually or collectively the movements and invitations of the Spirit. Through such dialogues, the community can enhance their 
                     professional development, strengthen teamwork, and deepen their spiritual lives.
                   </p>
 
-                  <p className="small fw-bold mb-1">c. Recollections and Retreats</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">c. Recollections and Retreats</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     The Unit Director for Formation, in collaboration with the deans of various schools and colleges, is responsible for scheduling the 
                     recollection and retreat programs for faculty members. The deans will submit their preferred schedules and venues for these events. 
                     The Unit Director will liaise with the retreat house to confirm availability and arrange for retreat guides. The Office of the Vice 
@@ -762,71 +762,71 @@ export default function MissionAndVision() {
                     Director for Formation will prepare the budget for administrators and central services personnel.
                   </p>
 
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     Additionally, offices within the formation unit are required to conduct regular silence, prayer sessions, and faith-sharing activities. 
                     These sessions should not address work-related matters unless the individual’s personal prayer concerns pertain to their responsibilities 
                     as a formator within the institution.
                   </p>
 
-                  <p className="small fw-bold mb-2">3. Psycho-Emotional Formation Program</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">3. Psycho-Emotional Formation Program</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     The Unit Director for Formation, in collaboration with various offices of guidance and counseling at the university, offers psycho-emotional 
                     formation programs and activities for all community members. The primary objective of these initiatives is to promote a healthy balance and 
                     overall well-being in relation to the individual, work, home, and community. Each program and activity are designed to facilitate an experience 
                     of support and accompaniment.
                   </p>
 
-                  <p className="small fw-bold mb-2">4. Social Awareness and Community Service Involvement Formation Program</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">4. Social Awareness and Community Service Involvement Formation Program</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     The unit director for formation collaborates with various offices within social action to organize immersions and outreach programs for university 
                     members. These initiatives are designed to instill Ignatian values, particularly cura personalis and a preferential option for the poor. Programs 
                     focused on social awareness and service involvement should serve as opportunities to encounter the face of Christ in the marginalized and 
                     impoverished, fostering a deeper connection with those who are often excluded from society.
                   </p>
 
-                  <p className="small fw-bold mb-2">5. Coaching Program</p>
-                  <p className="small fw-bold mb-1" >a. Professional Learning Circle (PLC)</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">5. Coaching Program</p>
+                  <p className="fw-bold mb-1" >a. Professional Learning Circle (PLC)</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     The unit director for formation collaborates with the members of the university formation management council to address the needs of both the 
                     formators and the individuals within their respective offices. The professional learning circle serves as a platform for council members and 
                     their colleagues to enhance their professional development as formators through seminars, workshops, and spiritual discussions. This learning 
                     circle embodies a continuous process of learning, unlearning, and relearning, fostering both individual and collective growth within the team.
                   </p>
 
-                  <p className="small fw-bold mb-1">b. Bridging Conference (BC)</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">b. Bridging Conference (BC)</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     Once each semester, the unit director for formation conducts individual consultations with the members of the council. These discussions offer 
                     each member the opportunity to personally share their experiences of consolation and desolation, both in their roles as formators and as individuals.
                   </p>
 
-                  <p className="small fw-bold mb-1">c. Quarter Colloquy (QC)</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">c. Quarter Colloquy (QC)</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     A quarterly meeting will be held with the various offices within the formation unit. This gathering will offer the unit director an opportunity 
                     to gain deeper insights into the personnel involved in the formation process. It will serve as a platform for mutual understanding and may 
                     facilitate support for any professional needs or guidance that the formators may require.
                   </p>
 
-                  <p className="small fw-bold mb-1">d. Start of the School Year Conference (SSYC)</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">d. Start of the School Year Conference (SSYC)</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     The start-of-year conference marks a gathering of all members of the university&apos;s formation management council. During this event, the unit 
                     director will outline directives for the upcoming academic year.
                   </p>
 
-                  <p className="small fw-bold mb-1">e. Year-End Conference (YEC)</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">e. Year-End Conference (YEC)</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     The year-end conference serves as a platform for appreciation, gratitude, and the exchange of feedback. Each council member will present an 
                     evaluation report highlighting both the successes and challenges of the academic year. Accompanying these reports will be proposed actions 
                     for the upcoming school year, aligned with the recommendations derived from the evaluations and the office&apos;s developmental plan.
                   </p>
 
-                  <p className="small fw-bold mb-2">7. Collaboration Program</p>
+                  <p className="fw-bold mb-2">7. Collaboration Program</p>
                 </div>
               </div>
               
               {/* OFFICE POLICIES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("D")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -838,10 +838,10 @@ export default function MissionAndVision() {
                 <div className={`collapse ${openSections.D ? "show" : ""}`}>
 
                   <h5 className="fw-bold mb-2">1. Office Hours and Staff Schedules</h5>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     <strong>Objective:</strong> To establish a clear guideline on office hours, dress code, schedules, and activities to promote professionalism.
                   </p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     <strong>Reporting Time:</strong> The Unit Director for Formation and the office support staff are required to be present during the scheduled hours to oversee the operations of the formation programs and related activities.
                   </p>
                   
@@ -874,7 +874,7 @@ export default function MissionAndVision() {
                   </div>
                   
                   <h5 className="fw-bold mb-2">2. Dress Code and Attire</h5>
-                  <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-0" style={{ textAlign: "justify"}}>
                     The Unit Director for Formation and Support Staff are required to wear the uniform prescribed by the Human Resource Administration and 
                     Development Office from Monday to Saturday as stated in the Administrative Manual.
                   </p>
@@ -884,7 +884,7 @@ export default function MissionAndVision() {
               {/* RECORDS AND DOCUMENT MANAGEMENT CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("E")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -895,11 +895,11 @@ export default function MissionAndVision() {
                 
                 <div className={`collapse ${openSections.E ? "show" : ""}`}>
                   
-                  <p className="small lh-base mb-3">
+                  <p className="lh-base mb-3">
                     At the end of the school year, the office staff will organize and file the different documents into their respective folders.
                   </p>
                   
-                  <ol className="list-decimal list-inside mb-3 small">
+                  <ol className="bold-number list-decimal list-inside mb-3">
                     <li><strong>Files</strong>: General administrative documents related to the daily operations of the office.</li>
                     <li><strong>Budget</strong>: Financial records detailing the budget allocations and expenditures.</li>
                     <li><strong>Calendar of Activities</strong>: A comprehensive schedule of all programs and activities.</li>
@@ -917,7 +917,7 @@ export default function MissionAndVision() {
               {/* SUPPLIES AND EQUIPMENT MANAGEMENT CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("F")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1022,7 +1022,7 @@ export default function MissionAndVision() {
               {/* BUDGET MANAGEMENT CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("G")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1047,7 +1047,7 @@ export default function MissionAndVision() {
               {/* COMMUNICATIONS PROTOCOLS CARD*/}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("H")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1058,12 +1058,12 @@ export default function MissionAndVision() {
                 
                 <div className={`collapse ${openSections.H ? "show" : ""}`}>
                   
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     Implementing these protocols can enhance communication, foster collaboration, and create a more efficient office environment. In the Unit 
                     Director for Formation office, we practice several communication protocols:
                   </p>
                   
-                  <ol className="list-decimal list-inside mb-3 small" style={{ textAlign: "justify"}}>
+                  <ol className="bold-number list-decimal list-inside mb-3" style={{ textAlign: "justify"}}>
                     <li><strong>Email Communication Protocols</strong>: Staff must check their emails every morning and update the director about any important 
                     messages. Any official concerns must be directed via email.</li>
                     <li><strong>Social Media Protocols</strong>: All content shared on social media via the official Facebook page must be approved by the 
@@ -1095,7 +1095,7 @@ export default function MissionAndVision() {
               {/* CONFIDENTIALITY AND DATA PROTECTION POLICIES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("I")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1106,7 +1106,7 @@ export default function MissionAndVision() {
                 
                 <div className={`collapse ${openSections.I ? "show" : ""}`}>
                   
-                  <ol className="list-decimal list-inside small mb-0" style={{ textAlign: "justify"}}>
+                  <ol className="bold-number list-decimal list-inside mb-0" style={{ textAlign: "justify"}}>
                     <li><strong>
                       Computer and Network Usage Policies</strong>: Formation staff members are permitted to use the office computers and network resources 
                       available in the office. Computer and network usage is strictly for work-related purposes only. Accessing inappropriate websites, 
@@ -1121,7 +1121,7 @@ export default function MissionAndVision() {
               {/* DATA PROTECTION AND PRIVACY POLICIES CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("J")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1144,7 +1144,7 @@ export default function MissionAndVision() {
               {/* OFFICE RISK MANAGEMENT AND CONTROL CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("K")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1169,7 +1169,7 @@ export default function MissionAndVision() {
               {/* INCIDENT REPORT CARD */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("L")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1180,7 +1180,7 @@ export default function MissionAndVision() {
                 
                 <div className={`collapse ${openSections.L ? "show" : ""}`}>
                   
-                  <p className="small mb-0">
+                  <p className="mb-0">
                     All incident is immediately reported to the Unit Director for Formation. Complete an incident report form within 24 hours of the incident. 
                     Include detailed information such as the name, date, time, location, and a description of what occurred. The office Staff, along with the 
                     relevant offices, will investigate all reported incidents to determine the cause. If medical treatment is needed, adhere to all prescribed 
@@ -1194,7 +1194,7 @@ export default function MissionAndVision() {
               {/* QUALITY ASSURANCE AND CONTINUOUS IMPROVEMENT CARD*/}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("M")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1204,14 +1204,15 @@ export default function MissionAndVision() {
                 </div>
                 
                 <div className={`collapse ${openSections.M ? "show" : ""}`}>
-                  
-                  <ol className="list-decimal list-inside small mb-0">
-                    <li><strong>Evaluation and Assessment Processes</strong></li>
+
+                  <ol className="bold-number list-decimal list-inside mb-2">
+                    <li><strong>Evaluation and Assessment Processes</strong>
+                      <p style={{ lineHeight: "1.6", marginTop: "6px" }}>
+                        The office evaluates at the end of all its programs and activities. These evaluations 
+                        are crucial information for the mid-year and end-year planning.
+                      </p>
+                    </li>
                   </ol>
-                  <p className="small mb-0">
-                    The office evaluates at the end of all its programs and activities. These evaluations are crucial information for the mid-year and 
-                    end-year planning.
-                  </p>
 
               </div>
 
@@ -1220,7 +1221,7 @@ export default function MissionAndVision() {
               {/* APPROVALS AND EFFECTIVITY */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
 
-                <div className="d-flex justify-content-between align-items-center mb-3"
+                <div className="d-flex justify-content-between align-items-center mb-3 section-header p-2 rounded-2"
                   style={{ cursor: "pointer" }}
                   onClick={() => toggleSection("AAE")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
@@ -1278,10 +1279,10 @@ export default function MissionAndVision() {
                   </em>
                   
                   {/* Contact Information */}
-                  <h4 className="fw-bold mb-2" style={{ color: primaryColor }}>CONTACT INFORMATION</h4>
+                  <h4 className="fw-bold mt-2 mb-2" style={{ color: primaryColor }}>CONTACT INFORMATION</h4>
                   {/* Appendices */}
                   <h4 className="fw-bold mb-2" style={{ color: primaryColor }}>APPENDICES</h4>
-                  <ol className="list-decimal list-inside small mb-0">
+                  <ol className="list-decimal list-inside mb-2">
                     <li>Office Forms and Templates</li>
                     <li>Checklists and Flowcharts</li>
                     <li>Calendar of Activities</li>
@@ -1567,6 +1568,28 @@ export default function MissionAndVision() {
           </div>
         </div>
       </div>
+      
+      <style jsx global>{`
+        .section-header:hover {
+          background-color: rgba(12,36,97,0.05);
+          transition: background-color 0.3s;
+        }
+        .collapse {
+          transition:
+            height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1),
+            opacity 0.4s ease,
+            padding 0.4s ease !important;
+          opacity: 1;
+        }
+        .collapse:not(.show) {
+          opacity: 0;
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
+        .bold-number li::marker {
+          font-weight: 700;
+        }
+      `}</style>
     </div>
   );
 }
