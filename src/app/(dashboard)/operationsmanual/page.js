@@ -1,14 +1,19 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 
 export default function MissionAndVision() {
+  const [openSectionA, setOpenSectionA] = useState(true);
+
   return (
     <div className="w-100">
       <div className="row g-0">
         <div className="col-12 py-4 px-3">
+
           {/* MAIN CARD */}
           <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
+            
             {/* HEADER */}
             <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: "#0c2461" }}>
               <i className="bi bi-file-earmark-text me-2" style={{ fontSize: "18px" }}></i>
@@ -17,509 +22,434 @@ export default function MissionAndVision() {
 
             {/* BODY */}
             <div className="p-4">
+              
               {/* OVERVIEW */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
-                <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{color:"#0c2461"}}>
-                  A. OVERVIEW
-                </h3>
-                <h4 className="fw-bold mb-3" style={{color:"#0c2461"}}>
-                  About AdZU
-                </h4>
-                <h5 className="fw-bold mb-3" style={{color:"#0c2461"}}>
-                  History of the Ateneo de Zamboanga University
-                </h5>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  The <strong>Ateneo de Zamboanga University</strong>, also referred to by its acronym, <strong>AdZU</strong>, is a private, Catholic, 
-                  co-educational, basic and higher education institution in Zamboanga City, Philippines.
-                </p>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  The Ateneo de Zamboanga University began in 1912 as the Escuela Catolica, a parochial school of the 
-                  Immaculate Conception Parish along Zaragoza Street downtown. The pre-World War II cathedral and the Escuela 
-                  Catolica occupied an entire block of what is today the Universidad de Zamboanga. Its founder was Fr. Manuel M. 
-                  Sauras SJ, who was director until 1926. There was no campus except for the church courtyard. The Plaza de Don Juan Salcedo 
-                  (later renamed Plaza Pershing) across the street was convenient for school activities, practices, and drills.
-                </p>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  In 1916 the Escuela Catolica became the Ateneo de Zamboanga (ADZ). The name of the Ateneo comes from the Greek athenaion 
-                  or the Latin athenaeum, meaning a literary club, academy, or institution for learning. Athena is the Greek Goddess of Wisdom. 
-                  The school may have originally been the Atheneo, which was hispanized into the Ateneo.
-                </p>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  By 1928 the school had moved to the nearby Mindanao Theater building at I. Magno corner P. Reyes Streets. In 1932 the government 
-                  officially recognized the Ateneo high school. War broke out in 1941 and Ateneo was used as a public school during the Japanese occupation. 
-                  In 1945 Zamboanga was bombed to drive away the Japanese troops and two-thirds of the city was leveled to the ground, including the cathedral and the Ateneo.
-                </p>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  After the war, Fr. Eusebio G Salvador SJ, the first Zamboangueño Jesuit priest and a product of the Escuela Catolica, transferred the cathedral and the school 
-                  to its present location along La Purisima Street. He was director of ADZ 1938-41 and 1946-47. He is considered the second founder of ADZ and the main campus is named after him.
-                </p>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  Before and after the war, ADZ was always known as the School for Boys. In 1984 girls were accepted for the first time in the grade school, and in 1992 the high school also began accepting girls.
-                </p>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  In 1952 two-year Pre-Law and Associate in Arts programs were offered. Today there are numerous courses offered in the School of Liberal Arts, the School of Management and Accountancy, the School 
-                  of Education, the College of Nursing, and the College of Science and Information Technology. 
-                </p>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  The graduate school with its various master’s and doctoral programs was established in 1976. The Zamboanga Medical School Foundation, Inc., established in 1994, produced its first doctors in 1999
-                   and became the ADZU School of Medicine in 2004.
-                </p>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  In 2001 the Ateneo de Zamboanga became a university. In 2006 the High School transferred to the eight-hectare campus at the Fr William H Kreutz, SJ campus in Tumaga. In 2011 ADZU opened the College
-                   of Law in consortium with Xavier University, and the following year the university celebrated its centennial year.
-                </p>
-                <p className="small lh-base mb-3" style={{ textAlign: "justify" }}>
-                  The College of Law was originally located at Sauras Hall, completed in 2011. It has moved to the Fr. Jose Ma. Rosauro Hall, completed in 2013. Sauras Hall was extensively damaged by the July 2016 
-                  fire that burned down the 66-year-old Brebeuf Gym.
-                </p>
-                <p className="small lh-base mb-0" style={{ textAlign: "justify" }}>
-                  In 2015 the grade school transferred to the Tumaga campus, joining the Junior High School, and in 2016 the Senior High School was established at the La Purisima main campus. The latest building on
-                   campus is the five-story Faustino W Saavedra Building (the new Senior High School Building), constructed in 2018.
-                </p>
-              </div>
-
-              {/* VISION CARD */}
-              <div className="card shadow-sm rounded-2 border-0 mb-4 text-wrap text-break">
-                <div className="card-body">
-                  <h3
-                    className="fw-bold text-primary border-start border-3 ps-3 mb-4"
-                    style={{ color: "#0c2461" }}
-                  >
-                    Vision
+                
+                <div className="d-flex justify-content-between align-items-center mb-3"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => setOpenSectionA(!openSectionA)}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{color:"#0c2461"}}>
+                    A. OVERVIEW
                   </h3>
-                  <p className="small lh-base m-0" style={{ textAlign: "justify" }}>
-                    The Ateneo de Zamboanga University, steering forward like Mindanao’s agile vinta, is determined to chart courses 
-                    of transformative education, hope, and peace. Finding God in every wave and wind, we navigate with discerning leadership 
-                    as a learning community. In our journey, the Spirit of Magis inspires us to sail with Christ toward a reconciled world.
-                  </p>
+                  <i className={`bi ${openSectionA ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
-              </div>
+                
+                <div className={`collapse ${openSectionA ? "show" : ""}`}>
+                  <h4 className="fw-bold mb-3" style={{color:"#0c2461"}}>
+                    About AdZU
+                  </h4>
 
-              {/* MISSION CARD */}
-              <div className="card shadow-sm rounded-2 border-0 mb-4 text-wrap text-break">
-                <div className="card-body">
-                  <h3
-                    className="fw-bold text-primary border-start border-3 ps-3 mb-4"
-                    style={{ color: "#0c2461" }}
-                  >
-                    Mission
-                  </h3>
-                  <p className="small lh-base mb-4" style={{ textAlign: "justify" }}>
-                    Guided by the compass of our Filipino, Catholic, and Jesuit values and heritage, Ateneo de Zamboanga University commits 
-                    to seeking and upholding truth through a deeper engagement with God, one another, and creation:
+                  <h5 className="fw-bold mb-3" style={{color:"#0c2461"}}>
+                    History of the Ateneo de Zamboanga University
+                  </h5>
+
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    The <strong>Ateneo de Zamboanga University</strong>, also referred to by its acronym, <strong>AdZU</strong>, is a private, Catholic, 
+                    co-educational, basic and higher education institution in Zamboanga City, Philippines.
                   </p>
 
-                  {/* MISSION CARDS */}
-                  <div className="row g-3">
-                    {/* FIRST */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h6
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          Advancing Ignatian Spirituality
-                        </h6>
-                        <p 
-                          className="small lh-base mb-0"
-                          style={{ textAlign: "justify" }}>
-                          In faith, we are <strong>Advancing Ignatian Spirituality</strong>. We infuse Western Mindanaos education with transformative 
-                          values that form persons and communities for and with others.
-                        </p>
-                      </div>
-                    </div>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    The Ateneo de Zamboanga University began in 1912 as the Escuela Catolica, a parochial school of the 
+                    Immaculate Conception Parish along Zaragoza Street downtown. The pre-World War II cathedral and the Escuela 
+                    Catolica occupied an entire block of what is today the Universidad de Zamboanga. Its founder was Fr. Manuel M. 
+                    Sauras SJ, who was director until 1926. There was no campus except for the church courtyard. The Plaza de Don Juan Salcedo 
+                    (later renamed Plaza Pershing) across the street was convenient for school activities, practices, and drills.
+                  </p>
 
-                    {/* SECOND */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h6
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          Dedicated to Holistic Growth and Human Flourishing
-                        </h6>
-                        <p
-                          className="small lh-base mb-0"
-                          style={{ textAlign: "justify" }}>
-                          In service, we are <strong>Dedicated to Holistic Growth and Human Flourishing</strong>. We form compassionate and discerning
-                           leaders who care for our environment, and walk with, serve, and uplift others, especially the excluded, in a 
-                           mission of reconciliation and justice.
-                        </p>
-                      </div>
-                    </div>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    In 1916 the Escuela Catolica became the Ateneo de Zamboanga (ADZ). The name of the Ateneo comes from the Greek athenaion 
+                    or the Latin athenaeum, meaning a literary club, academy, or institution for learning. Athena is the Greek Goddess of Wisdom. 
+                    The school may have originally been the Atheneo, which was hispanized into the Ateneo.
+                  </p>
 
-                    {/* THIRD */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h6
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          Zealous in Charting Global Paths
-                        </h6>
-                        <p
-                          className="small lh-base mb-0"
-                          style={{ textAlign: "justify" }}>
-                          In excellence, we are <strong>Zealous in Charting Global Paths</strong>. We ensure our instruction, research, and innovations 
-                          resonate beyond our shores, responding to the evolving realities of society and building a sustainable future for all.
-                        </p>
-                      </div>
-                    </div>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    By 1928 the school had moved to the nearby Mindanao Theater building at I. Magno corner P. Reyes Streets. In 1932 the government 
+                    officially recognized the Ateneo high school. War broke out in 1941 and Ateneo was used as a public school during the Japanese occupation. 
+                    In 1945 Zamboanga was bombed to drive away the Japanese troops and two-thirds of the city was leveled to the ground, including the cathedral and the Ateneo.
+                  </p>
 
-                    {/* FOURTH */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h6
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          United in Purpose and Action
-                        </h6>
-                        <p
-                          className="small lh-base mb-0"
-                          style={{ textAlign: "justify" }}>
-                          In companionship, we are <strong>United in Purpose and Action</strong>. We collaborate, adapt, and strive for institutional excellence 
-                          and meaningful community engagements, always laboring for the greater glory of God.
-                        </p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    After the war, Fr. Eusebio G Salvador SJ, the first Zamboangueño Jesuit priest and a product of the Escuela Catolica, transferred the cathedral and the school 
+                    to its present location along La Purisima Street. He was director of ADZ 1938-41 and 1946-47. He is considered the second founder of ADZ and the main campus is named after him.
+                  </p>
+
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    Before and after the war, ADZ was always known as the School for Boys. In 1984 girls were accepted for the first time in the grade school, and in 1992 the high school also began accepting girls.
+                  </p>
+
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    In 1952 two-year Pre-Law and Associate in Arts programs were offered. Today there are numerous courses offered in the School of Liberal Arts, the School of Management and Accountancy, the School 
+                    of Education, the College of Nursing, and the College of Science and Information Technology. 
+                  </p>
+
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    The graduate school with its various master’s and doctoral programs was established in 1976. The Zamboanga Medical School Foundation, Inc., established in 1994, produced its first doctors in 1999
+                    and became the ADZU School of Medicine in 2004.
+                  </p>
+
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    In 2001 the Ateneo de Zamboanga became a university. In 2006 the High School transferred to the eight-hectare campus at the Fr William H Kreutz, SJ campus in Tumaga. In 2011 ADZU opened the College
+                    of Law in consortium with Xavier University, and the following year the university celebrated its centennial year.
+                  </p>
+
+                  <p className="lh-base mb-3" style={{ textAlign: "justify" }}>
+                    The College of Law was originally located at Sauras Hall, completed in 2011. It has moved to the Fr. Jose Ma. Rosauro Hall, completed in 2013. Sauras Hall was extensively damaged by the July 2016 
+                    fire that burned down the 66-year-old Brebeuf Gym.
+                  </p>
+
+                  <p className="small lh-base mb-0" style={{ textAlign: "justify" }}>
+                    In 2015 the grade school transferred to the Tumaga campus, joining the Junior High School, and in 2016 the Senior High School was established at the La Purisima main campus. The latest building on
+                    campus is the five-story Faustino W Saavedra Building (the new Senior High School Building), constructed in 2018.
+                  </p>
+                  
+                  {/* ADZU VISION CARD */}
+                  <div className="card shadow-sm rounded-2 border-0 mb-4 text-wrap text-break">
+                    <div className="card-body">
+                      <h3 className="fw-bold text-primary border-start border-3 ps-3 mb-4" style={{ color: "#0c2461" }}>
+                        Vision
+                      </h3>
+                      <p className="lh-base m-0" style={{ textAlign: "justify" }}>
+                        The Ateneo de Zamboanga University, steering forward like Mindanao’s agile vinta, is determined to chart courses 
+                        of transformative education, hope, and peace. Finding God in every wave and wind, we navigate with discerning leadership 
+                        as a learning community. In our journey, the Spirit of Magis inspires us to sail with Christ toward a reconciled world.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* ADZU MISSION MAIN CARD */}
+                  <div className="card shadow-sm rounded-2 border-0 mb-4 text-wrap text-break">
+                    <div className="card-body">
+                      <h3 className="fw-bold text-primary border-start border-3 ps-3 mb-4" style={{ color: "#0c2461" }}>
+                        Mission
+                      </h3>
+                      <p className="lh-base mb-4" style={{ textAlign: "justify" }}>
+                        Guided by the compass of our Filipino, Catholic, and Jesuit values and heritage, Ateneo de Zamboanga University commits 
+                        to seeking and upholding truth through a deeper engagement with God, one another, and creation:
+                      </p>
+                      
+                      {/* MISSION CARDS */}
+                      <div className="row g-3">
+                        
+                        {/* FIRST */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              Advancing Ignatian Spirituality
+                            </h6>
+                            <p className="small lh-base mb-0" style={{ textAlign: "justify" }}>
+                              In faith, we are <strong>Advancing Ignatian Spirituality</strong>. We infuse Western Mindanaos education with transformative 
+                              values that form persons and communities for and with others.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* SECOND */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              Dedicated to Holistic Growth and Human Flourishing
+                            </h6>
+                            <p className="small lh-base mb-0" style={{ textAlign: "justify" }}>
+                              In service, we are <strong>Dedicated to Holistic Growth and Human Flourishing</strong>. We form compassionate and discerning
+                              leaders who care for our environment, and walk with, serve, and uplift others, especially the excluded, in a 
+                              mission of reconciliation and justice.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* THIRD */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              Zealous in Charting Global Paths
+                            </h6>
+                            <p className="small lh-base mb-0" style={{ textAlign: "justify" }}>
+                              In excellence, we are <strong>Zealous in Charting Global Paths</strong>. We ensure our instruction, research, and innovations 
+                              resonate beyond our shores, responding to the evolving realities of society and building a sustainable future for all.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* FOURTH */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              United in Purpose and Action
+                            </h6>
+                            <p className="small lh-base mb-0" style={{ textAlign: "justify" }}>
+                              In companionship, we are <strong>United in Purpose and Action</strong>. We collaborate, adapt, and strive for institutional excellence 
+                              and meaningful community engagements, always laboring for the greater glory of God.
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                  
+                  {/* CORE VALUES MAIN CARD */}
+                  <div className="card shadow-sm rounded-2 border-0 mb-4 text-wrap text-break">
+                    <div className="card-body">
+                      <h3 className="fw-bold text-primary border-start border-3 ps-3 mb-4" style={{ color: "#0c2461" }}>
+                        Core Values
+                      </h3>
+                      
+                      {/* CORE VALUES CARDS */}
+                      <div className="row g-3">
+                        {/* MAGIS */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h5 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              Magis
+                            </h5>
+                            <p className="lh-base mb-0">
+                              The spirit of generosity and commitment to excellence
+                            </p>
+                          </div>
+                        </div>
+                        
+                        {/* CURA PERSONALIS */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h5 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              Cura Personalis
+                            </h5>
+                            <p className="lh-base mb-0">
+                              The care and respect for the individual person
+                            </p>
+                          </div>
+                        </div>
 
-              {/* CORE VALUES CARD */}
-              <div className="card shadow-sm rounded-2 border-0 mb-4 text-wrap text-break">
-                <div className="card-body">
-                  <h3
-                    className="fw-bold text-primary border-start border-3 ps-3 mb-4"
-                    style={{ color: "#0c2461" }}
-                  >
-                    Core Values
-                  </h3>
+                        {/* COMPANIONSHIP */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              Companionship
+                            </h6>
+                            <p className="lh-base mb-0">
+                              The desire to be in community
+                            </p>
+                          </div>
+                        </div>
 
-                  {/* CORE VALUES CARDS */}
-                  <div className="row g-3">
-                    {/* MAGIS */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h5
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          Magis
-                        </h5>
-                        <p className="small lh-base mb-0">
-                          The spirit of generosity and commitment to excellence
-                        </p>
+                        {/* DISCERNMENT */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              Discernment
+                            </h6>
+                            <p className="lh-base mb-0">
+                              The sensitivity to God, to spirituality, and to change
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* ANIMO */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              Animo
+                            </h6>
+                            <p className="lh-base mb-0">
+                              The passion to work, and the love and the joy it gives
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* SOCIAL INVOLVEMENT */}
+                        <div className="col-12 col-md-6">
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                            <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                              Social Involvement
+                            </h6>
+                            <p className="lh-base mb-0">
+                              The men and women with and for others, especially the poor
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-
-                    {/* CURA PERSONALIS */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h5
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          Cura Personalis
-                        </h5>
-                        <p className="small lh-base mb-0">
-                          The care and respect for the individual person
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* COMPANIONSHIP */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h6
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          Companionship
-                        </h6>
-                        <p className="small lh-base mb-0">
-                          The desire to be in community
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* DISCERNMENT */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h6
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          Discernment
-                        </h6>
-                        <p className="small lh-base mb-0">
-                          The sensitivity to God, to spirituality, and to change
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* ANIMO */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h6
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          Animo
-                        </h6>
-                        <p className="small lh-base mb-0">
-                          The passion to work, and the love and the joy it gives
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* SOCIAL INVOLVEMENT */}
-                    <div className="col-12 col-md-6">
-                      <div
-                        className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                        style={{ backgroundColor: "#f4f7ff" }}
-                      >
-                        <h6
-                          className="fw-bold mb-2"
-                          style={{ color: "#1B3A90" }}
-                        >
-                          Social Involvement
-                        </h6>
-                        <p className="small lh-base mb-0">
-                          The men and women with and for others, especially the poor
-                        </p>
-                      </div>
-                    </div>
-
                   </div>
-                </div>
-              </div>
-
-              {/* ORGANIZATIONAL CHART */}
-              <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
-                <h3
-                  className="fw-bold border-start text-primary border-3 ps-3 mb-1"
-                  style={{ color: "#0c2461" }}
-                >
-                  Institutional Organizational Chart
-                </h3>
-
-                  <div className="border-0 mb-4 p-4 text-wrap text-break">
-                    <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
-                      The University’s administrative structure includes the academic units 
-                      and the offices of administration and services. The academic units are 
-                      the Higher Education Units (School of Medicine, College of Law, Colleges 
-                      and Schools) and the Basic Education units (Senior High School, Junior 
-                      High School, and Grade School). The offices of administration and 
-                      services are the Office of the President, the Office of the Vice President 
-                      for Administration, the Finance Office, the Human Resource Administration 
-                      and Development Office (HRADO), the Unit Director for Formation Office, 
-                      and the Social Development Unit. The Organizational Chart shows how these 
-                      offices are interrelated with each other.
+                  
+                  {/* ORGANIZATIONAL CHART */}
+                  <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
+                    <h3 className="fw-bold border-start text-primary border-3 ps-3 mb-1" style={{ color: "#0c2461" }}>
+                      Institutional Organizational Chart
+                    </h3>
+                    
+                    {/* DESCRIPTION */}
+                    <div className="border-0 mb-4 p-4 text-wrap text-break">
+                      <p className="lh-base mb-0" style={{ textAlign: "justify"}}>
+                        The University’s administrative structure includes the academic units 
+                        and the offices of administration and services. The academic units are 
+                        the Higher Education Units (School of Medicine, College of Law, Colleges 
+                        and Schools) and the Basic Education units (Senior High School, Junior 
+                        High School, and Grade School). The offices of administration and 
+                        services are the Office of the President, the Office of the Vice President 
+                        for Administration, the Finance Office, the Human Resource Administration 
+                        and Development Office (HRADO), the Unit Director for Formation Office, 
+                        and the Social Development Unit. The Organizational Chart shows how these 
+                        offices are interrelated with each other.
+                      </p>
+                    </div>
+                    
+                    <div className="border-0 p-3">
+                      <div className="d-flex justify-content-center">
+                        <Image
+                          src="/Images/orgchart2.png"
+                          alt="Organizational Chart"
+                          width={900}
+                          height={700}
+                          className="img-fluid rounded"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* ABOUT THE OFFICE */}
+                  <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
+                    
+                    {/* MAIN TITLE */}
+                    <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{ color: "#0c2461" }}>
+                      About the Office
+                    </h3>
+                    
+                    {/* DEFINITION */}
+                    <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
+                      The Office of the Unit Director for Formation convenes and oversees the 
+                      various formation offices and departments within the university. The Unit 
+                      Director plays a pivotal role in the development and implementation of holistic 
+                      formation programs and activities, which encompass spiritual, psycho-emotional, 
+                      social action, and coaching initiatives.
                     </p>
-                  </div>
+                    
+                    <p className="lh-base mb-4" style={{ textAlign: "justify"}}>
+                      The Unit Director for Formation is supported by the University Formation 
+                      Management Council, which includes the Chaplains from both basic and higher 
+                      education, Assistant Principals for Formation from the Basic Education Units, 
+                      the College Campus Ministry Director, the College Guidance and Counseling Director, 
+                      the Director of Social Awareness and Community Service Involvement, the Higher 
+                      Education Athletics Coordinator, and a representative from the Human Resource 
+                      Administration and Development Office.  
+                      
+                      The council convenes once each semester, although additional meetings may be 
+                      scheduled as necessary. In addition, the Unit Director holds separate monthly 
+                      meetings with the Basic Education and Higher Education Formation Groups. The 
+                      council is responsible for organizing, preparing, discussing, implementing, 
+                      monitoring, and evaluating all holistic formation programs and activities at 
+                      the university.
+                    </p>
+                    
+                    {/* VISION TITLE */}
+                    <h4 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: "#0c2461" }}>
+                      Vision
+                    </h4>
 
-                <div className="border-0 p-3">
-                  <div className="d-flex justify-content-center">
-                  <Image
-                    src="/Images/orgchart2.png"
-                    alt="Organizational Chart"
-                    width={900}
-                    height={700}
-                    className="img-fluid rounded"
-                  />
-                  </div>
-                </div>
-              </div>
+                    <p className="lh-base mb-4">
+                      The Office of the Unit Director for Formation is determined to set the hearts of 
+                      the community on fire with deep faith and love of God.
+                    </p>
+                    
+                    {/* MISSION TITLE */}
+                    <h4 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: "#0c2461" }}>
+                      Mission
+                    </h4>
 
-              {/* ABOUT THE OFFICE */}
-              <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
+                    <p className="lh-base mb-3">
+                      Our mission is to foster the holistic personal development of the community by 
+                      providing activities and programs that will assist the community to be:
+                    </p>
+                    
+                    {/* MISSION CARDS */}
+                    <div className="row g-3 mb-4">
+                      
+                      {/* COMPETENT */}
+                      <div className="col-12 col-md-6">
+                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                            Competent
+                          </h6>
+                          <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
+                            A solid grounding of self to an adequate development of self-awareness 
+                            and self-acceptance of the abilities and limitations that contributes 
+                            to human fulfillment.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      {/* CONSCIENCE */}
+                      <div className="col-12 col-md-6">
+                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                            Conscience
+                          </h6>
+                          <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
+                            A look at the reality with the eyes of God; to discover the goodness 
+                            and beauty of creation and individuals but also places of pain, misery, 
+                            and injustice.
+                          </p>
+                        </div>
+                      </div>
 
-                {/* MAIN TITLE */}
-                <h3
-                  className="fw-bold border-start border-3 ps-3 mb-4"
-                  style={{ color: "#0c2461" }}
-                >
-                  About the Office
-                </h3>
+                      {/* CHARACTER */}
+                      <div className="col-12 col-md-6">
+                        <div
+                          className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
+                          style={{ backgroundColor: "#f4f7ff" }}
+                        >
+                          <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                            Character
+                          </h6>
+                          <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
+                            A transformative experience to help the community form expansive hearts 
+                            and minds as real persons of solidarity with all those in suffering, 
+                            disadvantage, or oppression.
+                          </p>
+                        </div>
+                      </div>
 
-                {/* DEFINITION */}
-                <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
-                  The Office of the Unit Director for Formation convenes and oversees the 
-                  various formation offices and departments within the university. The Unit 
-                  Director plays a pivotal role in the development and implementation of holistic 
-                  formation programs and activities, which encompass spiritual, psycho-emotional, 
-                  social action, and coaching initiatives.
-                </p>
+                      {/* COMPASSION */}
+                      <div className="col-12 col-md-6">
+                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                            Compassion
+                          </h6>
+                          <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
+                            A person in solidarity with and assumes the suffering of others, 
+                            recognizing the human dignity and the value of the person who, just 
+                            for having been born, is deeply loved by God.
+                          </p>
+                        </div>
+                      </div>
 
-                <p className="small lh-base mb-4" style={{ textAlign: "justify"}}>
-                  The Unit Director for Formation is supported by the University Formation 
-                  Management Council, which includes the Chaplains from both basic and higher 
-                  education, Assistant Principals for Formation from the Basic Education Units, 
-                  the College Campus Ministry Director, the College Guidance and Counseling Director, 
-                  the Director of Social Awareness and Community Service Involvement, the Higher 
-                  Education Athletics Coordinator, and a representative from the Human Resource 
-                  Administration and Development Office.  
+                      {/* CULTURE */}
+                      <div className="col-12 col-md-6">
+                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
+                            Culture
+                          </h6>
+                          <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
+                            A celebration of identity and faith for social transformation.
+                          </p>
+                        </div>
+                      </div>
 
-                  The council convenes once each semester, although additional meetings may be 
-                  scheduled as necessary. In addition, the Unit Director holds separate monthly 
-                  meetings with the Basic Education and Higher Education Formation Groups. The 
-                  council is responsible for organizing, preparing, discussing, implementing, 
-                  monitoring, and evaluating all holistic formation programs and activities at 
-                  the university.
-                </p>
-
-                {/* VISION TITLE */}
-                <h4
-                  className="fw-bold border-start border-3 ps-3 mb-3"
-                  style={{ color: "#0c2461" }}
-                >
-                  Vision
-                </h4>
-
-                <p className="small lh-base mb-4">
-                  The Office of the Unit Director for Formation is determined to set the hearts of 
-                  the community on fire with deep faith and love of God.
-                </p>
-
-                {/* MISSION TITLE */}
-                <h4
-                  className="fw-bold border-start border-3 ps-3 mb-3"
-                  style={{ color: "#0c2461" }}
-                >
-                  Mission
-                </h4>
-
-                <p className="small lh-base mb-3">
-                  Our mission is to foster the holistic personal development of the community by 
-                  providing activities and programs that will assist the community to be:
-                </p>
-
-                {/* MISSION CARDS */}
-                <div className="row g-3 mb-4">
-
-                  {/* COMPETENT */}
-                  <div className="col-12 col-md-6">
-                    <div
-                      className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                      style={{ backgroundColor: "#f4f7ff" }}
-                    >
-                      <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
-                        Competent
-                      </h6>
-                      <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
-                        A solid grounding of self to an adequate development of self-awareness 
-                        and self-acceptance of the abilities and limitations that contributes 
-                        to human fulfillment.
-                      </p>
                     </div>
-                  </div>
 
-                  {/* CONSCIENCE */}
-                  <div className="col-12 col-md-6">
-                    <div
-                      className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                      style={{ backgroundColor: "#f4f7ff" }}
-                    >
-                      <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
-                        Conscience
-                      </h6>
-                      <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
-                        A look at the reality with the eyes of God; to discover the goodness 
-                        and beauty of creation and individuals but also places of pain, misery, 
-                        and injustice.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* CHARACTER */}
-                  <div className="col-12 col-md-6">
-                    <div
-                      className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                      style={{ backgroundColor: "#f4f7ff" }}
-                    >
-                      <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
-                        Character
-                      </h6>
-                      <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
-                        A transformative experience to help the community form expansive hearts 
-                        and minds as real persons of solidarity with all those in suffering, 
-                        disadvantage, or oppression.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* COMPASSION */}
-                  <div className="col-12 col-md-6">
-                    <div
-                      className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                      style={{ backgroundColor: "#f4f7ff" }}
-                    >
-                      <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
-                        Compassion
-                      </h6>
-                      <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
-                        A person in solidarity with and assumes the suffering of others, 
-                        recognizing the human dignity and the value of the person who, just 
-                        for having been born, is deeply loved by God.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* CULTURE */}
-                  <div className="col-12 col-md-6">
-                    <div
-                      className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                      style={{ backgroundColor: "#f4f7ff" }}
-                    >
-                      <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
-                        Culture
-                      </h6>
-                      <p className="small lh-base mb-0" style={{ textAlign: "justify"}}>
-                        A celebration of identity and faith for social transformation.
-                      </p>
-                    </div>
                   </div>
 
                 </div>
+
               </div>
 
                 {/* STRUCTURE, ROLES, AND RESPONSIBILITIES CARD */}
                 <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
-                <h4
+                <h3
                   className="fw-bold border-start border-3 ps-3 mb-3"
                   style={{ color: "#0c2461" }}
                 >
                   B. STRUCTURE, ROLES, AND RESPONSIBILITIES
-                </h4>
+                </h3>
 
                 <p className="small lh-base mb-0">
                   1. Organizational Chart of the Office
