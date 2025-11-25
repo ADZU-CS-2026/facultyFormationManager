@@ -720,25 +720,25 @@ export default function MissionAndVision() {
 
                 <div className={`collapse ${openSections.C ? "show" : ""}`}>
                   
-                  <p className="small fw-bold mb-2">1. Orientation of Spiritual Formation Programs</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">1. Orientation of Spiritual Formation Programs</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     Orientation of the different spiritual formation programs is given to all the newly hired faculty and staff 
                     in the university. The orientation includes the rationale, objectives, and schedules of the different formation 
                     programs and activities. The orientation of the spiritual formation programs is usually done during the in-service 
                     training in coordination with the office of the vice president for higher education and human resource administration and development office.
                   </p>
 
-                  <p className="small fw-bold mb-2">2. Spiritual Formation Program</p>
-                  <p className="small lh-base mb-2" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-2">2. Spiritual Formation Program</p>
+                  <p className="lh-base mb-2" style={{ textAlign: "justify"}}>
                     Spiritual programs and activities should serve as genuine opportunities for individuals to encounter God. 
                     These various spiritual formation initiatives must enable community members to experience God&apos;s boundless love and mercy. 
                     The Unit Director for Formation, in collaboration with the Chaplaincy Office and various Campus Ministry offices, will 
                     oversee the implementation and administration of these spiritual formation programs and activities.
                   </p>
 
-                  <p className="small fw-bold mb-1">a. Institutional Eucharistic Celebrations</p>
-                  <p className="small mb-1" style={{ textAlign: "justify"}}>As a Catholic and Jesuit university and in the advancement of Ignatian Spirituality, the university observes and celebrates different solemnities, feasts, and votive Masses. These are the following:</p>
-                  <ul className="small mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">a. Institutional Eucharistic Celebrations</p>
+                  <p className="mb-1" style={{ textAlign: "justify"}}>As a Catholic and Jesuit university and in the advancement of Ignatian Spirituality, the university observes and celebrates different solemnities, feasts, and votive Masses. These are the following:</p>
+                  <ul className="mb-3" style={{ textAlign: "justify"}}>
                     <li>Mass of the Holy Spirit. This is celebrated at the beginning of every school year as calendared by the different units.</li>
                     <li>Feast Day Mass of Saint Ignatius. In great honor to the founder of the Society of Jesus, the feast day Mass is celebrated within the novena of grace in honor of Saint Ignatius of Loyola by the respective units.</li>
                     <li>Solemnity of the Immaculate Conception. The Immaculate Conception is the principal patroness of the Ateneo de Zamboanga University.</li>
@@ -746,15 +746,15 @@ export default function MissionAndVision() {
                     <li>First Friday Mass (Devotion to the Most Sacred Heart of Jesus) and Weekday Masses (Devotion to the Eucharist) are likewise part of the identity in a Jesuit institution and a way of proceeding, especially for the Catholics. Other votive Masses are celebrated according to the needs of the unit.</li>
                   </ul>
 
-                  <p className="small fw-bold mb-1">b. Ignatian Conversation Growth Circle</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">b. Ignatian Conversation Growth Circle</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     Spiritual conversation serves as a fundamental component of Ignatian Spirituality. This practice allows community members to discern 
                     individually or collectively the movements and invitations of the Spirit. Through such dialogues, the community can enhance their 
                     professional development, strengthen teamwork, and deepen their spiritual lives.
                   </p>
 
-                  <p className="small fw-bold mb-1">c. Recollections and Retreats</p>
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="fw-bold mb-1">c. Recollections and Retreats</p>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     The Unit Director for Formation, in collaboration with the deans of various schools and colleges, is responsible for scheduling the 
                     recollection and retreat programs for faculty members. The deans will submit their preferred schedules and venues for these events. 
                     The Unit Director will liaise with the retreat house to confirm availability and arrange for retreat guides. The Office of the Vice 
@@ -762,7 +762,7 @@ export default function MissionAndVision() {
                     Director for Formation will prepare the budget for administrators and central services personnel.
                   </p>
 
-                  <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
+                  <p className="lh-base mb-3" style={{ textAlign: "justify"}}>
                     Additionally, offices within the formation unit are required to conduct regular silence, prayer sessions, and faith-sharing activities. 
                     These sessions should not address work-related matters unless the individual’s personal prayer concerns pertain to their responsibilities 
                     as a formator within the institution.
