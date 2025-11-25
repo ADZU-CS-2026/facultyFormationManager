@@ -32,7 +32,7 @@ export default function CalendarCard() {
       >
         <div>
           <iframe
-            src="https://calendar.google.com/calendar/embed?src=joshuaguiritan05%40gmail.com&ctz=Asia%2FManila"
+            src="https://calendar.google.com/calendar/embed?src=vpformation%40adzu.edu.ph&ctz=Asia%2FManila"
             style={{ border: 0 }}
             width="100%"
             height="370"

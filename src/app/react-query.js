@@ -8,10 +8,10 @@ import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persi
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnMount: true,
+      refetchOnMount: false,
       refetchOnWindowFocus: false,
       staleTime: 15 * 60,
-      retry: 1,
+      retry: 0,
     },
   },
 });

@@ -31,9 +31,8 @@ export default function StaffAccountProfile({ id }) {
       setPrevPass("");
       setNewPass("");
       setReNewPass("");
-      queryClient.invalidateQueries({ queryKey: ["account"] });
-      queryClient.invalidateQueries({ queryKey: ["staff"] });
-      queryClient.invalidateQueries({ queryKey: ["staffid"] });
+      queryClient.refetchQueries({ queryKey: ["staff"] });
+      queryClient.refetchQueries({ queryKey: ["staffid"] });
     },
     onError: (err) => {
       setErrorMessage("Error");
@@ -44,8 +43,8 @@ export default function StaffAccountProfile({ id }) {
     mutationFn: fetchDeleteAccount,
     onSuccess: () => {
       setDeleteMessage("");
-      queryClient.invalidateQueries({ queryKey: ["staff"] });
-      queryClient.invalidateQueries({ queryKey: ["staffid"] });
+      queryClient.refetchQueries({ queryKey: ["staff"] });
+      queryClient.refetchQueries({ queryKey: ["staffid"] });
       router.replace("/admin-settings");
     },
     onError: (error) => {
