@@ -17,6 +17,16 @@ export default function RecordSearch() {
   const [loading, setLoading] = useState(false);
   const [makeFilter, setMakeFilter] = useState("");
 
+  let startYear = 2023;
+  let currentYear = new Date().getFullYear();
+  const setSearchSchoolYears = [];
+
+  for (let y = currentYear; y >= startYear; y--) {
+    let year = y;
+    let nextYear = year + 1;
+    setSearchSchoolYears.push(`${year}-${nextYear}`);
+  }
+
   const mutationSearch = useMutation({
     mutationFn: fetchSearchRecords,
     onSuccess: () => {
@@ -34,9 +44,9 @@ export default function RecordSearch() {
   const filteredRows = result?.filter((data) => {
     if (
       String(data.id).includes(makeFilter) ||
-      data.last_name.toLowerCase().includes(makeFilter.toLowerCase()) ||
-      data.first_name.toLowerCase().includes(makeFilter.toLowerCase()) ||
-      data.middle_initial.toLowerCase().includes(makeFilter.toLowerCase())
+      data?.last_name?.toLowerCase().includes(makeFilter.toLowerCase()) ||
+      data?.first_name?.toLowerCase().includes(makeFilter.toLowerCase()) ||
+      data?.middle_initial?.toLowerCase().includes(makeFilter.toLowerCase())
     ) {
       return true;
     }
@@ -59,7 +69,6 @@ export default function RecordSearch() {
     setSchoolYear(school_year);
     setStatus(work_status);
   }
-
 
   function downloadExcel() {
     if (!result || result.length === 0) {
@@ -103,12 +112,20 @@ export default function RecordSearch() {
         <div className="row mt-2 d-flex gap-0 justify-content-center align-items-center">
           <div className="col-md-3 col-12 d-flex gap-2 align-items-center">
             <div className="fw-bold">Departments</div>
-            <select className="form-select form-select-sm" required name="department">
-              <option value="" hidden>Choose</option>
+            <select
+              className="form-select form-select-sm"
+              required
+              name="department"
+            >
+              <option value="" hidden>
+                Choose
+              </option>
               <option value="Admin">Administrator</option>
               <option value="FFP">Freshmen Formation Office</option>
               <option value="CON">College of Nursing</option>
-              <option value="CSITE">College of Science and Information Technology and Engineering</option>
+              <option value="CSITE">
+                College of Science and Information Technology and Engineering
+              </option>
               <option value="SED">School of Education</option>
               <option value="SLA">School of Liberal Arts</option>
               <option value="SMA">School of Management and Accountancy</option>
@@ -119,21 +136,32 @@ export default function RecordSearch() {
 
           <div className="mt-md-0 mt-3 col-md-3 col-12 d-flex gap-2 align-items-center">
             <div className="fw-bold">School Year</div>
-            <select className="form-select form-select-sm" required name="school_year">
-              <option value="" hidden>Choose</option>
-              <option value="2023-2024">School Year 2023-2024</option>
-              <option value="2024-2025">School Year 2024-2025</option>
-              <option value="2025-2026">School Year 2025-2026</option>
-              <option value="2026-2027">School Year 2026-2027</option>
-              <option value="2027-2028">School Year 2027-2028</option>
-              <option value="2028-2029">School Year 2028-2029</option>
+            <select
+              className="form-select form-select-sm"
+              required
+              name="school_year"
+            >
+              <option value="" hidden>
+                Choose
+              </option>
+              {setSearchSchoolYears.map((data, index) => (
+                <option key={index} value={data}>
+                  SY {data}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className="mt-md-0 mt-3 col-md-3 col-12 d-flex gap-2 align-items-center">
             <div className="fw-bold">Status</div>
-            <select className="form-select form-select-sm" required name="work_status">
-              <option value="" hidden>Choose</option>
+            <select
+              className="form-select form-select-sm"
+              required
+              name="work_status"
+            >
+              <option value="" hidden>
+                Choose
+              </option>
               <option value="All">All</option>
               <option value="Active">Active</option>
               <option value="Inactive">Inactive</option>
@@ -141,7 +169,10 @@ export default function RecordSearch() {
           </div>
 
           <div className="col-1 mt-md-0 mt-3 d-flex justify-content-center">
-            <button type="submit" className="btn fw-semibold btn-lightblue text-white ms-md-3">
+            <button
+              type="submit"
+              className="btn fw-semibold btn-lightblue text-white ms-md-3"
+            >
               Search
             </button>
           </div>
@@ -204,7 +235,11 @@ export default function RecordSearch() {
 
       {/* TABLE */}
       <div className={`${!start && "mt-4"}`}>
-        <table className={`${!loading ? "mt-2" : "mt-4"} table table-bordered table-striped table-hover`}>
+        <table
+          className={`${
+            !loading ? "mt-2" : "mt-4"
+          } table table-bordered table-striped table-hover`}
+        >
           <thead className="border">
             <tr className="text-start">
               <th className="bg-tableheadergray">ID</th>
@@ -217,21 +252,29 @@ export default function RecordSearch() {
           <tbody>
             {!start ? (
               <tr>
-                <td colSpan="4" className="text-center text-muted">Search now!</td>
+                <td colSpan="4" className="text-center text-muted">
+                  Search now!
+                </td>
               </tr>
             ) : loading ? (
               <tr>
-                <td colSpan="4" className="text-center text-muted">Loading...</td>
+                <td colSpan="4" className="text-center text-muted">
+                  Loading...
+                </td>
               </tr>
             ) : isError ? (
               <>
                 {error?.response?.status === 404 ? (
                   <tr>
-                    <td colSpan="4" className="text-center text-muted">Empty List!</td>
+                    <td colSpan="4" className="text-center text-muted">
+                      Empty List!
+                    </td>
                   </tr>
                 ) : (
                   <tr>
-                    <td colSpan="4" className="text-center text-muted fs-6">Error</td>
+                    <td colSpan="4" className="text-center text-muted fs-6">
+                      Error
+                    </td>
                   </tr>
                 )}
               </>
@@ -241,14 +284,22 @@ export default function RecordSearch() {
                   filteredRows.map((data, index) => (
                     <tr key={index}>
                       <td className="text-start text-muted">{data.id}</td>
-                      <td className="text-start text-muted">{data.last_name}</td>
-                      <td className="text-start text-muted">{data.first_name}</td>
-                      <td className="text-center text-muted">{data.middle_initial}</td>
+                      <td className="text-start text-muted">
+                        {data.last_name}
+                      </td>
+                      <td className="text-start text-muted">
+                        {data.first_name}
+                      </td>
+                      <td className="text-center text-muted">
+                        {data.middle_initial}
+                      </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="4" className="text-center text-muted">Search not found!</td>
+                    <td colSpan="4" className="text-center text-muted">
+                      Search not found!
+                    </td>
                   </tr>
                 )}
               </>

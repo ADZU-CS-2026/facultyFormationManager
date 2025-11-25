@@ -76,9 +76,6 @@ export default function Home() {
       setCloudflare(false);
       return;
     },
-    onError(err) {
-      console.log(err.response.data.message);
-    },
   });
 
   // 60 SECOND COUNTER IF LOGIN ATTEMPT REACH LIMIT
@@ -130,7 +127,8 @@ export default function Home() {
 
         <div
           className="position-relative w-100 h-100"
-          style={{ backgroundColor: "rgba(1, 28, 71, 0.9)" }}
+          // style={{ backgroundColor: "rgba(1, 28, 71, 0.9)" }}
+          style={{ backgroundColor: "#000A1A" }}
         >
           {/* <Snowfall /> */}
           <div
@@ -167,12 +165,18 @@ export default function Home() {
                   type="text"
                   className={`form-control ${
                     error && id && password && "is-invalid"
-                  } ${error && !id && !seconds && "is-invalid"} fw-bold`}
+                  } ${
+                    error && !id && !seconds && "is-invalid"
+                  } fw-bold border-0`}
                   placeholder="Admin ID"
                   name="id"
                   value={id}
                   onChange={(e) => setID(e.target.value)}
                   disabled={disable ? true : false}
+                  style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.12)",
+                    color: "white",
+                  }}
                 />
               </div>
 
@@ -183,8 +187,14 @@ export default function Home() {
                   type={`${showpassword ? "text" : "password"}`}
                   className={`form-control ${
                     error && id && password && "is-invalid"
-                  } ${error && !password && !seconds && "is-invalid"} fw-bold`}
-                  style={{ paddingRight: "60px" }}
+                  } ${
+                    error && !password && !seconds && "is-invalid"
+                  } fw-bold border-0`}
+                  style={{
+                    paddingRight: "60px",
+                    backgroundColor: "rgba(255, 255, 255, 0.12)",
+                    color: "white",
+                  }}
                   placeholder="Password"
                   name="password"
                   value={password}

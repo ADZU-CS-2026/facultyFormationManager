@@ -39,7 +39,6 @@ export async function setAuthCookies(admin) {
     sameSite: "strict",
     secure: process.env.NODE_ENV === "production",
     path: "/",
-    // maxAge expects seconds (number). 15 minutes = 900 seconds
     maxAge: 15 * 60,
   });
 
