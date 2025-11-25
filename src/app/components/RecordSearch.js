@@ -15,6 +15,14 @@ export default function RecordSearch() {
 
   const mutationSearch = useMutation({
     mutationFn: fetchSearchRecords,
+    onSuccess: () => {
+      setLoading(() => false);
+      setsearch(() => true);
+    },
+    onError: () => {
+      setLoading(() => false);
+      setsearch(() => true);
+    },
   });
 
   const { mutate, data: result, isError, error } = mutationSearch;
@@ -40,12 +48,9 @@ export default function RecordSearch() {
     const school_year = formData.get("school_year");
     const work_status = formData.get("work_status");
     mutate({ department, school_year, work_status });
-    await new Promise((res) => setTimeout(res, 1500));
     setDepartment(department);
     setSchoolYear(school_year);
     setStatus(work_status);
-    setLoading(() => false);
-    setsearch(() => true);
   }
 
   return (
