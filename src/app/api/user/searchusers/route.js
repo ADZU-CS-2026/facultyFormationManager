@@ -8,7 +8,7 @@ export async function POST(req) {
     // Query the database
     if (work_status === "All") {
       const [rows] = await pool.execute(
-        `SELECT users.id, users.last_name, users.first_name, users.middle_initial FROM users INNER JOIN retreat_records 
+        `SELECT DISTINCT users.id, users.last_name, users.first_name, users.middle_initial FROM users INNER JOIN retreat_records 
       ON users.id = retreat_records.user_id WHERE 
       users.department = ? AND retreat_records.school_year = ?
       `,
@@ -22,16 +22,13 @@ export async function POST(req) {
       return NextResponse.json(
         {
           message: "Accounts not found!",
-          department,
-          school_year,
-          work_status,
         },
         { status: 404 }
       );
     }
 
     const [rows] = await pool.execute(
-      `SELECT users.id, users.last_name, users.first_name, users.middle_initial FROM users INNER JOIN retreat_records 
+      `SELECT DISTINCT users.id, users.last_name, users.first_name, users.middle_initial FROM users INNER JOIN retreat_records 
       ON users.id = retreat_records.user_id WHERE users.work_status = ? 
       AND users.department = ? AND retreat_records.school_year = ?
       `,

@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react"; // Added useRef
 import { useMutation } from "@tanstack/react-query";
+import { useReactToPrint } from "react-to-print"; // Added import
 import fetchSearchRecords from "@/app/fetch/fetchSearchRecords";
 
 // dependencies
@@ -23,9 +24,19 @@ export default function RecordSearch() {
 
   for (let y = currentYear; y >= startYear; y--) {
     let year = y;
-    let nextYear = year + 1;
-    setSearchSchoolYears.push(`${year}-${nextYear}`);
+    setSearchSchoolYears.push(`${year}-${++year}`);
   }
+
+  console.log(setSearchSchoolYears);
+
+  // Reference para sa printable area
+  const componentRef = useRef();
+
+  // Print handler
+  const handlePrint = useReactToPrint({
+    contentRef: componentRef,
+    documentTitle: `Report-${departmentU}-${school_yearU}`,
+  });
 
   const mutationSearch = useMutation({
     mutationFn: fetchSearchRecords,
@@ -43,10 +54,10 @@ export default function RecordSearch() {
 
   const filteredRows = result?.filter((data) => {
     if (
-      String(data.id).includes(makeFilter) ||
-      data?.last_name?.toLowerCase().includes(makeFilter.toLowerCase()) ||
-      data?.first_name?.toLowerCase().includes(makeFilter.toLowerCase()) ||
-      data?.middle_initial?.toLowerCase().includes(makeFilter.toLowerCase())
+      String(data.id)?.includes(makeFilter) ||
+      data.last_name?.toLowerCase().includes(makeFilter.toLowerCase()) ||
+      data.first_name?.toLowerCase().includes(makeFilter.toLowerCase()) ||
+      data.middle_initial?.toLowerCase().includes(makeFilter.toLowerCase())
     ) {
       return true;
     }
@@ -76,7 +87,6 @@ export default function RecordSearch() {
       return;
     }
 
-    // Format rows (optional clean column names)
     const rows = result.map((r) => ({
       ID: r.id,
       First_Name: r.first_name,
@@ -84,20 +94,13 @@ export default function RecordSearch() {
       Middle_Initial: r.middle_initial,
     }));
 
-    // Create worksheet
     const worksheet = XLSX.utils.json_to_sheet(rows);
-
-    // Create workbook
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Records");
-
-    // Write to buffer
     const excelBuffer = XLSX.write(workbook, {
       bookType: "xlsx",
       type: "array",
     });
-
-    // Create Blob and download
     const file = new Blob([excelBuffer], {
       type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     });
@@ -149,6 +152,7 @@ export default function RecordSearch() {
                   SY {data}
                 </option>
               ))}
+              ;
             </select>
           </div>
 
@@ -179,133 +183,141 @@ export default function RecordSearch() {
         </div>
       </form>
 
-      <div className={`${searched ? "d-block" : "d-none"}`}>
-        <div className="row d-flex p-0 align-items-center my-4">
-          <div className="col-md-4 col-6 d-flex flex-column gap-3">
-            <div className="text-start">
-              <span>Department: </span>
-              <span className="fw-bold">{departmentU}</span>
+      {/* 4. WRAPPER FOR PRINTING */}
+      {/* Everything inside this div will appear on the paper */}
+      <div ref={componentRef} className="p-3">
+        {/* SUMMARY INFO (Only visible when searched) */}
+        <div className={`${searched ? "d-block" : "d-none"}`}>
+          <div className="row d-flex p-0 align-items-center my-4">
+            <div className="col-md-4 col-6 d-flex flex-column gap-3">
+              <div className="text-start">
+                <span>Department: </span>
+                <span className="fw-bold">{departmentU}</span>
+              </div>
+              <div className="text-start">
+                <span>School Year: </span>
+                <span className="fw-bold">{school_yearU}</span>
+              </div>
             </div>
-            <div className="text-start">
-              <span>School Year: </span>
-              <span className="fw-bold">{school_yearU}</span>
+            <div className="col-md-4 col-6 d-flex flex-column gap-3">
+              <div className="text-start">
+                <span>Status: </span>
+                <span className="fw-bold">{work_statusU}</span>
+              </div>
+              <div className="text-start">
+                <span>Total Accounts: </span>
+                <span className="fw-bold">{result?.length || 0}</span>
+              </div>
             </div>
           </div>
-          <div className="col-md-4 col-6 d-flex flex-column gap-3">
-            <div className="text-start">
-              <span>Status: </span>
-              <span className="fw-bold">{work_statusU}</span>
+        </div>
+
+        {/* CONTROLS (Buttons + Filter Input) - These do NOT print */}
+        <div className={`${searched ? "d-block" : "d-none"}`}>
+          <div className="d-flex justify-content-between align-items-center mt-4">
+            <div className="d-flex gap-2">
+              <button
+                onClick={downloadExcel}
+                className="btn btn-sm gradient-button text-black"
+                style={{ borderRadius: "2px", border: "0.8px solid black" }}
+              >
+                Excel
+              </button>
+
+              {/* 3. Connect the Print Button */}
+              <button
+                onClick={() => handlePrint()}
+                className="btn btn-sm gradient-button text-black"
+                style={{ borderRadius: "2px", border: "0.8px solid black" }}
+              >
+                Print
+              </button>
             </div>
-            <div className="text-start">
-              <span>Total Accounts: </span>
-              <span className="fw-bold">{result?.length || 0}</span>
+            <div className="d-flex gap-2 align-items-center">
+              <div>Search: </div>
+              <input
+                className="form-control form-control-sm rounded-0"
+                value={makeFilter}
+                onChange={(e) => setMakeFilter(e.target.value)}
+              />
             </div>
           </div>
         </div>
 
-        <div className="d-flex justify-content-between align-items-center">
-          {/* EXCEL + PRINT BUTTONS */}
-          <div className="d-flex gap-2">
-            <button
-              onClick={downloadExcel}
-              className="btn btn-sm gradient-button text-black"
-              style={{ borderRadius: "2px", border: "0.8px solid black" }}
-            >
-              Excel
-            </button>
-
-            <button
-              className="btn btn-sm gradient-button text-black"
-              style={{ borderRadius: "2px", border: "0.8px solid black" }}
-            >
-              Print
-            </button>
-          </div>
-
-          <div className="d-flex gap-2 align-items-center">
-            <div>Search: </div>
-            <input
-              className="form-control form-control-sm rounded-0"
-              value={makeFilter}
-              onChange={(e) => setMakeFilter(e.target.value)}
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* TABLE */}
-      <div className={`${!start && "mt-4"}`}>
-        <table
-          className={`${
-            !loading ? "mt-2" : "mt-4"
-          } table table-bordered table-striped table-hover`}
-        >
-          <thead className="border">
-            <tr className="text-start">
-              <th className="bg-tableheadergray">ID</th>
-              <th className="bg-tableheadergray">First Name</th>
-              <th className="bg-tableheadergray">Last Name</th>
-              <th className="bg-tableheadergray">Middle Initial</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {!start ? (
-              <tr>
-                <td colSpan="4" className="text-center text-muted">
-                  Search now!
-                </td>
+        {/* TABLE */}
+        <div className={`${!start && "mt-4"}`}>
+          <table
+            className={`${
+              !loading ? "mt-2" : "mt-4"
+            } table table-bordered table-striped table-hover`}
+          >
+            <thead className="border">
+              <tr className="text-start">
+                <th className="bg-tableheadergray">ID</th>
+                <th className="bg-tableheadergray">First Name</th>
+                <th className="bg-tableheadergray">Last Name</th>
+                <th className="bg-tableheadergray">Middle Initial</th>
               </tr>
-            ) : loading ? (
-              <tr>
-                <td colSpan="4" className="text-center text-muted">
-                  Loading...
-                </td>
-              </tr>
-            ) : isError ? (
-              <>
-                {error?.response?.status === 404 ? (
-                  <tr>
-                    <td colSpan="4" className="text-center text-muted">
-                      Empty List!
-                    </td>
-                  </tr>
-                ) : (
-                  <tr>
-                    <td colSpan="4" className="text-center text-muted fs-6">
-                      Error
-                    </td>
-                  </tr>
-                )}
-              </>
-            ) : (
-              <>
-                {filteredRows?.length > 0 ? (
-                  filteredRows.map((data, index) => (
-                    <tr key={index}>
-                      <td className="text-start text-muted">{data.id}</td>
-                      <td className="text-start text-muted">
-                        {data.last_name}
-                      </td>
-                      <td className="text-start text-muted">
-                        {data.first_name}
-                      </td>
-                      <td className="text-center text-muted">
-                        {data.middle_initial}
+            </thead>
+
+            <tbody>
+              {!start ? (
+                <tr>
+                  <td colSpan="4" className="text-center text-muted">
+                    Search now!
+                  </td>
+                </tr>
+              ) : loading ? (
+                <tr>
+                  <td colSpan="4" className="text-center text-muted">
+                    Loading...
+                  </td>
+                </tr>
+              ) : isError ? (
+                <>
+                  {error?.response?.status === 404 ? (
+                    <tr>
+                      <td colSpan="4" className="text-center text-muted">
+                        Empty List!
                       </td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan="4" className="text-center text-muted">
-                      Search not found!
-                    </td>
-                  </tr>
-                )}
-              </>
-            )}
-          </tbody>
-        </table>
+                  ) : (
+                    <tr>
+                      <td colSpan="4" className="text-center text-muted fs-6">
+                        Error
+                      </td>
+                    </tr>
+                  )}
+                </>
+              ) : (
+                <>
+                  {filteredRows?.length > 0 ? (
+                    filteredRows.map((data, index) => (
+                      <tr key={index}>
+                        <td className="text-start text-muted">{data.id}</td>
+                        <td className="text-start text-muted">
+                          {data.last_name}
+                        </td>
+                        <td className="text-start text-muted">
+                          {data.first_name}
+                        </td>
+                        <td className="text-center text-muted">
+                          {data.middle_initial}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="4" className="text-center text-muted">
+                        Search not found!
+                      </td>
+                    </tr>
+                  )}
+                </>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
