@@ -71,17 +71,16 @@ export default function Records() {
                   </div>
 
                   {/* CREATE ACCOUNT SECTION */}
-                  <form>
-                    <div
-                      className="tab-pane fade d-block"
-                      id="nav-profile"
-                      role="tabpanel"
-                      aria-labelledby="nav-profile-tab"
-                      tabIndex="0"
-                    >
-                      <AddRecord />
-                    </div>
-                  </form>
+
+                  <div
+                    className="tab-pane fade d-block"
+                    id="nav-profile"
+                    role="tabpanel"
+                    aria-labelledby="nav-profile-tab"
+                    tabIndex="0"
+                  >
+                    <AddRecord />
+                  </div>
                 </div>
               </div>
             </div>

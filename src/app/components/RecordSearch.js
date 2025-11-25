@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import fetchSearchRecords from "@/app/fetch/fetchSearchRecords";
 
+// dependencies
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
+
 export default function RecordSearch() {
   const [start, setStart] = useState(false);
   const [searched, setsearch] = useState(false);
@@ -40,9 +44,9 @@ export default function RecordSearch() {
   const filteredRows = result?.filter((data) => {
     if (
       String(data.id).includes(makeFilter) ||
-      data.last_name.toLowerCase().includes(makeFilter.toLowerCase()) ||
-      data.first_name.toLowerCase().includes(makeFilter.toLowerCase()) ||
-      data.middle_initial.toLowerCase().includes(makeFilter.toLowerCase)
+      data?.last_name?.toLowerCase().includes(makeFilter.toLowerCase()) ||
+      data?.first_name?.toLowerCase().includes(makeFilter.toLowerCase()) ||
+      data?.middle_initial?.toLowerCase().includes(makeFilter.toLowerCase())
     ) {
       return true;
     }
@@ -54,13 +58,51 @@ export default function RecordSearch() {
     setsearch(() => false);
     setStart(true);
     const formData = new FormData(e.target);
+
     const department = formData.get("department");
     const school_year = formData.get("school_year");
     const work_status = formData.get("work_status");
+
     mutate({ department, school_year, work_status });
+
     setDepartment(department);
     setSchoolYear(school_year);
     setStatus(work_status);
+  }
+
+  function downloadExcel() {
+    if (!result || result.length === 0) {
+      alert("No data to export!");
+      return;
+    }
+
+    // Format rows (optional clean column names)
+    const rows = result.map((r) => ({
+      ID: r.id,
+      First_Name: r.first_name,
+      Last_Name: r.last_name,
+      Middle_Initial: r.middle_initial,
+    }));
+
+    // Create worksheet
+    const worksheet = XLSX.utils.json_to_sheet(rows);
+
+    // Create workbook
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Records");
+
+    // Write to buffer
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    // Create Blob and download
+    const file = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    });
+
+    saveAs(file, `records-${departmentU}-${school_yearU}.xlsx`);
   }
 
   return (
@@ -159,16 +201,19 @@ export default function RecordSearch() {
               <span className="fw-bold">{result?.length || 0}</span>
             </div>
           </div>
-          <div className="col-md-4 col-0"></div>
         </div>
+
         <div className="d-flex justify-content-between align-items-center">
+          {/* EXCEL + PRINT BUTTONS */}
           <div className="d-flex gap-2">
             <button
+              onClick={downloadExcel}
               className="btn btn-sm gradient-button text-black"
               style={{ borderRadius: "2px", border: "0.8px solid black" }}
             >
               Excel
             </button>
+
             <button
               className="btn btn-sm gradient-button text-black"
               style={{ borderRadius: "2px", border: "0.8px solid black" }}
@@ -176,8 +221,9 @@ export default function RecordSearch() {
               Print
             </button>
           </div>
+
           <div className="d-flex gap-2 align-items-center">
-            <div className="">Search: </div>
+            <div>Search: </div>
             <input
               className="form-control form-control-sm rounded-0"
               value={makeFilter}
@@ -186,6 +232,7 @@ export default function RecordSearch() {
           </div>
         </div>
       </div>
+
       {/* TABLE */}
       <div className={`${!start && "mt-4"}`}>
         <table
@@ -201,6 +248,7 @@ export default function RecordSearch() {
               <th className="bg-tableheadergray">Middle Initial</th>
             </tr>
           </thead>
+
           <tbody>
             {!start ? (
               <tr>
@@ -208,71 +256,51 @@ export default function RecordSearch() {
                   Search now!
                 </td>
               </tr>
-            ) : (
+            ) : loading ? (
+              <tr>
+                <td colSpan="4" className="text-center text-muted">
+                  Loading...
+                </td>
+              </tr>
+            ) : isError ? (
               <>
-                {loading ? (
+                {error?.response?.status === 404 ? (
                   <tr>
                     <td colSpan="4" className="text-center text-muted">
-                      Loading...
+                      Empty List!
                     </td>
                   </tr>
                 ) : (
-                  <>
-                    {isError ? (
-                      <>
-                        {error.response.status === 404 ? (
-                          <tr>
-                            <td colSpan="4" className="text-center text-muted">
-                              Empty List!
-                            </td>
-                          </tr>
-                        ) : (
-                          <tr>
-                            <td
-                              colSpan="4"
-                              className="text-center text-muted fs-6"
-                            >
-                              Error
-                            </td>
-                          </tr>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {filteredRows?.length > 0 ? (
-                          <>
-                            {filteredRows?.map((data, index) => (
-                              <tr key={index}>
-                                <td className="text-start text-muted">
-                                  {data.id}
-                                </td>
-                                <td className="text-start text-muted">
-                                  {data.last_name}
-                                </td>
-                                <td className="text-start text-muted">
-                                  {data.first_name}
-                                </td>
-                                <td className="text-center text-muted">
-                                  {data.middle_initial}
-                                </td>
-                              </tr>
-                            ))}
-                          </>
-                        ) : (
-                          <>
-                            <tr>
-                              <td
-                                colSpan="4"
-                                className="text-center text-muted"
-                              >
-                                Search not found!
-                              </td>
-                            </tr>
-                          </>
-                        )}
-                      </>
-                    )}
-                  </>
+                  <tr>
+                    <td colSpan="4" className="text-center text-muted fs-6">
+                      Error
+                    </td>
+                  </tr>
+                )}
+              </>
+            ) : (
+              <>
+                {filteredRows?.length > 0 ? (
+                  filteredRows.map((data, index) => (
+                    <tr key={index}>
+                      <td className="text-start text-muted">{data.id}</td>
+                      <td className="text-start text-muted">
+                        {data.last_name}
+                      </td>
+                      <td className="text-start text-muted">
+                        {data.first_name}
+                      </td>
+                      <td className="text-center text-muted">
+                        {data.middle_initial}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="text-center text-muted">
+                      Search not found!
+                    </td>
+                  </tr>
                 )}
               </>
             )}

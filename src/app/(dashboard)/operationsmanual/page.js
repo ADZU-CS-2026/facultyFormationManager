@@ -4,20 +4,29 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function MissionAndVision() {
-  const [openSectionA, setOpenSectionA] = useState(true);
-  const [openSectionB, setOpenSectionB] = useState(false);
-  const [openSectionC, setOpenSectionC] = useState(false);
-  const [openSectionD, setOpenSectionD] = useState(false);
-  const [openSectionE, setOpenSectionE] = useState(false);
-  const [openSectionF, setOpenSectionF] = useState(false);
-  const [openSectionG, setOpenSectionG] = useState(false);
-  const [openSectionH, setOpenSectionH] = useState(false);
-  const [openSectionI, setOpenSectionI] = useState(false);
-  const [openSectionJ, setOpenSectionJ] = useState(false);
-  const [openSectionK, setOpenSectionK] = useState(false);
-  const [openSectionL, setOpenSectionL] = useState(false);
-  const [openSectionM, setOpenSectionM] = useState(false);
-  const [openSectionAAE, setOpenSectionAAE] = useState(false);
+  const [openSections, setOpenSections] = useState({
+    A: true,
+    B: false,
+    C: false,
+    D: false,
+    E: false,
+    F: false,
+    G: false,
+    H: false,
+    I: false,
+    J: false,
+    K: false,
+    L: false,
+    M: false,
+    AAE: false,
+  });
+  
+  const toggleSection = (key) => {
+    setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const primaryColor = "#0c2461";
+  const subCardBg = "#f4f7ff";
 
   return (
     <div className="w-100">
@@ -25,35 +34,35 @@ export default function MissionAndVision() {
         <div className="col-12 py-4 px-3">
 
           {/* MAIN CARD */}
-          <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
+          <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm" >
             
             {/* HEADER */}
-            <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: "#0c2461" }}>
+            <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: primaryColor }}>
               <i className="bi bi-file-earmark-text me-2" style={{ fontSize: "18px" }}></i>
               <span style={{ fontSize: "18px" }}>Operations Manual</span>
             </div>
 
             {/* BODY */}
-            <div className="p-4">
+            <div className="p-4" style={{ maxHeight: "calc(88vh - 50px)", overflowY: "auto" }}>
               
               {/* OVERVIEW */}
               <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
                 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionA(!openSectionA)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{color:"#0c2461"}}>
+                  onClick={() => toggleSection("A")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{color:primaryColor}}>
                     A. OVERVIEW
                   </h3>
-                  <i className={`bi ${openSectionA ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.A ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionA ? "show" : ""}`}>
-                  <h4 className="fw-bold mb-3" style={{color:"#0c2461"}}>
+                <div className={`collapse ${openSections.A ? "show" : ""}`}>
+                  <h4 className="fw-bold mb-3" style={{color:primaryColor}}>
                     About AdZU
                   </h4>
 
-                  <h5 className="fw-bold mb-3" style={{color:"#0c2461"}}>
+                  <h5 className="fw-bold mb-3" style={{color:primaryColor}}>
                     History of the Ateneo de Zamboanga University
                   </h5>
 
@@ -119,7 +128,7 @@ export default function MissionAndVision() {
                   {/* ADZU VISION CARD */}
                   <div className="card shadow-sm rounded-2 border-0 mb-4 text-wrap text-break">
                     <div className="card-body">
-                      <h3 className="fw-bold text-primary border-start border-3 ps-3 mb-4" style={{ color: "#0c2461" }}>
+                      <h3 className="fw-bold text-primary border-start border-3 ps-3 mb-4" style={{ color: primaryColor }}>
                         Vision
                       </h3>
                       <p className="lh-base m-0" style={{ textAlign: "justify" }}>
@@ -133,7 +142,7 @@ export default function MissionAndVision() {
                   {/* ADZU MISSION MAIN CARD */}
                   <div className="card shadow-sm rounded-2 border-0 mb-4 text-wrap text-break">
                     <div className="card-body">
-                      <h3 className="fw-bold text-primary border-start border-3 ps-3 mb-4" style={{ color: "#0c2461" }}>
+                      <h3 className="fw-bold text-primary border-start border-3 ps-3 mb-4" style={{ color: primaryColor }}>
                         Mission
                       </h3>
                       <p className="lh-base mb-4" style={{ textAlign: "justify" }}>
@@ -146,7 +155,7 @@ export default function MissionAndVision() {
                         
                         {/* FIRST */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               Advancing Ignatian Spirituality
                             </h6>
@@ -159,7 +168,7 @@ export default function MissionAndVision() {
 
                         {/* SECOND */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               Dedicated to Holistic Growth and Human Flourishing
                             </h6>
@@ -173,7 +182,7 @@ export default function MissionAndVision() {
 
                         {/* THIRD */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               Zealous in Charting Global Paths
                             </h6>
@@ -186,7 +195,7 @@ export default function MissionAndVision() {
 
                         {/* FOURTH */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               United in Purpose and Action
                             </h6>
@@ -203,7 +212,7 @@ export default function MissionAndVision() {
                   {/* CORE VALUES MAIN CARD */}
                   <div className="card shadow-sm rounded-2 border-0 mb-4 text-wrap text-break">
                     <div className="card-body">
-                      <h3 className="fw-bold text-primary border-start border-3 ps-3 mb-4" style={{ color: "#0c2461" }}>
+                      <h3 className="fw-bold text-primary border-start border-3 ps-3 mb-4" style={{ color: primaryColor }}>
                         Core Values
                       </h3>
                       
@@ -211,7 +220,7 @@ export default function MissionAndVision() {
                       <div className="row g-3">
                         {/* MAGIS */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h5 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               Magis
                             </h5>
@@ -223,7 +232,7 @@ export default function MissionAndVision() {
                         
                         {/* CURA PERSONALIS */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h5 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               Cura Personalis
                             </h5>
@@ -235,7 +244,7 @@ export default function MissionAndVision() {
 
                         {/* COMPANIONSHIP */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               Companionship
                             </h6>
@@ -247,7 +256,7 @@ export default function MissionAndVision() {
 
                         {/* DISCERNMENT */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               Discernment
                             </h6>
@@ -259,7 +268,7 @@ export default function MissionAndVision() {
 
                         {/* ANIMO */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               Animo
                             </h6>
@@ -271,7 +280,7 @@ export default function MissionAndVision() {
 
                         {/* SOCIAL INVOLVEMENT */}
                         <div className="col-12 col-md-6">
-                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                          <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                             <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                               Social Involvement
                             </h6>
@@ -286,7 +295,7 @@ export default function MissionAndVision() {
                   
                   {/* ORGANIZATIONAL CHART */}
                   <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
-                    <h3 className="fw-bold border-start text-primary border-3 ps-3 mb-1" style={{ color: "#0c2461" }}>
+                    <h3 className="fw-bold border-start text-primary border-3 ps-3 mb-1" style={{ color: primaryColor }}>
                       Institutional Organizational Chart
                     </h3>
                     
@@ -323,7 +332,7 @@ export default function MissionAndVision() {
                   <div className="card shadow-sm rounded-2 border-0 mb-4 p-4 text-wrap text-break">
                     
                     {/* MAIN TITLE */}
-                    <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{ color: "#0c2461" }}>
+                    <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{ color: primaryColor }}>
                       About the Office
                     </h3>
                     
@@ -354,7 +363,7 @@ export default function MissionAndVision() {
                     </p>
                     
                     {/* VISION TITLE */}
-                    <h4 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: "#0c2461" }}>
+                    <h4 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: primaryColor }}>
                       Vision
                     </h4>
 
@@ -364,7 +373,7 @@ export default function MissionAndVision() {
                     </p>
                     
                     {/* MISSION TITLE */}
-                    <h4 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: "#0c2461" }}>
+                    <h4 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: primaryColor }}>
                       Mission
                     </h4>
 
@@ -378,7 +387,7 @@ export default function MissionAndVision() {
                       
                       {/* COMPETENT */}
                       <div className="col-12 col-md-6">
-                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                           <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                             Competent
                           </h6>
@@ -392,7 +401,7 @@ export default function MissionAndVision() {
                       
                       {/* CONSCIENCE */}
                       <div className="col-12 col-md-6">
-                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                           <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                             Conscience
                           </h6>
@@ -408,7 +417,7 @@ export default function MissionAndVision() {
                       <div className="col-12 col-md-6">
                         <div
                           className="card h-100 border-0 shadow-sm p-3 text-wrap text-break"
-                          style={{ backgroundColor: "#f4f7ff" }}
+                          style={{ backgroundColor: subCardBg }}
                         >
                           <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                             Character
@@ -423,7 +432,7 @@ export default function MissionAndVision() {
 
                       {/* COMPASSION */}
                       <div className="col-12 col-md-6">
-                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                           <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                             Compassion
                           </h6>
@@ -437,7 +446,7 @@ export default function MissionAndVision() {
 
                       {/* CULTURE */}
                       <div className="col-12 col-md-6">
-                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                        <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                           <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                             Culture
                           </h6>
@@ -460,14 +469,14 @@ export default function MissionAndVision() {
                 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionB(!openSectionB)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 m-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("B")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 m-0" style={{ color: primaryColor }}>
                     B. STRUCTURE, ROLES, AND RESPONSIBILITIES
                   </h3>
-                  <i className={`bi ${openSectionB ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.B ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionB ? "show" : ""}`}>
+                <div className={`collapse ${openSections.B ? "show" : ""}`}>
                   
                   {/* ORGANIZATIONAL CHART */}
                   <div className="mb-4">
@@ -490,7 +499,7 @@ export default function MissionAndVision() {
                   
                   {/* ROLES AND RESPONSIBILITIES */}
                   <div className="border-0 mb-4 p-4 text-wrap text-break">
-                    <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{ color: "#0c2461" }}>
+                    <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{ color: primaryColor }}>
                       Roles and Responsibilities
                     </h3>
                     
@@ -556,7 +565,7 @@ export default function MissionAndVision() {
                     </ol>
 
                     {/* DUTIES AND FUNCTIONS */}
-                    <h4 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: "#0c2461" }}>
+                    <h4 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: primaryColor }}>
                       Duties and Functions
                     </h4>
                     
@@ -622,7 +631,7 @@ export default function MissionAndVision() {
                     </p>
                     
                     {/* BASIC DUTIES */}
-                    <h5 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: "#0c2461" }}>
+                    <h5 className="fw-bold border-start border-3 ps-3 mb-3" style={{ color: primaryColor }}>
                       Basic Duties
                     </h5>
                     
@@ -702,14 +711,14 @@ export default function MissionAndVision() {
                 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionC(!openSectionC)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("C")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     C. PROGRAMS AND SERVICES
                   </h3>
-                  <i className={`bi ${openSectionC ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.C ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
 
-                <div className={`collapse ${openSectionC ? "show" : ""}`}>
+                <div className={`collapse ${openSections.C ? "show" : ""}`}>
                   
                   <p className="small fw-bold mb-2">1. Orientation of Spiritual Formation Programs</p>
                   <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
@@ -819,14 +828,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionD(!openSectionD)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("D")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     D. OFFICE POLICIES, GUIDELINES, AND PROCEDURES
                   </h3>
-                  <i className={`bi ${openSectionD ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.D ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
 
-                <div className={`collapse ${openSectionD ? "show" : ""}`}>
+                <div className={`collapse ${openSections.D ? "show" : ""}`}>
 
                   <h5 className="fw-bold mb-2">1. Office Hours and Staff Schedules</h5>
                   <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
@@ -877,14 +886,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionE(!openSectionE)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("E")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     E. RECORDS AND DOCUMENT MANAGEMENT
                   </h3>
-                  <i className={`bi ${openSectionE ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.E ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionE ? "show" : ""}`}>
+                <div className={`collapse ${openSections.E ? "show" : ""}`}>
                   
                   <p className="small lh-base mb-3">
                     At the end of the school year, the office staff will organize and file the different documents into their respective folders.
@@ -910,21 +919,21 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionF(!openSectionF)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("F")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     F. SUPPLIES AND EQUIPMENT MANAGEMENT
                   </h3>
-                  <i className={`bi ${openSectionF ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.F ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionF ? "show" : ""}`}>
+                <div className={`collapse ${openSections.F ? "show" : ""}`}>
                   
                   {/* SUPPLIES AND EQUIPMENT MANAGEMENT CARDS */}
                   <div className="row g-3 mb-4">
                     
                     {/* Ordering and Replacement */}
                     <div className="col-12 col-md-6">
-                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                         <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                           Ordering and Replacement
                         </h6>
@@ -937,7 +946,7 @@ export default function MissionAndVision() {
                     
                     {/* Equipment Requisitions */}
                     <div className="col-12 col-md-6">
-                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                         <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                           Equipment Requisitions
                         </h6>
@@ -950,7 +959,7 @@ export default function MissionAndVision() {
 
                     {/* Equipment Usage and Safety */}
                     <div className="col-12 col-md-6">
-                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                         <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                           Equipment Usage and Safety
                         </h6>
@@ -963,7 +972,7 @@ export default function MissionAndVision() {
 
                     {/* Maintenance and Repairs */}
                     <div className="col-12 col-md-6">
-                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                         <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                           Maintenance and Repairs
                         </h6>
@@ -977,7 +986,7 @@ export default function MissionAndVision() {
 
                     {/* Securing and Storage */}
                     <div className="col-12 col-md-6">
-                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                         <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                           Securing and Storage
                         </h6>
@@ -991,7 +1000,7 @@ export default function MissionAndVision() {
 
                     {/* Disposal Equipment */}
                     <div className="col-12 col-md-6">
-                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: "#f4f7ff" }}>
+                      <div className="card h-100 border-0 shadow-sm p-3 text-wrap text-break" style={{ backgroundColor: subCardBg }}>
                         <h6 className="fw-bold mb-2" style={{ color: "#1B3A90" }}>
                           Disposal Equipment
                         </h6>
@@ -1015,14 +1024,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionG(!openSectionG)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("G")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     G. BUDGET MANAGEMENT - BUDGET PREPARATION
                   </h3>
-                  <i className={`bi ${openSectionG ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.G ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionG ? "show" : ""}`}>
+                <div className={`collapse ${openSections.G ? "show" : ""}`}>
                   
                   <p className="lh-base mb-0" style={{ textAlign: "justify"}}>
                     Annual budget preparation starts in October. A pre-requisite document for the budget preparation is the operational plan of the previous 
@@ -1040,14 +1049,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionH(!openSectionH)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("H")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     H. COMMUNICATIONS PROTOCOLS
                   </h3>
-                  <i className={`bi ${openSectionH ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.H ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionH ? "show" : ""}`}>
+                <div className={`collapse ${openSections.H ? "show" : ""}`}>
                   
                   <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
                     Implementing these protocols can enhance communication, foster collaboration, and create a more efficient office environment. In the Unit 
@@ -1088,14 +1097,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionI(!openSectionI)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("I")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     I. CONFIDENTIALITY AND DATA PROTECTION POLICIES
                   </h3>
-                  <i className={`bi ${openSectionI ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.I ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionI ? "show" : ""}`}>
+                <div className={`collapse ${openSections.I ? "show" : ""}`}>
                   
                   <ol className="list-decimal list-inside small mb-0" style={{ textAlign: "justify"}}>
                     <li><strong>
@@ -1114,14 +1123,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionJ(!openSectionJ)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("J")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     J. DATA PROTECTION AND PRIVACY POLICIES
                   </h3>
-                  <i className={`bi ${openSectionJ ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.J ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionJ ? "show" : ""}`}>
+                <div className={`collapse ${openSections.J ? "show" : ""}`}>
                   
                   <p className="mb-0">
                     The office places all important documents (e.g., resignation letters, resumes) in a single brown envelope and stored it in the filing cabinet. 
@@ -1137,14 +1146,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionK(!openSectionK)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("K")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     K. OFFICE RISK MANAGEMENT AND CONTROL
                   </h3>
-                  <i className={`bi ${openSectionK ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.K ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionK ? "show" : ""}`}>
+                <div className={`collapse ${openSections.K ? "show" : ""}`}>
 
                   <p className="mb-0">
                     These health and safety policies are crucial for maintaining a secure and healthy working environment in the office. Staff members are 
@@ -1162,14 +1171,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionL(!openSectionL)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("L")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     L. INCIDENT REPORT
                   </h3>
-                  <i className={`bi ${openSectionL ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.L ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionL ? "show" : ""}`}>
+                <div className={`collapse ${openSections.L ? "show" : ""}`}>
                   
                   <p className="small mb-0">
                     All incident is immediately reported to the Unit Director for Formation. Complete an incident report form within 24 hours of the incident. 
@@ -1187,14 +1196,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionM(!openSectionM)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("M")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     M. QUALITY ASSURANCE AND CONTINUOUS IMPROVEMENT
                   </h3>
-                  <i className={`bi ${openSectionM ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.M ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionM ? "show" : ""}`}>
+                <div className={`collapse ${openSections.M ? "show" : ""}`}>
                   
                   <ol className="list-decimal list-inside small mb-0">
                     <li><strong>Evaluation and Assessment Processes</strong></li>
@@ -1213,14 +1222,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionAAE(!openSectionAAE)}>
-                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
+                  onClick={() => toggleSection("AAE")}>
+                  <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: primaryColor }}>
                     APPROVALS AND EFFECTIVITY
                   </h3>
-                  <i className={`bi ${openSectionAAE ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.AAE ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: primaryColor }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionAAE ? "show" : ""}`}>
+                <div className={`collapse ${openSections.AAE ? "show" : ""}`}>
                   
                   {/* Table */}
                   <div className="table-responsive">
@@ -1269,9 +1278,9 @@ export default function MissionAndVision() {
                   </em>
                   
                   {/* Contact Information */}
-                  <h4 className="fw-bold mb-2" style={{ color: "#0c2461" }}>CONTACT INFORMATION</h4>
+                  <h4 className="fw-bold mb-2" style={{ color: primaryColor }}>CONTACT INFORMATION</h4>
                   {/* Appendices */}
-                  <h4 className="fw-bold mb-2" style={{ color: "#0c2461" }}>APPENDICES</h4>
+                  <h4 className="fw-bold mb-2" style={{ color: primaryColor }}>APPENDICES</h4>
                   <ol className="list-decimal list-inside small mb-0">
                     <li>Office Forms and Templates</li>
                     <li>Checklists and Flowcharts</li>
@@ -1429,7 +1438,7 @@ export default function MissionAndVision() {
 
               {/* STAFF */}
               <div className="mt-5">
-                <h4 className="fw-bold mb-3 text-primary" style={{ color: "#0c2461" }}>
+                <h4 className="fw-bold mb-3 text-primary" style={{ color: primaryColor }}>
                   Meet Our Staff
                 </h4>
 
@@ -1504,7 +1513,7 @@ export default function MissionAndVision() {
                 <div className="row g-4">
                   {/* CONTACT */}
                   <div className="col-12 col-md-6">
-                    <h4 className="fw-bold mb-3 text-primary" style={{ color: "#0c2461" }}>
+                    <h4 className="fw-bold mb-3 text-primary" style={{ color: primaryColor }}>
                       Contact Us!
                     </h4>
 
@@ -1533,7 +1542,7 @@ export default function MissionAndVision() {
 
                   {/* FIND US */}
                   <div className="col-12 col-md-6">
-                    <h4 className="fw-bold mb-3 text-primary" style={{ color: "#0c2461" }}>
+                    <h4 className="fw-bold mb-3 text-primary" style={{ color: primaryColor }}>
                       Find Us!
                     </h4>
 

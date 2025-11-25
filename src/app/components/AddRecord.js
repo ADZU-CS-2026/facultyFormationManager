@@ -1,6 +1,8 @@
 "use client";
 import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "@/app/react-query";
 import { useState } from "react";
+import fetchAddRecord from "@/app/fetch/fetchAddRecord";
 
 export default function AddRecord() {
   const [first_name, set_first_name] = useState("");
@@ -10,7 +12,10 @@ export default function AddRecord() {
   const [position, set_position] = useState("");
   const [office, set_office] = useState("");
   const [status, set_status] = useState("");
-  const [school_year, set_school_year] = useState([]);
+  const [school_year, set_school_year] = useState("");
+  const [message, setMessage] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [isDone, setIsDone] = useState(false);
 
   let currentYear = new Date().getFullYear();
   const setAddRecordSchoolYears = [];
@@ -23,10 +28,46 @@ export default function AddRecord() {
     --current;
   }
 
-  // const mutationAddRecord = useMutation();
+  const mutationAddRecord = useMutation({
+    mutationFn: fetchAddRecord,
+    onSuccess: (res) => {
+      setIsDone(() => true);
+      queryClient.refetchQueries();
+      setMessage("User created successfully!");
+      set_first_name("");
+      set_last_name("");
+      set_middle_initial("");
+      set_department("");
+      set_position("");
+      set_office("");
+      set_status("");
+      set_school_year("");
+    },
+    onError: (error) => {
+      setIsError(() => true);
+      setIsDone(() => true);
+      const status = error?.response?.status;
+      if (status === 500) {
+        setMessage("Error");
+      }
+      setMessage("User not created successfully!");
+    },
+  });
 
   async function addRecord(e) {
     e.preventDefault();
+    setIsError(() => false);
+    setIsDone(() => false);
+    mutationAddRecord.mutate({
+      first_name,
+      last_name,
+      middle_initial,
+      department,
+      position,
+      office,
+      status,
+      school_year,
+    });
   }
 
   return (
@@ -34,7 +75,7 @@ export default function AddRecord() {
       <div className="p-3">
         <form onSubmit={addRecord}>
           <div className="row justify-content-center py-4">
-            <div className="col-8 d-flex flex-column gap-3">
+            <div className="col-xl-8 col-lg-9 col-md-10 d-flex flex-column gap-3">
               <div className="d-flex gap-2 align-items-center">
                 <div>First Name</div>
                 <input
@@ -114,36 +155,56 @@ export default function AddRecord() {
                   }
                 </select>
               </div>
-              <div className="d-flex gap-2 align-items-center">
-                <div>Position</div>
-                <input
-                  className="form-control form-control-sm"
-                  value={position}
-                  onChange={(e) => set_position(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="d-flex gap-2 align-items-center">
-                <div>Office</div>
-                <input
-                  className="form-control form-control-sm"
-                  value={office}
-                  onChange={(e) => set_office(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="d-flex gap-2 align-items-center">
-                <div>Status</div>
-                <input
-                  className="form-control form-control-sm"
-                  value={status}
-                  onChange={(e) => set_status(e.target.value)}
-                  required
-                />
-              </div>
+              {department === "PPO" && (
+                <>
+                  <div className="d-flex gap-2 align-items-center">
+                    <div>Status</div>
+                    <input
+                      className="form-control form-control-sm"
+                      value={status}
+                      onChange={(e) => set_status(e.target.value)}
+                      required
+                    />
+                  </div>
+                </>
+              )}
+              {department !== "PPO" && department !== "" ? (
+                <>
+                  <div className="d-flex gap-2 align-items-center">
+                    <div>Position</div>
+                    <input
+                      className="form-control form-control-sm"
+                      value={position}
+                      onChange={(e) => set_position(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="d-flex gap-2 align-items-center">
+                    <div>Office</div>
+                    <input
+                      className="form-control form-control-sm"
+                      value={office}
+                      onChange={(e) => set_office(e.target.value)}
+                      required
+                    />
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+
+              {isDone && (
+                <div
+                  className={`py-2 ${
+                    isError ? "text-red" : "text-green"
+                  } text-center fw-bold fs-5`}
+                >
+                  {message}
+                </div>
+              )}
               <button
                 type="submit"
-                className="btn fw-semibold btn-sm btn-lightblue text-white"
+                className="btn fw-semibold btn-sm btn-green text-white"
               >
                 Submit
               </button>

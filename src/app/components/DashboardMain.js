@@ -12,9 +12,7 @@ export default function Dashboard({ children, sidebar }) {
 
   const { data } = useQuery({
     queryKey: ["account"],
-    queryFn: async () => {
-      return await fetchAccountData();
-    },
+    queryFn: fetchAccountData,
   });
 
   return (
@@ -411,28 +409,6 @@ export default function Dashboard({ children, sidebar }) {
           transition={{ duration: 0.3, ease: "easeOut" }}
           className={`bg-gray2 text-white2 d-flex flex-column justify-content-start d-lg-none d-block overflow-x-hidden`}
         >
-          {/* SEARCH BAR */}
-          <div className="bg-gray2 p-3 position-relative">
-            <input
-              type="text"
-              placeholder="Search menu..."
-              className="w-100 bg-gray1 border-0 text-white pe-5 rounded-1 py-2 px-3 search-input"
-              style={{ height: "35px" }}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <small>
-              <FontAwesomeIcon
-                icon="fa-solid fa-search"
-                className="position-absolute text-yellowgray fs-6"
-                style={{
-                  right: "30px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                }}
-              />
-            </small>
-          </div>
           {query === "" ||
           "Main Navigation".toLowerCase().includes(query.toLowerCase()) ||
           "Home".toLowerCase().includes(query.toLowerCase()) ? (
