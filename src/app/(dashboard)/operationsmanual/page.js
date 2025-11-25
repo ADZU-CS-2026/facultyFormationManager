@@ -4,20 +4,26 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function MissionAndVision() {
-  const [openSectionA, setOpenSectionA] = useState(true);
-  const [openSectionB, setOpenSectionB] = useState(false);
-  const [openSectionC, setOpenSectionC] = useState(false);
-  const [openSectionD, setOpenSectionD] = useState(false);
-  const [openSectionE, setOpenSectionE] = useState(false);
-  const [openSectionF, setOpenSectionF] = useState(false);
-  const [openSectionG, setOpenSectionG] = useState(false);
-  const [openSectionH, setOpenSectionH] = useState(false);
-  const [openSectionI, setOpenSectionI] = useState(false);
-  const [openSectionJ, setOpenSectionJ] = useState(false);
-  const [openSectionK, setOpenSectionK] = useState(false);
-  const [openSectionL, setOpenSectionL] = useState(false);
-  const [openSectionM, setOpenSectionM] = useState(false);
-  const [openSectionAAE, setOpenSectionAAE] = useState(false);
+  const [openSections, setOpenSections] = useState({
+    A: true,
+    B: false,
+    C: false,
+    D: false,
+    E: false,
+    F: false,
+    G: false,
+    H: false,
+    I: false,
+    J: false,
+    K: false,
+    L: false,
+    M: false,
+    AAE: false,
+  });
+  
+  const toggleSection = (key) => {
+    setOpenSections((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   return (
     <div className="w-100">
@@ -41,14 +47,14 @@ export default function MissionAndVision() {
                 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionA(!openSectionA)}>
+                  onClick={() => toggleSection("A")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-4" style={{color:"#0c2461"}}>
                     A. OVERVIEW
                   </h3>
-                  <i className={`bi ${openSectionA ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.A ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionA ? "show" : ""}`}>
+                <div className={`collapse ${openSections.A ? "show" : ""}`}>
                   <h4 className="fw-bold mb-3" style={{color:"#0c2461"}}>
                     About AdZU
                   </h4>
@@ -460,14 +466,14 @@ export default function MissionAndVision() {
                 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionB(!openSectionB)}>
+                  onClick={() => toggleSection("B")}>
                   <h3 className="fw-bold border-start border-3 ps-3 m-0" style={{ color: "#0c2461" }}>
                     B. STRUCTURE, ROLES, AND RESPONSIBILITIES
                   </h3>
-                  <i className={`bi ${openSectionB ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.B ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionB ? "show" : ""}`}>
+                <div className={`collapse ${openSections.B ? "show" : ""}`}>
                   
                   {/* ORGANIZATIONAL CHART */}
                   <div className="mb-4">
@@ -702,14 +708,14 @@ export default function MissionAndVision() {
                 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionC(!openSectionC)}>
+                  onClick={() => toggleSection("C")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     C. PROGRAMS AND SERVICES
                   </h3>
-                  <i className={`bi ${openSectionC ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.C ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
 
-                <div className={`collapse ${openSectionC ? "show" : ""}`}>
+                <div className={`collapse ${openSections.C ? "show" : ""}`}>
                   
                   <p className="small fw-bold mb-2">1. Orientation of Spiritual Formation Programs</p>
                   <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
@@ -819,14 +825,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionD(!openSectionD)}>
+                  onClick={() => toggleSection("D")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     D. OFFICE POLICIES, GUIDELINES, AND PROCEDURES
                   </h3>
-                  <i className={`bi ${openSectionD ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.D ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
 
-                <div className={`collapse ${openSectionD ? "show" : ""}`}>
+                <div className={`collapse ${openSections.D ? "show" : ""}`}>
 
                   <h5 className="fw-bold mb-2">1. Office Hours and Staff Schedules</h5>
                   <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
@@ -877,14 +883,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionE(!openSectionE)}>
+                  onClick={() => toggleSection("E")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     E. RECORDS AND DOCUMENT MANAGEMENT
                   </h3>
-                  <i className={`bi ${openSectionE ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.E ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionE ? "show" : ""}`}>
+                <div className={`collapse ${openSections.E ? "show" : ""}`}>
                   
                   <p className="small lh-base mb-3">
                     At the end of the school year, the office staff will organize and file the different documents into their respective folders.
@@ -910,14 +916,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionF(!openSectionF)}>
+                  onClick={() => toggleSection("F")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     F. SUPPLIES AND EQUIPMENT MANAGEMENT
                   </h3>
-                  <i className={`bi ${openSectionF ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.F ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionF ? "show" : ""}`}>
+                <div className={`collapse ${openSections.F ? "show" : ""}`}>
                   
                   {/* SUPPLIES AND EQUIPMENT MANAGEMENT CARDS */}
                   <div className="row g-3 mb-4">
@@ -1015,14 +1021,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionG(!openSectionG)}>
+                  onClick={() => toggleSection("G")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     G. BUDGET MANAGEMENT - BUDGET PREPARATION
                   </h3>
-                  <i className={`bi ${openSectionG ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.G ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionG ? "show" : ""}`}>
+                <div className={`collapse ${openSections.G ? "show" : ""}`}>
                   
                   <p className="lh-base mb-0" style={{ textAlign: "justify"}}>
                     Annual budget preparation starts in October. A pre-requisite document for the budget preparation is the operational plan of the previous 
@@ -1040,14 +1046,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionH(!openSectionH)}>
+                  onClick={() => toggleSection("H")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     H. COMMUNICATIONS PROTOCOLS
                   </h3>
-                  <i className={`bi ${openSectionH ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.H ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionH ? "show" : ""}`}>
+                <div className={`collapse ${openSections.H ? "show" : ""}`}>
                   
                   <p className="small lh-base mb-3" style={{ textAlign: "justify"}}>
                     Implementing these protocols can enhance communication, foster collaboration, and create a more efficient office environment. In the Unit 
@@ -1088,14 +1094,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionI(!openSectionI)}>
+                  onClick={() => toggleSection("I")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     I. CONFIDENTIALITY AND DATA PROTECTION POLICIES
                   </h3>
-                  <i className={`bi ${openSectionI ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.I ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionI ? "show" : ""}`}>
+                <div className={`collapse ${openSections.I ? "show" : ""}`}>
                   
                   <ol className="list-decimal list-inside small mb-0" style={{ textAlign: "justify"}}>
                     <li><strong>
@@ -1114,14 +1120,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionJ(!openSectionJ)}>
+                  onClick={() => toggleSection("J")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     J. DATA PROTECTION AND PRIVACY POLICIES
                   </h3>
-                  <i className={`bi ${openSectionJ ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.J ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionJ ? "show" : ""}`}>
+                <div className={`collapse ${openSections.J ? "show" : ""}`}>
                   
                   <p className="mb-0">
                     The office places all important documents (e.g., resignation letters, resumes) in a single brown envelope and stored it in the filing cabinet. 
@@ -1137,14 +1143,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionK(!openSectionK)}>
+                  onClick={() => toggleSection("K")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     K. OFFICE RISK MANAGEMENT AND CONTROL
                   </h3>
-                  <i className={`bi ${openSectionK ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.K ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionK ? "show" : ""}`}>
+                <div className={`collapse ${openSections.K ? "show" : ""}`}>
 
                   <p className="mb-0">
                     These health and safety policies are crucial for maintaining a secure and healthy working environment in the office. Staff members are 
@@ -1162,14 +1168,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionL(!openSectionL)}>
+                  onClick={() => toggleSection("L")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     L. INCIDENT REPORT
                   </h3>
-                  <i className={`bi ${openSectionL ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.L ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionL ? "show" : ""}`}>
+                <div className={`collapse ${openSections.L ? "show" : ""}`}>
                   
                   <p className="small mb-0">
                     All incident is immediately reported to the Unit Director for Formation. Complete an incident report form within 24 hours of the incident. 
@@ -1187,14 +1193,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionM(!openSectionM)}>
+                  onClick={() => toggleSection("M")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     M. QUALITY ASSURANCE AND CONTINUOUS IMPROVEMENT
                   </h3>
-                  <i className={`bi ${openSectionM ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.M ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionM ? "show" : ""}`}>
+                <div className={`collapse ${openSections.M ? "show" : ""}`}>
                   
                   <ol className="list-decimal list-inside small mb-0">
                     <li><strong>Evaluation and Assessment Processes</strong></li>
@@ -1213,14 +1219,14 @@ export default function MissionAndVision() {
 
                 <div className="d-flex justify-content-between align-items-center mb-3"
                   style={{ cursor: "pointer" }}
-                  onClick={() => setOpenSectionAAE(!openSectionAAE)}>
+                  onClick={() => toggleSection("AAE")}>
                   <h3 className="fw-bold border-start border-3 ps-3 mb-0" style={{ color: "#0c2461" }}>
                     APPROVALS AND EFFECTIVITY
                   </h3>
-                  <i className={`bi ${openSectionAAE ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
+                  <i className={`bi ${openSections.AAE ? "bi-chevron-up" : "bi-chevron-down"}`} style={{ fontSize: "20px", color: "#0c2461" }}></i>
                 </div>
                 
-                <div className={`collapse ${openSectionAAE ? "show" : ""}`}>
+                <div className={`collapse ${openSections.AAE ? "show" : ""}`}>
                   
                   {/* Table */}
                   <div className="table-responsive">
