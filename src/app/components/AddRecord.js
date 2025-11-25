@@ -102,8 +102,11 @@ export default function AddRecord() {
                   type="text"
                   className="form-control form-control-sm"
                   required
+                  maxLength={1}
                   value={middle_initial}
-                  onChange={(e) => set_middle_initial(e.target.value)}
+                  onChange={(e) =>
+                    set_middle_initial(e.target.value.toUpperCase())
+                  }
                 />
               </div>
               <div className="d-flex gap-2 align-items-center">
