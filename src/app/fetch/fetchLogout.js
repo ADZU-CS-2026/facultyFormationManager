@@ -9,6 +9,6 @@ export default async function fetchLogout() {
     );
     return res;
   } catch (err) {
-    throw new Error(err.message);
+    throw err;
   }
 }
