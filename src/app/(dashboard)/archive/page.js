@@ -14,7 +14,7 @@ export default function Archive() {
                 style={{ color: "#0c2461" }}
               >
                 <i
-                  className="bi bi-calendar-event me-2"
+                  className="bi bi-archive-fill me-2"
                   style={{ fontSize: "18px" }}
                 ></i>
                 <span style={{ fontSize: "18px" }}>Archive</span>
