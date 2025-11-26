@@ -66,7 +66,7 @@ const INITIAL_PAST_EVENTS_DATA = [
                 cardId: 'cis-m1-workshop',
                 title: 'CIS Module 1: Prayer Workshop & Silent Retreat',
                 images: CIS_IMAGES,
-                location: 'Lantaka Campus',
+                location: 'AdZU Lantaka Campus',
                 date: 'November 10–16, 2025',
                 description: 'The Ateneo de Zamboanga University Campus Ministers and Freshmen Formation Program Formators successfully completed Module 1 of the Ignatian Formation Program. Module 1 consisted of an intensive Prayer Workshop, followed by a five-day silent retreat, allowing participants to enter more deeply into personal prayer, interior silence, and spiritual attentiveness. The program, rooted in Ignatian practice, deepens participants’ experience of prayer and prepares them to compassionately accompany others with discernment and an Ignatian grounding. Centered on compañerismo, it emphasizes journeying together in faith and walking with others as they seek meaning and purpose. CONTINUE DO EVERYTHING IN LOVE',
                 icon: 'bi-geo-alt-fill'
@@ -95,29 +95,29 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'usorecollection',
                 title: 'USO with Aloha Security Agency Participate in a Recollection',
-                location: 'Lantaka Campus',
+                location: 'AdZU Lantaka Campus',
                 date: 'June 22, 2025',
                 icon: 'bi-geo-alt-fill',
             },
             {
-                cardId: 'ssednffp',
-                title: 'School of Education and FFP Formators Retreat',
-                location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
-                date: 'May 27-30, 2025',
+                cardId: 'acesrecollection',
+                title: 'ACES Corner | Recollection of Experiences',
+                location: 'Immaculate Conception Chapel (ICC)',
+                date: 'June 27, 2025',
                 icon: 'bi-geo-alt-fill'
             },
             {
-                cardId: 'adminr',
-                title: 'Administrators\' Retreat ',
-                location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
-                date: 'May 26-29, 2025',
+                cardId: 'lawstudentsretreat',
+                title: 'Law Students Retreat',
+                location: 'AdZU Lantaka Campus',
+                date: 'July 9, 2025',
                 icon: 'bi-geo-alt-fill',
             },
             {
-                cardId: 'ssednffp',
-                title: 'School of Education and FFP Formators Retreat',
+                cardId: 'csiteretreat',
+                title: 'CSITE Retreat',
                 location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
-                date: 'May 27-30, 2025',
+                date: 'July 16-18, 2025',
                 icon: 'bi-geo-alt-fill'
             },
         ] },
@@ -126,7 +126,13 @@ const INITIAL_PAST_EVENTS_DATA = [
         title: 'Institutional Activities 2025-2026',
         isCollapsible: true,
         cards: [
-
+            {
+                cardId: 'intersession',
+                title: 'Intersession Program of the Jesuit Scholastics',
+                location: 'AdZU Main Campus, Sadik Grand Mosque, AdZU Kreutz Campus, and Fort Pilar',
+                date: 'July 23, 2025',
+                icon: 'bi-geo-alt-fill'
+            },
         ] },
     { 
         id: 'inst-2024-2025',
@@ -140,14 +146,98 @@ const INITIAL_PAST_EVENTS_DATA = [
         title: 'Days with God (DGY) 2024-2025',
         isCollapsible: true,
         cards: [
-
+            {
+                cardId: 'dgy1-2425-1',
+                title: 'Days with God Year 1 (DGY1)',
+                location: 'AdZU Lantaka Campus',
+                date: 'N/A',
+                icon: 'bi-geo-alt-fill'
+            },
+            {
+                cardId: 'ppo-dgy2-2425',
+                title: 'PPO Personnel Ignatian Recollection "Days with God (DGY2)',
+                location: 'ASEAN Heritage Park in Sitio Muruk',
+                date: 'February 28 and March 7, 2025',
+                icon: 'bi-geo-alt-fill'
+            },
+            {
+                cardId: 'irnf-dgy2-2425',
+                title: 'Ignatian Recollection "Days with God (DGY2)',
+                location: 'Nancy Falls, km 26, La Paz',
+                date: 'February 20-21, 2025',
+                icon: 'bi-geo-alt-fill'
+            },
+            {
+                cardId: 'ir-11islands-dgy2-2425',
+                title: 'Ignatian Recollection "Days with God (DGY2)',
+                location: '11 Islands',
+                date: 'February 6-7, 2025',
+                icon: 'bi-geo-alt-fill'
+            },
+            {
+                cardId: 'ir-lantaka-dgy2-2425',
+                title: 'Ignatian Recollection "Days with God (DGY2)',
+                location: 'AdZU Lantaka Campus',
+                date: 'February 13-14, 2025',
+                icon: 'bi-geo-alt-fill'
+            },
+            {
+                cardId: 'dgy3-2425',
+                title: 'Days with God Year 3 (DGY3)',
+                location: 'Taluksangay Mosque, Zamboanga City Alliance Evangelical Church, and Avalokitesvara Temple',
+                date: 'January 25, 2025',
+                theme: 'Inter-Religious Dialogue',
+                icon: 'bi-geo-alt-fill',
+                themeIcon: 'bi-chat-heart-fill'
+            },
         ] },
     { 
         id: 'rnr-2023-2024',
         title: 'Retreat and Recollection SY: 2023-2024',
         isCollapsible: true,
         cards: [
-
+            {
+                cardId: 'admin-retreat-2324',
+                title: 'Administrators’ Retreat',
+                location: 'Mirador, Baguio',
+                date: 'May 28–30, 2024',
+                icon: 'bi-geo-alt-fill',
+            },
+            {
+                cardId: 'ppo-retreat-2324',
+                title: 'Physical Plant Office Retreat',
+                location: 'Malaybalay, Bukidnon',
+                date: 'June 3–7, 2024 ',
+                icon: 'bi-geo-alt-fill',
+            },
+            {
+                cardId: 'con-retreat-2324',
+                title: 'College of Nursing Retreat',
+                location: 'Samal Island, Davao',
+                date: 'July 10–12, 2024',
+                icon: 'bi-geo-alt-fill',
+            },
+            {
+                cardId: 'sma-retreat-2324',
+                title: 'School of Management and Accounting with JHS Middle Administration Retreat',
+                location: 'Mirador, Baguio',
+                date: 'September 17–19, 2024',
+                icon: 'bi-geo-alt-fill',
+            },
+            {
+                cardId: 'sed-retreat-2324',
+                title: 'School of Education (SEd) Faculty and Staff Retreat',
+                location: 'AdZU Lantaka Campus',
+                date: 'October 17-18, 2024',
+                icon: 'bi-geo-alt-fill',
+            },
+            {
+                cardId: 'csite-retreat-2324',
+                title: 'College of Science and Information Technology and Engineering Retreat',
+                location: 'Angono, Rizal',
+                date: 'October 24-26, 2024',
+                icon: 'bi-geo-alt-fill',
+            },
         ] },
     { 
         id: 'dgy-2023-2024',
@@ -157,14 +247,14 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy1-2324-1',
                 title: 'Days with God Year 1 (DGY1)',
-                location: 'Lantaka Campus',
+                location: 'AdZU Lantaka Campus',
                 date: 'February 23-24, 2024',
                 icon: 'bi-geo-alt-fill'
             },
             {
                 cardId: 'dgy1-2324-2',
                 title: 'Days with God Year 1 (DGY1)',
-                location: 'Lantaka Campus',
+                location: 'AdZU Lantaka Campus',
                 date: 'March 1&2, 2024',
                 icon: 'bi-geo-alt-fill',
             },
@@ -172,6 +262,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2324ppo',
                 title: 'PPO Retreat',
+                location: 'N/A',
                 date: 'Batch 1 February 2-3, 2024 and Batch 2 February 16-17, 2024',
                 icon: 'bi-geo-alt-fill',
             },
@@ -192,7 +283,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2-2324-3',
                 title: 'Days with God Year 2 (DGY2) Laudato si\' at Lantaka',
-                location: 'Lantaka Campus',
+                location: 'AdZU Lantaka Campus',
                 date: 'April 11-12, 2024',
                 icon: 'bi-geo-alt-fill'
             },
@@ -204,7 +295,7 @@ const INITIAL_RECENT_EVENTS_DATA = [
         id: 1,
         title: 'Year 1: Introduction to Ignatian Spirituality',
         status: 'IS ON GOING',
-        location: 'Lantaka Campus',
+        location: 'AdZU Lantaka Campus',
         theme: 'Año de Compañerismo',
         statusColor: 'text-success'
     },
@@ -214,14 +305,14 @@ const INITIAL_RECENT_EVENTS_DATA = [
         status: 'January 2026 | SY: 2025-2026', 
         quote: 'More sacred spaces awaits. Let\'s see where God leads you next.',
         theme: 'Año de Compañerismo',
-        location: 'Main Campus',
+        location: 'AdZU Main Campus',
         statusColor: 'text-dark'
     },
 ];
 
 // --- REUSABLE COMPONENTS ---
 
-// Reusable Carousel Component for the DGY Cards (Past Events)
+// Reusable Carousel Component for the Cards (Past Events)
 function DGYCarousel({ id, images }) {
   const safeImages = images && images.length > 0 ? images : [{ src: '/Images/placeholder-dgy.png', alt: 'No Image Available' }];
 
@@ -378,7 +469,7 @@ export default function Events() {
               {/* CARD BODY */}
               <div className="p-3 py-2">
 
-                {/* 1. RECENT EVENTS SECTION */}
+                {/* RECENT EVENTS SECTION */}
                 <h3 className="fw-bold mb-4 mt-2" style={{ color: primaryColor }}>Recent Events</h3>
                 
                 {/* Events Grid (2-column layout on large screens, stacked on small screens) */}
@@ -405,7 +496,7 @@ export default function Events() {
 
                 <hr className="my-4" />
 
-                {/* 2. PAST EVENTS SECTION (Collapsible Archive) */}
+                {/* PAST EVENTS SECTION (Collapsible Archive) */}
                 <h3 className="fw-bold mb-3 text-wrap text-break" style={{ color: primaryColor }}>Past Events</h3>
                 <p className="text-muted mb-4 text-wrap text-break">Archive of past institutional activities, retreats, and formation programs.</p>
 
