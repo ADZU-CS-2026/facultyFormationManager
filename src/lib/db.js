@@ -13,4 +13,6 @@ export const pool = mysql.createPool({
   multipleStatements: true,
 });
 
+export default pool;
+
 // CHECK /db FOLDER FOR THE SQL QUERY OF THE ADMIN ACCOUNT DATABASE

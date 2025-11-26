@@ -12,7 +12,7 @@ export default async function StaffProfileAccount({ params }) {
             <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
               {/* CARD HEADER */}
               <div className="text-gray1 fs-6 border-bottom p-2 px-3 d-flex justify-content-between align-items-center">
-                <div style={{ fontSize: "18px" }}>Staff Profile</div>
+                <div style={{ fontSize: "18px" }}>Staff Profile - {id}</div>
               </div>
 
               {/* CARD BODY */}

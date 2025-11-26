@@ -44,8 +44,21 @@ async function applyChange(connection, change) {
         case 'UPDATE': {
             if (!record_id) throw new Error('record_id required for UPDATE');
 
-            const columns = Object.keys(parsedNewValues);
-            const values = Object.values(parsedNewValues);
+            // Filter out non-updatable fields (like retreat_type which is just for context)
+            const nonUpdatableFields = ['retreat_type', 'id', 'created_at', 'updated_at'];
+            const filteredValues = {};
+            for (const [key, value] of Object.entries(parsedNewValues)) {
+                if (!nonUpdatableFields.includes(key)) {
+                    filteredValues[key] = value;
+                }
+            }
+
+            const columns = Object.keys(filteredValues);
+            if (columns.length === 0) {
+                return { affectedRows: 0, message: 'No updatable fields' };
+            }
+
+            const values = Object.values(filteredValues);
             const setClause = columns.map(col => `${col} = ?`).join(', ');
 
             const query = `UPDATE ${table_name} SET ${setClause} WHERE id = ?`;

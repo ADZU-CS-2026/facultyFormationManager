@@ -4,12 +4,15 @@ import { useState, useRef } from "react"; // Added useRef
 import { useMutation } from "@tanstack/react-query";
 import { useReactToPrint } from "react-to-print"; // Added import
 import fetchSearchRecords from "@/app/fetch/fetchSearchRecords";
+import { useRouter } from "next/navigation";
 
 // dependencies
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
 export default function RecordSearch() {
+  const router = useRouter();
+
   const [start, setStart] = useState(false);
   const [searched, setsearch] = useState(false);
   const [departmentU, setDepartment] = useState("");
@@ -293,7 +296,11 @@ export default function RecordSearch() {
                 <>
                   {filteredRows?.length > 0 ? (
                     filteredRows.map((data, index) => (
-                      <tr key={index}>
+                      <tr
+                        key={index}
+                        className="cursor-pointer"
+                        onClick={() => router.push(`/records/${data.id}`)}
+                      >
                         <td className="text-start text-muted">{data.id}</td>
                         <td className="text-start text-muted">
                           {data.last_name}
