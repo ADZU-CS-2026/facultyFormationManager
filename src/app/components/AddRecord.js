@@ -25,7 +25,7 @@ export default function AddRecord() {
     queryFn: fetchAccountData,
   });
 
-  const isStaff = accountData?.[0]?.role === 'STAFF';
+  const isStaff = accountData?.[0]?.role === "STAFF";
 
   let currentYear = new Date().getFullYear();
   const setAddRecordSchoolYears = [];
@@ -49,10 +49,12 @@ export default function AddRecord() {
         setMessage("Record created successfully!");
         setIsPending(false);
       } else {
-        setMessage("Change saved to draft! Go to 'My Changes' to submit for approval.");
+        setMessage(
+          "Change saved to draft! Go to 'My Changes' to submit for approval."
+        );
         setIsPending(true);
         // Invalidate my drafts query
-        queryClient.invalidateQueries(['myDrafts']);
+        queryClient.invalidateQueries(["myDrafts"]);
       }
 
       set_first_name("");
@@ -68,7 +70,10 @@ export default function AddRecord() {
       setIsError(() => true);
       setIsDone(() => true);
       setIsPending(false);
-      const errorMessage = error?.response?.data?.message || error?.message || "Error creating record";
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.message ||
+        "Error creating record";
       setMessage(errorMessage);
     },
   });
@@ -191,7 +196,7 @@ export default function AddRecord() {
                   </div>
                 </>
               )}
-              {department !== "PPO" && department !== "" ? (
+              {department === "Admin" || department === "CS" ? (
                 <>
                   <div className="d-flex gap-2 align-items-center">
                     <div>Position</div>
@@ -220,22 +225,33 @@ export default function AddRecord() {
               {isStaff && (
                 <div className="alert alert-info py-2 small">
                   <i className="fa-solid fa-info-circle me-2"></i>
-                  As a Staff member, your changes will be saved as a draft and require admin approval.
+                  As a Staff member, your changes will be saved as a draft and
+                  require admin approval.
                 </div>
               )}
 
               {isDone && (
                 <div
-                  className={`py-2 ${isError ? "text-red" : isPending ? "text-info" : "text-green"
-                    } text-center fw-bold fs-6`}
+                  className={`py-2 ${
+                    isError
+                      ? "text-red"
+                      : isPending
+                      ? "text-info"
+                      : "text-green"
+                  } text-center fw-bold fs-6`}
                 >
                   {isPending && <i className="fa-solid fa-clock me-2"></i>}
-                  {!isError && !isPending && <i className="fa-solid fa-check-circle me-2"></i>}
+                  {!isError && !isPending && (
+                    <i className="fa-solid fa-check-circle me-2"></i>
+                  )}
                   {isError && <i className="fa-solid fa-times-circle me-2"></i>}
                   {message}
                   {isPending && (
                     <div className="mt-2">
-                      <a href="/my-changes" className="btn btn-sm btn-info text-white">
+                      <a
+                        href="/my-changes"
+                        className="btn btn-sm btn-info text-white"
+                      >
                         <i className="fa-solid fa-arrow-right me-1"></i>
                         Go to My Changes
                       </a>
