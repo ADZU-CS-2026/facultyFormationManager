@@ -1,31 +1,49 @@
 "use client";
 
 import { useState } from 'react';
-// Import necessary modules for Next.js if using Image or specialized components, 
-// but sticking to basic JSX/Bootstrap for maximum compatibility with the provided code.
+import Image from 'next/image';
 
-const DGY_IMAGES = [
-  { src: 'placeholder1.png', alt: 'DGY Event Photo 1' },
-  { src: 'placeholder2.png', alt: 'DGY Event Photo 2' },
-  { src: 'placeholder3.png', alt: 'DGY Event Photo 3' },
+// 1. UPDATED: Image data for DGY 4.1
+const DGY_4_1_IMAGES = [
+  { src: '/Images/dgy41.png', alt: 'DGY 4.1 Event Photo 1' },
+  { src: '/Images/dgy42.png', alt: 'DGY 4.1 Event Photo 2' },
+  { src: '/Images/dgy43.png', alt: 'DGY 4.1 Event Photo 3' },
+  { src: '/Images/dgy44.png', alt: 'DGY 4.1 Event Photo 4' },
 ];
 
-// Reusable Carousel Component for the DGY Cards (Optional: Define outside or use inline if preferred)
+// 2. UPDATED: Image data for DGY 3
+const DGY_3_IMAGES = [
+  { src: '/Images/dgy31.png', alt: 'DGY 3 Event Photo 1' },
+  { src: '/Images/dgy32.png', alt: 'DGY 3 Event Photo 2' },
+  { src: '/Images/dgy33.png', alt: 'DGY 3 Event Photo 3' },
+  { src: '/Images/dgy34.png', alt: 'DGY 3 Event Photo 4' },
+];
+
+
+// Reusable Carousel Component for the DGY Cards
 function DGYCarousel({ id, images }) {
   return (
-    <div id={`carousel-${id}`} className="carousel slide" data-bs-ride="carousel" style={{ height: '200px', backgroundColor: '#f4f7ff', borderBottom: '1px solid #ddd' }}>
+    <div id={`carousel-${id}`} className="carousel slide rounded-top-3" data-bs-ride="carousel" style={{ height: '200px', backgroundColor: '#f4f7ff', borderBottom: '1px solid #ddd', overflow: 'hidden' }}>
       <div className="carousel-inner h-100">
         {images.map((image, index) => (
-          <div key={index} className={`carousel-item h-100 ${index === 0 ? 'active' : ''}`}>
-            {/* Placeholder Image/Content */}
-            <div className="d-flex justify-content-center align-items-center h-100" style={{ color: '#0c2461', fontSize: '30px' }}>
-              <i className="bi bi-image me-2"></i> {image.alt.replace('DGY Event Photo', 'Image')}
-            </div>
-            {/* Replace the above div with a real <Image> component when image source is available */}
-            {/* <Image src={image.src} alt={image.alt} layout="fill" objectFit="cover" className="d-block w-100" /> */}
+          // IMPORTANT: Use position-relative and proper layout props for the image container
+          <div key={index} className={`carousel-item h-100 ${index === 0 ? 'active' : ''} position-relative`}> 
+            
+            {/* 3. UPDATED: Using Next.js Image component for images */}
+            <Image 
+                src={image.src} 
+                alt={image.alt} 
+                // Using layout="fill" makes the image cover the parent div (height: 200px)
+                fill
+                style={{ objectFit: "cover" }}
+                className="d-block w-100" 
+            />
+
           </div>
         ))}
       </div>
+      
+      {/* Carousel Controls */}
       <button className="carousel-control-prev" type="button" data-bs-target={`#carousel-${id}`} data-bs-slide="prev">
         <span className="carousel-control-prev-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Previous</span>
@@ -40,7 +58,7 @@ function DGYCarousel({ id, images }) {
 
 
 export default function Events() {
-  const primaryColor = "#0c2461"; // Ateneo Blue
+  const primaryColor = "#0c2461";
 
   return (
     <>
@@ -50,7 +68,7 @@ export default function Events() {
             {/* CARD */}
             <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
               
-              {/* HEADER (Styled with primaryColor) */}
+              {/* HEADER */}
               <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: primaryColor }}> 
                 <i className="bi bi-calendar-event me-2" style={{ fontSize: "18px" }}></i>
                 <span style={{ fontSize: "18px" }}>Events</span>
@@ -67,10 +85,9 @@ export default function Events() {
                   
                   {/* Event Card 1: Year 1 - Introduction to Ignatian Spirituality */}
                   <div className="col-lg-6 col-md-12">
-                    {/* Added custom class 'event-card-hover' for shadow transition */}
                     <div className="card h-100 rounded-3 border-0 shadow-sm event-card-hover">
                       <div className="card-body d-flex flex-column">
-                        <h4 className="card-title fw-bold mb-3" style={{ color: primaryColor }}>
+                        <h4 className="card-title fw-bold mb-3 text-wrap text-break" style={{ color: primaryColor }}>
                           Year 1: Introduction to Ignatian Spirituality
                         </h4>
                         
@@ -91,7 +108,7 @@ export default function Events() {
                     {/* Added custom class 'event-card-hover' for shadow transition */}
                     <div className="card h-100 rounded-3 border-0 shadow-sm event-card-hover">
                       <div className="card-body d-flex flex-column">
-                        <h4 className="card-title fw-bold mb-3" style={{ color: primaryColor }}>
+                        <h4 className="card-title fw-bold mb-3 text-wrap text-break" style={{ color: primaryColor }}>
                           Year 2: Laudato Si&apos;
                         </h4>
                         
@@ -100,7 +117,7 @@ export default function Events() {
                           <span className="badge bg-secondary p-2">SY: 2025-2026</span>
                         </div>
 
-                        <p className="card-text text-dark fst-italic mt-2">&quot;More sacred spaces awaits. Let&apos;s see where God leads you next.&quot;</p>
+                        <p className="card-text text-dark fst-italic mt-2 text-wrap text-break">&quot;More sacred spaces awaits. Let&apos;s see where God leads you next.&quot;</p>
                         
                         <div className="mt-auto pt-2 border-top">
                           <p className="mb-0 text-secondary small">Theme: <em>Año de Compañerismo</em></p>
@@ -128,25 +145,27 @@ export default function Events() {
                     <div className="col-lg-6 col-md-12">
                         <div className="card h-100 rounded-3 border-0 shadow-lg p-0">
                             
-                            {/* Slideshow/Carousel Section */}
-                            <DGYCarousel id="dgy4-1" images={DGY_IMAGES} />
+                            {/* Slideshow/Carousel Section - Uses DGY_4_1_IMAGES */}
+                            <DGYCarousel id="dgy4-1" images={DGY_4_1_IMAGES} />
 
                             <div className="card-body p-3">
                                 <h4 className="card-title fw-bold mb-1" style={{ color: primaryColor }}>
                                     Days with God Year 4.1 (DGY4.1)
                                 </h4>
                                 <p className="mb-1 fw-semibold text-dark">
-                                    August 28 to October 30, 2025
+                                    <i className="bi bi-geo-alt-fill me-1"></i> Immaculate Conception Chapel (ICC)
                                 </p>
                                 <p className="mb-3 text-muted">
-                                    <i className="bi bi-geo-alt-fill me-1"></i> Immaculate Conception Chapel (ICC)
+                                    <i className="bi bi-calendar-fill me-1"></i> August 28 to October 30, 2025
                                 </p>
 
                                 {/* Description */}
                                 <div className="border-top pt-2">
                                     <h6 className="fw-bold mb-2">Description:</h6>
                                     <p className="small text-secondary mb-0 text-wrap text-break">
-                                        The DGY 4.1 series focuses on a semester-long spiritual journey, encouraging participants to integrate Ignatian exercises into their daily work life through guided prayer and reflection sessions held at the ICC.
+                                      The DGY4.1 sessions serve as an essential preparation for the participants’ upcoming 3-day silent retreat. Throughout 
+                                      the program, participants are guided through personal prayer, reflections, and spiritual sharing, allowing them to 
+                                      deepen their relationship with God and better understand the movements of their inner life.
                                     </p>
                                 </div>
                             </div>
@@ -157,15 +176,18 @@ export default function Events() {
                     <div className="col-lg-6 col-md-12">
                         <div className="card h-100 rounded-3 border-0 shadow-lg p-0">
                             
-                            {/* Slideshow/Carousel Section */}
-                            <DGYCarousel id="dgy3" images={DGY_IMAGES} />
+                            {/* Slideshow/Carousel Section - Uses DGY_3_IMAGES */}
+                            <DGYCarousel id="dgy3" images={DGY_3_IMAGES} />
 
                             <div className="card-body p-3">
                                 <h4 className="card-title fw-bold mb-1" style={{ color: primaryColor }}>
                                     Days with God Year 3 (DGY3)
                                 </h4>
+                                <p className="mb-1 fw-semibold text-dark text-wrap text-break">
+                                  <i className="bi bi-geo-alt-fill me-1"></i> Taluksangay Mosque, Zamboanga City Alliance Evangelical Church, and Avalokitesvara Temple
+                                </p>
                                 <p className="mb-1 fw-semibold text-dark">
-                                    Inter-Religious Dialogue
+                                  <i className="bi bi-chat-heart-fill me-1"></i> Inter-Religious Dialogue
                                 </p>
                                 <p className="mb-3 text-muted">
                                     <i className="bi bi-calendar-fill me-1"></i> Novemeber 20-21, 2025
@@ -175,7 +197,8 @@ export default function Events() {
                                 <div className="border-top pt-2">
                                     <h6 className="fw-bold mb-2">Description:</h6>
                                     <p className="small text-secondary mb-0 text-wrap text-break">
-                                        This retreat focuses on fostering understanding and respect across different faiths, aligning with the Jesuit mission of reconciliation. It includes facilitated dialogues and shared prayer experiences over two days.
+                                      The Days with God Year 3 (DGY3) is a two-day Ignatian retreat designed for academic and non-academic staff who have 
+                                      previously completed Days with God Year 2 (DGY2). 
                                     </p>
                                 </div>
                             </div>
