@@ -52,6 +52,7 @@ export async function PATCH(req) {
             position,
             office,
             status,
+            work_status,
         } = await req.json();
 
         // Validate required fields
@@ -86,6 +87,7 @@ export async function PATCH(req) {
         if (position !== undefined && position !== oldValues.position) newValues.position = position;
         if (office !== undefined && office !== oldValues.office) newValues.office = office;
         if (status !== undefined && status !== oldValues.status) newValues.status = status;
+        if (work_status !== undefined && work_status !== oldValues.work_status) newValues.work_status = work_status;
 
         // Check if there are any changes
         if (Object.keys(newValues).length === 0) {
@@ -122,7 +124,7 @@ export async function PATCH(req) {
                  ORDER BY created_at DESC LIMIT 1`,
                 [userId]
             );
-
+            
             let batchId, batchUuid;
 
             if (existingDraft.length > 0) {

@@ -7,7 +7,7 @@ export async function POST(req) {
 
   try {
     const [rows] = await pool.execute(
-      `SELECT retreat_type, school_year, start_date, completion_date, attendance_status FROM retreat_records WHERE user_id = ? `,
+      `SELECT id, retreat_type, school_year, start_date, completion_date, attendance_status FROM retreat_records WHERE user_id = ? `,
       [parseId]
     );
 
