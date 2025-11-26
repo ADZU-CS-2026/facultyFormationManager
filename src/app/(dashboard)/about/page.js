@@ -107,7 +107,7 @@ export default function About() {
 
                 {/* OFFICES */}
                 <div className="mt-5">
-                  <h4 className="fw-bold mb-3 text-primary" style={{ color: "#0c2461" }}>
+                  <h4 className="fw-bold mb-3 text-primary text-wrap text-break" style={{ color: "#0c2461" }}>
                     Offices Under the Unit Director for Formation
                   </h4>
 
