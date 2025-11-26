@@ -140,3 +140,21 @@ PPO
     School Year 2026 - 2027
     School Year 2027 - 2028
     School Year 2028 - 2029
+
+
+
+
+
+new feature: I need to create essentially a buffer feature
+The idea is that if the account making updates is staff (role), we will have a buffer 
+feature where before the changes are implemented to the actual database,
+for the changes to 
+to be implemented it will need to be approved by the admin (role),
+we will first need to track the changes made by the staff, like bundle it
+then once confirmed the staff can submit the changes for confirmation by
+the admin. 
+
+
+essentially we will have a notification on the admin side, in which
+it will be either accepted or rejected. Once accepted, the changes are going
+to be implemented, otherwise it wont.

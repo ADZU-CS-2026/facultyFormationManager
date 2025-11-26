@@ -68,5 +68,42 @@ CREATE TABLE queries (
 )
 
 
+-- Change Batches Table (groups changes for approval workflow)
+CREATE TABLE change_batches (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    batch_uuid VARCHAR(36) UNIQUE NOT NULL,  -- UUID for external reference
+    submitted_by INT NOT NULL,  -- Staff account ID who created the batch
+    status ENUM('Draft', 'Pending', 'Approved', 'Rejected') DEFAULT 'Draft',
+    description VARCHAR(255),  -- Optional description of the batch
+    submitted_at TIMESTAMP NULL,  -- When batch was submitted for approval
+    reviewed_by INT NULL,  -- Admin who reviewed
+    reviewed_at TIMESTAMP NULL,  -- When reviewed
+    rejection_reason TEXT NULL,  -- Reason if rejected
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (submitted_by) REFERENCES adminaccount(id) ON DELETE CASCADE,
+    FOREIGN KEY (reviewed_by) REFERENCES adminaccount(id) ON DELETE SET NULL,
+    INDEX idx_status (status),
+    INDEX idx_submitted_by (submitted_by),
+    INDEX idx_submitted_at (submitted_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Pending Changes Table (individual changes within a batch)
+CREATE TABLE pending_changes (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    batch_id INT NOT NULL,  -- Links to change_batches
+    table_name VARCHAR(50) NOT NULL,  -- 'users', 'retreat_records', etc.
+    record_id INT NULL,  -- ID of existing record (NULL for INSERT operations)
+    action_type ENUM('INSERT', 'UPDATE', 'DELETE') NOT NULL,
+    old_values JSON NULL,  -- Snapshot before change (NULL for INSERT)
+    new_values JSON NOT NULL,  -- The proposed new values
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (batch_id) REFERENCES change_batches(id) ON DELETE CASCADE,
+    INDEX idx_batch_id (batch_id),
+    INDEX idx_table_name (table_name),
+    INDEX idx_record_id (record_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
 INSERT INTO adminaccount (id, role, password)
 VALUES (230692, 'ADMINISTRATOR', 'adzuformation');
