@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function MissionAndVision() {
+export default function OperationsManual() {
   const [openSections, setOpenSections] = useState({
     A: true,
     B: false,
@@ -38,7 +38,7 @@ export default function MissionAndVision() {
             
             {/* HEADER */}
             <div className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25" style={{ color: primaryColor }}>
-              <i className="bi bi-file-earmark-text me-2" style={{ fontSize: "18px" }}></i>
+              <i className="bi bi-book-half me-2" style={{ fontSize: "18px" }}></i>
               <span style={{ fontSize: "18px" }}>Operations Manual</span>
             </div>
 
