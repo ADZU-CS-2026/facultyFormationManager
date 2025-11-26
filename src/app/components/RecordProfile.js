@@ -156,7 +156,17 @@ export default function RecordProfile({ id }) {
   };
 
   // Department options
-  const departmentOptions = ["CS", "Admin", "CONN", "FFP", "PPO", "SED", "SLA", "SMA", "CSITE"];
+  const departmentOptions = [
+    "CS",
+    "Admin",
+    "CONN",
+    "FFP",
+    "PPO",
+    "SED",
+    "SLA",
+    "SMA",
+    "CSITE",
+  ];
 
   // Render retreat row - display only (no editing)
   const renderRetreatRow = (retreatData, label) => {
@@ -175,7 +185,9 @@ export default function RecordProfile({ id }) {
         <td className="text-start text-muted">{label}</td>
         <td className="text-center text-muted">
           {retreatData?.start_date && retreatData?.completion_date
-            ? `${retreatData.start_date.split("T")[0]} - ${retreatData.completion_date.split("T")[0]}`
+            ? `${retreatData.start_date.split("T")[0]} - ${
+                retreatData.completion_date.split("T")[0]
+              }`
             : "-"}
         </td>
         <td className="text-center text-muted">
@@ -225,7 +237,10 @@ export default function RecordProfile({ id }) {
               onClick={handleEditClick}
               className="btn btn-sm btn-warning d-flex align-items-center gap-2"
             >
-              <FontAwesomeIcon icon="fa-solid fa-pen-to-square" className="small" />
+              <FontAwesomeIcon
+                icon="fa-solid fa-pen-to-square"
+                className="small"
+              />
               <span>Edit</span>
             </button>
           )}
@@ -305,7 +320,9 @@ export default function RecordProfile({ id }) {
                 />
               </div>
             ) : (
-              `${user?.[0]?.id} - ${user?.[0]?.last_name}, ${user?.[0]?.first_name} ${user?.[0]?.middle_initial || ""}`
+              `${user?.[0]?.id} - ${user?.[0]?.last_name}, ${
+                user?.[0]?.first_name
+              } ${user?.[0]?.middle_initial || ""}`
             )}
           </div>
           <div className="col-md-4 col-12 fs-6 d-flex justify-content-md-end justify-content-center align-items-center gap-2">
@@ -325,7 +342,9 @@ export default function RecordProfile({ id }) {
             ) : (
               <>
                 <div
-                  className={`${user?.[0]?.work_status === "Active" ? "bg-green" : "bg-red"} rounded-pill`}
+                  className={`${
+                    user?.[0]?.work_status === "Active" ? "bg-green" : "bg-red"
+                  } rounded-pill`}
                   style={{ width: "10px", height: "10px" }}
                 ></div>
                 {user?.[0]?.work_status}
@@ -345,7 +364,8 @@ export default function RecordProfile({ id }) {
                     </th>
                   </tr>
                 </thead>
-                {user?.[0]?.department !== "PPO" ? (
+                {user?.[0]?.department === "Admin" ||
+                user?.[0]?.department === "CS" ? (
                   <tbody>
                     <tr>
                       <td className="text-start text-muted">Department</td>
@@ -404,6 +424,9 @@ export default function RecordProfile({ id }) {
                     </tr>
                   </tbody>
                 ) : (
+                  ""
+                )}
+                {user?.[0]?.department === "PPO" && (
                   <tbody>
                     <tr>
                       <td className="text-start text-muted">Department</td>
@@ -445,6 +468,33 @@ export default function RecordProfile({ id }) {
                     </tr>
                   </tbody>
                 )}
+                {user?.[0]?.department !== "PPO" &&
+                  user?.[0]?.department !== "Admin" &&
+                  user?.[0]?.department !== "CS" && (
+                    <tbody>
+                      <tr>
+                        <td className="text-start text-muted">Department</td>
+                        <td className="text-center text-muted">
+                          {isEditing ? (
+                            <select
+                              name="department"
+                              value={editForm.department}
+                              onChange={handleInputChange}
+                              className="form-select form-select-sm"
+                            >
+                              {departmentOptions.map((dept) => (
+                                <option key={dept} value={dept}>
+                                  {dept}
+                                </option>
+                              ))}
+                            </select>
+                          ) : (
+                            user?.[0]?.department
+                          )}
+                        </td>
+                      </tr>
+                    </tbody>
+                  )}
               </table>
             </div>
           </div>
@@ -482,7 +532,9 @@ export default function RecordProfile({ id }) {
 
                   {user?.[0]?.department !== "CS" && (
                     <>
-                      {_3DRetreat?.map((data, index) => render3DRetreatRow(data, index))}
+                      {_3DRetreat?.map((data, index) =>
+                        render3DRetreatRow(data, index)
+                      )}
                     </>
                   )}
                 </tbody>
