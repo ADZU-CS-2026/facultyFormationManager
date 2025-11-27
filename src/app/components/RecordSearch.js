@@ -250,9 +250,8 @@ export default function RecordSearch() {
         {/* TABLE */}
         <div className={`${!start && "mt-4"}`}>
           <table
-            className={`${
-              !loading ? "mt-2" : "mt-4"
-            } table table-bordered table-striped table-hover`}
+            className={`${!loading ? "mt-2" : "mt-4"
+              } table table-bordered table-striped table-hover`}
           >
             <thead className="border">
               <tr className="text-start">

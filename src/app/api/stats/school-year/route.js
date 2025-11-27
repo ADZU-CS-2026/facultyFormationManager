@@ -14,12 +14,10 @@ export async function GET() {
         // Get attendance stats grouped by school year
         const [attendanceRows] = await pool.query(`
             SELECT 
-                school_year,
-                COUNT(DISTINCT user_id) as actual_attendance
-            FROM retreat_records 
-            WHERE attendance_status IN ('Absent', 'Present')
-            GROUP BY school_year
-            ORDER BY school_year DESC
+                r.school_year, 
+                COUNT(DISTINCT r.user_id) as actual_attendance -- <--- THIS COUNTS THE ATTENDANCE
+            FROM retreat_records r
+            GROUP BY r.school_year
         `);
 
         const totalPopulation = populationRows[0]?.total_population || 0;
