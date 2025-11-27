@@ -190,7 +190,7 @@ export default function WeatherCard() {
                       {/* System Navigation */}
                       <div className="mb-4">
                         <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2 text-wrap text-break">
-                          🗺️ Main Navigation
+                          Main Navigation
                         </h6>
                         <div className="vstack gap-2 text-wrap text-break">
                           <div className="p-2 border rounded bg-white">
@@ -268,7 +268,7 @@ export default function WeatherCard() {
                       {/* Troubleshooting and Security */}
                       <div className="mb-4">
                         <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2">
-                          🛡️ Security & Support
+                          Security & Support
                         </h6>
                         <ul className="ps-3 mb-2">
                           <li>
