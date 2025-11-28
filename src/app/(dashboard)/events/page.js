@@ -5,15 +5,15 @@ import Image from 'next/image';
 
 const primaryColor = "#0c2461";
 
-// DGY 25-26 Images
-const DGY_4_1_IMAGES = [
+// --- IMAGES FOR SLIDESHOW ---
+const DGY_4_1_2526_IMAGES = [
   { src: '/Images/dgy41.png', alt: 'DGY 4.1 Event Photo 1' },
   { src: '/Images/dgy42.png', alt: 'DGY 4.1 Event Photo 2' },
   { src: '/Images/dgy43.png', alt: 'DGY 4.1 Event Photo 3' },
   { src: '/Images/dgy44.png', alt: 'DGY 4.1 Event Photo 4' },
 ];
 
-const DGY_3_IMAGES = [
+const DGY_3_2526_IMAGES = [
   { src: '/Images/dgy31.png', alt: 'DGY 3 Event Photo 1' },
   { src: '/Images/dgy32.png', alt: 'DGY 3 Event Photo 2' },
   { src: '/Images/dgy33.png', alt: 'DGY 3 Event Photo 3' },
@@ -29,23 +29,32 @@ const CIS_IMAGES = [
 ];
 
 const ADMIN_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnradmin.jpg', alt: 'ADMIN Retreat Photo 1' }, 
+  { src: '/Images/rnradmin2.png', alt: 'ADMIN Retreat Photo 2' }, 
 ];
 
 const LAW_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnrlaw.jpg', alt: 'LAW Retreat Photo 1' },
+  { src: '/Images/rnrlaw2.png', alt: 'LAW Retreat Photo 2' },
+  { src: '/Images/rnrlaw3.png', alt: 'LAW Retreat Photo 3' }, 
+  { src: '/Images/rnrlaw4.png', alt: 'LAW Retreat Photo 4' }, 
 ];
 
 const SED_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnrsed.jpg', alt: 'SED Retreat Photo 1' }, 
+  { src: '/Images/rnrsed2.png', alt: 'SED Retreat Photo 2' }, 
+  { src: '/Images/rnrsed3.png', alt: 'SED Retreat Photo 3' }, 
 ];
 
 const USO_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnraloha.jpg', alt: 'USO Retreat Photo' }, 
 ];
 
 const ACES_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnraces.png', alt: 'ACES Retreat Photo 1' }, 
+  { src: '/Images/rnraces2.png', alt: 'ACES Retreat Photo 2' }, 
+  { src: '/Images/rnraces3.png', alt: 'ACES Retreat Photo 3' }, 
+  { src: '/Images/rnraces4.png', alt: 'ACES Retreat Photo 4' }, 
 ];
 
 const CSITE_RETREAT2526_IMAGES = [
@@ -62,7 +71,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy4-1',
                 title: 'Days with God Year 4.1 (DGY4.1)',
-                images: DGY_4_1_IMAGES,
+                images: DGY_4_1_2526_IMAGES,
                 location: 'Immaculate Conception Chapel (ICC)',
                 date: 'August 28 to October 30, 2025',
                 description: 'The DGY4.1 sessions serve as an essential preparation for the participants’ upcoming 3-day silent retreat. Participants are guided through personal prayer, reflections, and spiritual sharing.',
@@ -71,7 +80,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy3',
                 title: 'Days with God Year 3 (DGY3)',
-                images: DGY_3_IMAGES,
+                images: DGY_3_2526_IMAGES,
                 location: 'Taluksangay Mosque, Zamboanga City Alliance Evangelical Church, and Avalokitesvara Temple',
                 date: 'Novemeber 20-21, 2025',
                 description: 'The DGY3 is a two-day Ignatian retreat designed for academic and non-academic staff who have previously completed DGY2.',
@@ -105,6 +114,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'adminr',
                 title: 'Administrators\' Retreat',
+                images: ADMIN_RETREAT2526_IMAGES,
                 location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
                 date: 'May 26-29, 2025',
                 description: 'Some of the administrators just concluded their 3-day Ignatian (Individually Directed) Retreat in Cebu Center for Ignatian Spirituality - Jesuit Retreat House. It was a time of reflection, reconciliation, and spiritual growth. A celebration of Companionship in the mission.',
@@ -113,6 +123,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ssednffp',
                 title: 'School of Education and FFP Formators Retreat',
+                images: SED_RETREAT2526_IMAGES,
                 location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
                 date: 'May 27-30, 2025',
                 description: 'The professors of the School of Education and FFP Formators just concluded their 3-day Ignatian (Individually Directed) Retreat at the Cebu Center for Ignatian Spirituality - Jesuit Retreat House. We thank God for the opportunity to rest and pray. We thank God for the mission. We thank God for the companions in the journey.',
@@ -121,6 +132,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'usorecollection',
                 title: 'USO with Aloha Security Agency Participate in a Recollection',
+                images: USO_RETREAT2526_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'June 22, 2025',
                 description: 'The members of the Ateneo de Zamboanga University Security Office (USO) in close collaboration with the Aloha Investigation Management CEO Ms Evelyn C Catingub CSP joined forty (40) Aloha Security Personnel for a Recollection Activity led by the Formation Office at Hall A of the AdZU Lantaka Campus, NS Valderosa Street, Zamboanga City. Guiding the attendees was Mr Honey Rod Alfaro who inspired them to take this opportunity to reflect on their lives and build a stronger connection with God.',
@@ -129,6 +141,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'acesrecollection',
                 title: 'ACES Corner | Recollection of Experiences',
+                images: ACES_RETREAT2526_IMAGES,
                 location: 'Immaculate Conception Chapel (ICC)',
                 date: 'June 27, 2025',
                 description: 'Today, our student immerses stepped into the Immaculate Conception Chapel for a profound Recollection of Experiences, guided by the Unit Director of Formation, Mr. Honey Rod Alfaro. In their quiet reflection, they revisited their journey, the struggles, the lessons, and the unexpected moments of growth. But this wasnt just about looking back. 𝐓𝐡𝐞𝐲 𝐰𝐞𝐫𝐞 𝐜𝐡𝐚𝐥𝐥𝐞𝐧𝐠𝐞𝐝 𝐭𝐨 𝐥𝐨𝐨𝐤 𝐟𝐨𝐫𝐰𝐚𝐫𝐝: "𝘞𝘩𝘢𝘵 𝘤𝘢𝘯 𝘺𝘰𝘶 𝘯𝘰𝘸 𝘥𝘰 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘤𝘰𝘮𝘮𝘶𝘯𝘪𝘵𝘺 𝘵𝘩𝘢𝘵 𝘩𝘢𝘴 𝘴𝘩𝘢𝘱𝘦𝘥 𝘺𝘰𝘶?"',
@@ -137,6 +150,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'lawstudentsretreat',
                 title: 'Law Students Retreat',
+                images: LAW_RETREAT2526_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'July 9, 2025',
                 description: 'Law students from the Rosendo U. Castillo Jr. College of Law at Ateneo de Zamboanga University spent a day in prayer and reflection at the Lantaka Campus for an Ignatian recollection focused on Ignatian discernment and vocation.',
@@ -151,10 +165,6 @@ const INITIAL_PAST_EVENTS_DATA = [
                 description: 'The professors of College of Science Information Technology & Engineering (CSITE) have just completed their 3-day Ignatian Retreat, guided by Fr. Jerome "Jem" Guevara SJ, at the Cebu Center for Ignatian Spirituality - Jesuit Retreat House. We are deeply grateful to God for the opportunity to rest, reflect, and pray, for the mission entrusted to us, and for the companionship along this journey.',
                 icon: 'bi-geo-alt-fill'
             },
-            {
-                cardId: 'gsfacultyretreat',
-                title: 'GS Faculty Retreat for the School Year 2025-2026'
-            }
         ] },
     { 
         id: 'inst-2025-2026',
