@@ -46,10 +46,6 @@ export default function RecordProfile({ id }) {
     queryFn: async () => await fetchRecordRetreatId(id),
   });
 
-  const _3DRetreat =
-    user?.[0]?.department !== "CS" &&
-    retreat?.filter((data) => data.retreat_type === "3D Retreat");
-
   const DGY1 = retreat?.find((data) => data.retreat_type === "DGY1");
   const DGY2 = retreat?.find((data) => data.retreat_type === "DGY2");
   const DGY3 = retreat?.find((data) => data.retreat_type === "DGY3");
@@ -62,6 +58,30 @@ export default function RecordProfile({ id }) {
     (data) => data.retreat_type === "DGY5.2 3D Retreat"
   );
   const SD = retreat?.find((data) => data.retreat_type === "SD");
+
+  // School years for 3D Retreat display
+  const schoolYears = [
+    "2023-2024",
+    "2024-2025",
+    "2025-2026",
+    "2026-2027",
+    "2027-2028",
+    "2028-2029",
+  ];
+
+  // Helper to find 3D Retreat data for a specific school year
+  const get3DRetreatForYear = (year) => {
+    return retreat?.find(
+      (data) => data.retreat_type === "3D Retreat" && data.school_year === year
+    );
+  };
+
+  // Helper to find PPO school year data
+  const getPPOForYear = (year) => {
+    return retreat?.find(
+      (data) => data.school_year === year
+    );
+  };
 
   // Initialize edit form when user data loads
   const initEditForm = () => {
@@ -188,27 +208,6 @@ export default function RecordProfile({ id }) {
             ? `${retreatData.start_date.split("T")[0]} - ${
                 retreatData.completion_date.split("T")[0]
               }`
-            : "-"}
-        </td>
-        <td className="text-center text-muted">
-          {retreatData?.attendance_status || "-"}
-        </td>
-      </tr>
-    );
-  };
-
-  // Render 3D Retreat row for non-CS departments
-  const render3DRetreatRow = (retreatData, index) => {
-    if (!retreatData) return null;
-
-    return (
-      <tr key={index}>
-        <td className="text-start text-muted">
-          {`${retreatData?.retreat_type} ${retreatData?.school_year}`}
-        </td>
-        <td className="text-center text-muted">
-          {retreatData?.start_date && retreatData?.completion_date
-            ? `${retreatData.start_date} - ${retreatData.completion_date}`
             : "-"}
         </td>
         <td className="text-center text-muted">
@@ -510,6 +509,7 @@ export default function RecordProfile({ id }) {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* CS Department - DGY progression + SD */}
                   {user?.[0]?.department === "CS" && (
                     <>
                       {renderRetreatRow(DGY1, "DGY1")}
@@ -523,18 +523,68 @@ export default function RecordProfile({ id }) {
                     </>
                   )}
 
+                  {/* Admin Department - DGY2, DGY3 + 3D Retreats by school year */}
                   {user?.[0]?.department === "Admin" && (
                     <>
                       {renderRetreatRow(DGY2, "DGY2")}
                       {renderRetreatRow(DGY3, "DGY3")}
+                      {schoolYears.map((year) => (
+                        <tr key={year}>
+                          <td className="text-start text-muted">3D Retreat SY {year}</td>
+                          <td className="text-center text-muted">
+                            {get3DRetreatForYear(year)?.start_date && get3DRetreatForYear(year)?.completion_date
+                              ? `${get3DRetreatForYear(year).start_date.split("T")[0]} - ${get3DRetreatForYear(year).completion_date.split("T")[0]}`
+                              : "-"}
+                          </td>
+                          <td className="text-center text-muted">
+                            {get3DRetreatForYear(year)?.attendance_status || "-"}
+                          </td>
+                        </tr>
+                      ))}
                     </>
                   )}
 
-                  {user?.[0]?.department !== "CS" && (
+                  {/* PPO Department - School Year entries */}
+                  {user?.[0]?.department === "PPO" && (
                     <>
-                      {_3DRetreat?.map((data, index) =>
-                        render3DRetreatRow(data, index)
-                      )}
+                      {schoolYears.filter(y => y !== "2023-2024").map((year) => (
+                        <tr key={year}>
+                          <td className="text-start text-muted">School Year {year}</td>
+                          <td className="text-center text-muted">
+                            {getPPOForYear(year)?.start_date && getPPOForYear(year)?.completion_date
+                              ? `${getPPOForYear(year).start_date.split("T")[0]} - ${getPPOForYear(year).completion_date.split("T")[0]}`
+                              : "-"}
+                          </td>
+                          <td className="text-center text-muted">
+                            {getPPOForYear(year)?.attendance_status || "-"}
+                          </td>
+                        </tr>
+                      ))}
+                    </>
+                  )}
+
+                  {/* FFP, CONN, CSITE, SED, SLA, SMA - 3D Retreats by school year only */}
+                  {(user?.[0]?.department === "FFP" ||
+                    user?.[0]?.department === "CONN" ||
+                    user?.[0]?.department === "CON" ||
+                    user?.[0]?.department === "CSITE" ||
+                    user?.[0]?.department === "SED" ||
+                    user?.[0]?.department === "SLA" ||
+                    user?.[0]?.department === "SMA") && (
+                    <>
+                      {schoolYears.map((year) => (
+                        <tr key={year}>
+                          <td className="text-start text-muted">3D Retreat SY {year}</td>
+                          <td className="text-center text-muted">
+                            {get3DRetreatForYear(year)?.start_date && get3DRetreatForYear(year)?.completion_date
+                              ? `${get3DRetreatForYear(year).start_date.split("T")[0]} - ${get3DRetreatForYear(year).completion_date.split("T")[0]}`
+                              : "-"}
+                          </td>
+                          <td className="text-center text-muted">
+                            {get3DRetreatForYear(year)?.attendance_status || "-"}
+                          </td>
+                        </tr>
+                      ))}
                     </>
                   )}
                 </tbody>
