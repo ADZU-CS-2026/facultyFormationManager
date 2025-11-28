@@ -147,7 +147,13 @@ export async function PATCH(req) {
                 relevantOldValues[key] = oldValues[key];
             }
 
-            // Create pending change record
+            // Store full old values for display context
+            const fullOldValues = { ...oldValues };
+            // Remove internal fields
+            delete fullOldValues.created_at;
+            delete fullOldValues.updated_at;
+
+            // Create pending change record - store full old values for context
             const [pendingChange] = await pool.execute(
                 `INSERT INTO pending_changes (batch_id, table_name, record_id, action_type, old_values, new_values) 
                  VALUES (?, ?, ?, ?, ?, ?)`,
@@ -156,7 +162,7 @@ export async function PATCH(req) {
                     'users',
                     id,
                     'UPDATE',
-                    JSON.stringify(relevantOldValues),
+                    JSON.stringify(fullOldValues),
                     JSON.stringify(newValues)
                 ]
             );

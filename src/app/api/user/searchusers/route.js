@@ -11,12 +11,12 @@ export async function POST(req) {
 
     // If school_year is provided, we need to join with retreat_records
     if (school_year && school_year.trim() !== "") {
-      baseQuery = `SELECT DISTINCT users.id, users.last_name, users.first_name, users.middle_initial 
+      baseQuery = `SELECT DISTINCT users.id, users.last_name, users.first_name, users.middle_initial, users.department 
         FROM users INNER JOIN retreat_records ON users.id = retreat_records.user_id`;
       conditions.push(`retreat_records.school_year = ?`);
       params.push(school_year);
     } else {
-      baseQuery = `SELECT DISTINCT users.id, users.last_name, users.first_name, users.middle_initial FROM users`;
+      baseQuery = `SELECT DISTINCT users.id, users.last_name, users.first_name, users.middle_initial, users.department FROM users`;
     }
 
     // Add department filter if provided

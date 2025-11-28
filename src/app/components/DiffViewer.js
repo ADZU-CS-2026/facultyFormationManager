@@ -82,7 +82,7 @@ export default function DiffViewer({
     };
 
     const formatValue = (value) => {
-        if (value === null || value === undefined) return <em className="text-muted">null</em>;
+        if (value === null || value === undefined) return <em className="text-muted">-</em>;
         if (value === '') return <em className="text-muted">empty</em>;
         if (typeof value === 'boolean') return value ? 'Yes' : 'No';
         if (Array.isArray(value)) return value.join(', ');
@@ -156,14 +156,50 @@ export default function DiffViewer({
         );
     }
 
-    // UPDATE view
+    // UPDATE view - Show all fields, highlight changed ones
+    // A field is considered changed only if both values exist and are different
+    const getChangedFields = () => {
+        const changed = [];
+        
+        for (const key of allKeys) {
+            const oldVal = flatOldValues?.[key];
+            const newVal = flatNewValues?.[key];
+            
+            // Skip if new value is null/undefined (field wasn't part of the update)
+            if (newVal === null || newVal === undefined) continue;
+            
+            // Skip if values are the same
+            if (String(oldVal) === String(newVal)) continue;
+            
+            changed.push(key);
+        }
+        
+        return changed;
+    };
+
+    const changedFields = getChangedFields();
+    
+    // Get display value - for unchanged fields, show the old value (current data)
+    const getDisplayValue = (key, type) => {
+        const oldVal = flatOldValues?.[key];
+        const newVal = flatNewValues?.[key];
+        const isChanged = changedFields.includes(key);
+        
+        if (type === 'old') {
+            return oldVal;
+        } else {
+            // For new value column: show new value if changed, otherwise show current value
+            return isChanged ? newVal : oldVal;
+        }
+    };
+
     return (
         <div className="diff-viewer">
             {/* View Mode Toggle */}
             <div className="d-flex justify-content-between align-items-center mb-3">
                 <span className="text-muted small">
                     <i className="fa-solid fa-edit me-1"></i>
-                    Comparing changes
+                    {changedFields.length} field{changedFields.length !== 1 ? 's' : ''} changed
                 </span>
                 <div className="btn-group btn-group-sm">
                     <button
@@ -176,13 +212,13 @@ export default function DiffViewer({
                         className={`btn ${viewMode === 'inline' ? 'btn-primary' : 'btn-outline-primary'}`}
                         onClick={() => setViewMode('inline')}
                     >
-                        Inline
+                        Changes Only
                     </button>
                 </div>
             </div>
 
             {/* Conflict Warning */}
-            {showConflicts && allKeys.some(key => hasConflict(key)) && (
+            {showConflicts && changedFields.some(key => hasConflict(key)) && (
                 <div className="alert alert-warning py-2 mb-3">
                     <i className="fa-solid fa-exclamation-triangle me-2"></i>
                     <strong>Conflict Detected:</strong> Some values have changed since this request was created.
@@ -201,18 +237,22 @@ export default function DiffViewer({
                     <tbody>
                         {allKeys.map(key => {
                             const conflict = hasConflict(key);
-                            const changed = hasChanged(key);
+                            const isChanged = changedFields.includes(key);
+                            const oldVal = flatOldValues?.[key];
 
                             return (
                                 <tr key={key} className={conflict ? 'table-warning' : ''}>
                                     <td className="fw-medium">
                                         {renderFieldLabel(key)}
+                                        {isChanged && (
+                                            <span className="badge bg-primary ms-2" style={{ fontSize: '0.65rem' }}>Changed</span>
+                                        )}
                                         {conflict && (
                                             <i className="fa-solid fa-exclamation-triangle text-warning ms-1" title="Conflict"></i>
                                         )}
                                     </td>
-                                    <td className={changed ? 'bg-danger bg-opacity-10' : ''}>
-                                        {formatValue(flatOldValues?.[key])}
+                                    <td className={isChanged ? 'bg-danger bg-opacity-10' : ''}>
+                                        {formatValue(oldVal)}
                                         {conflict && (
                                             <div className="small text-warning mt-1">
                                                 <i className="fa-solid fa-arrow-right me-1"></i>
@@ -220,8 +260,12 @@ export default function DiffViewer({
                                             </div>
                                         )}
                                     </td>
-                                    <td className={changed ? 'bg-success bg-opacity-10' : ''}>
-                                        {formatValue(flatNewValues?.[key])}
+                                    <td className={isChanged ? 'bg-success bg-opacity-10' : ''}>
+                                        {isChanged ? (
+                                            formatValue(getDisplayValue(key, 'new'))
+                                        ) : (
+                                            <span className="text-muted">{formatValue(oldVal)}</span>
+                                        )}
                                     </td>
                                 </tr>
                             );
@@ -229,40 +273,45 @@ export default function DiffViewer({
                     </tbody>
                 </table>
             ) : (
-                <div className="list-group">
-                    {allKeys.map(key => {
-                        const conflict = hasConflict(key);
-                        const changed = hasChanged(key);
+                /* Inline view - only show changed fields */
+                changedFields.length > 0 ? (
+                    <div className="list-group">
+                        {changedFields.map(key => {
+                            const conflict = hasConflict(key);
 
-                        if (!changed && !conflict) return null;
-
-                        return (
-                            <div key={key} className={`list-group-item ${conflict ? 'list-group-item-warning' : ''}`}>
-                                <div className="d-flex justify-content-between align-items-start">
-                                    <strong>{renderFieldLabel(key)}</strong>
+                            return (
+                                <div key={key} className={`list-group-item ${conflict ? 'list-group-item-warning' : ''}`}>
+                                    <div className="d-flex justify-content-between align-items-start">
+                                        <strong>{renderFieldLabel(key)}</strong>
+                                        {conflict && (
+                                            <span className="badge bg-warning text-dark">Conflict</span>
+                                        )}
+                                    </div>
+                                    <div className="mt-2">
+                                        <span className="text-danger text-decoration-line-through me-2">
+                                            {formatValue(flatOldValues?.[key])}
+                                        </span>
+                                        <i className="fa-solid fa-arrow-right text-muted mx-2"></i>
+                                        <span className="text-success fw-medium">
+                                            {formatValue(flatNewValues?.[key])}
+                                        </span>
+                                    </div>
                                     {conflict && (
-                                        <span className="badge bg-warning text-dark">Conflict</span>
+                                        <div className="small text-warning mt-1">
+                                            <i className="fa-solid fa-info-circle me-1"></i>
+                                            Current value in database: {formatValue(flatCurrentValues?.[key])}
+                                        </div>
                                     )}
                                 </div>
-                                <div className="mt-2">
-                                    <span className="text-danger text-decoration-line-through me-2">
-                                        {formatValue(flatOldValues?.[key])}
-                                    </span>
-                                    <i className="fa-solid fa-arrow-right text-muted mx-2"></i>
-                                    <span className="text-success fw-medium">
-                                        {formatValue(flatNewValues?.[key])}
-                                    </span>
-                                </div>
-                                {conflict && (
-                                    <div className="small text-warning mt-1">
-                                        <i className="fa-solid fa-info-circle me-1"></i>
-                                        Current value in database: {formatValue(flatCurrentValues?.[key])}
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <div className="alert alert-secondary py-2 mb-0">
+                        <i className="fa-solid fa-info-circle me-2"></i>
+                        No field changes detected.
+                    </div>
+                )
             )}
         </div>
     );

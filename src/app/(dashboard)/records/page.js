@@ -2,6 +2,8 @@
 
 import RecordSearch from "@/app/components/RecordSearch";
 import AddRecord from "@/app/components/AddRecord";
+import BatchUpdate from "@/app/components/BatchUpdate";
+import DeleteUser from "@/app/components/DeleteUser";
 
 export default function Records() {
   return (
@@ -30,7 +32,7 @@ export default function Records() {
                     className="nav nav-tabs small"
                     id="nav-tab"
                     role="tablist"
-                    style={{ maxWidth: "607.5px" }}
+                    style={{ maxWidth: "800px" }}
                   >
                     <button
                       className="nav-link active"
@@ -56,10 +58,34 @@ export default function Records() {
                     >
                       Add Record
                     </button>
+                    <button
+                      className="nav-link"
+                      id="nav-batch-tab"
+                      data-bs-toggle="tab"
+                      data-bs-target="#nav-batch"
+                      type="button"
+                      role="tab"
+                      aria-controls="nav-batch"
+                      aria-selected="false"
+                    >
+                      Batch Updates
+                    </button>
+                    <button
+                      className="nav-link"
+                      id="nav-delete-tab"
+                      data-bs-toggle="tab"
+                      data-bs-target="#nav-delete"
+                      type="button"
+                      role="tab"
+                      aria-controls="nav-delete"
+                      aria-selected="false"
+                    >
+                      Delete User
+                    </button>
                   </div>
                 </nav>
                 <div className="tab-content small" id="nav-tabContent">
-                  {/* PROFILE INFO SECTION */}
+                  {/* SEARCH SECTION */}
                   <div
                     className="tab-pane fade show active d-block p-3"
                     id="nav-home"
@@ -70,8 +96,7 @@ export default function Records() {
                     <RecordSearch />
                   </div>
 
-                  {/* CREATE ACCOUNT SECTION */}
-
+                  {/* ADD RECORD SECTION */}
                   <div
                     className="tab-pane fade d-block"
                     id="nav-profile"
@@ -80,6 +105,28 @@ export default function Records() {
                     tabIndex="0"
                   >
                     <AddRecord />
+                  </div>
+
+                  {/* BATCH UPDATE SECTION */}
+                  <div
+                    className="tab-pane fade d-block"
+                    id="nav-batch"
+                    role="tabpanel"
+                    aria-labelledby="nav-batch-tab"
+                    tabIndex="0"
+                  >
+                    <BatchUpdate />
+                  </div>
+
+                  {/* DELETE USER SECTION */}
+                  <div
+                    className="tab-pane fade d-block"
+                    id="nav-delete"
+                    role="tabpanel"
+                    aria-labelledby="nav-delete-tab"
+                    tabIndex="0"
+                  >
+                    <DeleteUser />
                   </div>
                 </div>
               </div>
