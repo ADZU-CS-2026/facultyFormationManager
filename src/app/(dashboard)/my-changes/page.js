@@ -35,7 +35,7 @@ export default function MyChangesPage() {
                         <div className="card-body">
                             <div className="row g-3">
                                 <div className="col-md-3 text-center">
-                                    <div className="rounded-circle bg-secondary bg-opacity-10 mx-auto mb-2 d-flex align-items-center justify-content-center" style={{ width: '50px', height: '50px' }}>
+                                    <div className="rounded-circle bg-red-100 bg-opacity-10 mx-auto mb-2 d-flex align-items-center justify-content-center" style={{ width: '50px', height: '50px' }}>
                                         <i className="fa-solid fa-file-pen text-secondary"></i>
                                     </div>
                                     <small className="fw-medium">1. Draft</small>
