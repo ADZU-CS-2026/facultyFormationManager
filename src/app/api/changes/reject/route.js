@@ -55,12 +55,7 @@ export async function POST(req) {
             );
         }
 
-        if (!rejection_reason || rejection_reason.trim() === '') {
-            return NextResponse.json(
-                { success: false, message: "rejection_reason is required" },
-                { status: 400 }
-            );
-        }
+
 
         // Verify the batch exists and is in Pending status
         const [batch] = await pool.execute(
@@ -87,10 +82,9 @@ export async function POST(req) {
             `UPDATE change_batches 
              SET status = 'Rejected', 
                  reviewed_by = ?, 
-                 reviewed_at = NOW(),
-                 rejection_reason = ?
+                 reviewed_at = NOW()
              WHERE id = ?`,
-            [adminId, rejection_reason.trim(), batch_id]
+            [adminId, batch_id]
         );
 
         return NextResponse.json({
@@ -98,8 +92,7 @@ export async function POST(req) {
             message: "Batch rejected",
             data: {
                 batch_id: batch_id,
-                status: 'Rejected',
-                rejection_reason: rejection_reason.trim()
+                status: 'Rejected'
             }
         }, { status: 200 });
 

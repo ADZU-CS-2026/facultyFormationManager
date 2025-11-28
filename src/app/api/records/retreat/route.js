@@ -111,18 +111,31 @@ export async function POST(req) {
                 [loggedInUserId]
             );
 
+            // Get user name for description
+            const [userInfo] = await pool.execute(
+                `SELECT last_name, first_name FROM users WHERE id = ?`,
+                [user_id]
+            );
+            const userName = userInfo.length > 0 ? `${userInfo[0].last_name}, ${userInfo[0].first_name || ''}` : `User #${user_id}`;
+            const description = `New retreat: ${retreat_type} for ${userName}`;
+
             let batchId, batchUuid;
 
             if (existingDraft.length > 0) {
                 batchId = existingDraft[0].id;
                 batchUuid = existingDraft[0].batch_uuid;
+                // Update description to reflect latest change
+                await pool.execute(
+                    `UPDATE change_batches SET description = ? WHERE id = ?`,
+                    [description, batchId]
+                );
             } else {
-                // Create new draft batch
+                // Create new draft batch with descriptive message
                 batchUuid = uuidv4();
                 const [newBatch] = await pool.execute(
                     `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                      VALUES (?, ?, 'Draft', ?)`,
-                    [batchUuid, loggedInUserId, `New retreat: ${retreat_type}`]
+                    [batchUuid, loggedInUserId, description]
                 );
                 batchId = newBatch.insertId;
             }
@@ -275,18 +288,31 @@ export async function PATCH(req) {
                 [userId]
             );
 
+            // Get user name for description
+            const [userInfo] = await pool.execute(
+                `SELECT last_name, first_name FROM users WHERE id = ?`,
+                [oldValues.user_id]
+            );
+            const userName = userInfo.length > 0 ? `${userInfo[0].last_name}, ${userInfo[0].first_name || ''}` : `User #${oldValues.user_id}`;
+            const description = `Update retreat: ${oldValues.retreat_type} for ${userName}`;
+
             let batchId, batchUuid;
 
             if (existingDraft.length > 0) {
                 batchId = existingDraft[0].id;
                 batchUuid = existingDraft[0].batch_uuid;
+                // Update description to reflect latest change
+                await pool.execute(
+                    `UPDATE change_batches SET description = ? WHERE id = ?`,
+                    [description, batchId]
+                );
             } else {
-                // Create new draft batch
+                // Create new draft batch with descriptive message
                 batchUuid = uuidv4();
                 const [newBatch] = await pool.execute(
                     `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                      VALUES (?, ?, 'Draft', ?)`,
-                    [batchUuid, userId, `Update retreat: ${oldValues.retreat_type}`]
+                    [batchUuid, userId, description]
                 );
                 batchId = newBatch.insertId;
             }
@@ -424,16 +450,29 @@ export async function DELETE(req) {
 
             let batchId, batchUuid;
 
+            // Get user name for description
+            const [userInfo] = await pool.execute(
+                `SELECT last_name, first_name FROM users WHERE id = ?`,
+                [oldValues.user_id]
+            );
+            const userName = userInfo.length > 0 ? `${userInfo[0].last_name}, ${userInfo[0].first_name || ''}` : `User #${oldValues.user_id}`;
+            const description = `Delete retreat: ${oldValues.retreat_type} for ${userName}`;
+
             if (existingDraft.length > 0) {
                 batchId = existingDraft[0].id;
                 batchUuid = existingDraft[0].batch_uuid;
+                // Update batch description to reflect the latest change
+                await pool.execute(
+                    `UPDATE change_batches SET description = ? WHERE id = ?`,
+                    [description, batchId]
+                );
             } else {
-                // Create new draft batch
+                // Create new draft batch with descriptive message
                 batchUuid = uuidv4();
                 const [newBatch] = await pool.execute(
                     `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                      VALUES (?, ?, 'Draft', ?)`,
-                    [batchUuid, userId, `Delete retreat: ${oldValues.retreat_type}`]
+                    [batchUuid, userId, description]
                 );
                 batchId = newBatch.insertId;
             }
