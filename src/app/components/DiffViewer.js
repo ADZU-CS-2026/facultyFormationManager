@@ -160,31 +160,31 @@ export default function DiffViewer({
     // A field is considered changed only if both values exist and are different
     const getChangedFields = () => {
         const changed = [];
-        
+
         for (const key of allKeys) {
             const oldVal = flatOldValues?.[key];
             const newVal = flatNewValues?.[key];
-            
+
             // Skip if new value is null/undefined (field wasn't part of the update)
             if (newVal === null || newVal === undefined) continue;
-            
+
             // Skip if values are the same
             if (String(oldVal) === String(newVal)) continue;
-            
+
             changed.push(key);
         }
-        
+
         return changed;
     };
 
     const changedFields = getChangedFields();
-    
+
     // Get display value - for unchanged fields, show the old value (current data)
     const getDisplayValue = (key, type) => {
         const oldVal = flatOldValues?.[key];
         const newVal = flatNewValues?.[key];
         const isChanged = changedFields.includes(key);
-        
+
         if (type === 'old') {
             return oldVal;
         } else {

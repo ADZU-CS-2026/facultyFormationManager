@@ -124,7 +124,7 @@ export async function PATCH(req) {
                  ORDER BY created_at DESC LIMIT 1`,
                 [userId]
             );
-            
+
             let batchId, batchUuid;
 
             if (existingDraft.length > 0) {

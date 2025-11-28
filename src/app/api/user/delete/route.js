@@ -90,7 +90,7 @@ export async function DELETE(req) {
                     `DELETE FROM users WHERE id = ?`,
                     [userId]
                 );
-                
+
                 if (userResult.affectedRows > 0) {
                     deletedCount++;
                 }

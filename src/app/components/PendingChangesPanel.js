@@ -348,7 +348,7 @@ export default function PendingChangesPanel() {
                                         </div>
                                         <div className="small text-muted mt-1">
                                             <i className="fa-solid fa-layer-group me-1"></i>
-                                            {batch.change_count || 0} change{batch.change_count !== 1 ? 's' : ''} 
+                                            {batch.change_count || 0} change{batch.change_count !== 1 ? 's' : ''}
                                             <span className="mx-2">•</span>
                                             <i className="fa-regular fa-calendar me-1"></i>
                                             {formatDate(batch.created_at)}
@@ -419,11 +419,10 @@ export default function PendingChangesPanel() {
                                                                         data-bs-target={`#change-${change.id}`}
                                                                     >
                                                                         <i className={`${getActionTypeIcon(change.action_type)} me-2`}></i>
-                                                                        <span className={`badge me-2 ${
-                                                                            change.action_type === 'INSERT' ? 'bg-success' :
-                                                                            change.action_type === 'UPDATE' ? 'bg-primary' :
-                                                                            change.action_type === 'DELETE' ? 'bg-danger' : 'bg-secondary'
-                                                                        }`}>
+                                                                        <span className={`badge me-2 ${change.action_type === 'INSERT' ? 'bg-success' :
+                                                                                change.action_type === 'UPDATE' ? 'bg-primary' :
+                                                                                    change.action_type === 'DELETE' ? 'bg-danger' : 'bg-secondary'
+                                                                            }`}>
                                                                             {getActionLabel(change.action_type)}
                                                                         </span>
                                                                         <span className="text-muted small">
