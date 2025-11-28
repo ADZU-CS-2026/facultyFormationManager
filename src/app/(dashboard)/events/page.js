@@ -28,6 +28,30 @@ const CIS_IMAGES = [
   { src: '/Images/cis5.jpeg', alt: 'CIS Module 1 Photo 5' },
 ];
 
+const ADMIN_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const LAW_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const SED_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const USO_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const ACES_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const CSITE_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
 // Initial structure for Past Events
 const INITIAL_PAST_EVENTS_DATA = [
     {
@@ -83,6 +107,7 @@ const INITIAL_PAST_EVENTS_DATA = [
                 title: 'Administrators\' Retreat',
                 location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
                 date: 'May 26-29, 2025',
+                description: 'Some of the administrators just concluded their 3-day Ignatian (Individually Directed) Retreat in Cebu Center for Ignatian Spirituality - Jesuit Retreat House. It was a time of reflection, reconciliation, and spiritual growth. A celebration of Companionship in the mission.',
                 icon: 'bi-geo-alt-fill',
             },
             {
@@ -90,6 +115,7 @@ const INITIAL_PAST_EVENTS_DATA = [
                 title: 'School of Education and FFP Formators Retreat',
                 location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
                 date: 'May 27-30, 2025',
+                description: 'The professors of the School of Education and FFP Formators just concluded their 3-day Ignatian (Individually Directed) Retreat at the Cebu Center for Ignatian Spirituality - Jesuit Retreat House. We thank God for the opportunity to rest and pray. We thank God for the mission. We thank God for the companions in the journey.',
                 icon: 'bi-geo-alt-fill'
             },
             {
@@ -97,6 +123,7 @@ const INITIAL_PAST_EVENTS_DATA = [
                 title: 'USO with Aloha Security Agency Participate in a Recollection',
                 location: 'AdZU Lantaka Campus',
                 date: 'June 22, 2025',
+                description: 'The members of the Ateneo de Zamboanga University Security Office (USO) in close collaboration with the Aloha Investigation Management CEO Ms Evelyn C Catingub CSP joined forty (40) Aloha Security Personnel for a Recollection Activity led by the Formation Office at Hall A of the AdZU Lantaka Campus, NS Valderosa Street, Zamboanga City. Guiding the attendees was Mr Honey Rod Alfaro who inspired them to take this opportunity to reflect on their lives and build a stronger connection with God.',
                 icon: 'bi-geo-alt-fill',
             },
             {
@@ -104,6 +131,7 @@ const INITIAL_PAST_EVENTS_DATA = [
                 title: 'ACES Corner | Recollection of Experiences',
                 location: 'Immaculate Conception Chapel (ICC)',
                 date: 'June 27, 2025',
+                description: 'Today, our student immerses stepped into the Immaculate Conception Chapel for a profound Recollection of Experiences, guided by the Unit Director of Formation, Mr. Honey Rod Alfaro. In their quiet reflection, they revisited their journey, the struggles, the lessons, and the unexpected moments of growth. But this wasnt just about looking back. 𝐓𝐡𝐞𝐲 𝐰𝐞𝐫𝐞 𝐜𝐡𝐚𝐥𝐥𝐞𝐧𝐠𝐞𝐝 𝐭𝐨 𝐥𝐨𝐨𝐤 𝐟𝐨𝐫𝐰𝐚𝐫𝐝: "𝘞𝘩𝘢𝘵 𝘤𝘢𝘯 𝘺𝘰𝘶 𝘯𝘰𝘸 𝘥𝘰 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘤𝘰𝘮𝘮𝘶𝘯𝘪𝘵𝘺 𝘵𝘩𝘢𝘵 𝘩𝘢𝘴 𝘴𝘩𝘢𝘱𝘦𝘥 𝘺𝘰𝘶?"',
                 icon: 'bi-geo-alt-fill'
             },
             {
@@ -111,15 +139,22 @@ const INITIAL_PAST_EVENTS_DATA = [
                 title: 'Law Students Retreat',
                 location: 'AdZU Lantaka Campus',
                 date: 'July 9, 2025',
+                description: 'Law students from the Rosendo U. Castillo Jr. College of Law at Ateneo de Zamboanga University spent a day in prayer and reflection at the Lantaka Campus for an Ignatian recollection focused on Ignatian discernment and vocation.',
                 icon: 'bi-geo-alt-fill',
             },
             {
                 cardId: 'csiteretreat',
                 title: 'CSITE Retreat',
+                images: CSITE_RETREAT2526_IMAGES,
                 location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
                 date: 'July 16-18, 2025',
+                description: 'The professors of College of Science Information Technology & Engineering (CSITE) have just completed their 3-day Ignatian Retreat, guided by Fr. Jerome "Jem" Guevara SJ, at the Cebu Center for Ignatian Spirituality - Jesuit Retreat House. We are deeply grateful to God for the opportunity to rest, reflect, and pray, for the mission entrusted to us, and for the companionship along this journey.',
                 icon: 'bi-geo-alt-fill'
             },
+            {
+                cardId: 'gsfacultyretreat',
+                title: 'GS Faculty Retreat for the School Year 2025-2026'
+            }
         ] },
     { 
         id: 'inst-2025-2026',
