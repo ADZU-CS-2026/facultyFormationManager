@@ -46,16 +46,19 @@ export default function RecordProfile({ id }) {
     queryFn: async () => await fetchRecordRetreatId(id),
   });
 
+  // DEBUG: Log retreat data received from API
+  console.log("DEBUG - Retreat data for user", id, ":", retreat);
+
   const DGY1 = retreat?.find((data) => data.retreat_type === "DGY1");
   const DGY2 = retreat?.find((data) => data.retreat_type === "DGY2");
   const DGY3 = retreat?.find((data) => data.retreat_type === "DGY3");
-  const DGY41 = retreat?.find((data) => data.retreat_type === "DGY4.1 IMC");
+  const DGY41 = retreat?.find((data) => data.retreat_type === "DGY4.1_IMC");
   const DGY42 = retreat?.find(
-    (data) => data.retreat_type === "DGY4.2 3D Retreat"
+    (data) => data.retreat_type === "DGY4.2_3D_Retreat"
   );
-  const DGY51 = retreat?.find((data) => data.retreat_type === "DGY5.1 IPC");
+  const DGY51 = retreat?.find((data) => data.retreat_type === "DGY5.1_IPC");
   const DGY52 = retreat?.find(
-    (data) => data.retreat_type === "DGY5.2 3D Retreat"
+    (data) => data.retreat_type === "DGY5.2_3D_Retreat"
   );
   const SD = retreat?.find((data) => data.retreat_type === "SD");
 
@@ -72,7 +75,7 @@ export default function RecordProfile({ id }) {
   // Helper to find 3D Retreat data for a specific school year
   const get3DRetreatForYear = (year) => {
     return retreat?.find(
-      (data) => data.retreat_type === "3D Retreat" && data.school_year === year
+      (data) => data.retreat_type === "3D_Retreat" && data.school_year === year
     );
   };
 
