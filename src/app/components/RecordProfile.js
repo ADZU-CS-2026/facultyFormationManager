@@ -5,6 +5,7 @@ import fetchUserId from "@/app/fetch/fetchUserId";
 import fetchRecordRetreatId from "@/app/fetch/fetchRecordRetreatId";
 import fetchAccountData from "@/app/fetch/fetchAccountData";
 import { fetchUpdateRecord } from "@/app/fetch/fetchUpdateRecord";
+import { fetchUpdateRetreat } from "@/app/fetch/fetchUpdateRetreat";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +19,7 @@ export default function RecordProfile({ id }) {
   // Edit mode state
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState({});
+  const [retreatEditForm, setRetreatEditForm] = useState({});
   const [saving, setSaving] = useState(false);
 
   // Fetch current user account for role
@@ -46,22 +48,42 @@ export default function RecordProfile({ id }) {
     queryFn: async () => await fetchRecordRetreatId(id),
   });
 
-  const _3DRetreat =
-    user?.[0]?.department !== "CS" &&
-    retreat?.filter((data) => data.retreat_type === "3D Retreat");
-
   const DGY1 = retreat?.find((data) => data.retreat_type === "DGY1");
   const DGY2 = retreat?.find((data) => data.retreat_type === "DGY2");
   const DGY3 = retreat?.find((data) => data.retreat_type === "DGY3");
-  const DGY41 = retreat?.find((data) => data.retreat_type === "DGY4.1 IMC");
+  const DGY41 = retreat?.find((data) => data.retreat_type === "DGY4.1_IMC");
   const DGY42 = retreat?.find(
-    (data) => data.retreat_type === "DGY4.2 3D Retreat"
+    (data) => data.retreat_type === "DGY4.2_3D_Retreat"
   );
-  const DGY51 = retreat?.find((data) => data.retreat_type === "DGY5.1 IPC");
+  const DGY51 = retreat?.find((data) => data.retreat_type === "DGY5.1_IPC");
   const DGY52 = retreat?.find(
-    (data) => data.retreat_type === "DGY5.2 3D Retreat"
+    (data) => data.retreat_type === "DGY5.2_3D_Retreat"
   );
   const SD = retreat?.find((data) => data.retreat_type === "SD");
+
+  // School years for 3D Retreat display
+  const schoolYears = [
+    "2023-2024",
+    "2024-2025",
+    "2025-2026",
+    "2026-2027",
+    "2027-2028",
+    "2028-2029",
+  ];
+
+  // Helper to find 3D Retreat data for a specific school year
+  const get3DRetreatForYear = (year) => {
+    return retreat?.find(
+      (data) => data.retreat_type === "3D_Retreat" && data.school_year === year
+    );
+  };
+
+  // Helper to find PPO school year data
+  const getPPOForYear = (year) => {
+    return retreat?.find(
+      (data) => data.school_year === year
+    );
+  };
 
   // Initialize edit form when user data loads
   const initEditForm = () => {
@@ -77,6 +99,51 @@ export default function RecordProfile({ id }) {
         work_status: user[0].work_status || "Active",
       });
     }
+    // Initialize retreat edit form with existing retreat data
+    if (retreat && Array.isArray(retreat)) {
+      const retreatEdits = {};
+      retreat.forEach((r) => {
+        retreatEdits[r.id] = {
+          start_date: r.start_date ? r.start_date.split("T")[0] : "",
+          completion_date: r.completion_date ? r.completion_date.split("T")[0] : "",
+          attendance_status: r.attendance_status || "",
+        };
+      });
+      setRetreatEditForm(retreatEdits);
+    }
+  };
+
+  // Handle retreat form changes
+  const handleRetreatChange = (retreatId, field, value) => {
+    setRetreatEditForm((prev) => ({
+      ...prev,
+      [retreatId]: {
+        ...prev[retreatId],
+        [field]: value,
+      },
+    }));
+  };
+
+  // Get original retreat data for comparison
+  const getOriginalRetreat = (retreatId) => {
+    return retreat?.find((r) => r.id === retreatId);
+  };
+
+  // Check if a specific retreat has changes
+  const hasRetreatChanges = (retreatId) => {
+    const original = getOriginalRetreat(retreatId);
+    const edited = retreatEditForm[retreatId];
+    if (!original || !edited) return false;
+
+    const origStart = original.start_date ? original.start_date.split("T")[0] : "";
+    const origEnd = original.completion_date ? original.completion_date.split("T")[0] : "";
+    const origStatus = original.attendance_status || "";
+
+    return (
+      edited.start_date !== origStart ||
+      edited.completion_date !== origEnd ||
+      edited.attendance_status !== origStatus
+    );
   };
 
   // Handle edit button click
@@ -98,16 +165,17 @@ export default function RecordProfile({ id }) {
   const handleCancelEdit = () => {
     setIsEditing(false);
     setEditForm({});
+    setRetreatEditForm({});
   };
 
-  // Handle save - user data only
+  // Handle save - user data and retreat data
   const handleSave = async () => {
     setSaving(true);
 
     try {
-      // Check if there are actual changes
+      // Check if there are actual user data changes
       const originalUser = user[0];
-      const hasChanges =
+      const hasUserChanges =
         editForm.first_name !== (originalUser.first_name || "") ||
         editForm.last_name !== (originalUser.last_name || "") ||
         editForm.middle_initial !== (originalUser.middle_initial || "") ||
@@ -117,31 +185,78 @@ export default function RecordProfile({ id }) {
         editForm.status !== (originalUser.status || "") ||
         editForm.work_status !== (originalUser.work_status || "Active");
 
-      if (!hasChanges) {
+      // Find retreat records with changes
+      const retreatChanges = [];
+      Object.keys(retreatEditForm).forEach((retreatId) => {
+        if (hasRetreatChanges(parseInt(retreatId))) {
+          retreatChanges.push({
+            id: parseInt(retreatId),
+            ...retreatEditForm[retreatId],
+          });
+        }
+      });
+
+      const hasAnyChanges = hasUserChanges || retreatChanges.length > 0;
+
+      if (!hasAnyChanges) {
         addToast("No changes to save.", "warning");
         setIsEditing(false);
         setEditForm({});
+        setRetreatEditForm({});
         setSaving(false);
         return;
       }
 
-      const result = await fetchUpdateRecord({
-        id: user[0].id,
-        ...editForm,
-      });
+      let userSaveResult = null;
+      let retreatSaveResults = [];
+      let hasDirectSave = false;
+      let hasPendingSave = false;
+
+      // Save user data changes if any
+      if (hasUserChanges) {
+        userSaveResult = await fetchUpdateRecord({
+          id: user[0].id,
+          ...editForm,
+        });
+
+        if (userSaveResult.success) {
+          if (userSaveResult.isDirectSave) {
+            hasDirectSave = true;
+          } else {
+            hasPendingSave = true;
+          }
+        }
+      }
+
+      // Save retreat data changes if any
+      for (const retreatChange of retreatChanges) {
+        try {
+          const result = await fetchUpdateRetreat(retreatChange);
+          retreatSaveResults.push({ id: retreatChange.id, result });
+          if (result.success) {
+            if (result.isDirectSave) {
+              hasDirectSave = true;
+            } else {
+              hasPendingSave = true;
+            }
+          }
+        } catch (err) {
+          console.error(`Error saving retreat ${retreatChange.id}:`, err);
+          retreatSaveResults.push({ id: retreatChange.id, error: err });
+        }
+      }
 
       // Invalidate queries to refresh data
       queryClient.invalidateQueries(["recordid", id]);
+      queryClient.invalidateQueries(["recordretreatid", id]);
 
-      if (result.success) {
-        if (result.isDirectSave) {
-          addToast("Record updated successfully!", "success");
-        } else {
-          addToast(
-            "Changes saved as pending. Submit for admin approval in My Changes.",
-            "info"
-          );
-        }
+      // Show appropriate toast messages
+      if (hasDirectSave && hasPendingSave) {
+        addToast("Some changes saved directly, others pending admin approval.", "info");
+      } else if (hasDirectSave) {
+        addToast("All changes saved successfully!", "success");
+      } else if (hasPendingSave) {
+        addToast("Changes saved as pending. Submit for admin approval in My Changes.", "info");
       } else {
         addToast("Failed to save changes. Please try again.", "danger");
       }
@@ -152,6 +267,7 @@ export default function RecordProfile({ id }) {
 
     setIsEditing(false);
     setEditForm({});
+    setRetreatEditForm({});
     setSaving(false);
   };
 
@@ -168,8 +284,12 @@ export default function RecordProfile({ id }) {
     "CSITE",
   ];
 
-  // Render retreat row - display only (no editing)
+  // Attendance status options
+  const attendanceStatusOptions = ["Present", "Absent"];
+
+  // Render retreat row - with editing support
   const renderRetreatRow = (retreatData, label) => {
+    // No data exists - show empty row (no editing for non-existent records)
     if (!retreatData) {
       return (
         <tr>
@@ -180,14 +300,59 @@ export default function RecordProfile({ id }) {
       );
     }
 
+    const retreatId = retreatData.id;
+    const editData = retreatEditForm[retreatId] || {};
+
+    // Editing mode
+    if (isEditing) {
+      return (
+        <tr>
+          <td className="text-start text-muted">{label}</td>
+          <td className="text-center">
+            <div className="d-flex gap-1 justify-content-center align-items-center">
+              <input
+                type="date"
+                value={editData.start_date || ""}
+                onChange={(e) => handleRetreatChange(retreatId, "start_date", e.target.value)}
+                className="form-control form-control-sm"
+                style={{ width: "130px" }}
+              />
+              <span>-</span>
+              <input
+                type="date"
+                value={editData.completion_date || ""}
+                onChange={(e) => handleRetreatChange(retreatId, "completion_date", e.target.value)}
+                className="form-control form-control-sm"
+                style={{ width: "130px" }}
+              />
+            </div>
+          </td>
+          <td className="text-center">
+            <select
+              value={editData.attendance_status || ""}
+              onChange={(e) => handleRetreatChange(retreatId, "attendance_status", e.target.value)}
+              className="form-select form-select-sm"
+              style={{ width: "120px", margin: "0 auto" }}
+            >
+              <option value="">-</option>
+              {attendanceStatusOptions.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+          </td>
+        </tr>
+      );
+    }
+
+    // Display mode
     return (
       <tr>
         <td className="text-start text-muted">{label}</td>
         <td className="text-center text-muted">
           {retreatData?.start_date && retreatData?.completion_date
-            ? `${retreatData.start_date.split("T")[0]} - ${
-                retreatData.completion_date.split("T")[0]
-              }`
+            ? `${retreatData.start_date.split("T")[0]} - ${retreatData.completion_date.split("T")[0]}`
             : "-"}
         </td>
         <td className="text-center text-muted">
@@ -197,18 +362,74 @@ export default function RecordProfile({ id }) {
     );
   };
 
-  // Render 3D Retreat row for non-CS departments
-  const render3DRetreatRow = (retreatData, index) => {
-    if (!retreatData) return null;
+  // Render school year retreat row (for 3D Retreat/PPO by year) - with editing support
+  const renderSchoolYearRetreatRow = (year, label, getDataFn) => {
+    const retreatData = getDataFn(year);
 
+    // No data exists - show empty row (no editing for non-existent records)
+    if (!retreatData) {
+      return (
+        <tr key={year}>
+          <td className="text-start text-muted">{label}</td>
+          <td className="text-center text-muted">-</td>
+          <td className="text-center text-muted">-</td>
+        </tr>
+      );
+    }
+
+    const retreatId = retreatData.id;
+    const editData = retreatEditForm[retreatId] || {};
+
+    // Editing mode
+    if (isEditing) {
+      return (
+        <tr key={year}>
+          <td className="text-start text-muted">{label}</td>
+          <td className="text-center">
+            <div className="d-flex gap-1 justify-content-center align-items-center">
+              <input
+                type="date"
+                value={editData.start_date || ""}
+                onChange={(e) => handleRetreatChange(retreatId, "start_date", e.target.value)}
+                className="form-control form-control-sm"
+                style={{ width: "130px" }}
+              />
+              <span>-</span>
+              <input
+                type="date"
+                value={editData.completion_date || ""}
+                onChange={(e) => handleRetreatChange(retreatId, "completion_date", e.target.value)}
+                className="form-control form-control-sm"
+                style={{ width: "130px" }}
+              />
+            </div>
+          </td>
+          <td className="text-center">
+            <select
+              value={editData.attendance_status || ""}
+              onChange={(e) => handleRetreatChange(retreatId, "attendance_status", e.target.value)}
+              className="form-select form-select-sm"
+              style={{ width: "120px", margin: "0 auto" }}
+            >
+              <option value="">-</option>
+              {attendanceStatusOptions.map((status) => (
+                <option key={status} value={status}>
+                  {status}
+                </option>
+              ))}
+            </select>
+          </td>
+        </tr>
+      );
+    }
+
+    // Display mode
     return (
-      <tr key={index}>
-        <td className="text-start text-muted">
-          {`${retreatData?.retreat_type} ${retreatData?.school_year}`}
-        </td>
+      <tr key={year}>
+        <td className="text-start text-muted">{label}</td>
         <td className="text-center text-muted">
           {retreatData?.start_date && retreatData?.completion_date
-            ? `${retreatData.start_date} - ${retreatData.completion_date}`
+            ? `${retreatData.start_date.split("T")[0]} - ${retreatData.completion_date.split("T")[0]}`
             : "-"}
         </td>
         <td className="text-center text-muted">
@@ -320,8 +541,7 @@ export default function RecordProfile({ id }) {
                 />
               </div>
             ) : (
-              `${user?.[0]?.id} - ${user?.[0]?.last_name}, ${
-                user?.[0]?.first_name
+              `${user?.[0]?.id} - ${user?.[0]?.last_name}, ${user?.[0]?.first_name
               } ${user?.[0]?.middle_initial || ""}`
             )}
           </div>
@@ -342,9 +562,8 @@ export default function RecordProfile({ id }) {
             ) : (
               <>
                 <div
-                  className={`${
-                    user?.[0]?.work_status === "Active" ? "bg-green" : "bg-red"
-                  } rounded-pill`}
+                  className={`${user?.[0]?.work_status === "Active" ? "bg-green" : "bg-red"
+                    } rounded-pill`}
                   style={{ width: "10px", height: "10px" }}
                 ></div>
                 {user?.[0]?.work_status}
@@ -365,7 +584,7 @@ export default function RecordProfile({ id }) {
                   </tr>
                 </thead>
                 {user?.[0]?.department === "Admin" ||
-                user?.[0]?.department === "CS" ? (
+                  user?.[0]?.department === "CS" ? (
                   <tbody>
                     <tr>
                       <td className="text-start text-muted">Department</td>
@@ -510,6 +729,7 @@ export default function RecordProfile({ id }) {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* CS Department - DGY progression + SD */}
                   {user?.[0]?.department === "CS" && (
                     <>
                       {renderRetreatRow(DGY1, "DGY1")}
@@ -523,20 +743,40 @@ export default function RecordProfile({ id }) {
                     </>
                   )}
 
+                  {/* Admin Department - DGY2, DGY3 + 3D Retreats by school year */}
                   {user?.[0]?.department === "Admin" && (
                     <>
                       {renderRetreatRow(DGY2, "DGY2")}
                       {renderRetreatRow(DGY3, "DGY3")}
-                    </>
-                  )}
-
-                  {user?.[0]?.department !== "CS" && (
-                    <>
-                      {_3DRetreat?.map((data, index) =>
-                        render3DRetreatRow(data, index)
+                      {schoolYears.map((year) =>
+                        renderSchoolYearRetreatRow(year, `3D Retreat SY ${year}`, get3DRetreatForYear)
                       )}
                     </>
                   )}
+
+                  {/* PPO Department - School Year entries */}
+                  {user?.[0]?.department === "PPO" && (
+                    <>
+                      {schoolYears.filter(y => y !== "2023-2024").map((year) =>
+                        renderSchoolYearRetreatRow(year, `School Year ${year}`, getPPOForYear)
+                      )}
+                    </>
+                  )}
+
+                  {/* FFP, CONN, CSITE, SED, SLA, SMA - 3D Retreats by school year only */}
+                  {(user?.[0]?.department === "FFP" ||
+                    user?.[0]?.department === "CONN" ||
+                    user?.[0]?.department === "CON" ||
+                    user?.[0]?.department === "CSITE" ||
+                    user?.[0]?.department === "SED" ||
+                    user?.[0]?.department === "SLA" ||
+                    user?.[0]?.department === "SMA") && (
+                      <>
+                        {schoolYears.map((year) =>
+                          renderSchoolYearRetreatRow(year, `3D Retreat SY ${year}`, get3DRetreatForYear)
+                        )}
+                      </>
+                    )}
                 </tbody>
               </table>
             </div>
