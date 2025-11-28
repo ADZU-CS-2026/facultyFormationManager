@@ -141,95 +141,95 @@ export default function WeatherCard() {
                 </div>
               </div>
               <div
-              className="modal fade"
-              id="exampleModal2"
-              tabIndex="-1"
-              aria-labelledby="exampleModalLabel"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog" style={{ minWidth: "60%" }}>
-                <div className="modal-content">
-                  {/* HEADER */}
-                  <div className="modal-header bg-light border-0 px-4 py-3">
-                    <h6 className="modal-title fw-semibold text-gray1 mb-0">
-                      ADZU Formation System — User Guide
-                    </h6>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  {/* BODY */}
-                  <div
-                    className="modal-body px-4 py-3"
-                    style={{ maxHeight: "70vh", overflowY: "auto" }}
-                  >
-                    <div className="text-body small">
-                      <p className="text-muted mb-3 text-wrap text-break">
-                        A web-based platform for the <strong>Faculty Formation Program Monitoring and Management System</strong> of AdZU. This guide outlines the system&apos;s purpose and navigation.
-                      </p>
+                className="modal fade"
+                id="exampleModal2"
+                tabIndex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div className="modal-dialog" style={{ minWidth: "60%" }}>
+                  <div className="modal-content">
+                    {/* HEADER */}
+                    <div className="modal-header bg-light border-0 px-4 py-3">
+                      <h6 className="modal-title fw-semibold text-gray1 mb-0">
+                        ADZU Formation System — User Guide
+                      </h6>
+                      <button
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    {/* BODY */}
+                    <div
+                      className="modal-body px-4 py-3"
+                      style={{ maxHeight: "70vh", overflowY: "auto" }}
+                    >
+                      <div className="text-body small">
+                        <p className="text-muted mb-3 text-wrap text-break">
+                          A web-based platform for the <strong>Faculty Formation Program Monitoring and Management System</strong> of AdZU. This guide outlines the system&apos;s purpose and navigation.
+                        </p>
 
-                      {/* Quick Start */}
-                      <div className="mb-4">
-                        <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2">
-                          🚀 Quick Start
-                        </h6>
-                        <ol className="ps-3 mb-0">
-                          <li>Open the system URL provided: https://adzu-formationsystem.vercel.app/</li>
-                          <li>
-                            Log in with your <strong>ID</strong> and <strong>password</strong>. Complete the verification.
-                          </li>
-                          <li>
-                            Access the <strong>Home</strong> dashboard for an overview of the school year records, the calendar, and system shortcuts.
-                          </li>
-                        </ol>
-                      </div>
-                      
-                      {/* System Navigation */}
-                      <div className="mb-4">
-                        <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2 text-wrap text-break">
-                          Main Navigation
-                        </h6>
-                        <div className="vstack gap-2 text-wrap text-break">
-                          <div className="p-2 border rounded bg-white">
-                            <strong>Home</strong>
-                            <div className="small text-muted">
-                              Your main dashboard. View active school year records, upcoming events via the calendar, and important links such as the links to the Formation Office&apos;s Facebook Page and Google Sites.
+                        {/* Quick Start */}
+                        <div className="mb-4">
+                          <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2">
+                            Quick Start
+                          </h6>
+                          <ol className="ps-3 mb-0">
+                            <li>Open the system URL provided: https://adzu-formationsystem.vercel.app/</li>
+                            <li>
+                              Log in with your <strong>ID</strong> and <strong>password</strong>. Complete the verification.
+                            </li>
+                            <li>
+                              Access the <strong>Home</strong> dashboard for an overview of the school year records, the calendar, and system shortcuts.
+                            </li>
+                          </ol>
+                        </div>
+
+                        {/* System Navigation */}
+                        <div className="mb-4">
+                          <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2 text-wrap text-break">
+                            Main Navigation
+                          </h6>
+                          <div className="vstack gap-2 text-wrap text-break">
+                            <div className="p-2 border rounded bg-white">
+                              <strong>Home</strong>
+                              <div className="small text-muted">
+                                Your main dashboard. View active school year records, upcoming events via the calendar, and important links such as the links to the Formation Office&apos;s Facebook Page and Google Sites.
+                              </div>
                             </div>
-                          </div>
-                          <div className="p-2 border rounded bg-white">
-                            <strong>Records</strong>
-                            <div className="small text-muted">
-                              Search and manage individual faculty formation records. Use the <strong>Add Record</strong> tab to input new faculty data.
+                            <div className="p-2 border rounded bg-white">
+                              <strong>Records</strong>
+                              <div className="small text-muted">
+                                Search and manage individual faculty formation records. Use the <strong>Add Record</strong> tab to input new faculty data.
+                              </div>
                             </div>
-                          </div>
-                          <div className="p-2 border rounded bg-white">
-                            <strong>Operations Manual</strong>
-                            <div className="small text-muted">
-                              Read the comprehensive overview and history of the Ateneo de Zamboanga University and the Formation Office.
+                            <div className="p-2 border rounded bg-white">
+                              <strong>Operations Manual</strong>
+                              <div className="small text-muted">
+                                Read the comprehensive overview and history of the Ateneo de Zamboanga University and the Formation Office.
+                              </div>
                             </div>
-                          </div>
-                          <div className="p-2 border rounded bg-white">
-                            <strong>Events</strong>
-                            <div className="small text-muted">
-                              View <strong>Recent Events</strong> and <strong>Past Events</strong>. Admin/Staff can use <strong>Enable Edit Mode</strong> to modify Recent Events and add new subcards for Past Events.
+                            <div className="p-2 border rounded bg-white">
+                              <strong>Events</strong>
+                              <div className="small text-muted">
+                                View <strong>Recent Events</strong> and <strong>Past Events</strong>. Admin/Staff can use <strong>Enable Edit Mode</strong> to modify Recent Events and add new subcards for Past Events.
+                              </div>
                             </div>
-                          </div>
-                          <div className="p-2 border rounded bg-white">
-                            <strong>About</strong>
-                            <div className="small text-muted">
-                              Information regarding the Office of the Unit Director for Formation and its mission.
+                            <div className="p-2 border rounded bg-white">
+                              <strong>About</strong>
+                              <div className="small text-muted">
+                                Information regarding the Office of the Unit Director for Formation and its mission.
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Account & Administrator Tasks */}
-                      <div className="mb-4">
+                        {/* Account & Administrator Tasks */}
+                        <div className="mb-4">
                           <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2">
-                            ⚙️ Settings & Administration
+                            Settings & Administration
                           </h6>
                           <div className="vstack gap-2">
                             <div className="p-2 border rounded bg-white">
@@ -246,56 +246,45 @@ export default function WeatherCard() {
                             </div>
                             <div className="p-2 border rounded bg-white">
                               <strong>Archive</strong>
-                              <div className="small text-muted">
-                                View and manage the list of archived or inactive system users. Use the <strong>Toggle</strong> button to change a user&apos;s status.
-                              </div>
-                            </div>
-                             <div className="p-2 border rounded bg-white">
-                              <strong>Approval Queue</strong>
-                              <div className="small text-muted">
-                                A dedicated section for administrators to review and approve pending changes or submissions (requires a dedicated page for changes).
+                              <div className="small text-muted text-wrap text-break">
+                                View the list of archived or inactive faculty members. By default, inactive users are shown. <strong>Administrators</strong> can use the <strong>Toggle</strong> button to change a user&apos;s status. Staff can view but cannot modify statuses.
                               </div>
                             </div>
                             <div className="p-2 border rounded bg-white">
-                              <strong>My Changes</strong>
-                              <div className="small text-muted">
-                                Review a list of all changes you have made within the system.
+                              <strong>Approval Queue (Admin Only)</strong>
+                              <div className="small text-muted text-wrap text-break">
+                                Review pending changes submitted by staff. Use <strong>Approve</strong> to apply changes or <strong>Reject</strong> to decline them.
+                              </div>
+                            </div>
+                            <div className="p-2 border rounded bg-white">
+                              <strong>My Changes (Staff)</strong>
+                              <div className="small text-muted text-wrap text-break">
+                                Track your pending, approved, and rejected submissions. Submit drafts for admin approval.
                               </div>
                             </div>
                           </div>
-                      </div>
-                      
-                      {/* Troubleshooting and Security */}
-                      <div className="mb-4">
-                        <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2">
-                          Security & Support
-                        </h6>
-                        <ul className="ps-3 mb-2">
-                          <li>
-                            <strong>Security:</strong> The system uses session tokens and Cloudflare Turnstile for user and system protection.
-                          </li>
-                          <li>
-                            <strong>Can’t log in:</strong> Double-check your ID/password. If the issue persists after Turnstile verification, try refreshing or contact IT Support.
-                          </li>
-                        </ul>
-                        <p className="mb-2 text-muted">
-                          For technical assistance, please contact:
-                        </p>
-                        <p className="mb-0">
-                          <strong>IT Support</strong>
-                          <br />
-                          it-support@adzu.edu.ph
-                          <br />
-                          (XXX) XXX-XXXX
-                        </p>
-                      </div>
+                        </div>
 
+                        {/* Security */}
+                        <div className="mb-4">
+                          <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2">
+                            Security
+                          </h6>
+                          <ul className="ps-3 mb-0">
+                            <li>
+                              The system uses session tokens and Cloudflare Turnstile for protection.
+                            </li>
+                            <li>
+                              <strong>Can&apos;t log in?</strong> Double-check your ID/password and try refreshing.
+                            </li>
+                          </ul>
+                        </div>
+
+                      </div>
                     </div>
-                  </div>
-                  {/* FOOTER */}
-                  <div className="modal-footer border-0 bg-light px-4 py-2 d-flex justify-content-between align-items-center">
-                    <small className="text-muted">Last updated: 2025</small>
-                    <div className="d-flex gap-2">
+                    {/* FOOTER */}
+                    <div className="modal-footer border-0 bg-light px-4 py-2 d-flex justify-content-between align-items-center">
+                      <small className="text-muted">Last updated: 2025</small>
                       <button
                         type="button"
                         className="btn btn-sm btn-secondary"
@@ -303,14 +292,10 @@ export default function WeatherCard() {
                       >
                         Close
                       </button>
-                      <button type="button" className="btn btn-sm btn-blue">
-                        Contact Support
-                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
         </div>

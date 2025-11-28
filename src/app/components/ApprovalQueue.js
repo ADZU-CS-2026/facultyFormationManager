@@ -26,8 +26,7 @@ export default function ApprovalQueue() {
     const [batchDetails, setBatchDetails] = useState(null);
     const [detailsLoading, setDetailsLoading] = useState(false);
     const [actionMessage, setActionMessage] = useState(null);
-    const [rejectModal, setRejectModal] = useState({ show: false, batchId: null });
-    const [rejectionReason, setRejectionReason] = useState('');
+
     const itemsPerPage = 10;
 
     // Fetch batches
@@ -107,8 +106,6 @@ export default function ApprovalQueue() {
         onSuccess: (result) => {
             if (result.success) {
                 setActionMessage({ type: 'success', text: 'Batch rejected' });
-                setRejectModal({ show: false, batchId: null });
-                setRejectionReason('');
                 setExpandedBatch(null);
                 setBatchDetails(null);
                 loadBatches();
@@ -129,20 +126,10 @@ export default function ApprovalQueue() {
         }
     };
 
-    const handleRejectClick = (batchId) => {
-        setRejectModal({ show: true, batchId });
-        setRejectionReason('');
-    };
-
-    const handleRejectSubmit = () => {
-        if (!rejectionReason.trim()) {
-            alert('Please provide a rejection reason');
-            return;
+    const handleReject = (batchId) => {
+        if (confirm('Are you sure you want to reject this batch?')) {
+            rejectMutation.mutate({ batch_id: batchId });
         }
-        rejectMutation.mutate({
-            batch_id: rejectModal.batchId,
-            rejection_reason: rejectionReason
-        });
     };
 
     const formatDate = (dateString) => {
@@ -293,7 +280,7 @@ export default function ApprovalQueue() {
                                             </button>
                                             <button
                                                 className="btn btn-sm btn-danger"
-                                                onClick={() => handleRejectClick(batch.id)}
+                                                onClick={() => handleReject(batch.id)}
                                                 disabled={approveMutation.isPending || rejectMutation.isPending}
                                             >
                                                 <i className="fa-solid fa-times me-1"></i>
@@ -390,66 +377,6 @@ export default function ApprovalQueue() {
                         />
                     )}
                 </>
-            )}
-
-            {/* Reject Modal */}
-            {rejectModal.show && (
-                <div className="modal d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title">
-                                    <i className="fa-solid fa-times-circle text-danger me-2"></i>
-                                    Reject Batch
-                                </h5>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    onClick={() => setRejectModal({ show: false, batchId: null })}
-                                ></button>
-                            </div>
-                            <div className="modal-body">
-                                <div className="mb-3">
-                                    <label className="form-label">Rejection Reason <span className="text-danger">*</span></label>
-                                    <textarea
-                                        className="form-control"
-                                        rows="3"
-                                        placeholder="Please provide a reason for rejection..."
-                                        value={rejectionReason}
-                                        onChange={(e) => setRejectionReason(e.target.value)}
-                                    ></textarea>
-                                </div>
-                            </div>
-                            <div className="modal-footer">
-                                <button
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    onClick={() => setRejectModal({ show: false, batchId: null })}
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-danger"
-                                    onClick={handleRejectSubmit}
-                                    disabled={rejectMutation.isPending || !rejectionReason.trim()}
-                                >
-                                    {rejectMutation.isPending ? (
-                                        <>
-                                            <span className="spinner-border spinner-border-sm me-1"></span>
-                                            Rejecting...
-                                        </>
-                                    ) : (
-                                        <>
-                                            <i className="fa-solid fa-times me-1"></i>
-                                            Reject
-                                        </>
-                                    )}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             )}
         </div>
     );

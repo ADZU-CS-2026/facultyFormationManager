@@ -106,12 +106,22 @@ export async function DELETE(req) {
 
         // STAFF: Create pending changes for approval
         if (userRole === 'STAFF') {
+            // Get user names for description
+            const [usersForDesc] = await pool.execute(
+                `SELECT last_name, first_name FROM users WHERE id IN (${user_ids.map(() => '?').join(',')})`,
+                user_ids
+            );
+            const userNames = usersForDesc.map(u => `${u.last_name}, ${u.first_name || ''}`).join('; ');
+            const description = user_ids.length === 1
+                ? `Delete user: ${userNames}`
+                : `Delete ${user_ids.length} users: ${userNames.substring(0, 100)}${userNames.length > 100 ? '...' : ''}`;
+
             // Create a new batch for this delete operation
             const batchUuid = uuidv4();
             const [newBatch] = await pool.execute(
                 `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                  VALUES (?, ?, 'Draft', ?)`,
-                [batchUuid, loggedInUserId, `Delete ${user_ids.length} user(s) and their retreat records`]
+                [batchUuid, loggedInUserId, description]
             );
             const batchId = newBatch.insertId;
 
