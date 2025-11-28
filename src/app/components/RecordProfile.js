@@ -313,7 +313,7 @@ export default function RecordProfile({ id }) {
 
       // Show appropriate toast messages
       const hasErrors = newRetreatResults.some(r => r.error) || retreatSaveResults.some(r => r.error);
-      
+
       if (hasDirectSave && hasPendingSave) {
         addToast("Some changes saved directly, others pending admin approval.", "info");
       } else if (hasDirectSave) {

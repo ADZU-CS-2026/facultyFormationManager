@@ -224,11 +224,11 @@ export async function PATCH(req) {
 
         // Build new values object with only changed fields
         const newValues = {};
-        
+
         // Handle date comparison (convert to string for comparison)
         const oldStartDate = oldValues.start_date ? new Date(oldValues.start_date).toISOString().split('T')[0] : null;
         const oldCompletionDate = oldValues.completion_date ? new Date(oldValues.completion_date).toISOString().split('T')[0] : null;
-        
+
         if (start_date !== undefined && start_date !== oldStartDate) {
             newValues.start_date = start_date || null;
         }
