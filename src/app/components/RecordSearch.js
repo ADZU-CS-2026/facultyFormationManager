@@ -18,6 +18,7 @@ export default function RecordSearch() {
   const [departmentU, setDepartment] = useState("");
   const [school_yearU, setSchoolYear] = useState("");
   const [work_statusU, setStatus] = useState("");
+  const [nameU, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [makeFilter, setMakeFilter] = useState("");
 
@@ -76,12 +77,14 @@ export default function RecordSearch() {
     const department = formData.get("department");
     const school_year = formData.get("school_year");
     const work_status = formData.get("work_status");
+    const name = formData.get("name");
 
-    mutate({ department, school_year, work_status });
+    mutate({ department, school_year, work_status, name });
 
     setDepartment(department);
     setSchoolYear(school_year);
     setStatus(work_status);
+    setName(name);
   }
 
   function downloadExcel() {
@@ -120,12 +123,9 @@ export default function RecordSearch() {
             <div className="fw-bold">Departments</div>
             <select
               className="form-select form-select-sm"
-              required
               name="department"
             >
-              <option value="" hidden>
-                Choose
-              </option>
+              <option value="">All</option>
               <option value="Admin">Administrator</option>
               <option value="FFP">Freshmen Formation Office</option>
               <option value="CON">College of Nursing</option>
@@ -144,12 +144,9 @@ export default function RecordSearch() {
             <div className="fw-bold">School Year</div>
             <select
               className="form-select form-select-sm"
-              required
               name="school_year"
             >
-              <option value="" hidden>
-                Choose
-              </option>
+              <option value="">All</option>
               {setSearchSchoolYears.map((data, index) => (
                 <option key={index} value={data}>
                   SY {data}
@@ -163,16 +160,22 @@ export default function RecordSearch() {
             <div className="fw-bold">Status</div>
             <select
               className="form-select form-select-sm"
-              required
               name="work_status"
             >
-              <option value="" hidden>
-                Choose
-              </option>
-              <option value="All">All</option>
+              <option value="">All</option>
               <option value="Active">Active</option>
               <option value="Inactive">Inactive</option>
             </select>
+          </div>
+
+          <div className="mt-md-0 mt-3 col-md-2 col-12 d-flex gap-2 align-items-center">
+            <div className="fw-bold">Name</div>
+            <input
+              type="text"
+              className="form-control form-control-sm"
+              name="name"
+              placeholder="Search by name"
+            />
           </div>
 
           <div className="col-1 mt-md-0 mt-3 d-flex justify-content-center">
