@@ -28,7 +28,27 @@ const CIS_IMAGES = [
   { src: '/Images/cis5.jpeg', alt: 'CIS Module 1 Photo 5' },
 ];
 
-const CSITE_RETREAT_IMAGES = [
+const ADMIN_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const LAW_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const SED_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const USO_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const ACES_RETREAT2526_IMAGES = [
+  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const CSITE_RETREAT2526_IMAGES = [
   { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
 ];
 
@@ -125,7 +145,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'csiteretreat',
                 title: 'CSITE Retreat',
-                images: CSITE_RETREAT_IMAGES,
+                images: CSITE_RETREAT2526_IMAGES,
                 location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
                 date: 'July 16-18, 2025',
                 description: 'The professors of College of Science Information Technology & Engineering (CSITE) have just completed their 3-day Ignatian Retreat, guided by Fr. Jerome "Jem" Guevara SJ, at the Cebu Center for Ignatian Spirituality - Jesuit Retreat House. We are deeply grateful to God for the opportunity to rest, reflect, and pray, for the mission entrusted to us, and for the companionship along this journey.',
