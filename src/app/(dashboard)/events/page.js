@@ -61,6 +61,85 @@ const CSITE_RETREAT2526_IMAGES = [
   { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
 ];
 
+const INSTITUTIONALACTS_2526_IMAGES = [
+  { src: '/Images/Intersession_1_25.jpg', alt: 'Intersession 25-26 Photo 1' },
+  { src: '/Images/Intersession_2_25.jpg', alt: 'Intersession 25-26 Photo 1' }, 
+  { src: '/Images/Intersession_3_25.jpg', alt: 'Intersession 25-26 Photo 1' }, 
+  { src: '/Images/Intersession_4_25.jpg', alt: 'Intersession 25-26 Photo 1' }, 
+];
+
+const DGY_1_2425_IMAGES = [
+  { src: '/Images/dgy1_2425.png', alt: 'DGY 1 24-25 Photo 1' },
+];
+
+const DGY_2_LANTAKA_2425_IMAGES = [
+  { src: '/Images/dgy2_lantaka_2425.jpg', alt: 'DGY 2 Lantaka 24-25 Photo 1' }
+];
+
+const DGY_2_MURUK_2425_IMAGES = [
+  { src: '/Images/dgy2_muruk_2425.jpg', alt: 'DGY 2 Muruk 24-25 Photo 1' }
+];
+
+const DGY_2_NANCYFALLS_2425_IMAGES = [
+  { src: '/Images/dgy2_nancyfalls_2425.jpg', alt: 'DGY 2 Nancy Falls 24-25 Photo 1' }
+];
+
+const DGY_2_11ISLANDS_2425_IMAGES = [
+  { src: '/Images/dgy211islands_2425.jpg', alt: 'DGY 2 11 Islands 24-25 Photo 1' }
+];
+
+const DGY_3_2425_IMAGES = [
+  { src: '/Images/dgy3_2425.jpg', alt: 'DGY 3 24-25 Photo 1' }
+];
+
+const DGY_2_11ISLANDS_2324_IMAGES = [
+  { src: '/Images/dgy211islands_2324.jpg', alt: 'DGY 2 11 Islands 23-24 Photo 1' }
+];
+
+const PPORETREAT_2324_IMAGES = [
+  { src: '/Images/pporetreat2324.png', alt: 'PPO Retreat 23-24 Photo 1' },
+];
+
+const PPO_DGY_2324_IMAGES = [
+  { src: '/Images/ppornr2324.png', alt: 'PPO DGY 23-24 Photo 1' }
+];
+
+const NURSING_RETREAT_2324_IMAGES = [
+  { src: '/Images/conretreat2324.png', alt: 'Nursing Retreat 23-24 Photo 1' }
+];
+
+const CSITE_RETREAT_2324_IMAGES = [
+  { src: '/Images/csiteretreat2324.png', alt: 'CSITE Retreat 23-24 Photo 1' }
+];
+
+const SMA_RETREAT_2324_IMAGES = [
+  { src: '/Images/smaretreat2324.png', alt: 'SMA Retreat 23-24 Photo 1' }
+];
+
+const SED_RETREAT_2324_IMAGES = [
+  { src: '/Images/sedretreat2324.png', alt: 'SED Retreat 23-24 Photo 1' }
+];
+
+const ADMIN_RETREAT_2324_IMAGES = [
+  { src: '/Images/adminrnr2324.jpg', alt: 'Admin Retreat 23-24 Photo 1' }
+];
+
+const DGY_1_FEB_2324_IMAGES = [
+  { src: '/Images/dgy1feb2324.png', alt: 'DGY 1 23-24 Photo 1' }
+];
+
+const DGY_1_MARCH_2324_IMAGES = [
+  { src: '/Images/dgy1march2324.png', alt: 'DGY 1 23-24 Photo 1' }
+];
+
+const DGY_2_LAPAZ_2324_IMAGES = [
+  { src: '/Images/dgy2lapaz_2324.png', alt: 'DGY 2 La Paz 23-24 Photo 1' }
+];
+
+const DGY_2_LANTAKA_2324_IMAGES = [
+  { src: '/Images/dgy2lantaka_2324.png', alt: 'DGY 2 Lantaka 23-24 Photo 1' }
+];
+
 // Initial structure for Past Events
 const INITIAL_PAST_EVENTS_DATA = [
     {
@@ -174,6 +253,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'intersession',
                 title: 'Intersession Program of the Jesuit Scholastics',
+                images: INSTITUTIONALACTS_2526_IMAGES,
                 location: 'AdZU Main Campus, Sadik Grand Mosque, AdZU Kreutz Campus, and Fort Pilar',
                 date: 'July 23, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -194,6 +274,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy1-2425-1',
                 title: 'Days with God Year 1 (DGY1)',
+                images: DGY_1_2425_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'N/A',
                 icon: 'bi-geo-alt-fill'
@@ -201,6 +282,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ppo-dgy2-2425',
                 title: 'PPO Personnel Ignatian Recollection "Days with God (DGY2)',
+                images: DGY_2_MURUK_2425_IMAGES,
                 location: 'ASEAN Heritage Park in Sitio Muruk',
                 date: 'February 28 and March 7, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -208,6 +290,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'irnf-dgy2-2425',
                 title: 'Ignatian Recollection "Days with God (DGY2)',
+                images: DGY_2_NANCYFALLS_2425_IMAGES,
                 location: 'Nancy Falls, km 26, La Paz',
                 date: 'February 20-21, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -215,6 +298,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ir-11islands-dgy2-2425',
                 title: 'Ignatian Recollection "Days with God (DGY2)',
+                images: DGY_2_11ISLANDS_2425_IMAGES,
                 location: '11 Islands',
                 date: 'February 6-7, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -222,6 +306,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ir-lantaka-dgy2-2425',
                 title: 'Ignatian Recollection "Days with God (DGY2)',
+                images: DGY_2_LANTAKA_2425_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'February 13-14, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -229,6 +314,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy3-2425',
                 title: 'Days with God Year 3 (DGY3)',
+                images: DGY_3_2425_IMAGES,
                 location: 'Taluksangay Mosque, Zamboanga City Alliance Evangelical Church, and Avalokitesvara Temple',
                 date: 'January 25, 2025',
                 theme: 'Inter-Religious Dialogue',
@@ -244,6 +330,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'admin-retreat-2324',
                 title: 'Administrators’ Retreat',
+                images: ADMIN_RETREAT_2324_IMAGES,
                 location: 'Mirador, Baguio',
                 date: 'May 28–30, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -251,6 +338,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ppo-retreat-2324',
                 title: 'Physical Plant Office Retreat',
+                images: PPORETREAT_2324_IMAGES,
                 location: 'Malaybalay, Bukidnon',
                 date: 'June 3–7, 2024 ',
                 icon: 'bi-geo-alt-fill',
@@ -258,6 +346,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'con-retreat-2324',
                 title: 'College of Nursing Retreat',
+                images: NURSING_RETREAT_2324_IMAGES,
                 location: 'Samal Island, Davao',
                 date: 'July 10–12, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -265,6 +354,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'sma-retreat-2324',
                 title: 'School of Management and Accounting with JHS Middle Administration Retreat',
+                images: SMA_RETREAT_2324_IMAGES,
                 location: 'Mirador, Baguio',
                 date: 'September 17–19, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -272,6 +362,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'sed-retreat-2324',
                 title: 'School of Education (SEd) Faculty and Staff Retreat',
+                images: SED_RETREAT_2324_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'October 17-18, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -279,6 +370,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'csite-retreat-2324',
                 title: 'College of Science and Information Technology and Engineering Retreat',
+                images: CSITE_RETREAT_2324_IMAGES,
                 location: 'Angono, Rizal',
                 date: 'October 24-26, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -292,6 +384,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy1-2324-1',
                 title: 'Days with God Year 1 (DGY1)',
+                images: DGY_1_FEB_2324_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'February 23-24, 2024',
                 icon: 'bi-geo-alt-fill'
@@ -299,6 +392,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy1-2324-2',
                 title: 'Days with God Year 1 (DGY1)',
+                images: DGY_1_MARCH_2324_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'March 1&2, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -307,6 +401,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2324ppo',
                 title: 'PPO Retreat',
+                images: PPO_DGY_2324_IMAGES,
                 location: 'N/A',
                 date: 'Batch 1 February 2-3, 2024 and Batch 2 February 16-17, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -314,6 +409,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2-2324-1',
                 title: 'Days with God Year 2 (DGY2) Laudato si\' at 11 Islands',
+                images: DGY_2_11ISLANDS_2324_IMAGES,
                 location: '11 Islands',
                 date: 'March 14-15, 2024',
                 icon: 'bi-geo-alt-fill'
@@ -321,6 +417,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2-2324-2',
                 title: 'Days with God Year 2 (DGY2) Laudato Si\' at La Paz',
+                images: DGY_2_LAPAZ_2324_IMAGES,
                 location: 'La Paz',
                 date: 'March 21-22, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -328,6 +425,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2-2324-3',
                 title: 'Days with God Year 2 (DGY2) Laudato si\' at Lantaka',
+                images: DGY_2_LANTAKA_2324_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'April 11-12, 2024',
                 icon: 'bi-geo-alt-fill'
