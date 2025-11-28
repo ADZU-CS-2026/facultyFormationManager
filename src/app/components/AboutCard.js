@@ -174,7 +174,7 @@ export default function WeatherCard() {
                       {/* Quick Start */}
                       <div className="mb-4">
                         <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2">
-                          🚀 Quick Start
+                          Quick Start
                         </h6>
                         <ol className="ps-3 mb-0">
                           <li>Open the system URL provided: https://adzu-formationsystem.vercel.app/</li>
@@ -229,7 +229,7 @@ export default function WeatherCard() {
                       {/* Account & Administrator Tasks */}
                       <div className="mb-4">
                           <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2">
-                            ⚙️ Settings & Administration
+                            Settings & Administration
                           </h6>
                           <div className="vstack gap-2">
                             <div className="p-2 border rounded bg-white">
@@ -246,48 +246,38 @@ export default function WeatherCard() {
                             </div>
                             <div className="p-2 border rounded bg-white">
                               <strong>Archive</strong>
-                              <div className="small text-muted">
-                                View and manage the list of archived or inactive system users. Use the <strong>Toggle</strong> button to change a user&apos;s status.
+                              <div className="small text-muted text-wrap text-break">
+                                View the list of archived or inactive faculty members. By default, inactive users are shown. <strong>Administrators</strong> can use the <strong>Toggle</strong> button to change a user&apos;s status. Staff can view but cannot modify statuses.
                               </div>
                             </div>
                              <div className="p-2 border rounded bg-white">
-                              <strong>Approval Queue</strong>
-                              <div className="small text-muted">
-                                A dedicated section for administrators to review and approve pending changes or submissions (requires a dedicated page for changes).
+                              <strong>Approval Queue (Admin Only)</strong>
+                              <div className="small text-muted text-wrap text-break">
+                                Review pending changes submitted by staff. Use <strong>Approve</strong> to apply changes or <strong>Reject</strong> to decline them.
                               </div>
                             </div>
                             <div className="p-2 border rounded bg-white">
-                              <strong>My Changes</strong>
-                              <div className="small text-muted">
-                                Review a list of all changes you have made within the system.
+                              <strong>My Changes (Staff)</strong>
+                              <div className="small text-muted text-wrap text-break">
+                                Track your pending, approved, and rejected submissions. Submit drafts for admin approval.
                               </div>
                             </div>
                           </div>
                       </div>
                       
-                      {/* Troubleshooting and Security */}
+                      {/* Security */}
                       <div className="mb-4">
                         <h6 className="fw-semibold text-gray1 border-bottom pb-1 mb-2">
-                          Security & Support
+                          Security
                         </h6>
-                        <ul className="ps-3 mb-2">
+                        <ul className="ps-3 mb-0">
                           <li>
-                            <strong>Security:</strong> The system uses session tokens and Cloudflare Turnstile for user and system protection.
+                            The system uses session tokens and Cloudflare Turnstile for protection.
                           </li>
                           <li>
-                            <strong>Can’t log in:</strong> Double-check your ID/password. If the issue persists after Turnstile verification, try refreshing or contact IT Support.
+                            <strong>Can&apos;t log in?</strong> Double-check your ID/password and try refreshing.
                           </li>
                         </ul>
-                        <p className="mb-2 text-muted">
-                          For technical assistance, please contact:
-                        </p>
-                        <p className="mb-0">
-                          <strong>IT Support</strong>
-                          <br />
-                          it-support@adzu.edu.ph
-                          <br />
-                          (XXX) XXX-XXXX
-                        </p>
                       </div>
 
                     </div>
@@ -295,18 +285,13 @@ export default function WeatherCard() {
                   {/* FOOTER */}
                   <div className="modal-footer border-0 bg-light px-4 py-2 d-flex justify-content-between align-items-center">
                     <small className="text-muted">Last updated: 2025</small>
-                    <div className="d-flex gap-2">
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-secondary"
-                        data-bs-dismiss="modal"
-                      >
-                        Close
-                      </button>
-                      <button type="button" className="btn btn-sm btn-blue">
-                        Contact Support
-                      </button>
-                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
                   </div>
                 </div>
               </div>
