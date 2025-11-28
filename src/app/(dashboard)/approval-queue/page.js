@@ -55,7 +55,7 @@ export default function ApprovalQueuePage() {
                     {/* Page Header */}
                     <div className="card mb-4">
                         <div className="card-body">
-                            <div className="d-flex align-items-center">
+                            <div className="d-flex align-items-center text-wrap text-break">
                                 <div className="rounded-circle bg-warning bg-opacity-10 p-3 me-3">
                                     <i className="fa-solid fa-clipboard-check fs-4 text-warning"></i>
                                 </div>
@@ -79,7 +79,7 @@ export default function ApprovalQueuePage() {
                                     </div>
                                     <div>
                                         <small className="text-muted">Approve</small>
-                                        <p className="mb-0 small">Apply all changes in a batch to the database</p>
+                                        <p className="mb-0 small text-wrap text-break">Apply all changes in a batch to the database</p>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@ export default function ApprovalQueuePage() {
                                     </div>
                                     <div>
                                         <small className="text-muted">Reject</small>
-                                        <p className="mb-0 small">Decline changes with a reason for the submitter</p>
+                                        <p className="mb-0 small text-wrap text-break">Decline changes with a reason for the submitter</p>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@ export default function ApprovalQueuePage() {
                                     </div>
                                     <div>
                                         <small className="text-muted">Conflicts</small>
-                                        <p className="mb-0 small">Review when data has changed since request</p>
+                                        <p className="mb-0 small text-wrap text-break">Review when data has changed since request</p>
                                     </div>
                                 </div>
                             </div>

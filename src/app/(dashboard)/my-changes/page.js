@@ -15,8 +15,8 @@ export default function MyChangesPage() {
                                     <i className="fa-solid fa-clipboard-list fs-4 text-primary"></i>
                                 </div>
                                 <div>
-                                    <h4 className="mb-1">My Changes</h4>
-                                    <p className="text-muted mb-0">
+                                    <h4 className="mb-1 text-wrap text-break">My Changes</h4>
+                                    <p className="text-muted mb-0 text-wrap text-break">
                                         View and manage your pending change requests. Draft changes can be edited or removed before submission.
                                     </p>
                                 </div>
@@ -28,11 +28,11 @@ export default function MyChangesPage() {
                     <div className="card mb-4">
                         <div className="card-header bg-light">
                             <h6 className="mb-0">
-                                <i className="fa-solid fa-info-circle me-2"></i>
+                                <i className="fa-solid fa-info-circle me-2 text-wrap text-break"></i>
                                 How It Works
                             </h6>
                         </div>
-                        <div className="card-body">
+                        <div className="card-body text-wrap text-break">
                             <div className="row g-3">
                                 <div className="col-md-3 text-center">
                                     <div className="rounded-circle bg-red-100 bg-opacity-10 mx-auto mb-2 d-flex align-items-center justify-content-center" style={{ width: '50px', height: '50px' }}>

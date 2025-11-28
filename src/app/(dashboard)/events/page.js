@@ -616,7 +616,7 @@ export default function Events() {
                 {/* RECENT EVENTS SECTION */}
                 <h3 className="fw-bold mb-4 mt-2" style={{ color: primaryColor }}>Recent Events</h3>
                 
-                {/* Events Grid (2-column layout on large screens, stacked on small screens) */}
+                {/* Events Grid (2-column layout on larger screens, stacked on smaller screens) */}
                 <div className="row g-4 mb-5">
                   
                   {/* Map through recentEventData to render cards */}
