@@ -5,7 +5,7 @@ import fetchUserId from "@/app/fetch/fetchUserId";
 import fetchRecordRetreatId from "@/app/fetch/fetchRecordRetreatId";
 import fetchAccountData from "@/app/fetch/fetchAccountData";
 import { fetchUpdateRecord } from "@/app/fetch/fetchUpdateRecord";
-import { fetchUpdateRetreat, fetchCreateRetreat } from "@/app/fetch/fetchUpdateRetreat";
+import { fetchUpdateRetreat, fetchCreateRetreat, fetchDeleteRetreat } from "@/app/fetch/fetchUpdateRetreat";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +21,7 @@ export default function RecordProfile({ id }) {
   const [editForm, setEditForm] = useState({});
   const [retreatEditForm, setRetreatEditForm] = useState({});
   const [newRetreatRecords, setNewRetreatRecords] = useState({});
+  const [retreatsToDelete, setRetreatsToDelete] = useState([]);
   const [saving, setSaving] = useState(false);
 
   // Fetch current user account for role
@@ -186,6 +187,17 @@ export default function RecordProfile({ id }) {
     setEditForm({});
     setRetreatEditForm({});
     setNewRetreatRecords({});
+    setRetreatsToDelete([]);
+  };
+
+  // Handle marking a retreat for deletion
+  const handleMarkForDelete = (retreatId) => {
+    setRetreatsToDelete((prev) => [...prev, retreatId]);
+  };
+
+  // Handle unmarking a retreat from deletion
+  const handleUnmarkDelete = (retreatId) => {
+    setRetreatsToDelete((prev) => prev.filter((id) => id !== retreatId));
   };
 
   // Handle save - user data and retreat data
@@ -205,12 +217,13 @@ export default function RecordProfile({ id }) {
         editForm.status !== (originalUser.status || "") ||
         editForm.work_status !== (originalUser.work_status || "Active");
 
-      // Find retreat records with changes
+      // Find retreat records with changes (excluding those marked for deletion)
       const retreatChanges = [];
       Object.keys(retreatEditForm).forEach((retreatId) => {
-        if (hasRetreatChanges(parseInt(retreatId))) {
+        const rid = parseInt(retreatId);
+        if (hasRetreatChanges(rid) && !retreatsToDelete.includes(rid)) {
           retreatChanges.push({
-            id: parseInt(retreatId),
+            id: rid,
             ...retreatEditForm[retreatId],
           });
         }
@@ -234,7 +247,7 @@ export default function RecordProfile({ id }) {
         }
       });
 
-      const hasAnyChanges = hasUserChanges || retreatChanges.length > 0 || newRetreatsToCreate.length > 0;
+      const hasAnyChanges = hasUserChanges || retreatChanges.length > 0 || newRetreatsToCreate.length > 0 || retreatsToDelete.length > 0;
 
       if (!hasAnyChanges) {
         addToast("No changes to save.", "warning");
@@ -242,6 +255,7 @@ export default function RecordProfile({ id }) {
         setEditForm({});
         setRetreatEditForm({});
         setNewRetreatRecords({});
+        setRetreatsToDelete([]);
         setSaving(false);
         return;
       }
@@ -307,12 +321,34 @@ export default function RecordProfile({ id }) {
         }
       }
 
+      // Delete retreat records if any
+      let deleteResults = [];
+      for (const retreatId of retreatsToDelete) {
+        try {
+          console.log("Deleting retreat:", retreatId);
+          const result = await fetchDeleteRetreat(retreatId);
+          console.log("Delete result:", result);
+          deleteResults.push({ id: retreatId, result });
+          if (result.success) {
+            if (result.isDirectSave) {
+              hasDirectSave = true;
+            } else {
+              hasPendingSave = true;
+            }
+          }
+        } catch (err) {
+          console.error(`Error deleting retreat ${retreatId}:`, err);
+          console.error("Error response:", err.response?.data);
+          deleteResults.push({ id: retreatId, error: err });
+        }
+      }
+
       // Invalidate queries to refresh data
       queryClient.invalidateQueries(["recordid", id]);
       queryClient.invalidateQueries(["recordretreatid", id]);
 
       // Show appropriate toast messages
-      const hasErrors = newRetreatResults.some(r => r.error) || retreatSaveResults.some(r => r.error);
+      const hasErrors = newRetreatResults.some(r => r.error) || retreatSaveResults.some(r => r.error) || deleteResults.some(r => r.error);
 
       if (hasDirectSave && hasPendingSave) {
         addToast("Some changes saved directly, others pending admin approval.", "info");
@@ -334,6 +370,7 @@ export default function RecordProfile({ id }) {
     setEditForm({});
     setRetreatEditForm({});
     setNewRetreatRecords({});
+    setRetreatsToDelete([]);
     setSaving(false);
   };
 
@@ -413,9 +450,30 @@ export default function RecordProfile({ id }) {
 
     const retreatId = retreatData.id;
     const editData = retreatEditForm[retreatId] || {};
+    const isMarkedForDelete = retreatsToDelete.includes(retreatId);
 
     // Editing mode for existing record
     if (isEditing) {
+      // Show as marked for deletion
+      if (isMarkedForDelete) {
+        return (
+          <tr className="table-danger">
+            <td className="text-start text-muted text-decoration-line-through">{label}</td>
+            <td className="text-center text-muted" colSpan="2">
+              <span className="text-danger me-2">Will be deleted</span>
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-secondary"
+                onClick={() => handleUnmarkDelete(retreatId)}
+                title="Undo delete"
+              >
+                <FontAwesomeIcon icon="fa-solid fa-undo" />
+              </button>
+            </td>
+          </tr>
+        );
+      }
+
       return (
         <tr>
           <td className="text-start text-muted">{label}</td>
@@ -439,19 +497,29 @@ export default function RecordProfile({ id }) {
             </div>
           </td>
           <td className="text-center">
-            <select
-              value={editData.attendance_status || ""}
-              onChange={(e) => handleRetreatChange(retreatId, "attendance_status", e.target.value)}
-              className="form-select form-select-sm"
-              style={{ width: "120px", margin: "0 auto" }}
-            >
-              <option value="">-</option>
-              {attendanceStatusOptions.map((status) => (
-                <option key={status} value={status}>
-                  {status}
-                </option>
-              ))}
-            </select>
+            <div className="d-flex gap-2 justify-content-center align-items-center">
+              <select
+                value={editData.attendance_status || ""}
+                onChange={(e) => handleRetreatChange(retreatId, "attendance_status", e.target.value)}
+                className="form-select form-select-sm"
+                style={{ width: "120px" }}
+              >
+                <option value="">-</option>
+                {attendanceStatusOptions.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-danger"
+                onClick={() => handleMarkForDelete(retreatId)}
+                title="Delete this record"
+              >
+                <FontAwesomeIcon icon="fa-solid fa-trash" />
+              </button>
+            </div>
           </td>
         </tr>
       );
@@ -535,9 +603,30 @@ export default function RecordProfile({ id }) {
 
     const retreatId = retreatData.id;
     const editData = retreatEditForm[retreatId] || {};
+    const isMarkedForDelete = retreatsToDelete.includes(retreatId);
 
     // Editing mode for existing record
     if (isEditing) {
+      // Show as marked for deletion
+      if (isMarkedForDelete) {
+        return (
+          <tr key={year} className="table-danger">
+            <td className="text-start text-muted text-decoration-line-through">{label}</td>
+            <td className="text-center text-muted" colSpan="2">
+              <span className="text-danger me-2">Will be deleted</span>
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-secondary"
+                onClick={() => handleUnmarkDelete(retreatId)}
+                title="Undo delete"
+              >
+                <FontAwesomeIcon icon="fa-solid fa-undo" />
+              </button>
+            </td>
+          </tr>
+        );
+      }
+
       return (
         <tr key={year}>
           <td className="text-start text-muted">{label}</td>
@@ -561,19 +650,29 @@ export default function RecordProfile({ id }) {
             </div>
           </td>
           <td className="text-center">
-            <select
-              value={editData.attendance_status || ""}
-              onChange={(e) => handleRetreatChange(retreatId, "attendance_status", e.target.value)}
-              className="form-select form-select-sm"
-              style={{ width: "120px", margin: "0 auto" }}
-            >
-              <option value="">-</option>
-              {attendanceStatusOptions.map((status) => (
-                <option key={status} value={status}>
-                  {status}
-                </option>
-              ))}
-            </select>
+            <div className="d-flex gap-2 justify-content-center align-items-center">
+              <select
+                value={editData.attendance_status || ""}
+                onChange={(e) => handleRetreatChange(retreatId, "attendance_status", e.target.value)}
+                className="form-select form-select-sm"
+                style={{ width: "120px" }}
+              >
+                <option value="">-</option>
+                {attendanceStatusOptions.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+              <button
+                type="button"
+                className="btn btn-sm btn-outline-danger"
+                onClick={() => handleMarkForDelete(retreatId)}
+                title="Delete this record"
+              >
+                <FontAwesomeIcon icon="fa-solid fa-trash" />
+              </button>
+            </div>
           </td>
         </tr>
       );

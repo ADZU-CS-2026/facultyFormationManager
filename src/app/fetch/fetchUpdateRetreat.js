@@ -33,3 +33,20 @@ export async function fetchCreateRetreat(retreatData) {
         throw err;
     }
 }
+
+/**
+ * Delete a retreat record with role-based handling
+ * ADMINISTRATOR: Deletes directly
+ * STAFF: Creates pending change for approval
+ * 
+ * @param {number} id - The retreat record ID to delete
+ * @returns {Promise<Object>} - Response with delete result
+ */
+export async function fetchDeleteRetreat(id) {
+    try {
+        const res = await axios.delete('/api/records/retreat', { data: { id } });
+        return res.data;
+    } catch (err) {
+        throw err;
+    }
+}
