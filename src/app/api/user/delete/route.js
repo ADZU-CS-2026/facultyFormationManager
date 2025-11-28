@@ -112,7 +112,7 @@ export async function DELETE(req) {
                 user_ids
             );
             const userNames = usersForDesc.map(u => `${u.last_name}, ${u.first_name || ''}`).join('; ');
-            const description = user_ids.length === 1 
+            const description = user_ids.length === 1
                 ? `Delete user: ${userNames}`
                 : `Delete ${user_ids.length} users: ${userNames.substring(0, 100)}${userNames.length > 100 ? '...' : ''}`;
 
