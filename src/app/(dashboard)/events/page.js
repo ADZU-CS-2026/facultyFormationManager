@@ -63,9 +63,9 @@ const CSITE_RETREAT2526_IMAGES = [
 
 const INSTITUTIONALACTS_2526_IMAGES = [
   { src: '/Images/Intersession_1_25.jpg', alt: 'Intersession 25-26 Photo 1' },
-  { src: '/Images/Intersession_2_25.jpg', alt: 'Intersession 25-26 Photo 1' }, 
-  { src: '/Images/Intersession_3_25.jpg', alt: 'Intersession 25-26 Photo 1' }, 
-  { src: '/Images/Intersession_4_25.jpg', alt: 'Intersession 25-26 Photo 1' }, 
+  { src: '/Images/Intersession_2_25.png', alt: 'Intersession 25-26 Photo 1' }, 
+  { src: '/Images/Intersession_3_25.png', alt: 'Intersession 25-26 Photo 1' }, 
+  { src: '/Images/Intersession_4_25.png', alt: 'Intersession 25-26 Photo 1' }, 
 ];
 
 const DGY_1_2425_IMAGES = [
@@ -96,12 +96,8 @@ const DGY_2_11ISLANDS_2324_IMAGES = [
   { src: '/Images/dgy211islands_2324.jpg', alt: 'DGY 2 11 Islands 23-24 Photo 1' }
 ];
 
-const PPORETREAT_2324_IMAGES = [
-  { src: '/Images/pporetreat2324.png', alt: 'PPO Retreat 23-24 Photo 1' },
-];
-
 const PPO_DGY_2324_IMAGES = [
-  { src: '/Images/ppornr2324.png', alt: 'PPO DGY 23-24 Photo 1' }
+  { src: '/Images/ppodgyretreat2324.png', alt: 'PPO DGY 23-24 Photo 1' }
 ];
 
 const NURSING_RETREAT_2324_IMAGES = [
@@ -138,6 +134,10 @@ const DGY_2_LAPAZ_2324_IMAGES = [
 
 const DGY_2_LANTAKA_2324_IMAGES = [
   { src: '/Images/dgy2lantaka_2324.png', alt: 'DGY 2 Lantaka 23-24 Photo 1' }
+];
+
+const PPORETREAT_2324_IMAGES = [
+  { src: '/Images/ppornrretreat2324.png', alt: 'PPO Retreat 23-24 Photo 1' },
 ];
 
 // Initial structure for Past Events
@@ -616,7 +616,7 @@ export default function Events() {
                 {/* RECENT EVENTS SECTION */}
                 <h3 className="fw-bold mb-4 mt-2" style={{ color: primaryColor }}>Recent Events</h3>
                 
-                {/* Events Grid (2-column layout on large screens, stacked on small screens) */}
+                {/* Events Grid (2-column layout on larger screens, stacked on smaller screens) */}
                 <div className="row g-4 mb-5">
                   
                   {/* Map through recentEventData to render cards */}
