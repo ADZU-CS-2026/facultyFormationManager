@@ -208,9 +208,8 @@ export default function RecordProfile({ id }) {
         <td className="text-start text-muted">{label}</td>
         <td className="text-center text-muted">
           {retreatData?.start_date && retreatData?.completion_date
-            ? `${retreatData.start_date.split("T")[0]} - ${
-                retreatData.completion_date.split("T")[0]
-              }`
+            ? `${retreatData.start_date.split("T")[0]} - ${retreatData.completion_date.split("T")[0]
+            }`
             : "-"}
         </td>
         <td className="text-center text-muted">
@@ -322,8 +321,7 @@ export default function RecordProfile({ id }) {
                 />
               </div>
             ) : (
-              `${user?.[0]?.id} - ${user?.[0]?.last_name}, ${
-                user?.[0]?.first_name
+              `${user?.[0]?.id} - ${user?.[0]?.last_name}, ${user?.[0]?.first_name
               } ${user?.[0]?.middle_initial || ""}`
             )}
           </div>
@@ -344,9 +342,8 @@ export default function RecordProfile({ id }) {
             ) : (
               <>
                 <div
-                  className={`${
-                    user?.[0]?.work_status === "Active" ? "bg-green" : "bg-red"
-                  } rounded-pill`}
+                  className={`${user?.[0]?.work_status === "Active" ? "bg-green" : "bg-red"
+                    } rounded-pill`}
                   style={{ width: "10px", height: "10px" }}
                 ></div>
                 {user?.[0]?.work_status}
@@ -367,7 +364,7 @@ export default function RecordProfile({ id }) {
                   </tr>
                 </thead>
                 {user?.[0]?.department === "Admin" ||
-                user?.[0]?.department === "CS" ? (
+                  user?.[0]?.department === "CS" ? (
                   <tbody>
                     <tr>
                       <td className="text-start text-muted">Department</td>
@@ -574,22 +571,22 @@ export default function RecordProfile({ id }) {
                     user?.[0]?.department === "SED" ||
                     user?.[0]?.department === "SLA" ||
                     user?.[0]?.department === "SMA") && (
-                    <>
-                      {schoolYears.map((year) => (
-                        <tr key={year}>
-                          <td className="text-start text-muted">3D Retreat SY {year}</td>
-                          <td className="text-center text-muted">
-                            {get3DRetreatForYear(year)?.start_date && get3DRetreatForYear(year)?.completion_date
-                              ? `${get3DRetreatForYear(year).start_date.split("T")[0]} - ${get3DRetreatForYear(year).completion_date.split("T")[0]}`
-                              : "-"}
-                          </td>
-                          <td className="text-center text-muted">
-                            {get3DRetreatForYear(year)?.attendance_status || "-"}
-                          </td>
-                        </tr>
-                      ))}
-                    </>
-                  )}
+                      <>
+                        {schoolYears.map((year) => (
+                          <tr key={year}>
+                            <td className="text-start text-muted">3D Retreat SY {year}</td>
+                            <td className="text-center text-muted">
+                              {get3DRetreatForYear(year)?.start_date && get3DRetreatForYear(year)?.completion_date
+                                ? `${get3DRetreatForYear(year).start_date.split("T")[0]} - ${get3DRetreatForYear(year).completion_date.split("T")[0]}`
+                                : "-"}
+                            </td>
+                            <td className="text-center text-muted">
+                              {get3DRetreatForYear(year)?.attendance_status || "-"}
+                            </td>
+                          </tr>
+                        ))}
+                      </>
+                    )}
                 </tbody>
               </table>
             </div>
