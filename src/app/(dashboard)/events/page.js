@@ -256,6 +256,7 @@ const INITIAL_PAST_EVENTS_DATA = [
                 images: INSTITUTIONALACTS_2526_IMAGES,
                 location: 'AdZU Main Campus, Sadik Grand Mosque, AdZU Kreutz Campus, and Fort Pilar',
                 date: 'July 23, 2025',
+                description: 'The Ateneo de Zamboanga University community recently had the honor of welcoming Jesuit Scholastics Bertrand Leong SJ, Chanra Tieng SJ, and Brother JP Socrates SJ. During their intersessions, they visited various communities and participated in an Inter-Religious Dialogue. This experience allowed the Scholastics to observe how their formation aligns with the broader mission of the Society of Jesus and various Church practices, particularly during this Jubilee year. The program featured significant moments of prayer, dialogue, communal reflection, and pastoral guidance.',
                 icon: 'bi-geo-alt-fill'
             },
         ] },
