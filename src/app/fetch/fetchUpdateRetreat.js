@@ -16,3 +16,20 @@ export async function fetchUpdateRetreat(retreatData) {
         throw err;
     }
 }
+
+/**
+ * Create a new retreat record with role-based handling
+ * ADMINISTRATOR: Creates directly
+ * STAFF: Creates pending change for approval
+ * 
+ * @param {Object} retreatData - The retreat data to create (must include user_id, retreat_type)
+ * @returns {Promise<Object>} - Response with create result
+ */
+export async function fetchCreateRetreat(retreatData) {
+    try {
+        const res = await axios.post('/api/records/retreat', retreatData);
+        return res.data;
+    } catch (err) {
+        throw err;
+    }
+}

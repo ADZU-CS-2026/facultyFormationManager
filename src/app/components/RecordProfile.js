@@ -5,7 +5,7 @@ import fetchUserId from "@/app/fetch/fetchUserId";
 import fetchRecordRetreatId from "@/app/fetch/fetchRecordRetreatId";
 import fetchAccountData from "@/app/fetch/fetchAccountData";
 import { fetchUpdateRecord } from "@/app/fetch/fetchUpdateRecord";
-import { fetchUpdateRetreat } from "@/app/fetch/fetchUpdateRetreat";
+import { fetchUpdateRetreat, fetchCreateRetreat } from "@/app/fetch/fetchUpdateRetreat";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +20,7 @@ export default function RecordProfile({ id }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState({});
   const [retreatEditForm, setRetreatEditForm] = useState({});
+  const [newRetreatRecords, setNewRetreatRecords] = useState({});
   const [saving, setSaving] = useState(false);
 
   // Fetch current user account for role
@@ -146,6 +147,24 @@ export default function RecordProfile({ id }) {
     );
   };
 
+  // Handle new retreat record changes (for empty rows)
+  const handleNewRetreatChange = (key, field, value) => {
+    setNewRetreatRecords((prev) => ({
+      ...prev,
+      [key]: {
+        ...prev[key],
+        [field]: value,
+      },
+    }));
+  };
+
+  // Check if a new retreat record has data to save
+  const hasNewRetreatData = (key) => {
+    const record = newRetreatRecords[key];
+    if (!record) return false;
+    return record.start_date || record.completion_date || record.attendance_status;
+  };
+
   // Handle edit button click
   const handleEditClick = () => {
     initEditForm();
@@ -166,6 +185,7 @@ export default function RecordProfile({ id }) {
     setIsEditing(false);
     setEditForm({});
     setRetreatEditForm({});
+    setNewRetreatRecords({});
   };
 
   // Handle save - user data and retreat data
@@ -196,19 +216,39 @@ export default function RecordProfile({ id }) {
         }
       });
 
-      const hasAnyChanges = hasUserChanges || retreatChanges.length > 0;
+      // Find new retreat records to create
+      const newRetreatsToCreate = [];
+      Object.keys(newRetreatRecords).forEach((key) => {
+        if (hasNewRetreatData(key)) {
+          const record = newRetreatRecords[key];
+          // Parse key format: "retreat_type|school_year" or just "retreat_type"
+          const [retreat_type, school_year] = key.split("|");
+          newRetreatsToCreate.push({
+            user_id: parseInt(id),
+            retreat_type,
+            school_year: school_year || null,
+            start_date: record.start_date || null,
+            completion_date: record.completion_date || null,
+            attendance_status: record.attendance_status || null,
+          });
+        }
+      });
+
+      const hasAnyChanges = hasUserChanges || retreatChanges.length > 0 || newRetreatsToCreate.length > 0;
 
       if (!hasAnyChanges) {
         addToast("No changes to save.", "warning");
         setIsEditing(false);
         setEditForm({});
         setRetreatEditForm({});
+        setNewRetreatRecords({});
         setSaving(false);
         return;
       }
 
       let userSaveResult = null;
       let retreatSaveResults = [];
+      let newRetreatResults = [];
       let hasDirectSave = false;
       let hasPendingSave = false;
 
@@ -246,17 +286,42 @@ export default function RecordProfile({ id }) {
         }
       }
 
+      // Create new retreat records if any
+      for (const newRetreat of newRetreatsToCreate) {
+        try {
+          console.log("Creating new retreat:", newRetreat);
+          const result = await fetchCreateRetreat(newRetreat);
+          console.log("Create result:", result);
+          newRetreatResults.push({ retreat_type: newRetreat.retreat_type, result });
+          if (result.success) {
+            if (result.isDirectSave) {
+              hasDirectSave = true;
+            } else {
+              hasPendingSave = true;
+            }
+          }
+        } catch (err) {
+          console.error(`Error creating retreat ${newRetreat.retreat_type}:`, err);
+          console.error("Error response:", err.response?.data);
+          newRetreatResults.push({ retreat_type: newRetreat.retreat_type, error: err });
+        }
+      }
+
       // Invalidate queries to refresh data
       queryClient.invalidateQueries(["recordid", id]);
       queryClient.invalidateQueries(["recordretreatid", id]);
 
       // Show appropriate toast messages
+      const hasErrors = newRetreatResults.some(r => r.error) || retreatSaveResults.some(r => r.error);
+
       if (hasDirectSave && hasPendingSave) {
         addToast("Some changes saved directly, others pending admin approval.", "info");
       } else if (hasDirectSave) {
         addToast("All changes saved successfully!", "success");
       } else if (hasPendingSave) {
         addToast("Changes saved as pending. Submit for admin approval in My Changes.", "info");
+      } else if (hasErrors) {
+        addToast("Some changes failed to save. Check console for details.", "danger");
       } else {
         addToast("Failed to save changes. Please try again.", "danger");
       }
@@ -268,6 +333,7 @@ export default function RecordProfile({ id }) {
     setIsEditing(false);
     setEditForm({});
     setRetreatEditForm({});
+    setNewRetreatRecords({});
     setSaving(false);
   };
 
@@ -287,10 +353,55 @@ export default function RecordProfile({ id }) {
   // Attendance status options
   const attendanceStatusOptions = ["Present", "Absent"];
 
-  // Render retreat row - with editing support
-  const renderRetreatRow = (retreatData, label) => {
-    // No data exists - show empty row (no editing for non-existent records)
+  // Render retreat row - with editing and create support
+  // retreatTypeKey is the database retreat_type value (e.g., "DGY1", "DGY4.1_IMC")
+  const renderRetreatRow = (retreatData, label, retreatTypeKey) => {
+    // No data exists - show editable empty row in edit mode
     if (!retreatData) {
+      if (isEditing) {
+        const newKey = retreatTypeKey; // Key format: "retreat_type" (no school_year for non-yearly retreats)
+        const newData = newRetreatRecords[newKey] || {};
+        return (
+          <tr>
+            <td className="text-start text-muted">{label}</td>
+            <td className="text-center">
+              <div className="d-flex gap-1 justify-content-center align-items-center">
+                <input
+                  type="date"
+                  value={newData.start_date || ""}
+                  onChange={(e) => handleNewRetreatChange(newKey, "start_date", e.target.value)}
+                  className="form-control form-control-sm"
+                  style={{ width: "130px" }}
+                />
+                <span>-</span>
+                <input
+                  type="date"
+                  value={newData.completion_date || ""}
+                  onChange={(e) => handleNewRetreatChange(newKey, "completion_date", e.target.value)}
+                  className="form-control form-control-sm"
+                  style={{ width: "130px" }}
+                />
+              </div>
+            </td>
+            <td className="text-center">
+              <select
+                value={newData.attendance_status || ""}
+                onChange={(e) => handleNewRetreatChange(newKey, "attendance_status", e.target.value)}
+                className="form-select form-select-sm"
+                style={{ width: "120px", margin: "0 auto" }}
+              >
+                <option value="">-</option>
+                {attendanceStatusOptions.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            </td>
+          </tr>
+        );
+      }
+      // Display mode - show dashes
       return (
         <tr>
           <td className="text-start text-muted">{label}</td>
@@ -303,7 +414,7 @@ export default function RecordProfile({ id }) {
     const retreatId = retreatData.id;
     const editData = retreatEditForm[retreatId] || {};
 
-    // Editing mode
+    // Editing mode for existing record
     if (isEditing) {
       return (
         <tr>
@@ -362,12 +473,57 @@ export default function RecordProfile({ id }) {
     );
   };
 
-  // Render school year retreat row (for 3D Retreat/PPO by year) - with editing support
-  const renderSchoolYearRetreatRow = (year, label, getDataFn) => {
+  // Render school year retreat row (for 3D Retreat/PPO by year) - with editing and create support
+  // retreatTypeKey is the database retreat_type value (e.g., "3D_Retreat")
+  const renderSchoolYearRetreatRow = (year, label, getDataFn, retreatTypeKey) => {
     const retreatData = getDataFn(year);
 
-    // No data exists - show empty row (no editing for non-existent records)
+    // No data exists - show editable empty row in edit mode
     if (!retreatData) {
+      if (isEditing) {
+        const newKey = `${retreatTypeKey}|${year}`; // Key format: "retreat_type|school_year"
+        const newData = newRetreatRecords[newKey] || {};
+        return (
+          <tr key={year}>
+            <td className="text-start text-muted">{label}</td>
+            <td className="text-center">
+              <div className="d-flex gap-1 justify-content-center align-items-center">
+                <input
+                  type="date"
+                  value={newData.start_date || ""}
+                  onChange={(e) => handleNewRetreatChange(newKey, "start_date", e.target.value)}
+                  className="form-control form-control-sm"
+                  style={{ width: "130px" }}
+                />
+                <span>-</span>
+                <input
+                  type="date"
+                  value={newData.completion_date || ""}
+                  onChange={(e) => handleNewRetreatChange(newKey, "completion_date", e.target.value)}
+                  className="form-control form-control-sm"
+                  style={{ width: "130px" }}
+                />
+              </div>
+            </td>
+            <td className="text-center">
+              <select
+                value={newData.attendance_status || ""}
+                onChange={(e) => handleNewRetreatChange(newKey, "attendance_status", e.target.value)}
+                className="form-select form-select-sm"
+                style={{ width: "120px", margin: "0 auto" }}
+              >
+                <option value="">-</option>
+                {attendanceStatusOptions.map((status) => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
+              </select>
+            </td>
+          </tr>
+        );
+      }
+      // Display mode - show dashes
       return (
         <tr key={year}>
           <td className="text-start text-muted">{label}</td>
@@ -380,7 +536,7 @@ export default function RecordProfile({ id }) {
     const retreatId = retreatData.id;
     const editData = retreatEditForm[retreatId] || {};
 
-    // Editing mode
+    // Editing mode for existing record
     if (isEditing) {
       return (
         <tr key={year}>
@@ -732,24 +888,24 @@ export default function RecordProfile({ id }) {
                   {/* CS Department - DGY progression + SD */}
                   {user?.[0]?.department === "CS" && (
                     <>
-                      {renderRetreatRow(DGY1, "DGY1")}
-                      {renderRetreatRow(DGY2, "DGY2")}
-                      {renderRetreatRow(DGY3, "DGY3")}
-                      {renderRetreatRow(DGY41, "DGY4.1 IMC")}
-                      {renderRetreatRow(DGY42, "DGY4.2 3D Retreat")}
-                      {renderRetreatRow(DGY51, "DGY5.1 IPC")}
-                      {renderRetreatRow(DGY52, "DGY5.2 3D Retreat")}
-                      {renderRetreatRow(SD, "SD")}
+                      {renderRetreatRow(DGY1, "DGY1", "DGY1")}
+                      {renderRetreatRow(DGY2, "DGY2", "DGY2")}
+                      {renderRetreatRow(DGY3, "DGY3", "DGY3")}
+                      {renderRetreatRow(DGY41, "DGY4.1 IMC", "DGY4.1_IMC")}
+                      {renderRetreatRow(DGY42, "DGY4.2 3D Retreat", "DGY4.2_3D_Retreat")}
+                      {renderRetreatRow(DGY51, "DGY5.1 IPC", "DGY5.1_IPC")}
+                      {renderRetreatRow(DGY52, "DGY5.2 3D Retreat", "DGY5.2_3D_Retreat")}
+                      {renderRetreatRow(SD, "SD", "SD")}
                     </>
                   )}
 
                   {/* Admin Department - DGY2, DGY3 + 3D Retreats by school year */}
                   {user?.[0]?.department === "Admin" && (
                     <>
-                      {renderRetreatRow(DGY2, "DGY2")}
-                      {renderRetreatRow(DGY3, "DGY3")}
+                      {renderRetreatRow(DGY2, "DGY2", "DGY2")}
+                      {renderRetreatRow(DGY3, "DGY3", "DGY3")}
                       {schoolYears.map((year) =>
-                        renderSchoolYearRetreatRow(year, `3D Retreat SY ${year}`, get3DRetreatForYear)
+                        renderSchoolYearRetreatRow(year, `3D Retreat SY ${year}`, get3DRetreatForYear, "3D_Retreat")
                       )}
                     </>
                   )}
@@ -758,7 +914,7 @@ export default function RecordProfile({ id }) {
                   {user?.[0]?.department === "PPO" && (
                     <>
                       {schoolYears.filter(y => y !== "2023-2024").map((year) =>
-                        renderSchoolYearRetreatRow(year, `School Year ${year}`, getPPOForYear)
+                        renderSchoolYearRetreatRow(year, `School Year ${year}`, getPPOForYear, "School_Year")
                       )}
                     </>
                   )}
@@ -773,7 +929,7 @@ export default function RecordProfile({ id }) {
                     user?.[0]?.department === "SMA") && (
                       <>
                         {schoolYears.map((year) =>
-                          renderSchoolYearRetreatRow(year, `3D Retreat SY ${year}`, get3DRetreatForYear)
+                          renderSchoolYearRetreatRow(year, `3D Retreat SY ${year}`, get3DRetreatForYear, "3D_Retreat")
                         )}
                       </>
                     )}
