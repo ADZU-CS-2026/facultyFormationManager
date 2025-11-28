@@ -5,15 +5,15 @@ import Image from 'next/image';
 
 const primaryColor = "#0c2461";
 
-// DGY 25-26 Images
-const DGY_4_1_IMAGES = [
+// --- IMAGES FOR SLIDESHOW ---
+const DGY_4_1_2526_IMAGES = [
   { src: '/Images/dgy41.png', alt: 'DGY 4.1 Event Photo 1' },
   { src: '/Images/dgy42.png', alt: 'DGY 4.1 Event Photo 2' },
   { src: '/Images/dgy43.png', alt: 'DGY 4.1 Event Photo 3' },
   { src: '/Images/dgy44.png', alt: 'DGY 4.1 Event Photo 4' },
 ];
 
-const DGY_3_IMAGES = [
+const DGY_3_2526_IMAGES = [
   { src: '/Images/dgy31.png', alt: 'DGY 3 Event Photo 1' },
   { src: '/Images/dgy32.png', alt: 'DGY 3 Event Photo 2' },
   { src: '/Images/dgy33.png', alt: 'DGY 3 Event Photo 3' },
@@ -29,27 +29,115 @@ const CIS_IMAGES = [
 ];
 
 const ADMIN_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnradmin.jpg', alt: 'ADMIN Retreat Photo 1' }, 
+  { src: '/Images/rnradmin2.png', alt: 'ADMIN Retreat Photo 2' }, 
 ];
 
 const LAW_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnrlaw.jpg', alt: 'LAW Retreat Photo 1' },
+  { src: '/Images/rnrlaw2.png', alt: 'LAW Retreat Photo 2' },
+  { src: '/Images/rnrlaw3.png', alt: 'LAW Retreat Photo 3' }, 
+  { src: '/Images/rnrlaw4.png', alt: 'LAW Retreat Photo 4' }, 
 ];
 
 const SED_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnrsed.jpg', alt: 'SED Retreat Photo 1' }, 
+  { src: '/Images/rnrsed2.png', alt: 'SED Retreat Photo 2' }, 
+  { src: '/Images/rnrsed3.png', alt: 'SED Retreat Photo 3' }, 
 ];
 
 const USO_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnraloha.jpg', alt: 'USO Retreat Photo' }, 
 ];
 
 const ACES_RETREAT2526_IMAGES = [
-  { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+  { src: '/Images/rnraces.png', alt: 'ACES Retreat Photo 1' }, 
+  { src: '/Images/rnraces2.png', alt: 'ACES Retreat Photo 2' }, 
+  { src: '/Images/rnraces3.png', alt: 'ACES Retreat Photo 3' }, 
+  { src: '/Images/rnraces4.png', alt: 'ACES Retreat Photo 4' }, 
 ];
 
 const CSITE_RETREAT2526_IMAGES = [
   { src: '/Images/rnrcsite.jpg', alt: 'CSITE Retreat Photo' }, 
+];
+
+const INSTITUTIONALACTS_2526_IMAGES = [
+  { src: '/Images/Intersession_1_25.jpg', alt: 'Intersession 25-26 Photo 1' },
+  { src: '/Images/Intersession_2_25.jpg', alt: 'Intersession 25-26 Photo 1' }, 
+  { src: '/Images/Intersession_3_25.jpg', alt: 'Intersession 25-26 Photo 1' }, 
+  { src: '/Images/Intersession_4_25.jpg', alt: 'Intersession 25-26 Photo 1' }, 
+];
+
+const DGY_1_2425_IMAGES = [
+  { src: '/Images/dgy1_2425.png', alt: 'DGY 1 24-25 Photo 1' },
+];
+
+const DGY_2_LANTAKA_2425_IMAGES = [
+  { src: '/Images/dgy2_lantaka_2425.jpg', alt: 'DGY 2 Lantaka 24-25 Photo 1' }
+];
+
+const DGY_2_MURUK_2425_IMAGES = [
+  { src: '/Images/dgy2_muruk_2425.jpg', alt: 'DGY 2 Muruk 24-25 Photo 1' }
+];
+
+const DGY_2_NANCYFALLS_2425_IMAGES = [
+  { src: '/Images/dgy2_nancyfalls_2425.jpg', alt: 'DGY 2 Nancy Falls 24-25 Photo 1' }
+];
+
+const DGY_2_11ISLANDS_2425_IMAGES = [
+  { src: '/Images/dgy211islands_2425.jpg', alt: 'DGY 2 11 Islands 24-25 Photo 1' }
+];
+
+const DGY_3_2425_IMAGES = [
+  { src: '/Images/dgy3_2425.jpg', alt: 'DGY 3 24-25 Photo 1' }
+];
+
+const DGY_2_11ISLANDS_2324_IMAGES = [
+  { src: '/Images/dgy211islands_2324.jpg', alt: 'DGY 2 11 Islands 23-24 Photo 1' }
+];
+
+const PPORETREAT_2324_IMAGES = [
+  { src: '/Images/pporetreat2324.png', alt: 'PPO Retreat 23-24 Photo 1' },
+];
+
+const PPO_DGY_2324_IMAGES = [
+  { src: '/Images/ppornr2324.png', alt: 'PPO DGY 23-24 Photo 1' }
+];
+
+const NURSING_RETREAT_2324_IMAGES = [
+  { src: '/Images/conretreat2324.png', alt: 'Nursing Retreat 23-24 Photo 1' }
+];
+
+const CSITE_RETREAT_2324_IMAGES = [
+  { src: '/Images/csiteretreat2324.png', alt: 'CSITE Retreat 23-24 Photo 1' }
+];
+
+const SMA_RETREAT_2324_IMAGES = [
+  { src: '/Images/smaretreat2324.png', alt: 'SMA Retreat 23-24 Photo 1' }
+];
+
+const SED_RETREAT_2324_IMAGES = [
+  { src: '/Images/sedretreat2324.png', alt: 'SED Retreat 23-24 Photo 1' }
+];
+
+const ADMIN_RETREAT_2324_IMAGES = [
+  { src: '/Images/adminrnr2324.jpg', alt: 'Admin Retreat 23-24 Photo 1' }
+];
+
+const DGY_1_FEB_2324_IMAGES = [
+  { src: '/Images/dgy1feb2324.png', alt: 'DGY 1 23-24 Photo 1' }
+];
+
+const DGY_1_MARCH_2324_IMAGES = [
+  { src: '/Images/dgy1march2324.png', alt: 'DGY 1 23-24 Photo 1' }
+];
+
+const DGY_2_LAPAZ_2324_IMAGES = [
+  { src: '/Images/dgy2lapaz_2324.png', alt: 'DGY 2 La Paz 23-24 Photo 1' }
+];
+
+const DGY_2_LANTAKA_2324_IMAGES = [
+  { src: '/Images/dgy2lantaka_2324.png', alt: 'DGY 2 Lantaka 23-24 Photo 1' }
 ];
 
 // Initial structure for Past Events
@@ -62,7 +150,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy4-1',
                 title: 'Days with God Year 4.1 (DGY4.1)',
-                images: DGY_4_1_IMAGES,
+                images: DGY_4_1_2526_IMAGES,
                 location: 'Immaculate Conception Chapel (ICC)',
                 date: 'August 28 to October 30, 2025',
                 description: 'The DGY4.1 sessions serve as an essential preparation for the participants’ upcoming 3-day silent retreat. Participants are guided through personal prayer, reflections, and spiritual sharing.',
@@ -71,7 +159,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy3',
                 title: 'Days with God Year 3 (DGY3)',
-                images: DGY_3_IMAGES,
+                images: DGY_3_2526_IMAGES,
                 location: 'Taluksangay Mosque, Zamboanga City Alliance Evangelical Church, and Avalokitesvara Temple',
                 date: 'Novemeber 20-21, 2025',
                 description: 'The DGY3 is a two-day Ignatian retreat designed for academic and non-academic staff who have previously completed DGY2.',
@@ -105,6 +193,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'adminr',
                 title: 'Administrators\' Retreat',
+                images: ADMIN_RETREAT2526_IMAGES,
                 location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
                 date: 'May 26-29, 2025',
                 description: 'Some of the administrators just concluded their 3-day Ignatian (Individually Directed) Retreat in Cebu Center for Ignatian Spirituality - Jesuit Retreat House. It was a time of reflection, reconciliation, and spiritual growth. A celebration of Companionship in the mission.',
@@ -113,6 +202,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ssednffp',
                 title: 'School of Education and FFP Formators Retreat',
+                images: SED_RETREAT2526_IMAGES,
                 location: 'Cebu Center for Ignatian Spirituality - Jesuit Retreat House',
                 date: 'May 27-30, 2025',
                 description: 'The professors of the School of Education and FFP Formators just concluded their 3-day Ignatian (Individually Directed) Retreat at the Cebu Center for Ignatian Spirituality - Jesuit Retreat House. We thank God for the opportunity to rest and pray. We thank God for the mission. We thank God for the companions in the journey.',
@@ -121,6 +211,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'usorecollection',
                 title: 'USO with Aloha Security Agency Participate in a Recollection',
+                images: USO_RETREAT2526_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'June 22, 2025',
                 description: 'The members of the Ateneo de Zamboanga University Security Office (USO) in close collaboration with the Aloha Investigation Management CEO Ms Evelyn C Catingub CSP joined forty (40) Aloha Security Personnel for a Recollection Activity led by the Formation Office at Hall A of the AdZU Lantaka Campus, NS Valderosa Street, Zamboanga City. Guiding the attendees was Mr Honey Rod Alfaro who inspired them to take this opportunity to reflect on their lives and build a stronger connection with God.',
@@ -129,6 +220,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'acesrecollection',
                 title: 'ACES Corner | Recollection of Experiences',
+                images: ACES_RETREAT2526_IMAGES,
                 location: 'Immaculate Conception Chapel (ICC)',
                 date: 'June 27, 2025',
                 description: 'Today, our student immerses stepped into the Immaculate Conception Chapel for a profound Recollection of Experiences, guided by the Unit Director of Formation, Mr. Honey Rod Alfaro. In their quiet reflection, they revisited their journey, the struggles, the lessons, and the unexpected moments of growth. But this wasnt just about looking back. 𝐓𝐡𝐞𝐲 𝐰𝐞𝐫𝐞 𝐜𝐡𝐚𝐥𝐥𝐞𝐧𝐠𝐞𝐝 𝐭𝐨 𝐥𝐨𝐨𝐤 𝐟𝐨𝐫𝐰𝐚𝐫𝐝: "𝘞𝘩𝘢𝘵 𝘤𝘢𝘯 𝘺𝘰𝘶 𝘯𝘰𝘸 𝘥𝘰 𝘧𝘰𝘳 𝘵𝘩𝘦 𝘤𝘰𝘮𝘮𝘶𝘯𝘪𝘵𝘺 𝘵𝘩𝘢𝘵 𝘩𝘢𝘴 𝘴𝘩𝘢𝘱𝘦𝘥 𝘺𝘰𝘶?"',
@@ -137,6 +229,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'lawstudentsretreat',
                 title: 'Law Students Retreat',
+                images: LAW_RETREAT2526_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'July 9, 2025',
                 description: 'Law students from the Rosendo U. Castillo Jr. College of Law at Ateneo de Zamboanga University spent a day in prayer and reflection at the Lantaka Campus for an Ignatian recollection focused on Ignatian discernment and vocation.',
@@ -151,10 +244,6 @@ const INITIAL_PAST_EVENTS_DATA = [
                 description: 'The professors of College of Science Information Technology & Engineering (CSITE) have just completed their 3-day Ignatian Retreat, guided by Fr. Jerome "Jem" Guevara SJ, at the Cebu Center for Ignatian Spirituality - Jesuit Retreat House. We are deeply grateful to God for the opportunity to rest, reflect, and pray, for the mission entrusted to us, and for the companionship along this journey.',
                 icon: 'bi-geo-alt-fill'
             },
-            {
-                cardId: 'gsfacultyretreat',
-                title: 'GS Faculty Retreat for the School Year 2025-2026'
-            }
         ] },
     { 
         id: 'inst-2025-2026',
@@ -164,6 +253,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'intersession',
                 title: 'Intersession Program of the Jesuit Scholastics',
+                images: INSTITUTIONALACTS_2526_IMAGES,
                 location: 'AdZU Main Campus, Sadik Grand Mosque, AdZU Kreutz Campus, and Fort Pilar',
                 date: 'July 23, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -184,6 +274,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy1-2425-1',
                 title: 'Days with God Year 1 (DGY1)',
+                images: DGY_1_2425_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'N/A',
                 icon: 'bi-geo-alt-fill'
@@ -191,6 +282,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ppo-dgy2-2425',
                 title: 'PPO Personnel Ignatian Recollection "Days with God (DGY2)',
+                images: DGY_2_MURUK_2425_IMAGES,
                 location: 'ASEAN Heritage Park in Sitio Muruk',
                 date: 'February 28 and March 7, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -198,6 +290,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'irnf-dgy2-2425',
                 title: 'Ignatian Recollection "Days with God (DGY2)',
+                images: DGY_2_NANCYFALLS_2425_IMAGES,
                 location: 'Nancy Falls, km 26, La Paz',
                 date: 'February 20-21, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -205,6 +298,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ir-11islands-dgy2-2425',
                 title: 'Ignatian Recollection "Days with God (DGY2)',
+                images: DGY_2_11ISLANDS_2425_IMAGES,
                 location: '11 Islands',
                 date: 'February 6-7, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -212,6 +306,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ir-lantaka-dgy2-2425',
                 title: 'Ignatian Recollection "Days with God (DGY2)',
+                images: DGY_2_LANTAKA_2425_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'February 13-14, 2025',
                 icon: 'bi-geo-alt-fill'
@@ -219,6 +314,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy3-2425',
                 title: 'Days with God Year 3 (DGY3)',
+                images: DGY_3_2425_IMAGES,
                 location: 'Taluksangay Mosque, Zamboanga City Alliance Evangelical Church, and Avalokitesvara Temple',
                 date: 'January 25, 2025',
                 theme: 'Inter-Religious Dialogue',
@@ -234,6 +330,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'admin-retreat-2324',
                 title: 'Administrators’ Retreat',
+                images: ADMIN_RETREAT_2324_IMAGES,
                 location: 'Mirador, Baguio',
                 date: 'May 28–30, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -241,6 +338,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'ppo-retreat-2324',
                 title: 'Physical Plant Office Retreat',
+                images: PPORETREAT_2324_IMAGES,
                 location: 'Malaybalay, Bukidnon',
                 date: 'June 3–7, 2024 ',
                 icon: 'bi-geo-alt-fill',
@@ -248,6 +346,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'con-retreat-2324',
                 title: 'College of Nursing Retreat',
+                images: NURSING_RETREAT_2324_IMAGES,
                 location: 'Samal Island, Davao',
                 date: 'July 10–12, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -255,6 +354,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'sma-retreat-2324',
                 title: 'School of Management and Accounting with JHS Middle Administration Retreat',
+                images: SMA_RETREAT_2324_IMAGES,
                 location: 'Mirador, Baguio',
                 date: 'September 17–19, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -262,6 +362,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'sed-retreat-2324',
                 title: 'School of Education (SEd) Faculty and Staff Retreat',
+                images: SED_RETREAT_2324_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'October 17-18, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -269,6 +370,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'csite-retreat-2324',
                 title: 'College of Science and Information Technology and Engineering Retreat',
+                images: CSITE_RETREAT_2324_IMAGES,
                 location: 'Angono, Rizal',
                 date: 'October 24-26, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -282,6 +384,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy1-2324-1',
                 title: 'Days with God Year 1 (DGY1)',
+                images: DGY_1_FEB_2324_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'February 23-24, 2024',
                 icon: 'bi-geo-alt-fill'
@@ -289,6 +392,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy1-2324-2',
                 title: 'Days with God Year 1 (DGY1)',
+                images: DGY_1_MARCH_2324_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'March 1&2, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -297,6 +401,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2324ppo',
                 title: 'PPO Retreat',
+                images: PPO_DGY_2324_IMAGES,
                 location: 'N/A',
                 date: 'Batch 1 February 2-3, 2024 and Batch 2 February 16-17, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -304,6 +409,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2-2324-1',
                 title: 'Days with God Year 2 (DGY2) Laudato si\' at 11 Islands',
+                images: DGY_2_11ISLANDS_2324_IMAGES,
                 location: '11 Islands',
                 date: 'March 14-15, 2024',
                 icon: 'bi-geo-alt-fill'
@@ -311,6 +417,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2-2324-2',
                 title: 'Days with God Year 2 (DGY2) Laudato Si\' at La Paz',
+                images: DGY_2_LAPAZ_2324_IMAGES,
                 location: 'La Paz',
                 date: 'March 21-22, 2024',
                 icon: 'bi-geo-alt-fill',
@@ -318,6 +425,7 @@ const INITIAL_PAST_EVENTS_DATA = [
             {
                 cardId: 'dgy2-2324-3',
                 title: 'Days with God Year 2 (DGY2) Laudato si\' at Lantaka',
+                images: DGY_2_LANTAKA_2324_IMAGES,
                 location: 'AdZU Lantaka Campus',
                 date: 'April 11-12, 2024',
                 icon: 'bi-geo-alt-fill'
