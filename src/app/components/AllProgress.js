@@ -7,6 +7,7 @@ import axios from "axios";
 
 export default function AllProgress() {
   const [hideCard, setHideCard] = useState(false);
+  const [showPreviousYears, setShowPreviousYears] = useState(false);
   const [stats, setStats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,6 +33,12 @@ export default function AllProgress() {
   // Current active school year
   const CURRENT_YEAR = "2025-2026";
 
+  // Static data for previous years
+  const previousYearsData = [
+    { school_year: "2024-2025", total_population: 332, actual_attendance: 96 },
+    { school_year: "2023-2024", total_population: 330, actual_attendance: 53 },
+  ];
+
   // Calculate percentage helper
   const getPercentage = (attendance, population) => {
     if (!population || population === 0) return 0;
@@ -39,14 +46,8 @@ export default function AllProgress() {
     return pct > 100 ? 100 : pct;
   };
 
-  // Filter and sort stats: exclude "TBD" and invalid entries, sort by year descending
-  const sortedStats = stats
-    .filter((s) => s.school_year && s.school_year !== "TBD" && s.school_year.includes("-"))
-    .sort((a, b) => {
-      const yearA = parseInt(a.school_year.split("-")[0]) || 0;
-      const yearB = parseInt(b.school_year.split("-")[0]) || 0;
-      return yearB - yearA;
-    });
+  // Get current year data from API
+  const currentYearData = stats.find((s) => s.school_year === CURRENT_YEAR);
 
   return (
     <div className="card border-0 border-top border-cyan border-3 rounded-1 shadow-sm mt-4">
@@ -81,55 +82,97 @@ export default function AllProgress() {
               <span className="spinner-border spinner-border-sm me-2"></span>
               Loading...
             </div>
-          ) : sortedStats.length === 0 ? (
+          ) : !currentYearData ? (
             <div className="text-center text-muted py-3">
-              No school year data available.
+              No current school year data available.
             </div>
           ) : (
-            sortedStats.map((yearData) => {
-              const { school_year, total_population, actual_attendance } = yearData;
-              const percentage = getPercentage(actual_attendance, total_population);
-              const isActive = school_year === CURRENT_YEAR;
-
-              return (
-                <div
-                  key={school_year}
-                  className="card rounded-1 d-flex flex-column gap-1 p-3"
-                >
-                  <div className="d-flex gap-3">
-                    <div className="fw-bold text-gray1 d-flex align-items-center gap-3">
-                      SY {school_year}
-                      {isActive && (
-                        <span className="badge bg-green rounded-pill fw-normal p-0 px-1">
-                          active
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <div className="d-flex gap-3">
-                    <div className="small">
-                      Total Population: {total_population}
-                    </div>
-                    <div className="small">
-                      Actual Attendance: {actual_attendance}
-                    </div>
-                  </div>
-                  <div className="small fw-semibold">Attendance Rate:</div>
-                  <div
-                    className="progress rounded-1"
-                    role="progressbar"
-                    style={{ height: "25px" }}
-                  >
-                    <div
-                      className="progress-bar bg-blue fw-bold"
-                      style={{ width: `${percentage}%` }}
-                    >
-                      {percentage}%
-                    </div>
+            <>
+              {/* Current Year */}
+              <div className="card rounded-1 d-flex flex-column gap-1 p-3">
+                <div className="d-flex gap-3">
+                  <div className="fw-bold text-gray1 d-flex align-items-center gap-3">
+                    SY {currentYearData.school_year}
+                    <span className="badge bg-green rounded-pill fw-normal p-0 px-1">
+                      active
+                    </span>
                   </div>
                 </div>
-              );
-            })
+                <div className="d-flex gap-3">
+                  <div className="small">
+                    Total Population: {currentYearData.total_population}
+                  </div>
+                  <div className="small">
+                    Actual Attendance: {currentYearData.actual_attendance}
+                  </div>
+                </div>
+                <div className="small fw-semibold">Attendance Rate:</div>
+                <div
+                  className="progress rounded-1"
+                  role="progressbar"
+                  style={{ height: "25px" }}
+                >
+                  <div
+                    className="progress-bar bg-blue fw-bold"
+                    style={{ width: `${getPercentage(currentYearData.actual_attendance, currentYearData.total_population)}%` }}
+                  >
+                    {getPercentage(currentYearData.actual_attendance, currentYearData.total_population)}%
+                  </div>
+                </div>
+              </div>
+
+              {/* Toggle Previous Years */}
+              <button
+                className="btn btn-sm btn-outline-secondary w-100"
+                onClick={() => setShowPreviousYears((prev) => !prev)}
+              >
+                <FontAwesomeIcon
+                  icon={showPreviousYears ? "fa-solid fa-chevron-up" : "fa-solid fa-chevron-down"}
+                  className="me-2"
+                />
+                {showPreviousYears ? "Hide Previous Years" : "Show Previous Years"}
+              </button>
+
+              {/* Previous Years */}
+              {showPreviousYears && previousYearsData.map((yearData) => {
+                const { school_year, total_population, actual_attendance } = yearData;
+                const percentage = getPercentage(actual_attendance, total_population);
+
+                return (
+                  <div
+                    key={school_year}
+                    className="card rounded-1 d-flex flex-column gap-1 p-3"
+                  >
+                    <div className="d-flex gap-3">
+                      <div className="fw-bold text-gray1 d-flex align-items-center gap-3">
+                        SY {school_year}
+                      </div>
+                    </div>
+                    <div className="d-flex gap-3">
+                      <div className="small">
+                        Total Population: {total_population}
+                      </div>
+                      <div className="small">
+                        Actual Attendance: {actual_attendance}
+                      </div>
+                    </div>
+                    <div className="small fw-semibold">Attendance Rate:</div>
+                    <div
+                      className="progress rounded-1"
+                      role="progressbar"
+                      style={{ height: "25px" }}
+                    >
+                      <div
+                        className="progress-bar bg-blue fw-bold"
+                        style={{ width: `${percentage}%` }}
+                      >
+                        {percentage}%
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </>
           )}
         </div>
       </motion.div>
