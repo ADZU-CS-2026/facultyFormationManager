@@ -7,6 +7,7 @@ import axios from "axios";
 
 export default function AllProgress() {
   const [hideCard, setHideCard] = useState(false);
+  const [showPreviousYears, setShowPreviousYears] = useState(false);
   const [stats, setStats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showHistory, setShowHistory] = useState(false); // Toggle for previous years
