@@ -328,7 +328,7 @@ export default function DeleteUser() {
 
                     {/* Selected Users Preview */}
                     <div className="card mb-3">
-                        <div className="card-header bg-danger text-white py-2">
+                        <div className="card-header bg-danger text-black py-2">
                             <strong>Users to be Deleted ({selectedUsers.size})</strong>
                         </div>
                         <div className="card-body p-0" style={{ maxHeight: "200px", overflowY: "auto" }}>

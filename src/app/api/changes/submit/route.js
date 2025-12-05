@@ -87,22 +87,13 @@ export async function POST(req) {
             );
         }
 
-        // Update batch status to Pending (only update description if provided, otherwise keep existing)
-        if (description) {
-            await pool.execute(
-                `UPDATE change_batches 
-                 SET status = 'Pending', description = ?, submitted_at = NOW() 
-                 WHERE id = ?`,
-                [description, batch_id]
-            );
-        } else {
-            await pool.execute(
-                `UPDATE change_batches 
-                 SET status = 'Pending', submitted_at = NOW() 
-                 WHERE id = ?`,
-                [batch_id]
-            );
-        }
+        // Update batch status to Pending
+        await pool.execute(
+            `UPDATE change_batches 
+             SET status = 'Pending', description = ?, submitted_at = NOW() 
+             WHERE id = ?`,
+            [description, batch_id]
+        );
 
         return NextResponse.json({
             success: true,

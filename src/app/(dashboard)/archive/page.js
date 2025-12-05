@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import fetchAccountData from "@/app/fetch/fetchAccountData";
 import ArchiveSearch from "@/app/components/ArchiveSearch";
 import Pagination from "@/app/components/Pagination";
 
@@ -12,19 +10,11 @@ export default function Archive() {
   const [error, setError] = useState(null);
   const [updatingId, setUpdatingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("Inactive");
+  const [statusFilter, setStatusFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalUsers, setTotalUsers] = useState(0);
   const itemsPerPage = 10;
-
-  // Fetch current user account for role
-  const { data: account } = useQuery({
-    queryKey: ["account"],
-    queryFn: fetchAccountData,
-  });
-
-  const isAdmin = account?.[0]?.role === "ADMINISTRATOR";
 
   // Fetch archived users when page, search term, or filter changes
   useEffect(() => {
@@ -217,8 +207,8 @@ export default function Archive() {
                               <button
                                 className="btn btn-sm btn-lightblue text-white fw-semibold"
                                 onClick={() => handleToggleStatus(user.id)}
-                                disabled={!isAdmin || updatingId === user.id}
-                                title={!isAdmin ? 'Only administrators can toggle user status' : `Change to ${user.work_status === 'Active' ? 'Inactive' : 'Active'}`}
+                                disabled={updatingId === user.id}
+                                title={`Change to ${user.work_status === 'Active' ? 'Inactive' : 'Active'}`}
                               >
                                 {updatingId === user.id ? (
                                   'Updating...'

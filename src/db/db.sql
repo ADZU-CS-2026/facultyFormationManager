@@ -104,6 +104,12 @@ CREATE TABLE pending_changes (
     INDEX idx_record_id (record_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+CREATE TABLE forgotpassword (
+    email VARCHAR(255) NOT NULL UNIQUE,
+    login_code VARCHAR(10),
+    login_expire DATETIME
+)
+
 
 INSERT INTO adminaccount (id, role, password)
 VALUES (230692, 'ADMINISTRATOR', 'adzuformation');

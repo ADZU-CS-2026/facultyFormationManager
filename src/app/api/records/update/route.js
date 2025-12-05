@@ -126,23 +126,17 @@ export async function PATCH(req) {
             );
 
             let batchId, batchUuid;
-            const description = `Update user: ${oldValues.last_name}, ${oldValues.first_name || ''} (${oldValues.department || 'N/A'})`;
 
             if (existingDraft.length > 0) {
                 batchId = existingDraft[0].id;
                 batchUuid = existingDraft[0].batch_uuid;
-                // Update description to reflect latest change
-                await pool.execute(
-                    `UPDATE change_batches SET description = ? WHERE id = ?`,
-                    [description, batchId]
-                );
             } else {
-                // Create new draft batch with descriptive message
+                // Create new draft batch
                 batchUuid = uuidv4();
                 const [newBatch] = await pool.execute(
                     `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                      VALUES (?, ?, 'Draft', ?)`,
-                    [batchUuid, userId, description]
+                    [batchUuid, userId, `Update: ${oldValues.first_name} ${oldValues.last_name}`]
                 );
                 batchId = newBatch.insertId;
             }
@@ -282,23 +276,17 @@ export async function DELETE(req) {
             );
 
             let batchId, batchUuid;
-            const description = `Delete user: ${oldValues.last_name}, ${oldValues.first_name || ''} (${oldValues.department || 'N/A'})`;
 
             if (existingDraft.length > 0) {
                 batchId = existingDraft[0].id;
                 batchUuid = existingDraft[0].batch_uuid;
-                // Update description to reflect latest change
-                await pool.execute(
-                    `UPDATE change_batches SET description = ? WHERE id = ?`,
-                    [description, batchId]
-                );
             } else {
-                // Create new draft batch with descriptive message
+                // Create new draft batch
                 batchUuid = uuidv4();
                 const [newBatch] = await pool.execute(
                     `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                      VALUES (?, ?, 'Draft', ?)`,
-                    [batchUuid, userId, description]
+                    [batchUuid, userId, `Delete: ${oldValues.first_name} ${oldValues.last_name}`]
                 );
                 batchId = newBatch.insertId;
             }

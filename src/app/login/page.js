@@ -16,6 +16,7 @@ import { queryClient } from "@/app/react-query";
 import fetchLogin from "@/app/fetch/fetchLogin";
 import Turnstile from "react-turnstile";
 import { useMutation } from "@tanstack/react-query";
+import Link from "next/link";
 
 export default function Home() {
   const [id, setID] = useState("");
@@ -235,12 +236,13 @@ export default function Home() {
                 {error && seconds ? `Try again(${seconds}s)` : "Login"}
               </button>
 
-              <div
+              <Link
+                href="/forgot-password"
                 style={{ color: "#cccccc", fontSize: "16px" }}
-                className="mb-4"
+                className="mb-4 text-decoration-none"
               >
                 Forgot your Password <FontAwesomeIcon icon={faCircleQuestion} />
-              </div>
+              </Link>
               <Turnstile
                 sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
                 onVerify={(token) => setToken(token)}

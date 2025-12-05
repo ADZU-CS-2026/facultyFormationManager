@@ -111,21 +111,12 @@ export async function POST(req) {
 
         // STAFF: Create pending changes for approval
         if (userRole === 'STAFF') {
-            // Get user names for description
-            const [usersForDesc] = await pool.execute(
-                `SELECT last_name, first_name FROM users WHERE id IN (${user_ids.map(() => '?').join(',')})`,
-                user_ids
-            );
-            const userNames = usersForDesc.map(u => `${u.last_name}`).join(', ');
-            const retreatTypes = retreats.map(r => r.retreat_type).join(', ');
-            const description = `Batch update: ${retreatTypes} for ${user_ids.length} user(s) (${userNames.substring(0, 50)}${userNames.length > 50 ? '...' : ''})`;
-
             // Create a new batch for this batch update
             const batchUuid = uuidv4();
             const [newBatch] = await pool.execute(
                 `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                  VALUES (?, ?, 'Draft', ?)`,
-                [batchUuid, loggedInUserId, description]
+                [batchUuid, loggedInUserId, `Batch update: ${retreats.map(r => r.retreat_type).join(', ')} for ${user_ids.length} users`]
             );
             const batchId = newBatch.insertId;
 
