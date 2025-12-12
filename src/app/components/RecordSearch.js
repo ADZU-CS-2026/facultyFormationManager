@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useRef } from "react"; // Added useRef
+import { useState, useRef } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { useReactToPrint } from "react-to-print"; // Added import
+import { useReactToPrint } from "react-to-print";
 import fetchSearchRecords from "@/app/fetch/fetchSearchRecords";
 import { useRouter } from "next/navigation";
 
@@ -33,10 +33,9 @@ export default function RecordSearch() {
 
   console.log(setSearchSchoolYears);
 
-  // Reference para sa printable area
   const componentRef = useRef();
 
-  // Print handler
+  // Print handler with onBeforePrint and onAfterPrint
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
     documentTitle: `Report-${departmentU}-${school_yearU}`,
@@ -88,12 +87,12 @@ export default function RecordSearch() {
   }
 
   function downloadExcel() {
-    if (!result || result.length === 0) {
+    if (!filteredRows || filteredRows.length === 0) {
       alert("No data to export!");
       return;
     }
 
-    const rows = result.map((r) => ({
+    const rows = filteredRows.map((r) => ({
       ID: r.id,
       First_Name: r.first_name,
       Last_Name: r.last_name,
@@ -116,8 +115,8 @@ export default function RecordSearch() {
 
   return (
     <>
-      {/* SEARCH BAR */}
-      <form onSubmit={setSearch}>
+      {/* SEARCH BAR - NOT PRINTED */}
+      <form onSubmit={setSearch} className="no-print">
         <div className="row mt-2 d-flex gap-0 justify-content-center align-items-center">
           <div className="col-md-3 col-12 d-flex gap-2 align-items-center">
             <div className="fw-bold">Departments</div>
@@ -189,8 +188,7 @@ export default function RecordSearch() {
         </div>
       </form>
 
-      {/* 4. WRAPPER FOR PRINTING */}
-      {/* Everything inside this div will appear on the paper */}
+      {/* WRAPPER FOR PRINTING */}
       <div ref={componentRef} className="p-3">
         {/* SUMMARY INFO (Only visible when searched) */}
         <div className={`${searched ? "d-block" : "d-none"}`}>
@@ -198,28 +196,28 @@ export default function RecordSearch() {
             <div className="col-md-4 col-6 d-flex flex-column gap-3">
               <div className="text-start">
                 <span>Department: </span>
-                <span className="fw-bold">{departmentU}</span>
+                <span className="fw-bold">{departmentU || "All"}</span>
               </div>
               <div className="text-start">
                 <span>School Year: </span>
-                <span className="fw-bold">{school_yearU}</span>
+                <span className="fw-bold">{school_yearU || "All"}</span>
               </div>
             </div>
             <div className="col-md-4 col-6 d-flex flex-column gap-3">
               <div className="text-start">
                 <span>Status: </span>
-                <span className="fw-bold">{work_statusU}</span>
+                <span className="fw-bold">{work_statusU || "All"}</span>
               </div>
               <div className="text-start">
                 <span>Total Accounts: </span>
-                <span className="fw-bold">{result?.length || 0}</span>
+                <span className="fw-bold">{filteredRows?.length || 0}</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* CONTROLS (Buttons + Filter Input) - These do NOT print */}
-        <div className={`${searched ? "d-block" : "d-none"}`}>
+        {/* CONTROLS - NOT PRINTED */}
+        <div className={`${searched ? "d-block" : "d-none"} no-print`}>
           <div className="d-flex justify-content-between align-items-center mt-4">
             <div className="d-flex gap-2">
               <button
@@ -230,7 +228,6 @@ export default function RecordSearch() {
                 Excel
               </button>
 
-              {/* 3. Connect the Print Button */}
               <button
                 onClick={() => handlePrint()}
                 className="btn btn-sm gradient-button text-black"
@@ -300,7 +297,7 @@ export default function RecordSearch() {
                     filteredRows.map((data, index) => (
                       <tr
                         key={index}
-                        className="cursor-pointer"
+                        className="cursor-pointer no-print-hover"
                         onClick={() => router.push(`/records/${data.id}`)}
                       >
                         <td className="text-start text-muted">{data.id}</td>
@@ -328,6 +325,21 @@ export default function RecordSearch() {
           </table>
         </div>
       </div>
+
+      {/* ADD PRINT STYLES */}
+      <style jsx global>{`
+        @media print {
+          .no-print {
+            display: none !important;
+          }
+          .no-print-hover {
+            cursor: default !important;
+          }
+          .no-print-hover:hover {
+            background-color: transparent !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

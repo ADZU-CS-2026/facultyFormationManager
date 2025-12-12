@@ -10,9 +10,24 @@ export default function AllProgress() {
   const [showPreviousYears, setShowPreviousYears] = useState(false);
   const [stats, setStats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [showHistory, setShowHistory] = useState(false); // Toggle for previous years
+  const [showHistory, setShowHistory] = useState(false);
 
-  const CURRENT_YEAR = "2025-2026";
+  // Dynamic current school year calculation
+  const getCurrentSchoolYear = () => {
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonth = now.getMonth() + 1; // 1-12
+
+    // If current month is June (6) or later, school year is current-next
+    // Otherwise, it's previous-current
+    if (currentMonth >= 6) {
+      return `${currentYear}-${currentYear + 1}`;
+    } else {
+      return `${currentYear - 1}-${currentYear}`;
+    }
+  };
+
+  const CURRENT_YEAR = getCurrentSchoolYear();
 
   // Hardcoded History (Static Data from excel)
   const HISTORY_DATA = [
@@ -80,9 +95,7 @@ export default function AllProgress() {
       >
         <div className="d-flex flex-column gap-3 p-3 pt-3 bg-light">
 
-          {/* ================================================== */}
-          {/* 1. CURRENT YEAR (DYNAMIC / LIVE)                   */}
-          {/* ================================================== */}
+          {/* CURRENT YEAR (DYNAMIC / LIVE) */}
           <div className="card rounded-1 d-flex flex-column gap-1 p-3 border-start border-4 border-success">
             <div className="d-flex gap-3">
               <div className="fw-bold text-gray1 d-flex align-items-center gap-3">
@@ -120,9 +133,7 @@ export default function AllProgress() {
             )}
           </div>
 
-          {/* ================================================== */}
-          {/* TOGGLE BUTTON FOR HISTORY                          */}
-          {/* ================================================== */}
+          {/* TOGGLE BUTTON FOR HISTORY */}
           <div className="text-center">
             <button
               className="btn btn-sm btn-link text-decoration-none text-muted"
@@ -133,9 +144,7 @@ export default function AllProgress() {
             </button>
           </div>
 
-          {/* ================================================== */}
-          {/* 2. HISTORY YEARS (STATIC / HIDDEN BY DEFAULT)      */}
-          {/* ================================================== */}
+          {/* HISTORY YEARS (STATIC / HIDDEN BY DEFAULT) */}
           {showHistory && (
             <motion.div
               initial={{ opacity: 0 }}
