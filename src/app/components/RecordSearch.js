@@ -256,8 +256,8 @@ export default function RecordSearch() {
             <thead className="border">
               <tr className="text-start">
                 <th className="bg-tableheadergray">ID</th>
-                <th className="bg-tableheadergray">First Name</th>
                 <th className="bg-tableheadergray">Last Name</th>
+                <th className="bg-tableheadergray">First Name</th>
                 <th className="bg-tableheadergray">Middle Initial</th>
               </tr>
             </thead>
