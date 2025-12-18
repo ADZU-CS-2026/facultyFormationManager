@@ -16,6 +16,12 @@ export default function About() {
   const [isErr, setIsErr] = useState(true);
   const [staffEye, setStaffEye] = useState(false);
 
+  // Password verification states
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [verifyPassword, setVerifyPassword] = useState("");
+  const [verifyEye, setVerifyEye] = useState(false);
+  const [verifyError, setVerifyError] = useState("");
+
   const mutation = useMutation({
     mutationFn: fetchCreateStaffAccount,
     onSuccess: () => {
@@ -50,7 +56,7 @@ export default function About() {
       setIsErr(true);
       return setMessage("Id must be a 6 characters only!");
     }
-    if (password.length > 13 && password.length < 8) {
+    if (password.length > 13 || password.length < 8) {
       setIsErr(true);
       return setMessage("Password must be 8 - 13 characters only!");
     }
@@ -72,8 +78,101 @@ export default function About() {
     queryFn: fetchStaffList,
   });
 
+  // Handle password verification
+  const handleVerifyPassword = (e) => {
+    e.preventDefault();
+    if (!verifyPassword) {
+      setVerifyError("Please enter your password");
+      return;
+    }
+
+    // Check if entered password matches admin password
+    if (check?.[0]?.password === verifyPassword) {
+      setIsAuthenticated(true);
+      setVerifyError("");
+      setVerifyPassword("");
+    } else {
+      setVerifyError("Incorrect password. Please try again.");
+    }
+  };
+
   if (check?.[0]?.role === "STAFF") {
     return null;
+  }
+
+  // Show password verification modal if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="w-100">
+        <div className="row g-0">
+          <div className="col-12 py-4 px-3">
+            <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
+              <div
+                className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25"
+                style={{ color: "#0c2461" }}
+              >
+                <i className="bi bi-shield-lock-fill me-2" style={{ fontSize: "18px" }}></i>
+                <span style={{ fontSize: "18px" }}>Authentication Required</span>
+              </div>
+
+              <div className="p-5 d-flex justify-content-center align-items-center" style={{ minHeight: "400px" }}>
+                <div className="card border shadow-sm" style={{ maxWidth: "450px", width: "100%" }}>
+                  <div className="card-body p-4">
+                    <div className="text-center mb-4">
+                      <i className="bi bi-lock-fill text-primary" style={{ fontSize: "48px", color: "#0c2461" }}></i>
+                      <h5 className="mt-3 fw-bold">Verify Your Identity</h5>
+                      <p className="text-muted small">Please enter your password to access Admin Settings</p>
+                    </div>
+
+                    <form onSubmit={handleVerifyPassword}>
+                      <div className="mb-3">
+                        <label className="form-label fw-semibold">Password</label>
+                        <div className="position-relative">
+                          <input
+                            type={verifyEye ? "text" : "password"}
+                            className="form-control"
+                            value={verifyPassword}
+                            onChange={(e) => setVerifyPassword(e.target.value)}
+                            placeholder="Enter your password"
+                            autoFocus
+                          />
+                          <FontAwesomeIcon
+                            icon={`fa-regular ${verifyEye ? "fa-eye" : "fa-eye-slash"}`}
+                            className="position-absolute translate-middle-y top-50 text-muted cursor-pointer"
+                            style={{ right: "15px" }}
+                            onClick={() => setVerifyEye(!verifyEye)}
+                          />
+                        </div>
+                        {verifyError && (
+                          <div className="text-danger small mt-2">
+                            <i className="bi bi-exclamation-circle me-1"></i>
+                            {verifyError}
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="d-grid gap-2">
+                        <button type="submit" className="btn btn-primary" style={{ backgroundColor: "#0c2461", borderColor: "#0c2461" }}>
+                          <i className="bi bi-unlock-fill me-2"></i>
+                          Verify & Continue
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-outline-secondary"
+                          onClick={() => router.back()}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -85,14 +184,21 @@ export default function About() {
             <div className="card border-0 border-top border-secondary border-opacity-50 border-3 rounded-1 shadow-sm">
               {/* CARD HEADER */}
               <div
-                className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center border-opacity-25"
+                className="fw-bold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center justify-content-between border-opacity-25"
                 style={{ color: "#0c2461" }}
               >
-                <i
-                  className="bi bi-gear-fill me-2"
-                  style={{ fontSize: "18px" }}
-                ></i>
-                <span style={{ fontSize: "18px" }}>Admin Settings</span>
+                <div className="d-flex align-items-center">
+                  <i className="bi bi-gear-fill me-2" style={{ fontSize: "18px" }}></i>
+                  <span style={{ fontSize: "18px" }}>Admin Settings</span>
+                </div>
+                <button
+                  className="btn btn-sm btn-outline-danger"
+                  onClick={() => setIsAuthenticated(false)}
+                  title="Lock Settings"
+                >
+                  <i className="bi bi-lock-fill me-1"></i>
+                  Lock
+                </button>
               </div>
 
               {/* CARD BODY */}
@@ -145,9 +251,8 @@ export default function About() {
                         onClick={() => setStaffEye(staffEye ? false : true)}
                       >
                         <FontAwesomeIcon
-                          icon={`fa-regular ${
-                            !staffEye ? "fa-eye-slash" : "fa-eye"
-                          }`}
+                          icon={`fa-regular ${!staffEye ? "fa-eye-slash" : "fa-eye"
+                            }`}
                         />
                       </button>
                     </div>
@@ -191,9 +296,8 @@ export default function About() {
                                       </td>
                                       <td className="text-start text-muted">
                                         <input
-                                          type={`${
-                                            staffEye ? "text" : "password"
-                                          }`}
+                                          type={`${staffEye ? "text" : "password"
+                                            }`}
                                           value={data.password}
                                           readOnly
                                           className="border-0 bg-transparent cursor-pointer"
@@ -303,9 +407,8 @@ export default function About() {
                           Create Account
                         </button>
                         <div
-                          className={`ms-3 ${
-                            !isErr ? "text-green" : "text-red"
-                          }`}
+                          className={`ms-3 ${!isErr ? "text-green" : "text-red"
+                            }`}
                         >
                           {message}
                         </div>

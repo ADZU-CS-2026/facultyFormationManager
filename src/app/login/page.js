@@ -16,6 +16,7 @@ import { queryClient } from "@/app/react-query";
 import fetchLogin from "@/app/fetch/fetchLogin";
 import Turnstile from "react-turnstile";
 import { useMutation } from "@tanstack/react-query";
+import Link from "next/link";
 
 export default function Home() {
   const [id, setID] = useState("");
@@ -149,13 +150,13 @@ export default function Home() {
                 className="text-white mt-3 text-center"
                 style={{ fontSize: "24px", fontWeight: 800 }}
               >
-                ADZU Formation System
+                Formation Office
               </div>
               <div
                 className="fst-italic mb-4 text-center"
                 style={{ fontSize: "12.8px", color: "#cccccc" }}
               >
-                {'"Faculty Formation Program Monitoring and Management System"'}
+                {'"Spiritual Formation Monitoring and Management System"'}
               </div>
 
               {/* USERNAME OR ID INPUT */}
@@ -163,11 +164,9 @@ export default function Home() {
                 <FontAwesomeIcon icon={faUser} className="icon" />
                 <input
                   type="text"
-                  className={`form-control ${
-                    error && id && password && "is-invalid"
-                  } ${
-                    error && !id && !seconds && "is-invalid"
-                  } fw-bold border-0`}
+                  className={`form-control ${error && id && password && "is-invalid"
+                    } ${error && !id && !seconds && "is-invalid"
+                    } fw-bold border-0`}
                   placeholder="Admin ID"
                   name="id"
                   value={id}
@@ -185,11 +184,9 @@ export default function Home() {
                 <FontAwesomeIcon icon={faLock} className="icon" />
                 <input
                   type={`${showpassword ? "text" : "password"}`}
-                  className={`form-control ${
-                    error && id && password && "is-invalid"
-                  } ${
-                    error && !password && !seconds && "is-invalid"
-                  } fw-bold border-0`}
+                  className={`form-control ${error && id && password && "is-invalid"
+                    } ${error && !password && !seconds && "is-invalid"
+                    } fw-bold border-0`}
                   style={{
                     paddingRight: "60px",
                     backgroundColor: "rgba(255, 255, 255, 0.12)",
@@ -202,9 +199,8 @@ export default function Home() {
                   disabled={disable ? true : false}
                 />
                 <FontAwesomeIcon
-                  icon={`fa-regular ${
-                    showpassword ? "fa-eye" : "fa-eye-slash"
-                  }`}
+                  icon={`fa-regular ${showpassword ? "fa-eye" : "fa-eye-slash"
+                    }`}
                   className="position-absolute translate-middle-y top-50 text-yellowgray cursor-pointer"
                   style={{ right: "35px" }}
                   onClick={() => {
@@ -235,12 +231,13 @@ export default function Home() {
                 {error && seconds ? `Try again(${seconds}s)` : "Login"}
               </button>
 
-              <div
+              <Link
+                href="/forgot-password"
                 style={{ color: "#cccccc", fontSize: "16px" }}
-                className="mb-4"
+                className="mb-4 text-decoration-none"
               >
                 Forgot your Password <FontAwesomeIcon icon={faCircleQuestion} />
-              </div>
+              </Link>
               <Turnstile
                 sitekey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
                 onVerify={(token) => setToken(token)}

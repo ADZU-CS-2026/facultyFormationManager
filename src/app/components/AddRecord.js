@@ -232,13 +232,12 @@ export default function AddRecord() {
 
               {isDone && (
                 <div
-                  className={`py-2 ${
-                    isError
+                  className={`py-2 ${isError
                       ? "text-red"
                       : isPending
-                      ? "text-info"
-                      : "text-green"
-                  } text-center fw-bold fs-6`}
+                        ? "text-info"
+                        : "text-green"
+                    } text-center fw-bold fs-6`}
                 >
                   {isPending && <i className="fa-solid fa-clock me-2"></i>}
                   {!isError && !isPending && (
