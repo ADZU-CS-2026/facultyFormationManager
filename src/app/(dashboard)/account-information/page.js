@@ -6,6 +6,11 @@ import fetchAccountData from "@/app/fetch/fetchAccountData";
 import fetchUpdateUserAccount from "@/app/fetch/fetchUpdateUserAccount";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient } from "@/app/react-query";
+import {
+  clearIdentityVerified,
+  isIdentityVerified,
+  setIdentityVerified,
+} from "@/lib/identityVerification";
 
 export default function AccountInformation() {
   const router = useRouter();
@@ -16,7 +21,7 @@ export default function AccountInformation() {
   const [errorMessage, setErrorMessage] = useState("");
 
   // Password verification states
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => isIdentityVerified());
   const [verifyPassword, setVerifyPassword] = useState("");
   const [verifyEye, setVerifyEye] = useState(false);
   const [verifyError, setVerifyError] = useState("");
@@ -51,6 +56,7 @@ export default function AccountInformation() {
     // Check if entered password matches account password
     if (data?.[0]?.password === verifyPassword) {
       setIsAuthenticated(true);
+      setIdentityVerified();
       setVerifyError("");
       setVerifyPassword("");
     } else {
@@ -172,7 +178,10 @@ export default function AccountInformation() {
                 </div>
                 <button
                   className="btn btn-sm btn-outline-danger"
-                  onClick={() => setIsAuthenticated(false)}
+                  onClick={() => {
+                    clearIdentityVerified();
+                    setIsAuthenticated(false);
+                  }}
                   title="Lock Account Information"
                 >
                   <i className="bi bi-lock-fill me-1"></i>

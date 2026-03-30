@@ -108,7 +108,7 @@ export default function RecordProfile({ id }) {
         retreatEdits[r.id] = {
           start_date: r.start_date ? r.start_date.split("T")[0] : "",
           completion_date: r.completion_date ? r.completion_date.split("T")[0] : "",
-          attendance_status: r.attendance_status || "",
+          venue: r.venue || r.attendance_status || "",
         };
       });
       setRetreatEditForm(retreatEdits);
@@ -139,12 +139,12 @@ export default function RecordProfile({ id }) {
 
     const origStart = original.start_date ? original.start_date.split("T")[0] : "";
     const origEnd = original.completion_date ? original.completion_date.split("T")[0] : "";
-    const origStatus = original.attendance_status || "";
+    const origVenue = original.venue || original.attendance_status || "";
 
     return (
       edited.start_date !== origStart ||
       edited.completion_date !== origEnd ||
-      edited.attendance_status !== origStatus
+      edited.venue !== origVenue
     );
   };
 
@@ -163,7 +163,7 @@ export default function RecordProfile({ id }) {
   const hasNewRetreatData = (key) => {
     const record = newRetreatRecords[key];
     if (!record) return false;
-    return record.start_date || record.completion_date || record.attendance_status;
+    return record.start_date || record.completion_date || record.venue;
   };
 
   // Handle edit button click
@@ -242,7 +242,7 @@ export default function RecordProfile({ id }) {
             school_year: school_year || null,
             start_date: record.start_date || null,
             completion_date: record.completion_date || null,
-            attendance_status: record.attendance_status || null,
+            venue: record.venue || null,
           });
         }
       });
@@ -344,8 +344,8 @@ export default function RecordProfile({ id }) {
       }
 
       // Invalidate queries to refresh data
-      queryClient.invalidateQueries(["recordid", id]);
-      queryClient.invalidateQueries(["recordretreatid", id]);
+      queryClient.invalidateQueries({ queryKey: ["recordid", id] });
+      queryClient.invalidateQueries({ queryKey: ["recordretreatid", id] });
 
       // Show appropriate toast messages
       const hasErrors = newRetreatResults.some(r => r.error) || retreatSaveResults.some(r => r.error) || deleteResults.some(r => r.error);
@@ -387,8 +387,7 @@ export default function RecordProfile({ id }) {
     "CSITE",
   ];
 
-  // Attendance status options
-  const attendanceStatusOptions = ["Present", "Absent"];
+  const defaultVenue = "Ateneo de Zamboanga University Lantaka Campus";
 
   // Render retreat row - with editing and create support
   // retreatTypeKey is the database retreat_type value (e.g., "DGY1", "DGY4.1_IMC")
@@ -421,19 +420,46 @@ export default function RecordProfile({ id }) {
               </div>
             </td>
             <td className="text-center">
-              <select
-                value={newData.attendance_status || ""}
-                onChange={(e) => handleNewRetreatChange(newKey, "attendance_status", e.target.value)}
-                className="form-select form-select-sm"
-                style={{ width: "120px", margin: "0 auto" }}
-              >
-                <option value="">-</option>
-                {attendanceStatusOptions.map((status) => (
-                  <option key={status} value={status}>
-                    {status}
-                  </option>
-                ))}
-              </select>
+              {(() => {
+                const selectedVenue =
+                  !newData.venue || newData.venue === defaultVenue
+                    ? newData.venue || ""
+                    : "OTHER";
+
+                return (
+                  <div className="d-flex flex-column gap-1 align-items-center">
+                    <select
+                      value={selectedVenue}
+                      onChange={(e) => {
+                        const selected = e.target.value;
+                        if (selected === "OTHER") {
+                          handleNewRetreatChange(newKey, "venue", "");
+                        } else {
+                          handleNewRetreatChange(newKey, "venue", selected);
+                        }
+                      }}
+                      className="form-select form-select-sm"
+                      style={{ width: "280px" }}
+                    >
+                      <option value="">-</option>
+                      <option value={defaultVenue}>{defaultVenue}</option>
+                      <option value="OTHER">Other</option>
+                    </select>
+                    {selectedVenue === "OTHER" && (
+                      <input
+                        type="text"
+                        value={newData.venue || ""}
+                        onChange={(e) =>
+                          handleNewRetreatChange(newKey, "venue", e.target.value)
+                        }
+                        className="form-control form-control-sm"
+                        style={{ width: "280px" }}
+                        placeholder="Type other venue"
+                      />
+                    )}
+                  </div>
+                );
+              })()}
             </td>
           </tr>
         );
@@ -497,29 +523,56 @@ export default function RecordProfile({ id }) {
             </div>
           </td>
           <td className="text-center">
-            <div className="d-flex gap-2 justify-content-center align-items-center">
-              <select
-                value={editData.attendance_status || ""}
-                onChange={(e) => handleRetreatChange(retreatId, "attendance_status", e.target.value)}
-                className="form-select form-select-sm"
-                style={{ width: "120px" }}
-              >
-                <option value="">-</option>
-                {attendanceStatusOptions.map((status) => (
-                  <option key={status} value={status}>
-                    {status}
-                  </option>
-                ))}
-              </select>
-              <button
-                type="button"
-                className="btn btn-sm btn-outline-danger"
-                onClick={() => handleMarkForDelete(retreatId)}
-                title="Delete this record"
-              >
-                <FontAwesomeIcon icon="fa-solid fa-trash" />
-              </button>
-            </div>
+            {(() => {
+              const selectedVenue =
+                !editData.venue || editData.venue === defaultVenue
+                  ? editData.venue || ""
+                  : "OTHER";
+
+              return (
+                <div className="d-flex gap-2 justify-content-center align-items-start">
+                  <div className="d-flex flex-column gap-1 align-items-center">
+                    <select
+                      value={selectedVenue}
+                      onChange={(e) => {
+                        const selected = e.target.value;
+                        if (selected === "OTHER") {
+                          handleRetreatChange(retreatId, "venue", "");
+                        } else {
+                          handleRetreatChange(retreatId, "venue", selected);
+                        }
+                      }}
+                      className="form-select form-select-sm"
+                      style={{ width: "280px" }}
+                    >
+                      <option value="">-</option>
+                      <option value={defaultVenue}>{defaultVenue}</option>
+                      <option value="OTHER">Other</option>
+                    </select>
+                    {selectedVenue === "OTHER" && (
+                      <input
+                        type="text"
+                        value={editData.venue || ""}
+                        onChange={(e) =>
+                          handleRetreatChange(retreatId, "venue", e.target.value)
+                        }
+                        className="form-control form-control-sm"
+                        style={{ width: "280px" }}
+                        placeholder="Type other venue"
+                      />
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-danger"
+                    onClick={() => handleMarkForDelete(retreatId)}
+                    title="Delete this record"
+                  >
+                    <FontAwesomeIcon icon="fa-solid fa-trash" />
+                  </button>
+                </div>
+              );
+            })()}
           </td>
         </tr>
       );
@@ -535,7 +588,7 @@ export default function RecordProfile({ id }) {
             : "-"}
         </td>
         <td className="text-center text-muted">
-          {retreatData?.attendance_status || "-"}
+          {retreatData?.venue || retreatData?.attendance_status || "-"}
         </td>
       </tr>
     );
@@ -574,19 +627,46 @@ export default function RecordProfile({ id }) {
               </div>
             </td>
             <td className="text-center">
-              <select
-                value={newData.attendance_status || ""}
-                onChange={(e) => handleNewRetreatChange(newKey, "attendance_status", e.target.value)}
-                className="form-select form-select-sm"
-                style={{ width: "120px", margin: "0 auto" }}
-              >
-                <option value="">-</option>
-                {attendanceStatusOptions.map((status) => (
-                  <option key={status} value={status}>
-                    {status}
-                  </option>
-                ))}
-              </select>
+              {(() => {
+                const selectedVenue =
+                  !newData.venue || newData.venue === defaultVenue
+                    ? newData.venue || ""
+                    : "OTHER";
+
+                return (
+                  <div className="d-flex flex-column gap-1 align-items-center">
+                    <select
+                      value={selectedVenue}
+                      onChange={(e) => {
+                        const selected = e.target.value;
+                        if (selected === "OTHER") {
+                          handleNewRetreatChange(newKey, "venue", "");
+                        } else {
+                          handleNewRetreatChange(newKey, "venue", selected);
+                        }
+                      }}
+                      className="form-select form-select-sm"
+                      style={{ width: "280px" }}
+                    >
+                      <option value="">-</option>
+                      <option value={defaultVenue}>{defaultVenue}</option>
+                      <option value="OTHER">Other</option>
+                    </select>
+                    {selectedVenue === "OTHER" && (
+                      <input
+                        type="text"
+                        value={newData.venue || ""}
+                        onChange={(e) =>
+                          handleNewRetreatChange(newKey, "venue", e.target.value)
+                        }
+                        className="form-control form-control-sm"
+                        style={{ width: "280px" }}
+                        placeholder="Type other venue"
+                      />
+                    )}
+                  </div>
+                );
+              })()}
             </td>
           </tr>
         );
@@ -650,29 +730,56 @@ export default function RecordProfile({ id }) {
             </div>
           </td>
           <td className="text-center">
-            <div className="d-flex gap-2 justify-content-center align-items-center">
-              <select
-                value={editData.attendance_status || ""}
-                onChange={(e) => handleRetreatChange(retreatId, "attendance_status", e.target.value)}
-                className="form-select form-select-sm"
-                style={{ width: "120px" }}
-              >
-                <option value="">-</option>
-                {attendanceStatusOptions.map((status) => (
-                  <option key={status} value={status}>
-                    {status}
-                  </option>
-                ))}
-              </select>
-              <button
-                type="button"
-                className="btn btn-sm btn-outline-danger"
-                onClick={() => handleMarkForDelete(retreatId)}
-                title="Delete this record"
-              >
-                <FontAwesomeIcon icon="fa-solid fa-trash" />
-              </button>
-            </div>
+            {(() => {
+              const selectedVenue =
+                !editData.venue || editData.venue === defaultVenue
+                  ? editData.venue || ""
+                  : "OTHER";
+
+              return (
+                <div className="d-flex gap-2 justify-content-center align-items-start">
+                  <div className="d-flex flex-column gap-1 align-items-center">
+                    <select
+                      value={selectedVenue}
+                      onChange={(e) => {
+                        const selected = e.target.value;
+                        if (selected === "OTHER") {
+                          handleRetreatChange(retreatId, "venue", "");
+                        } else {
+                          handleRetreatChange(retreatId, "venue", selected);
+                        }
+                      }}
+                      className="form-select form-select-sm"
+                      style={{ width: "280px" }}
+                    >
+                      <option value="">-</option>
+                      <option value={defaultVenue}>{defaultVenue}</option>
+                      <option value="OTHER">Other</option>
+                    </select>
+                    {selectedVenue === "OTHER" && (
+                      <input
+                        type="text"
+                        value={editData.venue || ""}
+                        onChange={(e) =>
+                          handleRetreatChange(retreatId, "venue", e.target.value)
+                        }
+                        className="form-control form-control-sm"
+                        style={{ width: "280px" }}
+                        placeholder="Type other venue"
+                      />
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    className="btn btn-sm btn-outline-danger"
+                    onClick={() => handleMarkForDelete(retreatId)}
+                    title="Delete this record"
+                  >
+                    <FontAwesomeIcon icon="fa-solid fa-trash" />
+                  </button>
+                </div>
+              );
+            })()}
           </td>
         </tr>
       );
@@ -688,7 +795,7 @@ export default function RecordProfile({ id }) {
             : "-"}
         </td>
         <td className="text-center text-muted">
-          {retreatData?.attendance_status || "-"}
+          {retreatData?.venue || retreatData?.attendance_status || "-"}
         </td>
       </tr>
     );
@@ -796,7 +903,7 @@ export default function RecordProfile({ id }) {
                 />
               </div>
             ) : (
-              `${user?.[0]?.id} - ${user?.[0]?.last_name}, ${user?.[0]?.first_name
+              `${user?.[0]?.last_name}, ${user?.[0]?.first_name
               } ${user?.[0]?.middle_initial || ""}`
             )}
           </div>
@@ -896,6 +1003,23 @@ export default function RecordProfile({ id }) {
                         )}
                       </td>
                     </tr>
+                    <tr>
+                      <td className="text-start text-muted">Status</td>
+                      <td className="text-center text-muted">
+                        {isEditing ? (
+                          <input
+                            type="text"
+                            name="status"
+                            value={editForm.status}
+                            onChange={handleInputChange}
+                            className="form-control form-control-sm"
+                            placeholder="Status"
+                          />
+                        ) : (
+                          user?.[0]?.status || "-"
+                        )}
+                      </td>
+                    </tr>
                   </tbody>
                 ) : (
                   ""
@@ -980,7 +1104,7 @@ export default function RecordProfile({ id }) {
                   <tr className="text-start">
                     <th className="bg-tableheadergray">Retreat Type</th>
                     <th className="bg-tableheadergray">Attendance Date</th>
-                    <th className="bg-tableheadergray">Attendance Status</th>
+                    <th className="bg-tableheadergray">Venue</th>
                   </tr>
                 </thead>
                 <tbody>

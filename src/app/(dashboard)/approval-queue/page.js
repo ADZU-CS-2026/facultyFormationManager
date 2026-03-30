@@ -6,13 +6,18 @@ import { useQuery } from "@tanstack/react-query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fetchAccountData from "@/app/fetch/fetchAccountData";
 import ApprovalQueue from "@/app/components/ApprovalQueue";
+import {
+    clearIdentityVerified,
+    isIdentityVerified,
+    setIdentityVerified,
+} from "@/lib/identityVerification";
 
 export default function ApprovalQueuePage() {
     const router = useRouter();
     const [authorized, setAuthorized] = useState(false);
 
     // Password verification states
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(() => isIdentityVerified());
     const [verifyPassword, setVerifyPassword] = useState("");
     const [verifyEye, setVerifyEye] = useState(false);
     const [verifyError, setVerifyError] = useState("");
@@ -45,6 +50,7 @@ export default function ApprovalQueuePage() {
         // Check if entered password matches admin password
         if (accountData?.[0]?.password === verifyPassword) {
             setIsAuthenticated(true);
+            setIdentityVerified();
             setVerifyError("");
             setVerifyPassword("");
         } else {
@@ -169,7 +175,10 @@ export default function ApprovalQueuePage() {
                                 </div>
                                 <button
                                     className="btn btn-sm btn-outline-danger"
-                                    onClick={() => setIsAuthenticated(false)}
+                                    onClick={() => {
+                                        clearIdentityVerified();
+                                        setIsAuthenticated(false);
+                                    }}
                                     title="Lock Approval Queue"
                                 >
                                     <i className="bi bi-lock-fill me-1"></i>

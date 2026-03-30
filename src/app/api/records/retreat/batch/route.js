@@ -14,6 +14,17 @@ async function verifyJwt(token) {
     }
 }
 
+async function hasVenueColumn() {
+    try {
+        const [rows] = await pool.execute(
+            `SHOW COLUMNS FROM retreat_records LIKE 'venue'`
+        );
+        return rows.length > 0;
+    } catch {
+        return false;
+    }
+}
+
 /**
  * BATCH CREATE/UPDATE RETREAT RECORDS - Role-based
  * ADMINISTRATOR: Creates/Updates directly
@@ -24,6 +35,8 @@ async function verifyJwt(token) {
  */
 export async function POST(req) {
     try {
+        const venueEnabled = await hasVenueColumn();
+
         // Get token from cookies
         const accessToken = req.cookies.get("accessToken")?.value;
         if (!accessToken) {
@@ -48,6 +61,16 @@ export async function POST(req) {
         // Get request body
         const { user_ids, retreats } = await req.json();
 
+        if (!venueEnabled && retreats.some((r) => r.venue !== undefined && `${r.venue}`.trim() !== "")) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Venue field is not available in the current database schema. Please run src/db/add_venue_column.sql first.",
+                },
+                { status: 400 }
+            );
+        }
+
         // Validate required fields
         if (!user_ids || !Array.isArray(user_ids) || user_ids.length === 0) {
             return NextResponse.json(
@@ -71,7 +94,7 @@ export async function POST(req) {
         if (userRole === 'ADMINISTRATOR') {
             for (const userId of user_ids) {
                 for (const retreat of retreats) {
-                    const { retreat_type, school_year, start_date, completion_date, attendance_status } = retreat;
+                    const { retreat_type, school_year, start_date, completion_date, attendance_status, venue } = retreat;
                     const effectiveSchoolYear = school_year || "N/A";
 
                     // Check if record exists
@@ -82,20 +105,37 @@ export async function POST(req) {
 
                     if (existing.length > 0) {
                         // Update existing record
-                        await pool.execute(
-                            `UPDATE retreat_records 
-                             SET start_date = ?, completion_date = ?, attendance_status = ?
-                             WHERE id = ?`,
-                            [start_date, completion_date, attendance_status, existing[0].id]
-                        );
+                        if (venueEnabled) {
+                            await pool.execute(
+                                `UPDATE retreat_records 
+                                 SET start_date = ?, completion_date = ?, attendance_status = ?, venue = ?
+                                 WHERE id = ?`,
+                                [start_date, completion_date, attendance_status, venue || null, existing[0].id]
+                            );
+                        } else {
+                            await pool.execute(
+                                `UPDATE retreat_records 
+                                 SET start_date = ?, completion_date = ?, attendance_status = ?
+                                 WHERE id = ?`,
+                                [start_date, completion_date, attendance_status, existing[0].id]
+                            );
+                        }
                         updatedCount++;
                     } else {
                         // Create new record
-                        await pool.execute(
-                            `INSERT INTO retreat_records (user_id, retreat_type, school_year, start_date, completion_date, attendance_status) 
-                             VALUES (?, ?, ?, ?, ?, ?)`,
-                            [userId, retreat_type, effectiveSchoolYear, start_date, completion_date, attendance_status]
-                        );
+                        if (venueEnabled) {
+                            await pool.execute(
+                                `INSERT INTO retreat_records (user_id, retreat_type, school_year, start_date, completion_date, attendance_status, venue) 
+                                 VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                                [userId, retreat_type, effectiveSchoolYear, start_date, completion_date, attendance_status, venue || null]
+                            );
+                        } else {
+                            await pool.execute(
+                                `INSERT INTO retreat_records (user_id, retreat_type, school_year, start_date, completion_date, attendance_status) 
+                                 VALUES (?, ?, ?, ?, ?, ?)`,
+                                [userId, retreat_type, effectiveSchoolYear, start_date, completion_date, attendance_status]
+                            );
+                        }
                         createdCount++;
                     }
                 }
@@ -122,16 +162,26 @@ export async function POST(req) {
 
             for (const userId of user_ids) {
                 for (const retreat of retreats) {
-                    const { retreat_type, school_year, start_date, completion_date, attendance_status } = retreat;
+                    const { retreat_type, school_year, start_date, completion_date, attendance_status, venue } = retreat;
                     const effectiveSchoolYear = school_year || "N/A";
 
                     // Check if record exists
-                    const [existing] = await pool.execute(
-                        `SELECT id, start_date, completion_date, attendance_status 
-                         FROM retreat_records 
-                         WHERE user_id = ? AND retreat_type = ? AND school_year = ?`,
-                        [userId, retreat_type, effectiveSchoolYear]
-                    );
+                    let existing;
+                    if (venueEnabled) {
+                        [existing] = await pool.execute(
+                            `SELECT id, start_date, completion_date, attendance_status, venue 
+                             FROM retreat_records 
+                             WHERE user_id = ? AND retreat_type = ? AND school_year = ?`,
+                            [userId, retreat_type, effectiveSchoolYear]
+                        );
+                    } else {
+                        [existing] = await pool.execute(
+                            `SELECT id, start_date, completion_date, attendance_status 
+                             FROM retreat_records 
+                             WHERE user_id = ? AND retreat_type = ? AND school_year = ?`,
+                            [userId, retreat_type, effectiveSchoolYear]
+                        );
+                    }
 
                     if (existing.length > 0) {
                         // Create pending change for UPDATE
@@ -147,9 +197,10 @@ export async function POST(req) {
                                 JSON.stringify({
                                     start_date: oldRecord.start_date,
                                     completion_date: oldRecord.completion_date,
-                                    attendance_status: oldRecord.attendance_status
+                                    attendance_status: oldRecord.attendance_status,
+                                    ...(venueEnabled ? { venue: oldRecord.venue } : {})
                                 }),
-                                JSON.stringify({ start_date, completion_date, attendance_status })
+                                JSON.stringify({ start_date, completion_date, attendance_status, venue: venue || null })
                             ]
                         );
                     } else {
@@ -161,6 +212,7 @@ export async function POST(req) {
                             start_date,
                             completion_date,
                             attendance_status,
+                            venue: venue || null,
                         };
 
                         await pool.execute(

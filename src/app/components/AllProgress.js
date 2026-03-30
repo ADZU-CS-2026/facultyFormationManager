@@ -11,6 +11,7 @@ export default function AllProgress() {
   const [stats, setStats] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showHistory, setShowHistory] = useState(false);
+  const [hasLiveError, setHasLiveError] = useState(false);
 
   // Dynamic current school year calculation
   const getCurrentSchoolYear = () => {
@@ -42,8 +43,10 @@ export default function AllProgress() {
         setIsLoading(true);
         const { data } = await axios.get("/api/stats/school-year");
         setStats(Array.isArray(data) ? data : []);
+        setHasLiveError(false);
       } catch (error) {
         console.error("Failed to fetch stats:", error);
+        setHasLiveError(true);
       } finally {
         setIsLoading(false);
       }
@@ -58,8 +61,15 @@ export default function AllProgress() {
     return pct > 100 ? 100 : pct;
   };
 
-  // Extract Current Year Data from Live Fetch
-  const liveCurrentData = stats.find(s => s.school_year === CURRENT_YEAR) || {
+  const fallbackCurrentData = HISTORY_DATA.find(
+    (s) => s.school_year === CURRENT_YEAR
+  );
+
+  // Use live data when available, otherwise keep card populated with cached values.
+  const effectiveStats = stats.length > 0 ? stats : HISTORY_DATA;
+
+  // Extract Current Year Data from effective source
+  const liveCurrentData = effectiveStats.find(s => s.school_year === CURRENT_YEAR) || fallbackCurrentData || {
     total_population: 0,
     actual_attendance: 0
   };
@@ -105,6 +115,12 @@ export default function AllProgress() {
                 </span>
               </div>
             </div>
+
+            {hasLiveError && (
+              <div className="small text-warning">
+                Live database is unavailable. Showing cached values.
+              </div>
+            )}
 
             {isLoading ? (
               <div className="text-muted small">Loading live data...</div>

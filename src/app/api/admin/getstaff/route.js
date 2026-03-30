@@ -3,12 +3,12 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   const { id } = await req.json();
-  const parseId = parseInt(id);
+  const normalizedId = String(id).trim();
 
   try {
     const [row] = await pool.execute(
       "SELECT * FROM adminaccount WHERE id = ?",
-      [parseId]
+      [normalizedId]
     );
     if (row.length > 0) {
       return NextResponse.json(row, { status: 200 });

@@ -1,15 +1,50 @@
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 
+async function columnExists(tableName, columnName) {
+    const [rows] = await pool.query(
+        `SELECT 1
+         FROM INFORMATION_SCHEMA.COLUMNS
+         WHERE TABLE_SCHEMA = DATABASE()
+           AND TABLE_NAME = ?
+           AND COLUMN_NAME = ?
+         LIMIT 1`,
+        [tableName, columnName]
+    );
+
+    return rows.length > 0;
+}
+
+function toErrorMessage(error) {
+    return (
+        error?.message ||
+        error?.sqlMessage ||
+        error?.code ||
+        "Unexpected server error"
+    );
+}
+
+function isDbUnavailable(error) {
+    const code = error?.code;
+    return code === "ECONNREFUSED" || code === "PROTOCOL_CONNECTION_LOST" || code === "ETIMEDOUT";
+}
+
 // Get school year statistics - aggregated attendance data
 export async function GET() {
     try {
-        // Get total population (all active users)
-        const [populationRows] = await pool.query(`
-            SELECT COUNT(*) as total_population 
-            FROM users 
-            WHERE work_status = 'Active'
-        `);
+        const hasWorkStatus = await columnExists("users", "work_status");
+
+        // Use work_status when available, otherwise count all users.
+        const [populationRows] = hasWorkStatus
+            ? await pool.query(`
+                SELECT COUNT(*) as total_population 
+                FROM users 
+                WHERE work_status = 'Active'
+            `)
+            : await pool.query(`
+                SELECT COUNT(*) as total_population 
+                FROM users
+            `);
 
         // Get attendance stats grouped by school year
         const [attendanceRows] = await pool.query(`
@@ -42,7 +77,14 @@ export async function GET() {
         return NextResponse.json(stats);
 
     } catch (error) {
-        console.error("Database Error:", error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        const message = toErrorMessage(error);
+        console.error("Database Error:", message, error);
+
+        // Keep dashboard functional when DB is temporarily unavailable.
+        if (isDbUnavailable(error)) {
+            return NextResponse.json([]);
+        }
+
+        return NextResponse.json({ error: message }, { status: 500 });
     }
 }

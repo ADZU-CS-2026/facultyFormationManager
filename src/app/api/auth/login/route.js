@@ -20,9 +20,9 @@ export async function POST(req) {
     // }
 
     const { id, password } = await req.json();
-    const parsedId = parseInt(id);
+    const normalizedId = String(id).trim();
 
-    const valid = await verifyAdmin(parsedId, password);
+    const valid = await verifyAdmin(normalizedId, password);
 
     if (!valid) {
       // IF INVALID CREDENTIALS
@@ -32,7 +32,7 @@ export async function POST(req) {
       );
     }
 
-    const adminData = await getAdmin(parsedId);
+    const adminData = await getAdmin(normalizedId);
     // LOGGED IN
     return await setAuthCookies(adminData);
   } catch (err) {

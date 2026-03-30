@@ -26,7 +26,7 @@ export default function RecordsProfile({ params }) {
                 className="fw-semibold fs-6 text-primary border-bottom border-primary p-2 px-3 d-flex align-items-center justify-content-between border-opacity-25"
                 style={{ color: "#0c2461" }}
               >
-                <div style={{ fontSize: "18px" }}>Record Profile - {id}</div>
+                <div style={{ fontSize: "18px" }}>Record Profile</div>
 
                 {/* PRINT BUTTON */}
                 <button
@@ -52,6 +52,15 @@ export default function RecordsProfile({ params }) {
         @media print {
           .no-print {
             display: none !important;
+          }
+
+          /* Force centered layouts to print left-aligned */
+          .justify-content-center {
+            justify-content: flex-start !important;
+          }
+
+          .text-center {
+            text-align: left !important;
           }
           
           /* Hide navigation, sidebar, etc. */

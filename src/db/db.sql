@@ -26,6 +26,7 @@ CREATE TABLE retreat_records (
     start_date DATE,
     completion_date DATE, 
     attendance_status ENUM('Present', 'Absent'),
+    venue VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     INDEX idx_user_year (user_id, school_year),
     INDEX idx_retreat_type (retreat_type),

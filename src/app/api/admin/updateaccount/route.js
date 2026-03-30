@@ -5,11 +5,11 @@ import { pool } from "@/lib/db";
 export async function PATCH(req) {
   try {
     const { id, newPass } = await req.json();
-    const parsedID = parseInt(id);
+    const normalizedId = String(id).trim();
 
     const [result] = await pool.execute(
       "UPDATE adminaccount SET password = ? WHERE id = ?",
-      [newPass, parsedID]
+      [newPass, normalizedId]
     );
     if (result.affectedRows > 0) {
       return NextResponse.json(

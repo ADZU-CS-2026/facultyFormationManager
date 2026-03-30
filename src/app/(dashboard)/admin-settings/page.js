@@ -7,6 +7,11 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import fetchCreateStaffAccount from "@/app/fetch/fetchCreateStaffAccount";
 import { queryClient } from "@/app/react-query";
 import { useRouter } from "next/navigation";
+import {
+  clearIdentityVerified,
+  isIdentityVerified,
+  setIdentityVerified,
+} from "@/lib/identityVerification";
 
 export default function About() {
   const [eye, setEye] = useState(false);
@@ -17,7 +22,7 @@ export default function About() {
   const [staffEye, setStaffEye] = useState(false);
 
   // Password verification states
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(() => isIdentityVerified());
   const [verifyPassword, setVerifyPassword] = useState("");
   const [verifyEye, setVerifyEye] = useState(false);
   const [verifyError, setVerifyError] = useState("");
@@ -31,7 +36,7 @@ export default function About() {
       setIsErr(false);
     },
     onError: () => {
-      if (staff.some((data) => data.id === parseInt(id))) {
+      if (staff?.some((data) => String(data.id) === id.trim())) {
         setMessage("Staff Account already exists!");
       } else {
         setMessage("Staff Account not Successfully Created!");
@@ -44,23 +49,24 @@ export default function About() {
 
   function createStaff(e) {
     e.preventDefault();
-    if (!id || !password) {
+    const normalizedId = id.trim();
+
+    if (!normalizedId || !password) {
       setIsErr(true);
       return setMessage("Please fill the blank!");
     }
-    if (isNaN(id)) {
+
+    if (!/^[A-Za-z0-9]+$/.test(normalizedId)) {
       setIsErr(true);
-      return setMessage("Id must be number only!");
+      return setMessage("Id must contain letters and numbers only!");
     }
-    if (id.length !== 6) {
-      setIsErr(true);
-      return setMessage("Id must be 6 characters only!");
-    }
+
     if (password.length > 13 || password.length < 8) {
       setIsErr(true);
       return setMessage("Password must be 8 - 13 characters only!");
     }
-    mutation.mutate({ id, password });
+
+    mutation.mutate({ id: normalizedId, password });
   }
 
   const { data: check } = useQuery({
@@ -89,6 +95,7 @@ export default function About() {
     // Check if entered password matches admin password
     if (check?.[0]?.password === verifyPassword) {
       setIsAuthenticated(true);
+      setIdentityVerified();
       setVerifyError("");
       setVerifyPassword("");
     } else {
@@ -193,7 +200,10 @@ export default function About() {
                 </div>
                 <button
                   className="btn btn-sm btn-outline-danger"
-                  onClick={() => setIsAuthenticated(false)}
+                  onClick={() => {
+                    clearIdentityVerified();
+                    setIsAuthenticated(false);
+                  }}
                   title="Lock Settings"
                 >
                   <i className="bi bi-lock-fill me-1"></i>

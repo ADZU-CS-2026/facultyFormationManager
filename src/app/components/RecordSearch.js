@@ -255,7 +255,6 @@ export default function RecordSearch() {
           >
             <thead className="border">
               <tr className="text-start">
-                <th className="bg-tableheadergray">ID</th>
                 <th className="bg-tableheadergray">Last Name</th>
                 <th className="bg-tableheadergray">First Name</th>
                 <th className="bg-tableheadergray">Middle Initial</th>
@@ -265,13 +264,13 @@ export default function RecordSearch() {
             <tbody>
               {!start ? (
                 <tr>
-                  <td colSpan="4" className="text-center text-muted">
+                  <td colSpan="3" className="text-center text-muted">
                     Search now!
                   </td>
                 </tr>
               ) : loading ? (
                 <tr>
-                  <td colSpan="4" className="text-center text-muted">
+                  <td colSpan="3" className="text-center text-muted">
                     Loading...
                   </td>
                 </tr>
@@ -279,13 +278,13 @@ export default function RecordSearch() {
                 <>
                   {error?.response?.status === 404 ? (
                     <tr>
-                      <td colSpan="4" className="text-center text-muted">
+                      <td colSpan="3" className="text-center text-muted">
                         Empty List!
                       </td>
                     </tr>
                   ) : (
                     <tr>
-                      <td colSpan="4" className="text-center text-muted fs-6">
+                      <td colSpan="3" className="text-center text-muted fs-6">
                         Error
                       </td>
                     </tr>
@@ -300,7 +299,6 @@ export default function RecordSearch() {
                         className="cursor-pointer no-print-hover"
                         onClick={() => router.push(`/records/${data.id}`)}
                       >
-                        <td className="text-start text-muted">{data.id}</td>
                         <td className="text-start text-muted">
                           {data.last_name}
                         </td>
@@ -314,7 +312,7 @@ export default function RecordSearch() {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="4" className="text-center text-muted">
+                      <td colSpan="3" className="text-center text-muted">
                         Search not found!
                       </td>
                     </tr>

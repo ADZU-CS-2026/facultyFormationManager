@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { queryClient, persister } from "@/app/react-query";
+import { clearIdentityVerified } from "@/lib/identityVerification";
 
 export default function UserPopover({ userPopup, userPop }) {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default function UserPopover({ userPopup, userPop }) {
       await fetchLogout();
       queryClient.clear();
       await persister.removeClient();
+      clearIdentityVerified();
       localStorage.clear();
       router.replace("/login");
     } catch (err) {
