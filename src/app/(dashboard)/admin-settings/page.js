@@ -54,7 +54,7 @@ export default function About() {
     }
     if (id.length !== 6) {
       setIsErr(true);
-      return setMessage("Id must be a 6 characters only!");
+      return setMessage("Id must be 6 characters only!");
     }
     if (password.length > 13 || password.length < 8) {
       setIsErr(true);
