@@ -374,18 +374,32 @@ export default function RecordProfile({ id }) {
     setSaving(false);
   };
 
-  // Department options
+  // Department options (value = stored code, label = full name shown to users)
   const departmentOptions = [
-    "CS",
-    "Admin",
-    "CONN",
-    "FFP",
-    "PPO",
-    "SED",
-    "SLA",
-    "SMA",
-    "CSITE",
+    { value: "Admin", label: "Administrator" },
+    { value: "FFP", label: "Freshmen Formation Office" },
+    { value: "CON", label: "College of Nursing" },
+    { value: "CSITE", label: "College of Science and Information Technology and Engineering" },
+    { value: "SED", label: "School of Education" },
+    { value: "SLA", label: "School of Liberal Arts" },
+    { value: "SMA", label: "School of Management and Accountancy" },
+    { value: "CS", label: "Central Services" },
+    { value: "PPO", label: "Physical Plant Personnel" },
   ];
+
+  const getDeptLabel = (value) => {
+    const match = departmentOptions.find((d) => d.value === value);
+    return match ? match.label : value || "";
+  };
+
+  const getStatusDisplay = (userObj) => {
+    if (!userObj) return "-";
+    return userObj.status || userObj.work_status || "-";
+  };
+
+  const getStatusElement = (userObj) => {
+    return getStatusDisplay(userObj);
+  };
 
   const defaultVenue = "Ateneo de Zamboanga University Lantaka Campus";
 
@@ -922,14 +936,7 @@ export default function RecordProfile({ id }) {
                 <option value="Retired">Retired</option>
               </select>
             ) : (
-              <>
-                <div
-                  className={`${user?.[0]?.work_status === "Active" ? "bg-green" : "bg-red"
-                    } rounded-pill`}
-                  style={{ width: "10px", height: "10px" }}
-                ></div>
-                {user?.[0]?.work_status}
-              </>
+              null
             )}
           </div>
         </div>
@@ -959,13 +966,13 @@ export default function RecordProfile({ id }) {
                             className="form-select form-select-sm"
                           >
                             {departmentOptions.map((dept) => (
-                              <option key={dept} value={dept}>
-                                {dept}
+                              <option key={dept.value} value={dept.value}>
+                                {dept.label}
                               </option>
                             ))}
                           </select>
                         ) : (
-                          user?.[0]?.department
+                          getDeptLabel(user?.[0]?.department)
                         )}
                       </td>
                     </tr>
@@ -1016,7 +1023,7 @@ export default function RecordProfile({ id }) {
                             placeholder="Status"
                           />
                         ) : (
-                          user?.[0]?.status || "-"
+                          getStatusElement(user?.[0])
                         )}
                       </td>
                     </tr>
@@ -1037,13 +1044,13 @@ export default function RecordProfile({ id }) {
                             className="form-select form-select-sm"
                           >
                             {departmentOptions.map((dept) => (
-                              <option key={dept} value={dept}>
-                                {dept}
+                              <option key={dept.value} value={dept.value}>
+                                {dept.label}
                               </option>
                             ))}
                           </select>
                         ) : (
-                          user?.[0]?.department
+                          getDeptLabel(user?.[0]?.department)
                         )}
                       </td>
                     </tr>
@@ -1060,7 +1067,7 @@ export default function RecordProfile({ id }) {
                             placeholder="Status"
                           />
                         ) : (
-                          user?.[0]?.status
+                          getStatusElement(user?.[0])
                         )}
                       </td>
                     </tr>
@@ -1081,13 +1088,13 @@ export default function RecordProfile({ id }) {
                               className="form-select form-select-sm"
                             >
                               {departmentOptions.map((dept) => (
-                                <option key={dept} value={dept}>
-                                  {dept}
+                                <option key={dept.value} value={dept.value}>
+                                  {dept.label}
                                 </option>
                               ))}
                             </select>
                           ) : (
-                            user?.[0]?.department
+                            getDeptLabel(user?.[0]?.department)
                           )}
                         </td>
                       </tr>
