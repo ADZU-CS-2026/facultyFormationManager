@@ -236,11 +236,10 @@ export default function StaffAccountProfile({ id }) {
                 Update
               </button>
               <div
-                className={`${
-                  errorMessage === "Password Updated!"
+                className={`${errorMessage === "Password Updated!"
                     ? "text-green"
                     : "text-red"
-                } fs-6 ps-3`}
+                  } fs-6 ps-3`}
               >
                 {errorMessage}
               </div>
