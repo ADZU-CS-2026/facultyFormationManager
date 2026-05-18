@@ -17,6 +17,23 @@ export default function Archive() {
   const [totalUsers, setTotalUsers] = useState(0);
   const itemsPerPage = 10;
 
+  const departmentOptions = [
+    { value: "Admin", label: "Administrator" },
+    { value: "FFP", label: "Freshmen Formation Office" },
+    { value: "CON", label: "College of Nursing" },
+    { value: "CSITE", label: "College of Science and Information Technology and Engineering" },
+    { value: "SED", label: "School of Education" },
+    { value: "SLA", label: "School of Liberal Arts" },
+    { value: "SMA", label: "School of Management and Accountancy" },
+    { value: "CS", label: "Central Services" },
+    { value: "PPO", label: "Physical Plant Personnel" },
+  ];
+
+  const getDeptLabel = (value) => {
+    const match = departmentOptions.find((dept) => dept.value === value);
+    return match ? match.label : value || "";
+  };
+
   // Fetch archived users when page, search term, or filter changes
   useEffect(() => {
     fetchArchivedUsers();
@@ -219,7 +236,12 @@ export default function Archive() {
                             <td className="text-start text-muted">{user.first_name}</td>
                             <td className="text-start text-muted">{user.last_name}</td>
                             <td className="text-center text-muted">{user.middle_initial || ''}</td>
-                            <td className="text-center text-muted">{user.department}</td>
+                            <td
+                              className="text-start text-muted"
+                              style={{ whiteSpace: "normal", wordBreak: "break-word", minWidth: "260px" }}
+                            >
+                              {getDeptLabel(user.department)}
+                            </td>
                             <td className="text-start text-muted">
                               {user.position || 'N/A'}
                             </td>

@@ -1098,6 +1098,23 @@ export default function RecordProfile({ id }) {
                           )}
                         </td>
                       </tr>
+                      <tr>
+                        <td className="text-start text-muted">Status</td>
+                        <td className="text-center text-muted">
+                          {isEditing ? (
+                            <input
+                              type="text"
+                              name="status"
+                              value={editForm.status}
+                              onChange={handleInputChange}
+                              className="form-control form-control-sm"
+                              placeholder="Status"
+                            />
+                          ) : (
+                            getStatusElement(user?.[0])
+                          )}
+                        </td>
+                      </tr>
                     </tbody>
                   )}
               </table>
