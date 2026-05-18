@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import ArchiveSearch from "@/app/components/ArchiveSearch";
 import Pagination from "@/app/components/Pagination";
 
@@ -21,6 +22,8 @@ export default function Archive() {
     fetchArchivedUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, searchTerm, statusFilter]);
+
+  const queryClient = useQueryClient();
 
   const fetchArchivedUsers = async () => {
     setLoading(true);
@@ -79,6 +82,29 @@ export default function Archive() {
         // Refresh the current page after successful update
         await fetchArchivedUsers();
         console.log(result.message);
+        // Invalidate the specific record query so profile views refresh
+        try {
+          if (result && result.data && result.data.id) {
+            const rid = result.data.id;
+            // Invalidate both numeric and string forms to match query keys
+            queryClient.invalidateQueries(["recordid", rid]);
+            queryClient.invalidateQueries(["recordid", String(rid)]);
+            // Also invalidate the prefix to be safe
+            queryClient.invalidateQueries(["recordid"]);
+            // Force refetch for active queries to ensure UI updates
+            try {
+              queryClient.refetchQueries({ queryKey: ["recordid", rid] });
+              queryClient.refetchQueries({ queryKey: ["recordid", String(rid)] });
+              queryClient.refetchQueries({ queryKey: ["recordid"] });
+            } catch (e) {
+              // ignore if not available
+            }
+          } else {
+            queryClient.invalidateQueries(["recordid"]);
+          }
+        } catch (e) {
+          // ignore if react-query not available
+        }
       } else {
         setError(result.message || 'Failed to update user status');
       }
