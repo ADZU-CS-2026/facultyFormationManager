@@ -35,7 +35,8 @@ export default function StaffAccountProfile({ id }) {
       queryClient.refetchQueries({ queryKey: ["staffid"] });
     },
     onError: (err) => {
-      setErrorMessage("Error");
+      const msg = err?.response?.data?.message || err?.message || "Error";
+      setErrorMessage(msg);
     },
   });
 
@@ -69,8 +70,6 @@ export default function StaffAccountProfile({ id }) {
       return setErrorMessage("Please fill the blank!");
     } else if (prevPass === newPass) {
       return setErrorMessage("New password same as previous!");
-    } else if (newPass.length < 8 || newPass.length > 13) {
-      return setErrorMessage("Password length must be 8-13 characters only!");
     } else if (staff?.[0]?.password !== prevPass) {
       return setErrorMessage("Invalid previous password!");
     } else if (newPass !== reNewPass) {

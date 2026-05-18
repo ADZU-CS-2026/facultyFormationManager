@@ -45,7 +45,8 @@ export default function AccountInformation() {
       queryClient.refetchQueries({ queryKey: ["account"] });
     },
     onError: (err) => {
-      setErrorMessage("Error");
+      const msg = err?.response?.data?.message || err?.message || "Error";
+      setErrorMessage(msg);
     },
   });
 
@@ -80,8 +81,6 @@ export default function AccountInformation() {
         return setErrorMessage("Please fill all password fields!");
       } else if (prevPass === newPass) {
         return setErrorMessage("New password same as previous!");
-      } else if (newPass.length < 8 || newPass.length > 13) {
-        return setErrorMessage("Password length must be 8-13 characters only!");
       } else if (data?.[0]?.password !== prevPass) {
         return setErrorMessage("Invalid previous password!");
       } else if (newPass !== reNewPass) {
