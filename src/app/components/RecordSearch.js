@@ -236,14 +236,7 @@ export default function RecordSearch() {
                 Print
               </button>
             </div>
-            <div className="d-flex gap-2 align-items-center">
-              <div>Search: </div>
-              <input
-                className="form-control form-control-sm rounded-0"
-                value={makeFilter}
-                onChange={(e) => setMakeFilter(e.target.value)}
-              />
-            </div>
+            {/* Search input removed — name filter is already provided above */}
           </div>
         </div>
 

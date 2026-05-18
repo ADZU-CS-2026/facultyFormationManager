@@ -15,6 +15,8 @@ import {
 export default function AccountInformation() {
   const router = useRouter();
   const [eye, setEye] = useState(false);
+  const [newName, setNewName] = useState("");
+  const [newId, setNewId] = useState("");
   const [prevPass, setPrevPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [reNewPass, setReNewPass] = useState("");
@@ -34,7 +36,9 @@ export default function AccountInformation() {
   const mutationChangePassword = useMutation({
     mutationFn: fetchUpdateUserAccount,
     onSuccess: () => {
-      setErrorMessage("Password Updated!");
+      setErrorMessage("Details Updated!");
+      setNewName("");
+      setNewId("");
       setPrevPass("");
       setNewPass("");
       setReNewPass("");
@@ -66,20 +70,32 @@ export default function AccountInformation() {
 
   function changePassword(e) {
     e.preventDefault();
-    if (!prevPass || !newPass || !reNewPass) {
-      return setErrorMessage("Please fill the blank!");
-    } else if (prevPass === newPass) {
-      return setErrorMessage("New password same as previous!");
-    } else if (newPass.length < 8 || newPass.length > 13) {
-      return setErrorMessage("Password length must be 8-13 characters only!");
-    } else if (data?.[0]?.password !== prevPass) {
-      return setErrorMessage("Invalid previous password!");
-    } else if (newPass !== reNewPass) {
-      return setErrorMessage("Re-enter password not match!");
+    if (!newName && !newId && !prevPass && !newPass && !reNewPass) {
+      return setErrorMessage("Please fill at least one field!");
     }
-    const id = data?.[0]?.id;
 
-    mutationChangePassword.mutate({ id, newPass });
+    // Validate password fields if any password field is filled
+    if (prevPass || newPass || reNewPass) {
+      if (!prevPass || !newPass || !reNewPass) {
+        return setErrorMessage("Please fill all password fields!");
+      } else if (prevPass === newPass) {
+        return setErrorMessage("New password same as previous!");
+      } else if (newPass.length < 8 || newPass.length > 13) {
+        return setErrorMessage("Password length must be 8-13 characters only!");
+      } else if (data?.[0]?.password !== prevPass) {
+        return setErrorMessage("Invalid previous password!");
+      } else if (newPass !== reNewPass) {
+        return setErrorMessage("Re-enter password not match!");
+      }
+    }
+
+    const id = data?.[0]?.id;
+    const payload = { id };
+    if (newName) payload.newName = newName;
+    if (newId) payload.newId = newId;
+    if (newPass) payload.newPass = newPass;
+
+    mutationChangePassword.mutate(payload);
   }
 
   // Show password verification modal if not authenticated
@@ -235,6 +251,7 @@ export default function AccountInformation() {
                   >
                     <div className="p-3 d-flex" style={{ maxWidth: "607.5px" }}>
                       <div className="p-3 gap-2 d-inline-block fw-bold d-flex flex-column justify-content-evenly">
+                        <div className="text-center mb-3">Name</div>
                         <div className="text-center mb-3">Role</div>
                         <div className="text-center mb-3">ID Number</div>
                         <div className="text-center">Password</div>
@@ -247,20 +264,26 @@ export default function AccountInformation() {
                         <input
                           type="text"
                           className="form-control form-control-sm rounded-0 w-full bg-white1"
-                          value={!isLoading ? data[0].role : "Loading..."}
+                          value={!isLoading && data ? (data[0].name || "-") : "Loading..."}
                           disabled
                         />
                         <input
                           type="text"
                           className="form-control form-control-sm rounded-0 w-full bg-white1"
-                          value={!isLoading ? data[0].id : "Loading..."}
+                          value={!isLoading && data ? data[0].role : "Loading..."}
+                          disabled
+                        />
+                        <input
+                          type="text"
+                          className="form-control form-control-sm rounded-0 w-full bg-white1"
+                          value={!isLoading && data ? data[0].id : "Loading..."}
                           disabled
                         />
                         <div className="position-relative">
                           <input
                             type={!eye ? "password" : "text"}
                             className="form-control form-control-sm rounded-0 w-full bg-white1"
-                            value={!isLoading ? data[0].password : "Loading..."}
+                            value={!isLoading && data ? data[0].password : "Loading..."}
                             disabled
                           />
                           {!eye ? (
@@ -300,6 +323,8 @@ export default function AccountInformation() {
                         style={{ maxWidth: "607.5px" }}
                       >
                         <div className="p-3 gap-4 d-inline-block fw-bold d-flex flex-column justify-content-evenly">
+                          <div className="text-center">New Name</div>
+                          <div className="text-center">New ID</div>
                           <div className="text-center">Previous Password</div>
                           <div className="text-center">New Password</div>
                           <div className="text-center">
@@ -311,22 +336,38 @@ export default function AccountInformation() {
                           style={{ width: "375px" }}
                         >
                           <input
+                            type="text"
+                            className="form-control form-control-sm rounded-0 w-full"
+                            value={newName}
+                            onChange={(e) => setNewName(e.target.value)}
+
+                          />
+                          <input
+                            type="text"
+                            className="form-control form-control-sm rounded-0 w-full"
+                            value={newId}
+                            onChange={(e) => setNewId(e.target.value)}
+                          />
+                          <input
                             type="password"
                             className="form-control form-control-sm rounded-0 w-full"
                             value={prevPass}
                             onChange={(e) => setPrevPass(e.target.value)}
+
                           />
                           <input
                             type="password"
                             className="form-control form-control-sm rounded-0 w-full"
                             value={newPass}
                             onChange={(e) => setNewPass(e.target.value)}
+
                           />
                           <input
                             type="password"
                             className="form-control form-control-sm rounded-0"
                             value={reNewPass}
                             onChange={(e) => setReNewPass(e.target.value)}
+
                           />
                         </div>
                       </div>
@@ -346,9 +387,9 @@ export default function AccountInformation() {
                           Update
                         </button>
                         <div
-                          className={`${errorMessage === "Password Updated!"
-                              ? "text-green"
-                              : "text-red"
+                          className={`${errorMessage === "Details Updated!"
+                            ? "text-green"
+                            : "text-red"
                             } fs-6 ps-3`}
                         >
                           {errorMessage}

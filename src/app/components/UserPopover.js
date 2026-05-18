@@ -33,9 +33,8 @@ export default function UserPopover({ userPopup, userPop }) {
     <>
       {/* USER BUTTON */}
       <div
-        className={`d-flex align-items-center justify h-100 px-3 user-hover cursor-pointer ${
-          userPopup && "bg-semidarkblue"
-        }`}
+        className={`d-flex align-items-center justify h-100 px-3 user-hover cursor-pointer ${userPopup && "bg-semidarkblue"
+          }`}
         role="button"
         onClick={() => userPop()}
       >
@@ -43,7 +42,7 @@ export default function UserPopover({ userPopup, userPop }) {
         <span className="d-lg-block d-none ms-1 small">
           {!isLoading
             ? !isError
-              ? `Welcome, ${data[0].role}`
+              ? `Welcome, ${data[0].name}`
               : "Error"
             : "Loading..."}
         </span>
@@ -51,9 +50,8 @@ export default function UserPopover({ userPopup, userPop }) {
 
       {/* USER POPOVER */}
       <div
-        className={`position-absolute border bg-white2 text-light card rounded-0 end-0 top-100 d-flex flex-column ${
-          userPopup ? "d-block" : "d-none"
-        }`}
+        className={`position-absolute border bg-white2 text-light card rounded-0 end-0 top-100 d-flex flex-column ${userPopup ? "d-block" : "d-none"
+          }`}
         style={{ width: "278px", zIndex: "99" }}
       >
         <div className="w-100 bg-blue d-flex flex-column align-items-center justify-content-center py-2">
