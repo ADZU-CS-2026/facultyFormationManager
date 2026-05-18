@@ -90,8 +90,8 @@ export default function AddRecord() {
   };
 
   const validateRow = (row, rowNumber) => {
-    if (!row.first_name.trim()) return `Row ${rowNumber}: First Name is required.`;
     if (!row.last_name.trim()) return `Row ${rowNumber}: Last Name is required.`;
+    if (!row.first_name.trim()) return `Row ${rowNumber}: First Name is required.`;
     if (!row.middle_initial.trim()) return `Row ${rowNumber}: Middle Initial is required.`;
     if (!row.department) return `Row ${rowNumber}: Department is required.`;
     if (!row.school_year) return `Row ${rowNumber}: School Year is required.`;
@@ -118,8 +118,9 @@ export default function AddRecord() {
     setIsPending(false);
 
     const activeRows = rows
-      .map((row, index) => ({ ...row, rowNumber: index + 1 }))
-      .filter((row) => !isRowEmpty(row));
+      .map((row, index) => ({ row, index }))
+      .filter(({ row }) => !isRowEmpty(row))
+      .map(({ row, index }) => ({ ...row, rowNumber: index + 1 }));
 
     if (activeRows.length === 0) {
       setIsError(true);
@@ -224,8 +225,8 @@ export default function AddRecord() {
                   <thead>
                     <tr>
                       <th style={{ minWidth: "50px" }}>#</th>
-                      <th style={{ minWidth: "140px" }}>First Name</th>
                       <th style={{ minWidth: "140px" }}>Last Name</th>
+                      <th style={{ minWidth: "140px" }}>First Name</th>
                       <th style={{ minWidth: "90px" }}>M.I.</th>
                       <th style={{ minWidth: "180px" }}>Department</th>
                       <th style={{ minWidth: "150px" }}>School Year</th>
@@ -248,16 +249,16 @@ export default function AddRecord() {
                             <input
                               type="text"
                               className="form-control form-control-sm"
-                              value={row.first_name}
-                              onChange={(e) => updateRow(index, "first_name", e.target.value)}
+                              value={row.last_name}
+                              onChange={(e) => updateRow(index, "last_name", e.target.value)}
                             />
                           </td>
                           <td>
                             <input
                               type="text"
                               className="form-control form-control-sm"
-                              value={row.last_name}
-                              onChange={(e) => updateRow(index, "last_name", e.target.value)}
+                              value={row.first_name}
+                              onChange={(e) => updateRow(index, "first_name", e.target.value)}
                             />
                           </td>
                           <td>
