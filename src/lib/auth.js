@@ -1,27 +1,26 @@
 import { pool } from "./db";
 
 // ID PASSWORD AUTHENTICATION
-export async function verifyAdmin(id, password){
+export async function verifyAdmin(id, password) {
     const [row] = await pool.execute("SELECT * FROM adminaccount WHERE id = ?", [id]);
-    const ADMIN = row.find(r => r.id === id);
+    const ADMIN = row.find(r => String(r.id) === String(id));
 
-    if(!ADMIN) {
+    if (!ADMIN) {
         return false;
     }
-    if(id !== ADMIN.id){
+    if (String(id) !== String(ADMIN.id)) {
         return false;
     }
-    if(password !== ADMIN.password){
+    if (password !== ADMIN.password) {
         return false;
     }
     return true;
 }
 
 // RETURN ADMIN DATA
-export async function getAdmin(id){
+export async function getAdmin(id) {
     const [row] = await pool.execute("SELECT * FROM adminaccount WHERE id = ?", [id]);
-    const ADMIN = row.find(r => r.id === id);
+    const ADMIN = row.find(r => String(r.id) === String(id));
     return ADMIN;
 }
 
-  

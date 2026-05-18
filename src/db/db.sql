@@ -26,6 +26,7 @@ CREATE TABLE retreat_records (
     start_date DATE,
     completion_date DATE, 
     attendance_status ENUM('Present', 'Absent'),
+    venue VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     INDEX idx_user_year (user_id, school_year),
     INDEX idx_retreat_type (retreat_type),
@@ -103,6 +104,12 @@ CREATE TABLE pending_changes (
     INDEX idx_table_name (table_name),
     INDEX idx_record_id (record_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE forgotpassword (
+    email VARCHAR(255) NOT NULL UNIQUE,
+    login_code VARCHAR(10),
+    login_expire DATETIME
+)
 
 
 INSERT INTO adminaccount (id, role, password)

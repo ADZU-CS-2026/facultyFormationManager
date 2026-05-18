@@ -3,12 +3,12 @@ import { pool } from "@/lib/db";
 
 export async function POST(req) {
   const { id, role, password } = await req.json();
-  const parseId = parseInt(id);
+  const normalizedId = String(id).trim();
 
   try {
     const [results] = await pool.execute(
       "INSERT INTO adminaccount (id, role, password) VALUES (?, ?, ?)",
-      [parseId, role, password]
+      [normalizedId, role, password]
     );
 
     if (results.affectedRows > 0) {

@@ -1,23 +1,43 @@
 "use client";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { queryClient } from "@/app/react-query";
 import { useState } from "react";
 import fetchCreateRecord from "@/app/fetch/fetchCreateRecord";
 import fetchAccountData from "@/app/fetch/fetchAccountData";
 
+const createEmptyRow = () => ({
+  first_name: "",
+  last_name: "",
+  middle_initial: "",
+  department: "",
+  position: "",
+  office: "",
+  status: "",
+  school_year: "",
+});
+
+const DEPARTMENT_OPTIONS = [
+  { value: "Admin", label: "Administrator" },
+  { value: "FFP", label: "Freshmen Formation Office" },
+  { value: "CON", label: "College of Nursing" },
+  {
+    value: "CSITE",
+    label: "College of Science and Information Technology and Engineering",
+  },
+  { value: "SED", label: "School of Education" },
+  { value: "SLA", label: "School of Liberal Arts" },
+  { value: "SMA", label: "School of Management and Accountancy" },
+  { value: "CS", label: "Central Services" },
+  { value: "PPO", label: "Physical Plant Personnel" },
+];
+
 export default function AddRecord() {
-  const [first_name, set_first_name] = useState("");
-  const [last_name, set_last_name] = useState("");
-  const [middle_initial, set_middle_initial] = useState("");
-  const [department, set_department] = useState("");
-  const [position, set_position] = useState("");
-  const [office, set_office] = useState("");
-  const [status, set_status] = useState("");
-  const [school_year, set_school_year] = useState("");
+  const [rows, setRows] = useState(Array.from({ length: 5 }, () => createEmptyRow()));
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
   const [isDone, setIsDone] = useState(false);
   const [isPending, setIsPending] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Get user role
   const { data: accountData } = useQuery({
@@ -38,61 +58,147 @@ export default function AddRecord() {
     --current;
   }
 
-  const mutationAddRecord = useMutation({
-    mutationFn: fetchCreateRecord,
-    onSuccess: (res) => {
-      setIsDone(() => true);
-      queryClient.refetchQueries();
+  const isRowEmpty = (row) => {
+    return !Object.values(row).some((value) => `${value ?? ""}`.trim() !== "");
+  };
 
-      // Check if it was a direct save or pending approval
-      if (res.isDirectSave) {
-        setMessage("Record created successfully!");
-        setIsPending(false);
-      } else {
-        setMessage(
-          "Change saved to draft! Go to 'My Changes' to submit for approval."
-        );
-        setIsPending(true);
-        // Invalidate my drafts query
-        queryClient.invalidateQueries(["myDrafts"]);
+  const updateRow = (rowIndex, field, value) => {
+    setRows((prev) => {
+      const nextRows = prev.map((row, index) => {
+        if (index !== rowIndex) return row;
+        const nextValue = field === "middle_initial" ? value.toUpperCase().slice(0, 1) : value;
+        return { ...row, [field]: nextValue };
+      });
+
+      const isEditingLastRow = rowIndex === prev.length - 1;
+      const shouldGrow = prev.length >= 5 && isEditingLastRow && !isRowEmpty(nextRows[rowIndex]);
+
+      if (shouldGrow) {
+        nextRows.push(createEmptyRow());
       }
 
-      set_first_name("");
-      set_last_name("");
-      set_middle_initial("");
-      set_department("");
-      set_position("");
-      set_office("");
-      set_status("");
-      set_school_year("");
-    },
-    onError: (error) => {
-      setIsError(() => true);
-      setIsDone(() => true);
-      setIsPending(false);
-      const errorMessage =
-        error?.response?.data?.message ||
-        error?.message ||
-        "Error creating record";
-      setMessage(errorMessage);
-    },
-  });
+      return nextRows;
+    });
+  };
+
+  const addRow = () => {
+    setRows((prev) => [...prev, createEmptyRow()]);
+  };
+
+  const removeRow = (rowIndex) => {
+    setRows((prev) => prev.filter((_, index) => index !== rowIndex));
+  };
+
+  const validateRow = (row, rowNumber) => {
+    if (!row.last_name.trim()) return `Row ${rowNumber}: Last Name is required.`;
+    if (!row.first_name.trim()) return `Row ${rowNumber}: First Name is required.`;
+    if (!row.middle_initial.trim()) return `Row ${rowNumber}: Middle Initial is required.`;
+    if (!row.department) return `Row ${rowNumber}: Department is required.`;
+    if (!row.school_year) return `Row ${rowNumber}: School Year is required.`;
+
+    if ((row.department === "Admin" || row.department === "CS") && !row.position.trim()) {
+      return `Row ${rowNumber}: Position is required for ${row.department}.`;
+    }
+
+    if ((row.department === "Admin" || row.department === "CS") && !row.office.trim()) {
+      return `Row ${rowNumber}: Office is required for ${row.department}.`;
+    }
+
+    if (row.department === "PPO" && !row.status.trim()) {
+      return `Row ${rowNumber}: Status is required for PPO.`;
+    }
+
+    return null;
+  };
 
   async function addRecord(e) {
     e.preventDefault();
-    setIsError(() => false);
-    setIsDone(() => false);
+    setIsError(false);
+    setIsDone(false);
     setIsPending(false);
-    mutationAddRecord.mutate({
-      first_name,
-      last_name,
-      middle_initial,
-      department,
-      position,
-      office,
-      status,
-      school_year,
-    });
+
+    const activeRows = rows
+      .map((row, index) => ({ row, index }))
+      .filter(({ row }) => !isRowEmpty(row))
+      .map(({ row, index }) => ({ ...row, rowNumber: index + 1 }));
+
+    if (activeRows.length === 0) {
+      setIsError(true);
+      setIsDone(true);
+      setMessage("Please fill in at least one row before submitting.");
+      return;
+    }
+
+    for (const row of activeRows) {
+      const rowError = validateRow(row, row.rowNumber);
+      if (rowError) {
+        setIsError(true);
+        setIsDone(true);
+        setMessage(rowError);
+        return;
+      }
+    }
+
+    setIsSubmitting(true);
+
+    let successCount = 0;
+    let pendingCount = 0;
+    const failedRows = [];
+
+    for (const row of activeRows) {
+      try {
+        const res = await fetchCreateRecord({
+          first_name: row.first_name.trim(),
+          last_name: row.last_name.trim(),
+          middle_initial: row.middle_initial.trim(),
+          department: row.department,
+          position: row.position.trim(),
+          office: row.office.trim(),
+          status: row.status.trim(),
+          school_year: row.school_year,
+        });
+
+        if (res.isDirectSave) {
+          successCount += 1;
+        } else {
+          pendingCount += 1;
+        }
+      } catch (error) {
+        const errorMessage =
+          error?.response?.data?.message || error?.message || "Error creating record";
+        failedRows.push(`Row ${row.rowNumber}: ${errorMessage}`);
+      }
+    }
+
+    queryClient.refetchQueries();
+    queryClient.invalidateQueries({ queryKey: ["myDrafts"] });
+
+    setIsSubmitting(false);
+    setIsDone(true);
+
+    if (failedRows.length === 0) {
+      setIsError(false);
+      setIsPending(pendingCount > 0);
+      if (pendingCount > 0 && successCount > 0) {
+        setMessage(
+          `${successCount} record(s) created directly and ${pendingCount} saved to draft.`
+        );
+      } else if (pendingCount > 0) {
+        setMessage(
+          `${pendingCount} record(s) saved to draft! Go to 'My Changes' to submit for approval.`
+        );
+      } else {
+        setMessage(`${successCount} record(s) created successfully!`);
+      }
+      setRows(Array.from({ length: 5 }, () => createEmptyRow()));
+      return;
+    }
+
+    setIsError(true);
+    setIsPending(pendingCount > 0);
+    setMessage(
+      `Completed with ${failedRows.length} error(s). ${failedRows.slice(0, 3).join(" ")}`
+    );
   }
 
   return (
@@ -100,126 +206,145 @@ export default function AddRecord() {
       <div className="p-3">
         <form onSubmit={addRecord}>
           <div className="row justify-content-center py-4">
-            <div className="col-xl-8 col-lg-9 col-md-10 d-flex flex-column gap-3">
-              <div className="d-flex gap-2 align-items-center">
-                <div>First Name</div>
-                <input
-                  type="text"
-                  className="form-control form-control-sm"
-                  required
-                  value={first_name}
-                  onChange={(e) => set_first_name(e.target.value)}
-                />
-              </div>
-              <div className="d-flex gap-2 align-items-center">
-                <div>Last Name</div>
-                <input
-                  type="text"
-                  className="form-control form-control-sm"
-                  required
-                  value={last_name}
-                  onChange={(e) => set_last_name(e.target.value)}
-                />
-              </div>
-              <div className="d-flex gap-2 align-items-center">
-                <div>Middle Initial</div>
-                <input
-                  type="text"
-                  className="form-control form-control-sm"
-                  required
-                  maxLength={1}
-                  value={middle_initial}
-                  onChange={(e) =>
-                    set_middle_initial(e.target.value.toUpperCase())
-                  }
-                />
-              </div>
-              <div className="d-flex gap-2 align-items-center">
-                <div>Department</div>
-                <select
-                  className="form-select form-select-sm"
-                  required
-                  value={department}
-                  onChange={(e) => set_department(e.target.value)}
+            <div className="col-12 d-flex flex-column gap-3">
+              <div className="d-flex justify-content-between align-items-center">
+                <div className="fw-semibold">Batch Add Records</div>
+                <button
+                  type="button"
+                  className="btn btn-sm btn-outline-primary"
+                  onClick={addRow}
+                  disabled={isSubmitting}
                 >
-                  <option value="" hidden>
-                    Choose
-                  </option>
-                  <option value="Admin">Administrator</option>
-                  <option value="FFP">Freshmen Formation Office</option>
-                  <option value="CON">College of Nursing</option>
-                  <option value="CSITE">
-                    College of Science and Information Technology and
-                    Engineering
-                  </option>
-                  <option value="SED">School of Education</option>
-                  <option value="SLA">School of Liberal Arts</option>
-                  <option value="SMA">
-                    School of Management and Accountancy
-                  </option>
-                  <option value="CS">Central Services</option>
-                  <option value="PPO">Physical Plant Personnel</option>
-                </select>
+                  <i className="fa-solid fa-plus me-1"></i>
+                  Add Row
+                </button>
               </div>
-              <div className="d-flex gap-2 align-items-center">
-                <div>School Year</div>
-                <select
-                  className="form-select form-select-sm"
-                  required
-                  value={school_year}
-                  onChange={(e) => set_school_year(e.target.value)}
-                >
-                  <option value="" hidden>
-                    Choose
-                  </option>
-                  {
-                    <>
-                      {setAddRecordSchoolYears.map((data, index) => (
-                        <option key={index} value={data}>
-                          SY {data}
-                        </option>
-                      ))}
-                    </>
-                  }
-                </select>
+
+              <div className="table-responsive">
+                <table className="table table-sm table-bordered align-middle">
+                  <thead>
+                    <tr>
+                      <th style={{ minWidth: "50px" }}>#</th>
+                      <th style={{ minWidth: "140px" }}>Last Name</th>
+                      <th style={{ minWidth: "140px" }}>First Name</th>
+                      <th style={{ minWidth: "90px" }}>M.I.</th>
+                      <th style={{ minWidth: "180px" }}>Department</th>
+                      <th style={{ minWidth: "150px" }}>School Year</th>
+                      <th style={{ minWidth: "140px" }}>Position</th>
+                      <th style={{ minWidth: "140px" }}>Office</th>
+                      <th style={{ minWidth: "140px" }}>Status</th>
+                      <th style={{ minWidth: "80px" }}>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rows.map((row, index) => {
+                      const needsPositionOffice =
+                        row.department === "Admin" || row.department === "CS";
+                      const needsStatus = row.department === "PPO";
+
+                      return (
+                        <tr key={`add-record-row-${index}`}>
+                          <td className="text-center">{index + 1}</td>
+                          <td>
+                            <input
+                              type="text"
+                              className="form-control form-control-sm"
+                              value={row.last_name}
+                              onChange={(e) => updateRow(index, "last_name", e.target.value)}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              className="form-control form-control-sm"
+                              value={row.first_name}
+                              onChange={(e) => updateRow(index, "first_name", e.target.value)}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              className="form-control form-control-sm"
+                              maxLength={1}
+                              value={row.middle_initial}
+                              onChange={(e) => updateRow(index, "middle_initial", e.target.value)}
+                            />
+                          </td>
+                          <td>
+                            <select
+                              className="form-select form-select-sm"
+                              value={row.department}
+                              onChange={(e) => updateRow(index, "department", e.target.value)}
+                            >
+                              <option value="">Choose</option>
+                              {DEPARTMENT_OPTIONS.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                          <td>
+                            <select
+                              className="form-select form-select-sm"
+                              value={row.school_year}
+                              onChange={(e) => updateRow(index, "school_year", e.target.value)}
+                            >
+                              <option value="">Choose</option>
+                              {setAddRecordSchoolYears.map((data) => (
+                                <option key={data} value={data}>
+                                  SY {data}
+                                </option>
+                              ))}
+                            </select>
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              className="form-control form-control-sm"
+                              value={row.position}
+                              onChange={(e) => updateRow(index, "position", e.target.value)}
+                              disabled={!needsPositionOffice}
+                              placeholder={needsPositionOffice ? "Required" : "N/A"}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              className="form-control form-control-sm"
+                              value={row.office}
+                              onChange={(e) => updateRow(index, "office", e.target.value)}
+                              disabled={!needsPositionOffice}
+                              placeholder={needsPositionOffice ? "Required" : "N/A"}
+                            />
+                          </td>
+                          <td>
+                            <input
+                              type="text"
+                              className="form-control form-control-sm"
+                              value={row.status}
+                              onChange={(e) => updateRow(index, "status", e.target.value)}
+                              disabled={!needsStatus}
+                              placeholder={needsStatus ? "Required" : "N/A"}
+                            />
+                          </td>
+                          <td className="text-center">
+                            <button
+                              type="button"
+                              className="btn btn-sm btn-outline-danger"
+                              onClick={() => removeRow(index)}
+                              disabled={rows.length === 1 || isSubmitting}
+                              title="Remove row"
+                            >
+                              <i className="fa-solid fa-trash"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
-              {department === "PPO" && (
-                <>
-                  <div className="d-flex gap-2 align-items-center">
-                    <div>Status</div>
-                    <input
-                      className="form-control form-control-sm"
-                      value={status}
-                      onChange={(e) => set_status(e.target.value)}
-                      required
-                    />
-                  </div>
-                </>
-              )}
-              {department === "Admin" || department === "CS" ? (
-                <>
-                  <div className="d-flex gap-2 align-items-center">
-                    <div>Position</div>
-                    <input
-                      className="form-control form-control-sm"
-                      value={position}
-                      onChange={(e) => set_position(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="d-flex gap-2 align-items-center">
-                    <div>Office</div>
-                    <input
-                      className="form-control form-control-sm"
-                      value={office}
-                      onChange={(e) => set_office(e.target.value)}
-                      required
-                    />
-                  </div>
-                </>
-              ) : (
-                ""
-              )}
 
               {/* Staff info banner */}
               {isStaff && (
@@ -232,13 +357,12 @@ export default function AddRecord() {
 
               {isDone && (
                 <div
-                  className={`py-2 ${
-                    isError
-                      ? "text-red"
-                      : isPending
+                  className={`py-2 ${isError
+                    ? "text-red"
+                    : isPending
                       ? "text-info"
                       : "text-green"
-                  } text-center fw-bold fs-6`}
+                    } text-center fw-bold fs-6`}
                 >
                   {isPending && <i className="fa-solid fa-clock me-2"></i>}
                   {!isError && !isPending && (
@@ -262,15 +386,15 @@ export default function AddRecord() {
               <button
                 type="submit"
                 className="btn fw-semibold btn-sm btn-green text-white"
-                disabled={mutationAddRecord.isPending}
+                disabled={isSubmitting}
               >
-                {mutationAddRecord.isPending ? (
+                {isSubmitting ? (
                   <>
                     <span className="spinner-border spinner-border-sm me-1"></span>
-                    Saving...
+                    Submitting Rows...
                   </>
                 ) : (
-                  "Submit"
+                  "Submit All"
                 )}
               </button>
             </div>

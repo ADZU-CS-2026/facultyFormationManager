@@ -3,14 +3,14 @@ import { NextResponse } from "next/server";
 
 export async function DELETE(req) {
   const { id } = await req.json();
-  const parseId = parseInt(id);
+  const normalizedId = String(id).trim();
 
   console.log(id);
 
   try {
     const [result] = await pool.execute(
       `DELETE FROM adminaccount WHERE id = ?`,
-      [parseId]
+      [normalizedId]
     );
     if (result.affectedRows > 0) {
       return NextResponse.json(

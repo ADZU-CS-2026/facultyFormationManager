@@ -14,6 +14,17 @@ async function verifyJwt(token) {
     }
 }
 
+async function hasVenueColumn() {
+    try {
+        const [rows] = await pool.execute(
+            `SHOW COLUMNS FROM retreat_records LIKE 'venue'`
+        );
+        return rows.length > 0;
+    } catch {
+        return false;
+    }
+}
+
 /**
  * CREATE RETREAT RECORD - Role-based
  * ADMINISTRATOR: Creates directly
@@ -21,6 +32,8 @@ async function verifyJwt(token) {
  */
 export async function POST(req) {
     try {
+        const venueEnabled = await hasVenueColumn();
+
         // Get token from cookies
         const accessToken = req.cookies.get("accessToken")?.value;
         if (!accessToken) {
@@ -50,7 +63,18 @@ export async function POST(req) {
             start_date,
             completion_date,
             attendance_status,
+            venue,
         } = await req.json();
+
+        if (!venueEnabled && venue !== undefined && `${venue}`.trim() !== "") {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Venue field is not available in the current database schema. Please run src/db/add_venue_column.sql first.",
+                },
+                { status: 400 }
+            );
+        }
 
         // Validate required fields
         if (!user_id || !retreat_type) {
@@ -83,15 +107,26 @@ export async function POST(req) {
             start_date: start_date || null,
             completion_date: completion_date || null,
             attendance_status: attendance_status || null,
+            venue: venue || null,
         };
 
         // ADMINISTRATOR: Direct insert
         if (userRole === 'ADMINISTRATOR') {
-            const [result] = await pool.execute(
-                `INSERT INTO retreat_records (user_id, retreat_type, school_year, start_date, completion_date, attendance_status) 
-                 VALUES (?, ?, ?, ?, ?, ?)`,
-                [newRecord.user_id, newRecord.retreat_type, newRecord.school_year, newRecord.start_date, newRecord.completion_date, newRecord.attendance_status]
-            );
+            let result;
+
+            if (venueEnabled) {
+                [result] = await pool.execute(
+                    `INSERT INTO retreat_records (user_id, retreat_type, school_year, start_date, completion_date, attendance_status, venue) 
+                     VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                    [newRecord.user_id, newRecord.retreat_type, newRecord.school_year, newRecord.start_date, newRecord.completion_date, newRecord.attendance_status, newRecord.venue]
+                );
+            } else {
+                [result] = await pool.execute(
+                    `INSERT INTO retreat_records (user_id, retreat_type, school_year, start_date, completion_date, attendance_status) 
+                     VALUES (?, ?, ?, ?, ?, ?)`,
+                    [newRecord.user_id, newRecord.retreat_type, newRecord.school_year, newRecord.start_date, newRecord.completion_date, newRecord.attendance_status]
+                );
+            }
 
             return NextResponse.json({
                 success: true,
@@ -111,31 +146,18 @@ export async function POST(req) {
                 [loggedInUserId]
             );
 
-            // Get user name for description
-            const [userInfo] = await pool.execute(
-                `SELECT last_name, first_name FROM users WHERE id = ?`,
-                [user_id]
-            );
-            const userName = userInfo.length > 0 ? `${userInfo[0].last_name}, ${userInfo[0].first_name || ''}` : `User #${user_id}`;
-            const description = `New retreat: ${retreat_type} for ${userName}`;
-
             let batchId, batchUuid;
 
             if (existingDraft.length > 0) {
                 batchId = existingDraft[0].id;
                 batchUuid = existingDraft[0].batch_uuid;
-                // Update description to reflect latest change
-                await pool.execute(
-                    `UPDATE change_batches SET description = ? WHERE id = ?`,
-                    [description, batchId]
-                );
             } else {
-                // Create new draft batch with descriptive message
+                // Create new draft batch
                 batchUuid = uuidv4();
                 const [newBatch] = await pool.execute(
                     `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                      VALUES (?, ?, 'Draft', ?)`,
-                    [batchUuid, loggedInUserId, description]
+                    [batchUuid, loggedInUserId, `New retreat: ${retreat_type}`]
                 );
                 batchId = newBatch.insertId;
             }
@@ -183,6 +205,8 @@ export async function POST(req) {
  */
 export async function PATCH(req) {
     try {
+        const venueEnabled = await hasVenueColumn();
+
         // Get token from cookies
         const accessToken = req.cookies.get("accessToken")?.value;
         if (!accessToken) {
@@ -210,6 +234,7 @@ export async function PATCH(req) {
             start_date,
             completion_date,
             attendance_status,
+            venue,
         } = await req.json();
 
         // Validate required fields
@@ -251,12 +276,20 @@ export async function PATCH(req) {
         if (attendance_status !== undefined && attendance_status !== oldValues.attendance_status) {
             newValues.attendance_status = attendance_status;
         }
+        if (venueEnabled && venue !== undefined && venue !== oldValues.venue) {
+            newValues.venue = venue || null;
+        }
 
         // Check if there are any changes
         if (Object.keys(newValues).length === 0) {
             return NextResponse.json(
-                { success: false, message: "No changes detected" },
-                { status: 400 }
+                {
+                    success: true,
+                    isDirectSave: true,
+                    noChanges: true,
+                    message: "No changes detected"
+                },
+                { status: 200 }
             );
         }
 
@@ -288,31 +321,18 @@ export async function PATCH(req) {
                 [userId]
             );
 
-            // Get user name for description
-            const [userInfo] = await pool.execute(
-                `SELECT last_name, first_name FROM users WHERE id = ?`,
-                [oldValues.user_id]
-            );
-            const userName = userInfo.length > 0 ? `${userInfo[0].last_name}, ${userInfo[0].first_name || ''}` : `User #${oldValues.user_id}`;
-            const description = `Update retreat: ${oldValues.retreat_type} for ${userName}`;
-
             let batchId, batchUuid;
 
             if (existingDraft.length > 0) {
                 batchId = existingDraft[0].id;
                 batchUuid = existingDraft[0].batch_uuid;
-                // Update description to reflect latest change
-                await pool.execute(
-                    `UPDATE change_batches SET description = ? WHERE id = ?`,
-                    [description, batchId]
-                );
             } else {
-                // Create new draft batch with descriptive message
+                // Create new draft batch
                 batchUuid = uuidv4();
                 const [newBatch] = await pool.execute(
                     `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                      VALUES (?, ?, 'Draft', ?)`,
-                    [batchUuid, userId, description]
+                    [batchUuid, userId, `Update retreat: ${oldValues.retreat_type}`]
                 );
                 batchId = newBatch.insertId;
             }
@@ -450,29 +470,16 @@ export async function DELETE(req) {
 
             let batchId, batchUuid;
 
-            // Get user name for description
-            const [userInfo] = await pool.execute(
-                `SELECT last_name, first_name FROM users WHERE id = ?`,
-                [oldValues.user_id]
-            );
-            const userName = userInfo.length > 0 ? `${userInfo[0].last_name}, ${userInfo[0].first_name || ''}` : `User #${oldValues.user_id}`;
-            const description = `Delete retreat: ${oldValues.retreat_type} for ${userName}`;
-
             if (existingDraft.length > 0) {
                 batchId = existingDraft[0].id;
                 batchUuid = existingDraft[0].batch_uuid;
-                // Update batch description to reflect the latest change
-                await pool.execute(
-                    `UPDATE change_batches SET description = ? WHERE id = ?`,
-                    [description, batchId]
-                );
             } else {
-                // Create new draft batch with descriptive message
+                // Create new draft batch
                 batchUuid = uuidv4();
                 const [newBatch] = await pool.execute(
                     `INSERT INTO change_batches (batch_uuid, submitted_by, status, description) 
                      VALUES (?, ?, 'Draft', ?)`,
-                    [batchUuid, userId, description]
+                    [batchUuid, userId, `Delete retreat: ${oldValues.retreat_type}`]
                 );
                 batchId = newBatch.insertId;
             }
@@ -489,6 +496,10 @@ export async function DELETE(req) {
                 completion_date: oldCompletionDate,
                 attendance_status: oldValues.attendance_status,
             };
+
+            if (venueEnabled) {
+                storedOldValues.venue = oldValues.venue;
+            }
 
             // Create pending change record for DELETE
             await pool.execute(

@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import fetchAccountData from "@/app/fetch/fetchAccountData";
+import { useQueryClient } from "@tanstack/react-query";
 import ArchiveSearch from "@/app/components/ArchiveSearch";
 import Pagination from "@/app/components/Pagination";
 
@@ -12,25 +11,36 @@ export default function Archive() {
   const [error, setError] = useState(null);
   const [updatingId, setUpdatingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("Inactive");
+  const [statusFilter, setStatusFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalUsers, setTotalUsers] = useState(0);
   const itemsPerPage = 10;
 
-  // Fetch current user account for role
-  const { data: account } = useQuery({
-    queryKey: ["account"],
-    queryFn: fetchAccountData,
-  });
+  const departmentOptions = [
+    { value: "Admin", label: "Administrator" },
+    { value: "FFP", label: "Freshmen Formation Office" },
+    { value: "CON", label: "College of Nursing" },
+    { value: "CSITE", label: "College of Science and Information Technology and Engineering" },
+    { value: "SED", label: "School of Education" },
+    { value: "SLA", label: "School of Liberal Arts" },
+    { value: "SMA", label: "School of Management and Accountancy" },
+    { value: "CS", label: "Central Services" },
+    { value: "PPO", label: "Physical Plant Personnel" },
+  ];
 
-  const isAdmin = account?.[0]?.role === "ADMINISTRATOR";
+  const getDeptLabel = (value) => {
+    const match = departmentOptions.find((dept) => dept.value === value);
+    return match ? match.label : value || "";
+  };
 
   // Fetch archived users when page, search term, or filter changes
   useEffect(() => {
     fetchArchivedUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, searchTerm, statusFilter]);
+
+  const queryClient = useQueryClient();
 
   const fetchArchivedUsers = async () => {
     setLoading(true);
@@ -89,6 +99,29 @@ export default function Archive() {
         // Refresh the current page after successful update
         await fetchArchivedUsers();
         console.log(result.message);
+        // Invalidate the specific record query so profile views refresh
+        try {
+          if (result && result.data && result.data.id) {
+            const rid = result.data.id;
+            // Invalidate both numeric and string forms to match query keys
+            queryClient.invalidateQueries(["recordid", rid]);
+            queryClient.invalidateQueries(["recordid", String(rid)]);
+            // Also invalidate the prefix to be safe
+            queryClient.invalidateQueries(["recordid"]);
+            // Force refetch for active queries to ensure UI updates
+            try {
+              queryClient.refetchQueries({ queryKey: ["recordid", rid] });
+              queryClient.refetchQueries({ queryKey: ["recordid", String(rid)] });
+              queryClient.refetchQueries({ queryKey: ["recordid"] });
+            } catch (e) {
+              // ignore if not available
+            }
+          } else {
+            queryClient.invalidateQueries(["recordid"]);
+          }
+        } catch (e) {
+          // ignore if react-query not available
+        }
       } else {
         setError(result.message || 'Failed to update user status');
       }
@@ -158,9 +191,8 @@ export default function Archive() {
                   <table className="mt-2 table table-bordered table-striped table-hover">
                     <thead className="border">
                       <tr className="text-start">
-                        <th className="bg-tableheadergray">ID</th>
-                        <th className="bg-tableheadergray">First Name</th>
                         <th className="bg-tableheadergray">Last Name</th>
+                        <th className="bg-tableheadergray">First Name</th>
                         <th className="bg-tableheadergray">Middle Initial</th>
                         <th className="bg-tableheadergray">Department</th>
                         <th className="bg-tableheadergray">Position</th>
@@ -172,13 +204,13 @@ export default function Archive() {
                     <tbody>
                       {loading ? (
                         <tr>
-                          <td colSpan="9" className="text-center text-muted">
+                          <td colSpan="8" className="text-center text-muted">
                             Loading...
                           </td>
                         </tr>
                       ) : error ? (
                         <tr>
-                          <td colSpan="9" className="text-center">
+                          <td colSpan="8" className="text-center">
                             <div className="text-danger">
                               {error}
                             </div>
@@ -192,18 +224,22 @@ export default function Archive() {
                         </tr>
                       ) : users.length === 0 ? (
                         <tr>
-                          <td colSpan="9" className="text-center text-muted">
+                          <td colSpan="8" className="text-center text-muted">
                             {searchTerm.trim() ? 'No users found matching your search' : 'No archived users found'}
                           </td>
                         </tr>
                       ) : (
                         users.map((user) => (
                           <tr key={user.id}>
-                            <td className="text-start text-muted">{user.id}</td>
-                            <td className="text-start text-muted">{user.first_name}</td>
                             <td className="text-start text-muted">{user.last_name}</td>
+                            <td className="text-start text-muted">{user.first_name}</td>
                             <td className="text-center text-muted">{user.middle_initial || ''}</td>
-                            <td className="text-center text-muted">{user.department}</td>
+                            <td
+                              className="text-start text-muted"
+                              style={{ whiteSpace: "normal", wordBreak: "break-word", minWidth: "260px" }}
+                            >
+                              {getDeptLabel(user.department)}
+                            </td>
                             <td className="text-start text-muted">
                               {user.position || 'N/A'}
                             </td>
@@ -217,8 +253,8 @@ export default function Archive() {
                               <button
                                 className="btn btn-sm btn-lightblue text-white fw-semibold"
                                 onClick={() => handleToggleStatus(user.id)}
-                                disabled={!isAdmin || updatingId === user.id}
-                                title={!isAdmin ? 'Only administrators can toggle user status' : `Change to ${user.work_status === 'Active' ? 'Inactive' : 'Active'}`}
+                                disabled={updatingId === user.id}
+                                title={`Change to ${user.work_status === 'Active' ? 'Inactive' : 'Active'}`}
                               >
                                 {updatingId === user.id ? (
                                   'Updating...'

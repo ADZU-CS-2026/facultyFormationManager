@@ -3,7 +3,6 @@
 import RecordSearch from "@/app/components/RecordSearch";
 import AddRecord from "@/app/components/AddRecord";
 import BatchUpdate from "@/app/components/BatchUpdate";
-import DeleteUser from "@/app/components/DeleteUser";
 
 export default function Records() {
   return (
@@ -70,18 +69,6 @@ export default function Records() {
                     >
                       Batch Updates
                     </button>
-                    <button
-                      className="nav-link"
-                      id="nav-delete-tab"
-                      data-bs-toggle="tab"
-                      data-bs-target="#nav-delete"
-                      type="button"
-                      role="tab"
-                      aria-controls="nav-delete"
-                      aria-selected="false"
-                    >
-                      Delete User
-                    </button>
                   </div>
                 </nav>
                 <div className="tab-content small" id="nav-tabContent">
@@ -116,17 +103,6 @@ export default function Records() {
                     tabIndex="0"
                   >
                     <BatchUpdate />
-                  </div>
-
-                  {/* DELETE USER SECTION */}
-                  <div
-                    className="tab-pane fade d-block"
-                    id="nav-delete"
-                    role="tabpanel"
-                    aria-labelledby="nav-delete-tab"
-                    tabIndex="0"
-                  >
-                    <DeleteUser />
                   </div>
                 </div>
               </div>

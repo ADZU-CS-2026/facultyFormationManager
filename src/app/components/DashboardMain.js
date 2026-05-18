@@ -4,11 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import fetchAccountData from "@/app/fetch/fetchAccountData";
 
 export default function Dashboard({ children, sidebar }) {
   const [query, setQuery] = useState("");
+  const pathname = usePathname();
+  const isActiveRoute = (path) => pathname === path || pathname.startsWith(`${path}/`);
+  const navButtonClass = (path) =>
+    `ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 ${isActiveRoute(path) ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`;
 
   const { data } = useQuery({
     queryKey: ["account"],
@@ -41,9 +46,7 @@ export default function Dashboard({ children, sidebar }) {
                   </div>
                   {/* HOME BUTTON */}
                   <Link href="/" className="text-decoration-none">
-                    <button
-                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
-                    >
+                    <button className={navButtonClass("/")}>
                       <div className="d-flex gap-2 align-items-center">
                         <FontAwesomeIcon
                           icon="fa-solid fa-house"
@@ -62,9 +65,7 @@ export default function Dashboard({ children, sidebar }) {
                 <>
                   {/* RECORDS */}
                   <Link href="/records" className="text-decoration-none">
-                    <button
-                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
-                    >
+                    <button className={navButtonClass("/records")}>
                       <div className="d-flex gap-2 align-items-center">
                         <FontAwesomeIcon
                           icon="fa-solid fa-table"
@@ -88,9 +89,7 @@ export default function Dashboard({ children, sidebar }) {
                     href="/operationsmanual"
                     className="text-decoration-none"
                   >
-                    <button
-                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
-                    >
+                    <button className={navButtonClass("/operationsmanual")}>
                       <div className="d-flex gap-2 align-items-center">
                         <FontAwesomeIcon
                           icon="fa-solid fa-book-bible"
@@ -111,9 +110,7 @@ export default function Dashboard({ children, sidebar }) {
                 <>
                   {/* EVENTS */}
                   <Link href="/events" className="text-decoration-none">
-                    <button
-                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
-                    >
+                    <button className={navButtonClass("/events")}>
                       <div className="d-flex gap-2 align-items-center">
                         <FontAwesomeIcon
                           icon="fa-solid fa-calendar-week"
@@ -132,9 +129,7 @@ export default function Dashboard({ children, sidebar }) {
                 <>
                   {/* ABOUT */}
                   <Link href="/about" className="text-decoration-none">
-                    <button
-                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
-                    >
+                    <button className={navButtonClass("/about")}>
                       <div className="d-flex gap-2 align-items-center">
                         <FontAwesomeIcon
                           icon="fa-solid fa-info"
@@ -165,9 +160,7 @@ export default function Dashboard({ children, sidebar }) {
                     href="/account-information"
                     className="text-decoration-none"
                   >
-                    <button
-                      className={`ps-1 text-decoration-none navigation-hover accordion-button ps-3 py-2 bg-gray2`}
-                    >
+                    <button className={navButtonClass("/account-information")}>
                       <div className="d-flex gap-2 align-items-center">
                         <FontAwesomeIcon
                           icon="fa-solid fa-sliders"
@@ -197,9 +190,7 @@ export default function Dashboard({ children, sidebar }) {
                             href="/admin-settings"
                             className="text-decoration-none"
                           >
-                            <button
-                              className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
-                            >
+                            <button className={navButtonClass("/admin-settings")}>
                               <div className="d-flex gap-2 align-items-center">
                                 <FontAwesomeIcon
                                   icon="fa-solid fa-user-tie"
@@ -224,9 +215,7 @@ export default function Dashboard({ children, sidebar }) {
                 <>
                   {/* ARCHIVE */}
                   <Link href="/archive" className="text-decoration-none">
-                    <button
-                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
-                    >
+                    <button className={navButtonClass("/archive")}>
                       <div className="d-flex gap-2 align-items-center">
                         <FontAwesomeIcon
                           icon="fa-solid fa-box-archive"
@@ -245,9 +234,7 @@ export default function Dashboard({ children, sidebar }) {
                 <>
                   {/* MY CHANGES */}
                   <Link href="/my-changes" className="text-decoration-none">
-                    <button
-                      className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
-                    >
+                    <button className={navButtonClass("/my-changes")}>
                       <div className="d-flex gap-2 align-items-center">
                         <FontAwesomeIcon
                           icon="fa-solid fa-clipboard-list"
@@ -275,9 +262,7 @@ export default function Dashboard({ children, sidebar }) {
                             href="/approval-queue"
                             className="text-decoration-none"
                           >
-                            <button
-                              className={`ps-1 text-decoration-none navigation-hover accordion-button py-2 ps-3 bg-gray2`}
-                            >
+                            <button className={navButtonClass("/approval-queue")}>
                               <div className="d-flex gap-2 align-items-center">
                                 <FontAwesomeIcon
                                   icon="fa-solid fa-clipboard-check"
@@ -305,7 +290,7 @@ export default function Dashboard({ children, sidebar }) {
             <div className="d-flex flex-column align-items-center">
               {/* HOME BUTTON */}
               <Link className="w-100 text-decoration-none" href="/">
-                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                   <FontAwesomeIcon
                     icon="fa-solid fa-house"
                     className="text-yellow fs-6"
@@ -322,7 +307,7 @@ export default function Dashboard({ children, sidebar }) {
               </Link>
               {/* RECORDS BUTTON */}
               <Link className="w-100 text-decoration-none" href="/records">
-                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/records") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                   <FontAwesomeIcon
                     icon="fa-solid fa-table"
                     className="text-yellow fs-6"
@@ -342,7 +327,7 @@ export default function Dashboard({ children, sidebar }) {
                 className="w-100 text-decoration-none"
                 href="/operationsmanual"
               >
-                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/operationsmanual") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                   <FontAwesomeIcon
                     icon="fa-solid fa-book-bible"
                     className="text-yellow fs-6"
@@ -359,7 +344,7 @@ export default function Dashboard({ children, sidebar }) {
               </Link>
               {/* EVENTS BUTTON */}
               <Link className="w-100 text-decoration-none" href="/events">
-                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/events") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                   <FontAwesomeIcon
                     icon="fa-solid fa-calendar-week"
                     className="text-yellow fs-6"
@@ -376,7 +361,7 @@ export default function Dashboard({ children, sidebar }) {
               </Link>
               {/* ABOUT BUTTON */}
               <Link className="w-100 text-decoration-none" href="/about">
-                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/about") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                   <FontAwesomeIcon
                     icon="fa-solid fa-info"
                     className="text-yellow fs-6"
@@ -396,7 +381,7 @@ export default function Dashboard({ children, sidebar }) {
                 className="w-100 text-decoration-none"
                 href="/account-information"
               >
-                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative  d-flex justify-content-center">
+                <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/account-information") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                   <FontAwesomeIcon
                     icon="fa-solid fa-sliders"
                     className="text-yellow fs-6"
@@ -420,7 +405,7 @@ export default function Dashboard({ children, sidebar }) {
                         className="w-100 text-decoration-none"
                         href="/admin-settings"
                       >
-                        <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative  d-flex justify-content-center">
+                        <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/admin-settings") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                           <FontAwesomeIcon
                             icon="fa-solid fa-user-tie"
                             className="text-yellow fs-6"
@@ -441,7 +426,7 @@ export default function Dashboard({ children, sidebar }) {
               )}
               {/* ARCHIVE BUTTON */}
               <Link className="w-100 text-decoration-none" href="/archive">
-                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/archive") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                   <FontAwesomeIcon
                     icon="fa-solid fa-box-archive"
                     className="text-yellow fs-6"
@@ -458,7 +443,7 @@ export default function Dashboard({ children, sidebar }) {
               </Link>
               {/* MY CHANGES BUTTON */}
               <Link className="w-100 text-decoration-none" href="/my-changes">
-                <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/my-changes") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                   <FontAwesomeIcon
                     icon="fa-solid fa-clipboard-list"
                     className="text-yellow fs-6"
@@ -482,7 +467,7 @@ export default function Dashboard({ children, sidebar }) {
                         className="w-100 text-decoration-none"
                         href="/approval-queue"
                       >
-                        <div className="border-0 w-100 py-2 bg-gray2 navigation-hover position-relative d-flex justify-content-center">
+                        <div className={`border-0 w-100 py-2 navigation-hover position-relative d-flex justify-content-center ${isActiveRoute("/approval-queue") ? "bg-gray3 border-start border-3 border-warning" : "bg-gray2"}`}>
                           <FontAwesomeIcon
                             icon="fa-solid fa-clipboard-check"
                             className="text-yellow fs-6"
