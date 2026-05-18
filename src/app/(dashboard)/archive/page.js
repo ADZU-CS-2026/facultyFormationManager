@@ -191,9 +191,8 @@ export default function Archive() {
                   <table className="mt-2 table table-bordered table-striped table-hover">
                     <thead className="border">
                       <tr className="text-start">
-                        <th className="bg-tableheadergray">ID</th>
-                        <th className="bg-tableheadergray">First Name</th>
                         <th className="bg-tableheadergray">Last Name</th>
+                        <th className="bg-tableheadergray">First Name</th>
                         <th className="bg-tableheadergray">Middle Initial</th>
                         <th className="bg-tableheadergray">Department</th>
                         <th className="bg-tableheadergray">Position</th>
@@ -205,13 +204,13 @@ export default function Archive() {
                     <tbody>
                       {loading ? (
                         <tr>
-                          <td colSpan="9" className="text-center text-muted">
+                          <td colSpan="8" className="text-center text-muted">
                             Loading...
                           </td>
                         </tr>
                       ) : error ? (
                         <tr>
-                          <td colSpan="9" className="text-center">
+                          <td colSpan="8" className="text-center">
                             <div className="text-danger">
                               {error}
                             </div>
@@ -225,16 +224,15 @@ export default function Archive() {
                         </tr>
                       ) : users.length === 0 ? (
                         <tr>
-                          <td colSpan="9" className="text-center text-muted">
+                          <td colSpan="8" className="text-center text-muted">
                             {searchTerm.trim() ? 'No users found matching your search' : 'No archived users found'}
                           </td>
                         </tr>
                       ) : (
                         users.map((user) => (
                           <tr key={user.id}>
-                            <td className="text-start text-muted">{user.id}</td>
-                            <td className="text-start text-muted">{user.first_name}</td>
                             <td className="text-start text-muted">{user.last_name}</td>
+                            <td className="text-start text-muted">{user.first_name}</td>
                             <td className="text-center text-muted">{user.middle_initial || ''}</td>
                             <td
                               className="text-start text-muted"
